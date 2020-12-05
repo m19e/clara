@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import React, { CSSProperties } from "react";
-import VerticalEditor from "../../components/Vertical";
 
 const styles: { [key: string]: CSSProperties } = {
     wrapper: {
