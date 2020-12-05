@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { Editor, EditorState } from "draft-js";
 
-const styles = {
+const styles: { [key: string]: CSSProperties } = {
     editor: { border: "1px solid black", minHeight: "6em", cursor: "text" },
 };
 
