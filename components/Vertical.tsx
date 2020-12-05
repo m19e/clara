@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from "react";
+import React, { useState, useRef, useEffect, CSSProperties } from "react";
 import { Editor, EditorState } from "draft-js";
 
 const styles: { [key: string]: CSSProperties } = {
@@ -16,7 +16,7 @@ const styles: { [key: string]: CSSProperties } = {
 
 const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
-    const editor = React.useRef(null);
+    const editor = useRef(null);
     const focusEditor = () => editor.current.focus();
 
     useEffect(() => {
