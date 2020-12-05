@@ -3,6 +3,15 @@ import { Editor, EditorState } from "draft-js";
 
 const styles: { [key: string]: CSSProperties } = {
     editor: { border: "1px solid black", minHeight: "6em", cursor: "text" },
+    tate: {
+        flex: 1,
+        // textAlign: justify,
+        fontSize: "24px",
+        margin: "auto",
+        writingMode: "vertical-rl",
+        // maxHeight: "100%",
+        cursor: "text",
+    },
 };
 
 const VerticalEditor = () => {
