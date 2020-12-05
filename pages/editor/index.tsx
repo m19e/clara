@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import React, { CSSProperties } from "react";
 import VerticalEditor from "../../components/Vertical";
-import Footer from "../../components/Footer";
 
 const styles: { [key: string]: CSSProperties } = {
     wrapper: {
@@ -21,7 +20,6 @@ export default function EditorIndex() {
         <div style={styles.wrapper}>
             <div style={styles.flexItem}>
                 <DynamicVerticalEditor />
-                <Footer />
             </div>
         </div>
     );
