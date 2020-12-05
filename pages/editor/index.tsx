@@ -3,7 +3,8 @@ import React, { CSSProperties } from "react";
 
 const styles: { [key: string]: CSSProperties } = {
     wrapper: {
-        minHeight: "100vh",
+        // minHeight: "100vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
     },
@@ -15,11 +16,5 @@ const styles: { [key: string]: CSSProperties } = {
 const DynamicVerticalEditor = dynamic(() => import("../../components/Vertical"), { ssr: false });
 
 export default function EditorIndex() {
-    return (
-        <div style={styles.wrapper}>
-            <div style={styles.flexItem}>
-                <DynamicVerticalEditor />
-            </div>
-        </div>
-    );
+    return <DynamicVerticalEditor />;
 }

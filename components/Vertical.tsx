@@ -1,8 +1,22 @@
+import Head from "next/head";
 import React, { useState, useRef, useEffect, CSSProperties } from "react";
 import { Editor, EditorState } from "draft-js";
+import Footer from "./Footer";
 
 const styles: { [key: string]: CSSProperties } = {
-    editor: { border: "1px solid black", minHeight: "6em", cursor: "text" },
+    container: {
+        height: "100%",
+        // border: "1px solid lightgrey",
+        // padding: "8px",
+        display: "flex",
+        flexDirection: "column",
+    },
+    editor: {
+        border: "1px solid black",
+        minHeight: "6em",
+        cursor: "text",
+        flexGrow: 1,
+    },
     tate: {
         flex: 1,
         // textAlign: justify,
@@ -24,9 +38,17 @@ const VerticalEditor = () => {
     }, []);
 
     return (
-        <div style={styles.editor} onClick={focusEditor}>
-            <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
-        </div>
+        <>
+            <Head>
+                <style>{`* { margin: 0px; padding: 0px;}`}</style>
+            </Head>
+            <div style={styles.container}>
+                <div style={styles.editor} onClick={focusEditor}>
+                    <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
+                </div>
+                <Footer />
+            </div>
+        </>
     );
 };
 
