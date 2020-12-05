@@ -22,11 +22,15 @@ const styles: { [key: string]: CSSProperties } = {
 export default function Footer() {
     return (
         <div style={styles.footer}>
-            {["", "", ""].map((_) => (
-                <div style={styles.control}>
-                    <p>control</p>
-                </div>
-            ))}
+            <div style={styles.control}>
+                <p>control</p>
+            </div>
+            <div style={styles.control}>
+                <p>control</p>
+            </div>
+            <div style={styles.control}>
+                <p>control</p>
+            </div>
         </div>
     );
 }
