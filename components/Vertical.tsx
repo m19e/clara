@@ -22,7 +22,6 @@ const styles: { [key: string]: CSSProperties } = {
         border: "1px dashed gray",
         writingMode: "vertical-rl",
         flex: 1,
-        overflowX: "auto",
         paddingBottom: "8px",
     },
     editor: {
