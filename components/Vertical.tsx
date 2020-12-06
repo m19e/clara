@@ -55,9 +55,22 @@ const VerticalEditor = () => {
     const editor = useRef(null);
     const focusEditor = () => editor.current.focus();
     const scrollbars: React.RefObject<Scrollbars> = createRef();
+    const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
+    const [wrapperHeight, setWrapperHeight] = useState(480);
 
     useEffect(() => {
         focusEditor();
+
+        const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
+            const height = entries[0].contentRect.height;
+            setWrapperHeight(height);
+            console.log(height);
+        });
+        wrapperRef.current && resizeObs.observe(wrapperRef.current);
+
+        return () => {
+            resizeObs.disconnect();
+        };
     }, []);
 
     const onMouseWheel = (e: React.WheelEvent<Scrollbars>) => {
@@ -72,7 +85,7 @@ const VerticalEditor = () => {
             </Head>
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
-                    <div style={styles.wrapper}>
+                    <div style={styles.wrapper} ref={wrapperRef}>
                         <Scrollbars ref={scrollbars} onWheel={onMouseWheel} autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
                             <div style={styles.editor}>
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
