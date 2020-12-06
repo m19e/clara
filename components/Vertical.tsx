@@ -24,6 +24,7 @@ const styles: { [key: string]: CSSProperties } = {
         width: "720px",
         height: "720px",
         overflowX: "auto",
+        paddingBottom: "8px",
     },
     editor: {
         fontSize: "24px",
