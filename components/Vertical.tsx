@@ -16,7 +16,7 @@ const styles: { [key: string]: CSSProperties } = {
     },
     wrapper: {
         border: "1px solid black",
-        minHeight: "6em",
+        minWidth: "6em",
         cursor: "text",
         flexGrow: 1,
         display: "flex",
