@@ -2,9 +2,8 @@ import Head from "next/head";
 import React, { useState, useRef, useEffect, createRef, CSSProperties } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Editor, EditorState } from "draft-js";
-import Footer from "./Footer";
 
-type classname = "root" | "container" | "wrapper" | "scroll" | "editor";
+type classname = "root" | "container" | "wrapper" | "scroll" | "editor" | "footer" | "control";
 
 type classMap = {
     [key in classname]: CSSProperties;
@@ -48,7 +47,37 @@ const styles: classMap = {
         minWidth: "6em",
         margin: "0 auto",
     },
+    footer: {
+        backgroundColor: "lightgray",
+        minHeight: "120px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    control: {
+        backgroundColor: "white",
+        width: "90px",
+        height: "90px",
+        margin: "8px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
 };
+
+const Footer = () => (
+    <div style={styles.footer}>
+        <div style={styles.control}>
+            <p>control</p>
+        </div>
+        <div style={styles.control}>
+            <p>control</p>
+        </div>
+        <div style={styles.control}>
+            <p>control</p>
+        </div>
+    </div>
+);
 
 const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
