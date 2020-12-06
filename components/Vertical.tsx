@@ -30,7 +30,7 @@ const styles: { [key: string]: CSSProperties } = {
         alignItems: "center",
         fontSize: "24px",
         writingMode: "vertical-rl",
-        padding: "auto",
+        // padding: "auto",
         width: "98%",
         height: "100%",
         overflowX: "auto",
