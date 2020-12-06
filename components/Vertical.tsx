@@ -13,24 +13,27 @@ const styles: { [key: string]: CSSProperties } = {
     container: {
         flex: 1,
         display: "flex",
+        flexGrow: 1,
         flexDirection: "column",
-        justifyContent: "flex-end",
-        alignItems: "center",
         backgroundColor: "navajowhite",
     },
     scroll: {
         border: "1px dashed gray",
-        writingMode: "vertical-rl",
-        flex: 1,
-        paddingBottom: "8px",
+        minWidth: "640px",
+        minHeight: "480px",
+        maxWidth: "95%",
+        maxHeight: "90%",
+        height: "728px",
+        backgroundColor: "white",
     },
     editor: {
+        writingMode: "vertical-rl",
         fontSize: "24px",
         backgroundColor: "white",
-        // width: "98%",
-        // overflowX: "auto",
-        // overflowY: "hidden",
-        // whiteSpace: "nowrap",
+        maxHeight: "100%",
+        height: "720px",
+        minHeight: "20em",
+        minWidth: "6em",
     },
 };
 
@@ -56,11 +59,13 @@ const VerticalEditor = () => {
             </Head>
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
-                    <Scrollbars ref={scrollbars} onWheel={onMouseWheel} autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
-                        <div style={styles.editor}>
-                            <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
-                        </div>
-                    </Scrollbars>
+                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <Scrollbars ref={scrollbars} onWheel={onMouseWheel} autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
+                            <div style={styles.editor}>
+                                <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
+                            </div>
+                        </Scrollbars>
+                    </div>
                 </div>
                 <Footer />
             </div>
