@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React, { useState, useRef, useEffect, CSSProperties } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
 import { Editor, EditorState } from "draft-js";
 import Footer from "./Footer";
 
@@ -50,11 +51,11 @@ const VerticalEditor = () => {
             </Head>
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
-                    <div style={styles.scroll}>
+                    <Scrollbars autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
                         <div style={styles.editor}>
                             <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                         </div>
-                    </div>
+                    </Scrollbars>
                 </div>
                 <Footer />
             </div>
