@@ -102,6 +102,8 @@ const VerticalEditor = () => {
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const [wrapperHeight, setWrapperHeight] = useState(480);
 
+    const [fs] = useAtom(fontSizeAtom);
+
     useEffect(() => {
         focusEditor();
 
@@ -131,7 +133,7 @@ const VerticalEditor = () => {
                 <div style={styles.container} onClick={focusEditor}>
                     <div style={styles.wrapper} ref={wrapperRef}>
                         <Scrollbars ref={scrollbars} onWheel={onMouseWheel} autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
-                            <div style={styles.editor}>
+                            <div style={{ ...styles.editor, fontSize: `${fs}px` }}>
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                             </div>
                         </Scrollbars>
