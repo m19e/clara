@@ -1,6 +1,12 @@
 import React, { CSSProperties } from "react";
 
-const styles: { [key: string]: CSSProperties } = {
+type classname = "footer" | "control";
+
+type classMap = {
+    [key in classname]: CSSProperties;
+};
+
+const styles: classMap = {
     footer: {
         backgroundColor: "lightgray",
         minHeight: "120px",

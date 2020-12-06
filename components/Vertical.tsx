@@ -4,7 +4,13 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { Editor, EditorState } from "draft-js";
 import Footer from "./Footer";
 
-const styles: { [key: string]: CSSProperties } = {
+type classname = "root" | "container" | "flexcenter" | "scroll" | "editor";
+
+type classMap = {
+    [key in classname]: CSSProperties;
+};
+
+const styles: classMap = {
     root: {
         minHeight: "100vh",
         display: "flex",
@@ -16,6 +22,12 @@ const styles: { [key: string]: CSSProperties } = {
         flexGrow: 1,
         flexDirection: "column",
         backgroundColor: "navajowhite",
+    },
+    flexcenter: {
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
     },
     scroll: {
         border: "1px dashed gray",
@@ -59,7 +71,7 @@ const VerticalEditor = () => {
             </Head>
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
-                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <div style={styles.flexcenter}>
                         <Scrollbars ref={scrollbars} onWheel={onMouseWheel} autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
                             <div style={styles.editor}>
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
