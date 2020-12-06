@@ -36,7 +36,7 @@ const styles: classMap = {
         maxWidth: "95%",
         maxHeight: "90%",
         height: "728px",
-        backgroundColor: "white",
+        // backgroundColor: "white",
     },
     editor: {
         writingMode: "vertical-rl",
@@ -46,6 +46,7 @@ const styles: classMap = {
         height: "720px",
         minHeight: "20em",
         minWidth: "6em",
+        margin: "0 auto",
     },
 };
 
