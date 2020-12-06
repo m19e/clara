@@ -14,11 +14,28 @@ const styles: { [key: string]: CSSProperties } = {
         display: "flex",
         flexDirection: "column",
     },
-    editor: {
+    wrapper: {
         border: "1px solid black",
         minHeight: "6em",
         cursor: "text",
         flexGrow: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    editor: {
+        border: "1px solid black",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "24px",
+        writingMode: "vertical-rl",
+        padding: "auto",
+        width: "98%",
+        height: "100%",
+        overflowX: "auto",
+        overflowY: "hidden",
+        whiteSpace: "nowrap",
     },
     tate: {
         flex: 1,
@@ -45,11 +62,17 @@ const VerticalEditor = () => {
             <Head>
                 <style>{`* { margin: 0px; padding: 0px;}`}</style>
             </Head>
-            <div style={styles.container}>
-                <div style={styles.editor} onClick={focusEditor}>
-                    <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
+            <div style={styles.root}>
+                <div style={styles.container}>
+                    <div style={styles.wrapper}>
+                        <div style={styles.editor} onClick={focusEditor}>
+                            <div style={{ border: "1px solid black" }}>
+                                <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
+                            </div>
+                        </div>
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
             </div>
         </>
     );
