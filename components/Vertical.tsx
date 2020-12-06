@@ -49,9 +49,9 @@ const VerticalEditor = () => {
                 <style>{`* { margin: 0px; padding: 0px; overflow: hidden; }`}</style>
             </Head>
             <div style={styles.root}>
-                <div style={styles.container}>
+                <div style={styles.container} onClick={focusEditor}>
                     <div style={styles.scroll}>
-                        <div style={styles.editor} onClick={focusEditor}>
+                        <div style={styles.editor}>
                             <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                         </div>
                     </div>
