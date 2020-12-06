@@ -123,7 +123,7 @@ const VerticalEditor = () => {
     };
 
     return (
-        <Provider>
+        <>
             <Head>
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
@@ -139,8 +139,14 @@ const VerticalEditor = () => {
                 </div>
                 <Footer />
             </div>
-        </Provider>
+        </>
     );
 };
 
-export default VerticalEditor;
+export default function VerticalEditorProvider() {
+    return (
+        <Provider>
+            <VerticalEditor />
+        </Provider>
+    );
+}
