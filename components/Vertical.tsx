@@ -4,6 +4,9 @@ import { Editor, EditorState } from "draft-js";
 import Footer from "./Footer";
 
 const styles: { [key: string]: CSSProperties } = {
+    root: {
+        height: "100vh",
+    },
     container: {
         height: "100%",
         // border: "1px solid lightgrey",
