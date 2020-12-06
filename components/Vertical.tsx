@@ -48,7 +48,7 @@ const VerticalEditor = () => {
 
     const onMouseWheel = (e: React.WheelEvent<Scrollbars>) => {
         const currentScrollDelta = scrollbars.current?.getScrollLeft() || 0;
-        scrollbars.current.scrollLeft(currentScrollDelta - Math.floor(e.deltaY / 4));
+        scrollbars.current.scrollLeft(currentScrollDelta - Math.floor(e.deltaY / 2));
     };
 
     return (
