@@ -37,15 +37,6 @@ const styles: { [key: string]: CSSProperties } = {
         overflowY: "hidden",
         whiteSpace: "nowrap",
     },
-    tate: {
-        flex: 1,
-        // textAlign: justify,
-        fontSize: "24px",
-        margin: "auto",
-        writingMode: "vertical-rl",
-        // maxHeight: "100%",
-        cursor: "text",
-    },
 };
 
 const VerticalEditor = () => {
