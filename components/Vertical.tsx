@@ -55,7 +55,7 @@ const VerticalEditor = () => {
     return (
         <>
             <Head>
-                <style>{`* { margin: 0px; padding: 0px; overflow: hidden; }`}</style>
+                <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
