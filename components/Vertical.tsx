@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React, { useState, useRef, useEffect, createRef, CSSProperties } from "react";
+import { Provider, atom, useAtom } from "jotai";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Editor, EditorState } from "draft-js";
 
@@ -65,19 +66,33 @@ const styles: classMap = {
     },
 };
 
-const Footer = () => (
-    <div style={styles.footer}>
-        <div style={styles.control}>
-            <p>control</p>
+const fontSizeAtom = atom(24);
+
+const Footer = () => {
+    const [fontSize, setFontSize] = useAtom(fontSizeAtom);
+
+    return (
+        <div style={styles.footer}>
+            <div style={styles.control}>
+                <p>control</p>
+            </div>
+            <div style={styles.control}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize > 46}>
+                        ↑
+                    </button>
+                    <p>fontsize:{fontSize}</p>
+                    <button onClick={() => setFontSize((prev) => prev - 4)} disabled={fontSize < 5}>
+                        ↓
+                    </button>
+                </div>
+            </div>
+            <div style={styles.control}>
+                <p>control</p>
+            </div>
         </div>
-        <div style={styles.control}>
-            <p>control</p>
-        </div>
-        <div style={styles.control}>
-            <p>control</p>
-        </div>
-    </div>
-);
+    );
+};
 
 const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
@@ -108,7 +123,7 @@ const VerticalEditor = () => {
     };
 
     return (
-        <>
+        <Provider>
             <Head>
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
@@ -124,7 +139,7 @@ const VerticalEditor = () => {
                 </div>
                 <Footer />
             </div>
-        </>
+        </Provider>
     );
 };
 
