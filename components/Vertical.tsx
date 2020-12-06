@@ -21,8 +21,7 @@ const styles: { [key: string]: CSSProperties } = {
     scroll: {
         border: "1px dashed gray",
         writingMode: "vertical-rl",
-        width: "720px",
-        height: "720px",
+        flex: 1,
         overflowX: "auto",
         paddingBottom: "8px",
     },
