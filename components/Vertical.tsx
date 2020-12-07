@@ -69,6 +69,7 @@ const styles: classMap = {
 
 const fontSizeAtom = atom(24);
 const lineCharsAtom = atom(30);
+const editorHeightAtom = atom((get) => get(fontSizeAtom) * get(lineCharsAtom));
 
 const Footer = () => {
     const [fontSize, setFontSize] = useAtom(fontSizeAtom);
@@ -114,6 +115,7 @@ const VerticalEditor = () => {
     const [wrapperHeight, setWrapperHeight] = useState(480);
 
     const [fs] = useAtom(fontSizeAtom);
+    const [eh] = useAtom(editorHeightAtom);
 
     useEffect(() => {
         focusEditor();
@@ -143,8 +145,21 @@ const VerticalEditor = () => {
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
                     <div style={styles.wrapper} ref={wrapperRef}>
-                        <Scrollbars ref={scrollbars} onWheel={onMouseWheel} autoHide autoHideTimeout={1000} autoHideDuration={500} style={styles.scroll}>
-                            <div style={{ ...styles.editor, fontSize: `${fs}px` }}>
+                        <Scrollbars
+                            ref={scrollbars}
+                            onWheel={onMouseWheel}
+                            autoHide
+                            autoHideTimeout={1000}
+                            autoHideDuration={500}
+                            style={{ ...styles.scroll, height: `${eh}px` }}
+                        >
+                            <div
+                                style={{
+                                    ...styles.editor,
+                                    fontSize: `${fs}px`,
+                                    height: `${eh}px`,
+                                }}
+                            >
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                             </div>
                         </Scrollbars>
