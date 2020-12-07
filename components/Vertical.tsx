@@ -35,7 +35,8 @@ const styles: classMap = {
         minHeight: "480px",
         maxWidth: "95%",
         maxHeight: "90%",
-        height: "728px",
+        height: "720px",
+        paddingBottom: "8px",
         // backgroundColor: "white",
     },
     editor: {
