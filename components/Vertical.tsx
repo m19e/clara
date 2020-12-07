@@ -58,8 +58,8 @@ const styles: classMap = {
     },
     control: {
         backgroundColor: "white",
-        width: "90px",
-        height: "90px",
+        width: "100px",
+        height: "100px",
         margin: "8px",
         display: "flex",
         justifyContent: "center",
