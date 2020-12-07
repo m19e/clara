@@ -69,7 +69,7 @@ const styles: classMap = {
 
 const fontSizeAtom = atom(24);
 const lineCharsAtom = atom(30);
-const wrapperHeightAtom = atom(0);
+const wrapperHeightAtom = atom(480);
 const editorHeightAtom = atom((get) => get(fontSizeAtom) * get(lineCharsAtom));
 
 const Footer = () => {
