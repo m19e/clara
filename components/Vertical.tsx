@@ -68,9 +68,11 @@ const styles: classMap = {
 };
 
 const fontSizeAtom = atom(24);
+const lineCharsAtom = atom(30);
 
 const Footer = () => {
     const [fontSize, setFontSize] = useAtom(fontSizeAtom);
+    const [lineChars, setlineChars] = useAtom(lineCharsAtom);
 
     return (
         <div style={styles.footer}>
@@ -89,7 +91,15 @@ const Footer = () => {
                 </div>
             </div>
             <div style={styles.control}>
-                <p>control</p>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <button onClick={() => setlineChars((prev) => prev + 2)} disabled={lineChars >= 40}>
+                        ↑
+                    </button>
+                    <p>linechars:{lineChars}</p>
+                    <button onClick={() => setlineChars((prev) => prev - 2)} disabled={lineChars <= 20}>
+                        ↓
+                    </button>
+                </div>
             </div>
         </div>
     );
