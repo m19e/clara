@@ -85,7 +85,6 @@ const ScrollTest = () => {
 };
 
 const data = Array.from(new Array(15).keys());
-const directionObj = {};
 
 const ScrollTop = () => {
     const ps = useRef();
@@ -99,11 +98,6 @@ const ScrollTop = () => {
     };
 
     const onMouseWheel = (e) => {
-        // const curr = ps.current;
-        // if (curr) {
-        // console.log("Top: ", curr.scrollTop);
-        // console.log("Left: ", curr.scrollLeft);
-        // }
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
