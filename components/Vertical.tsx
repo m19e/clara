@@ -81,11 +81,11 @@ const Footer = () => {
             </div>
             <div style={styles.control}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize > 46}>
+                    <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48}>
                         ↑
                     </button>
                     <p>fontsize:{fontSize}</p>
-                    <button onClick={() => setFontSize((prev) => prev - 4)} disabled={fontSize < 5}>
+                    <button onClick={() => setFontSize((prev) => prev - 4)} disabled={fontSize <= 16}>
                         ↓
                     </button>
                 </div>
