@@ -71,10 +71,14 @@ const fontSizeAtom = atom(24);
 const lineCharsAtom = atom(30);
 const wrapperHeightAtom = atom(480);
 const editorHeightAtom = atom((get) => get(fontSizeAtom) * get(lineCharsAtom));
+const isDisabledFSAtom = atom((get) => (get(fontSizeAtom) + 4) * get(lineCharsAtom) > get(wrapperHeightAtom));
+const isDisabledLCAtom = atom((get) => get(fontSizeAtom) * (get(lineCharsAtom) + 2) > get(wrapperHeightAtom));
 
 const Footer = () => {
     const [fontSize, setFontSize] = useAtom(fontSizeAtom);
     const [lineChars, setlineChars] = useAtom(lineCharsAtom);
+    const [isDisabledFS] = useAtom(isDisabledFSAtom);
+    const [isDisabledLC] = useAtom(isDisabledLCAtom);
 
     return (
         <div style={styles.footer}>
@@ -83,7 +87,7 @@ const Footer = () => {
             </div>
             <div style={styles.control}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48}>
+                    <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48 || isDisabledFS}>
                         ↑
                     </button>
                     <p>fontsize:{fontSize}</p>
@@ -94,7 +98,7 @@ const Footer = () => {
             </div>
             <div style={styles.control}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <button onClick={() => setlineChars((prev) => prev + 2)} disabled={lineChars >= 40}>
+                    <button onClick={() => setlineChars((prev) => prev + 2)} disabled={lineChars >= 40 || isDisabledLC}>
                         ↑
                     </button>
                     <p>linechars:{lineChars}</p>
