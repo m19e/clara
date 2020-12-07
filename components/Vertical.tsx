@@ -69,6 +69,7 @@ const styles: classMap = {
 
 const fontSizeAtom = atom(24);
 const lineCharsAtom = atom(30);
+const wrapperHeightAtom = atom(0);
 const editorHeightAtom = atom((get) => get(fontSizeAtom) * get(lineCharsAtom));
 
 const Footer = () => {
@@ -112,7 +113,7 @@ const VerticalEditor = () => {
     const focusEditor = () => editor.current.focus();
     const scrollbars: React.RefObject<Scrollbars> = createRef();
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
-    const [wrapperHeight, setWrapperHeight] = useState(480);
+    const [wrapperHeight, setWrapperHeight] = useAtom(wrapperHeightAtom);
 
     const [fs] = useAtom(fontSizeAtom);
     const [eh] = useAtom(editorHeightAtom);
