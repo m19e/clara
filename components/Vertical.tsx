@@ -117,12 +117,14 @@ const Footer = () => {
 const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editor = useRef(null);
-    const focusEditor = () => editor.current.focus();
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
-    const [_, setWrapperHeight] = useAtom(wrapperHeightAtom);
+    const ps = useRef<HTMLElement>();
 
+    const [_, setWrapperHeight] = useAtom(wrapperHeightAtom);
     const [fs] = useAtom(fontSizeAtom);
     const [eh] = useAtom(editorHeightAtom);
+
+    const focusEditor = () => editor.current.focus();
 
     useEffect(() => {
         focusEditor();
@@ -137,8 +139,6 @@ const VerticalEditor = () => {
             resizeObs.disconnect();
         };
     }, []);
-
-    const ps = useRef<HTMLElement>();
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
