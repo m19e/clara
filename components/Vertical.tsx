@@ -119,7 +119,7 @@ const VerticalEditor = () => {
     const editor = useRef(null);
     const focusEditor = () => editor.current.focus();
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
-    const [wrapperHeight, setWrapperHeight] = useAtom(wrapperHeightAtom);
+    const [_, setWrapperHeight] = useAtom(wrapperHeightAtom);
 
     const [fs] = useAtom(fontSizeAtom);
     const [eh] = useAtom(editorHeightAtom);
