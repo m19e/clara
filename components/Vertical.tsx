@@ -85,10 +85,10 @@ const Footer = () => {
 
     return (
         <div className="bg-gray-300 h-36 flex justify-center items-center">
-            <div style={styles.control}>
+            <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
                 <p>control</p>
             </div>
-            <div style={styles.control}>
+            <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48 || isDisabledFS}>
                         ↑
@@ -99,7 +99,7 @@ const Footer = () => {
                     </button>
                 </div>
             </div>
-            <div style={styles.control}>
+            <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <button onClick={() => setlineChars((prev) => prev + 1)} disabled={lineChars >= 40 || isDisabledLC}>
                         ↑
