@@ -130,7 +130,6 @@ const VerticalEditor = () => {
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             setWrapperHeight(height);
-            console.log(height);
         });
         wrapperRef.current && resizeObs.observe(wrapperRef.current);
 
