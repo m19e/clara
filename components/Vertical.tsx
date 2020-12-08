@@ -155,7 +155,12 @@ const VerticalEditor = () => {
             <div className={"min-h-screen flex flex-col"}>
                 <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}>
                     <div className={"flex-1 flex justify-center items-center"} ref={wrapperRef}>
-                        <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheelPS} style={{ ...styles.scroll, height: `${eh}px` }}>
+                        <Scrollbar
+                            containerRef={(ref) => (ps.current = ref)}
+                            onWheel={onMouseWheelPS}
+                            className="border border-dashed border-gray-400 pb-2 max-h-95 max-w-95"
+                            style={{ height: `${eh}px` }}
+                        >
                             <div
                                 style={{
                                     ...styles.editor,
