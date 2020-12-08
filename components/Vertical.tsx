@@ -84,11 +84,11 @@ const Footer = () => {
     const [isDisabledLC] = useAtom(isDisabledLCAtom);
 
     return (
-        <div className="bg-gray-300 flex justify-center items-center" style={{ minHeight: "120px" }}>
-            <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
+        <div className="bg-gray-300 flex-center" style={{ minHeight: "120px" }}>
+            <div className="bg-white w-24 h-24 m-2 flex-center">
                 <p>control</p>
             </div>
-            <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
+            <div className="bg-white w-24 h-24 m-2 flex-center">
                 <div className="flex flex-col">
                     <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48 || isDisabledFS}>
                         ↑
@@ -99,7 +99,7 @@ const Footer = () => {
                     </button>
                 </div>
             </div>
-            <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
+            <div className="bg-white w-24 h-24 m-2 flex-center">
                 <div className="flex flex-col">
                     <button onClick={() => setlineChars((prev) => prev + 1)} disabled={lineChars >= 40 || isDisabledLC}>
                         ↑
@@ -154,7 +154,7 @@ const VerticalEditor = () => {
             </Head>
             <div className={"min-h-screen flex flex-col"}>
                 <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}>
-                    <div className={"flex-1 flex justify-center items-center"} ref={wrapperRef}>
+                    <div className={"flex-1 flex-center"} ref={wrapperRef}>
                         <Scrollbar
                             containerRef={(ref) => (ps.current = ref)}
                             onWheel={onMouseWheelPS}
