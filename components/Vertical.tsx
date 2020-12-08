@@ -84,7 +84,7 @@ const Footer = () => {
     const [isDisabledLC] = useAtom(isDisabledLCAtom);
 
     return (
-        <div style={styles.footer}>
+        <div className="bg-gray-300 h-36 flex justify-center items-center">
             <div style={styles.control}>
                 <p>control</p>
             </div>
