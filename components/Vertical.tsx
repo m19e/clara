@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React, { useState, useRef, useEffect, createRef, CSSProperties } from "react";
 import { Provider, atom, useAtom } from "jotai";
-import { Scrollbars } from "react-custom-scrollbars";
 import { Editor, EditorState } from "draft-js";
 
 import Scrollbar from "react-perfect-scrollbar";
@@ -119,7 +118,6 @@ const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editor = useRef(null);
     const focusEditor = () => editor.current.focus();
-    const scrollbars: React.RefObject<Scrollbars> = createRef();
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const [wrapperHeight, setWrapperHeight] = useAtom(wrapperHeightAtom);
 
@@ -141,11 +139,6 @@ const VerticalEditor = () => {
         };
     }, []);
 
-    const onMouseWheel = (e: React.WheelEvent<Scrollbars>) => {
-        const currentScrollDelta = scrollbars.current?.getScrollLeft() || 0;
-        scrollbars.current.scrollLeft(currentScrollDelta - Math.floor(e.deltaY / 2));
-    };
-
     const ps = useRef<HTMLElement>();
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
@@ -163,14 +156,6 @@ const VerticalEditor = () => {
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
                     <div style={styles.wrapper} ref={wrapperRef}>
-                        {/* <Scrollbars
-                            ref={scrollbars}
-                            onWheel={onMouseWheel}
-                            autoHide
-                            autoHideTimeout={1000}
-                            autoHideDuration={500}
-                            style={{ ...styles.scroll, height: `${eh}px` }}
-                        > */}
                         <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheelPS} style={{ ...styles.scroll, height: `${eh}px` }}>
                             <div
                                 style={{
@@ -182,7 +167,6 @@ const VerticalEditor = () => {
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                             </div>
                         </Scrollbar>
-                        {/* </Scrollbars> */}
                     </div>
                 </div>
                 <Footer />
