@@ -162,11 +162,8 @@ const VerticalEditor = () => {
                             style={{ height: `${eh}px` }}
                         >
                             <div
-                                style={{
-                                    ...styles.editor,
-                                    fontSize: `${fs}px`,
-                                    height: `${eh}px`,
-                                }}
+                                className="writing-v-rl text-justify bg-white max-h-full"
+                                style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                             >
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                             </div>
