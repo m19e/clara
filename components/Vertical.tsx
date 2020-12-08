@@ -4,6 +4,9 @@ import { Provider, atom, useAtom } from "jotai";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Editor, EditorState } from "draft-js";
 
+import Scrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
+
 type classname = "root" | "container" | "wrapper" | "scroll" | "editor" | "footer" | "control";
 
 type classMap = {
@@ -31,20 +34,21 @@ const styles: classMap = {
     },
     scroll: {
         border: "1px dashed gray",
-        minWidth: "640px",
-        minHeight: "480px",
+        // minWidth: "640px",
+        // minHeight: "480px",
         maxWidth: "95%",
-        maxHeight: "90%",
-        height: "720px",
+        maxHeight: "95%",
+        // height: "100px",
         paddingBottom: "8px",
         // backgroundColor: "white",
     },
     editor: {
         writingMode: "vertical-rl",
         fontSize: "24px",
+        textAlign: "justify",
         backgroundColor: "white",
         maxHeight: "100%",
-        height: "720px",
+        // height: "720px",
         minHeight: "20em",
         minWidth: "6em",
         margin: "0 auto",
@@ -142,6 +146,15 @@ const VerticalEditor = () => {
         scrollbars.current.scrollLeft(currentScrollDelta - Math.floor(e.deltaY / 2));
     };
 
+    const ps = useRef<HTMLElement>();
+
+    const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
+        if (ps.current) {
+            if (ps.current === undefined) return;
+            ps.current.scrollLeft -= e.deltaY;
+        }
+    };
+
     return (
         <>
             <Head>
@@ -150,14 +163,15 @@ const VerticalEditor = () => {
             <div style={styles.root}>
                 <div style={styles.container} onClick={focusEditor}>
                     <div style={styles.wrapper} ref={wrapperRef}>
-                        <Scrollbars
+                        {/* <Scrollbars
                             ref={scrollbars}
                             onWheel={onMouseWheel}
                             autoHide
                             autoHideTimeout={1000}
                             autoHideDuration={500}
                             style={{ ...styles.scroll, height: `${eh}px` }}
-                        >
+                        > */}
+                        <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheelPS} style={{ ...styles.scroll, height: `${eh}px` }}>
                             <div
                                 style={{
                                     ...styles.editor,
@@ -167,7 +181,8 @@ const VerticalEditor = () => {
                             >
                                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} placeholder="Write something!" />
                             </div>
-                        </Scrollbars>
+                        </Scrollbar>
+                        {/* </Scrollbars> */}
                     </div>
                 </div>
                 <Footer />
