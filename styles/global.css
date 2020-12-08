@@ -5,4 +5,8 @@
     writing-mode: vertical-rl;
 }
 
+.flex-center {
+    @apply flex justify-center items-center;
+}
+
 @tailwind utilities;
