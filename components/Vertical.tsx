@@ -158,8 +158,8 @@ const VerticalEditor = () => {
                         <Scrollbar
                             containerRef={(ref) => (ps.current = ref)}
                             onWheel={onMouseWheelPS}
-                            className="border border-dashed border-gray-400 pb-2 max-h-95 max-w-95"
-                            style={{ height: `${eh}px` }}
+                            className="border border-dashed border-gray-400 pb-2"
+                            style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
                         >
                             <div
                                 className="writing-v-rl text-justify bg-white max-h-full"
