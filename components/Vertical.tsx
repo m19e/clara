@@ -84,7 +84,7 @@ const Footer = () => {
     const [isDisabledLC] = useAtom(isDisabledLCAtom);
 
     return (
-        <div className="bg-gray-300 min-h-32 flex justify-center items-center">
+        <div className="bg-gray-300 flex justify-center items-center" style={{ minHeight: "120px" }}>
             <div className="bg-white w-24 h-24 m-2 flex justify-center items-center">
                 <p>control</p>
             </div>
