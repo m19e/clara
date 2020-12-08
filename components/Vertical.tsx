@@ -154,7 +154,7 @@ const VerticalEditor = () => {
             </Head>
             <div className={"min-h-screen flex flex-col"}>
                 <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}>
-                    <div style={styles.wrapper} ref={wrapperRef}>
+                    <div className={"flex-1 flex justify-center items-center"} ref={wrapperRef}>
                         <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheelPS} style={{ ...styles.scroll, height: `${eh}px` }}>
                             <div
                                 style={{
