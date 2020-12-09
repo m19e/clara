@@ -27,6 +27,7 @@
     "tailwindcss": "^2.0.1"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/material-ui": "^0.21.8",
     "@types/node": "^14.14.10",
     "@types/resize-observer-browser": "^0.1.4",
