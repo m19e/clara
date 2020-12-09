@@ -14,6 +14,7 @@
     "@types/react-custom-scrollbars": "^4.0.7",
     "autoprefixer": "^10.0.4",
     "draft-js": "^0.11.5",
+    "firebase": "^8.1.2",
     "jotai": "^0.11.3",
     "material-ui": "^0.20.2",
     "next": "latest",
