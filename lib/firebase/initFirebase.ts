@@ -14,3 +14,30 @@ if (!firebase.apps.length) {
 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
+
+export async function loginWithTwitter() {
+    const provider = new firebase.auth.TwitterAuthProvider();
+    try {
+        const user = await auth.signInWithPopup(provider).then((res) => {
+            console.log(0, res);
+            db.collection("users").doc(res.additionalUserInfo.username).set({
+                uid: res.user.uid,
+                displayName: res.user.displayName,
+                photoURL: res.user.photoURL,
+                userID: res.additionalUserInfo.username,
+            });
+        });
+        console.log(1, user);
+    } catch (error) {
+        console.error("login failed", error);
+    }
+}
+
+export async function logout() {
+    try {
+        const user = await auth.signOut();
+        console.log(user);
+    } catch (error) {
+        console.error("login failed", error);
+    }
+}
