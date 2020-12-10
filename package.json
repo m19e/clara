@@ -23,6 +23,7 @@
     "react": "^16.7.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.7.0",
+    "react-firebase-hooks": "^2.2.0",
     "react-perfect-scrollbar": "^1.5.8",
     "tailwindcss": "^2.0.1"
   },
