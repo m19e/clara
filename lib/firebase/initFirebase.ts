@@ -43,3 +43,17 @@ export async function logout() {
         console.error("login failed", error);
     }
 }
+
+export async function getUserData(id: string) {
+    const query = db.collection("user").where("uid", "==", id);
+    let result;
+    try {
+        const snapshot = await query.get();
+        snapshot.forEach((doc) => {
+            result = doc.data();
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    return result;
+}
