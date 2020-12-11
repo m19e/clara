@@ -50,7 +50,7 @@ export async function getUserData(id: string) {
     try {
         const snapshot = await query.get();
         snapshot.forEach((doc) => {
-            result = doc.data();
+            result = doc.data().userID;
         });
     } catch (error) {
         console.log(error);
