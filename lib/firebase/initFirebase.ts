@@ -20,11 +20,13 @@ export async function loginWithTwitter() {
     try {
         const user = await auth.signInWithPopup(provider).then((res) => {
             console.log(0, res);
-            db.collection("users").doc(res.additionalUserInfo.username).set({
-                uid: res.user.uid,
-                displayName: res.user.displayName,
-                photoURL: res.user.photoURL,
-                userID: res.additionalUserInfo.username,
+            const { uid, displayName, photoURL } = res.user;
+            const userID = res.additionalUserInfo.username;
+            db.collection("user").doc(userID).set({
+                uid,
+                displayName,
+                photoURL,
+                userID,
             });
         });
         console.log(1, user);
