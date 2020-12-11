@@ -4,7 +4,7 @@ import "../styles/global.css";
 
 const App = ({ Component, pageProps }: AppProps) => (
     <AuthProvider>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
     </AuthProvider>
 );
 
