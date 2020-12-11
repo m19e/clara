@@ -57,3 +57,12 @@ export async function getUserData(id: string) {
     }
     return result;
 }
+
+export async function addDraftData(uid, draft: string) {
+    const id = await getUserData(uid);
+    const userRef = db.collection("user").doc(id).collection("draft");
+    const docID = await userRef.add({ content: draft }).then((docRef) => {
+        return docRef.id;
+    });
+    return docID;
+}
