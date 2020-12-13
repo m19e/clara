@@ -146,6 +146,7 @@ const VerticalEditor = () => {
         const data = convertEditorStateToJSON(es);
         await updateDraftData(draftID, currentUser.uid, data);
         await setEdittingDraftData(draftID, currentUser.uid, data);
+        setIsSaved(true);
     };
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
@@ -154,7 +155,17 @@ const VerticalEditor = () => {
         }
     };
 
+    const [isSaved, setIsSaved] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (!isSaved) updateDraft(editorState);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [editorState]);
+
     const handleEditorStateChange = (es: EditorState) => {
+        setIsSaved(false);
         setEditorState(es);
     };
 
