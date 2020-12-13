@@ -161,6 +161,17 @@ const VerticalEditor = () => {
             <Head>
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
+            <div className="fixed top-0 w-full">
+                <div className="flex justify-center items-center" style={{ minHeight: "60px" }}>
+                    <button className="p-2" onClick={() => createDraft(editorState)}>
+                        create
+                    </button>
+                    <p className="p-2">{draftID}</p>
+                    <button className="p-2" onClick={() => updateDraft(editorState)}>
+                        update
+                    </button>
+                </div>
+            </div>
             <div className={"min-h-screen flex flex-col"}>
                 <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}>
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
