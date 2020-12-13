@@ -29,34 +29,36 @@ const Footer = ({ did, create, update }: FooterProps) => {
     const [isDisabledLC] = useAtom(isDisabledLCAtom);
 
     return (
-        <div className="bg-gray-300 flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
-            <div className="bg-white w-24 h-24 m-2 flex-center">
-                <div className="flex flex-col">
-                    <button onClick={() => create()}>Create</button>
-                    <p>{did}</p>
-                    <button onClick={() => update()}>Update</button>
+        <div className="fixed top-auto bottom-0 w-full">
+            <div className="bg-gray-300 flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
+                <div className="bg-white w-24 h-24 m-2 flex-center">
+                    <div className="flex flex-col">
+                        <button onClick={() => create()}>Create</button>
+                        <p>{did}</p>
+                        <button onClick={() => update()}>Update</button>
+                    </div>
                 </div>
-            </div>
-            <div className="bg-white w-24 h-24 m-2 flex-center">
-                <div className="flex flex-col">
-                    <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48 || isDisabledFS}>
-                        ↑
-                    </button>
-                    <p>fontsize:{fontSize}</p>
-                    <button onClick={() => setFontSize((prev) => prev - 4)} disabled={fontSize <= 16}>
-                        ↓
-                    </button>
+                <div className="bg-white w-24 h-24 m-2 flex-center">
+                    <div className="flex flex-col">
+                        <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48 || isDisabledFS}>
+                            ↑
+                        </button>
+                        <p>fontsize:{fontSize}</p>
+                        <button onClick={() => setFontSize((prev) => prev - 4)} disabled={fontSize <= 16}>
+                            ↓
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div className="bg-white w-24 h-24 m-2 flex-center">
-                <div className="flex flex-col">
-                    <button onClick={() => setlineChars((prev) => prev + 1)} disabled={lineChars >= 40 || isDisabledLC}>
-                        ↑
-                    </button>
-                    <p>linechars:{lineChars}</p>
-                    <button onClick={() => setlineChars((prev) => prev - 1)} disabled={lineChars <= 20}>
-                        ↓
-                    </button>
+                <div className="bg-white w-24 h-24 m-2 flex-center">
+                    <div className="flex flex-col">
+                        <button onClick={() => setlineChars((prev) => prev + 1)} disabled={lineChars >= 40 || isDisabledLC}>
+                            ↑
+                        </button>
+                        <p>linechars:{lineChars}</p>
+                        <button onClick={() => setlineChars((prev) => prev - 1)} disabled={lineChars <= 20}>
+                            ↓
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -179,8 +181,8 @@ const VerticalEditor = () => {
                         </Scrollbar>
                     </div>
                 </div>
-                <Footer did={draftID} create={() => createDraft(editorState)} update={() => updateDraft(editorState)} />
             </div>
+            <Footer did={draftID} create={() => createDraft(editorState)} update={() => updateDraft(editorState)} />
         </>
     );
 };
