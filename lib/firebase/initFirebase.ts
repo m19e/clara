@@ -58,16 +58,32 @@ export async function getUserData(id: string) {
     return result;
 }
 
-export async function createDraftData(uid, draft: string) {
+export async function getEdittingDraftData(uid: string) {
     const id = await getUserData(uid);
-    const userRef = db.collection("user").doc(id).collection("draft");
-    const docID = await userRef.add({ content: draft }).then((docRef) => {
-        return docRef.id;
-    });
-    return docID;
+    const userRef = db.collection("user").doc(id);
+    const user = await userRef.get();
+    const { editting } = user.data();
+    console.log(editting);
+
+    return editting;
 }
 
-export async function readDraftData(did, uid: string): string {
+export async function setEdittingDraftData(did, uid, draft: string) {
+    const id = await getUserData(uid);
+    const userRef = db.collection("user").doc(id);
+    await userRef.update({ "editting.did": did, "editting.content": draft });
+}
+
+export async function createDraftData(uid, draft: string) {
+    const id = await getUserData(uid);
+    const userRef = db.collection("user").doc(id);
+    const draftID = userRef.collection("draft").doc().id;
+    await userRef.collection("draft").doc(draftID).set({ content: draft });
+    // const docID = await userRef.set({ content: draft });
+    return draftID;
+}
+
+export async function readDraftData(did, uid: string) {
     const id = await getUserData(uid);
     const draftRef = db.collection("user").doc(id).collection("draft").doc(did);
     const draft = await draftRef.get();
