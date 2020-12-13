@@ -152,7 +152,6 @@ const VerticalEditor = () => {
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
-            if (ps.current === undefined) return;
             ps.current.scrollLeft -= e.deltaY;
         }
     };
