@@ -33,9 +33,7 @@ const Footer = ({ did, create, update }: FooterProps) => {
             <div className="bg-gray-300 flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
-                        <button onClick={() => create()}>Create</button>
-                        <p>{did}</p>
-                        <button onClick={() => update()}>Update</button>
+                        <p>control</p>
                     </div>
                 </div>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
