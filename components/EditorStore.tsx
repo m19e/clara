@@ -113,7 +113,6 @@ const VerticalEditor = () => {
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             user ? handleEdittingDraft(user) : router.push("/auth");
-            // user ? setCurrentUser(user) : router.push("/auth");
         });
     }, []);
 
