@@ -29,7 +29,7 @@ const Footer = ({ did, create, update }: FooterProps) => {
     const [isDisabledLC] = useAtom(isDisabledLCAtom);
 
     return (
-        <div className="fixed top-auto bottom-0 w-full">
+        <div className="fixed bottom-0 w-full">
             <div className="bg-gray-300 flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
