@@ -154,6 +154,10 @@ const VerticalEditor = () => {
         }
     };
 
+    const handleEditorStateChange = (es: EditorState) => {
+        setEditorState(es);
+    };
+
     return (
         <>
             <Head>
@@ -183,7 +187,7 @@ const VerticalEditor = () => {
                                 className="writing-v-rl text-justify bg-white max-h-full"
                                 style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                             >
-                                <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={setEditorState} />
+                                <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
                             </div>
                         </Scrollbar>
                     </div>
