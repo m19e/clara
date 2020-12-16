@@ -6,6 +6,7 @@ import { Provider, atom, useAtom } from "jotai";
 import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import Skeleton from "react-loading-skeleton";
 
 import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
 
@@ -123,7 +124,7 @@ const VerticalEditor = () => {
         setDraftID(did);
         setEditorState(es);
         setLoading(false);
-        focusEditor();
+        // focusEditor();
     };
 
     const setEdittingDraft = async (did, uid: string, es: EditorState) => {
@@ -188,22 +189,41 @@ const VerticalEditor = () => {
                 </div>
             </div>
             <div className={"min-h-screen flex flex-col"}>
-                <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"}>
+                <div className={"flex-1 flex flex-col flex-grow"}>
                     {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
-                        <Scrollbar
-                            containerRef={(ref) => (ps.current = ref)}
-                            onWheel={onMouseWheelPS}
-                            className="border border-dashed border-gray-400 pb-2"
-                            style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
-                        >
-                            <div
-                                className="writing-v-rl text-justify bg-white max-h-full"
-                                style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
-                            >
-                                <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                        <div className="writing-v-rl" style={{ height: `${eh}px` }}>
+                            <div className="px-3 text-3xl">
+                                <Skeleton height={"95%"} count={10} />
                             </div>
-                        </Scrollbar>
+                            <div className="px-3 text-3xl">
+                                <Skeleton height={"95%"} count={10} />
+                            </div>
+                        </div>
+                        {/* {loading ? (
+                            <div className="writing-v-rl" style={{ height: "710px" }}>
+                                <div className="px-3 text-4xl">
+                                    <Skeleton height={"100%"} count={10} />
+                                </div>
+                                <div className="px-3  text-4xl">
+                                    <Skeleton height={"100%"} count={10} />
+                                </div>
+                            </div>
+                        ) : (
+                            <Scrollbar
+                                containerRef={(ref) => (ps.current = ref)}
+                                onWheel={onMouseWheelPS}
+                                className="border border-dashed border-gray-400 pb-2"
+                                style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
+                            >
+                                <div
+                                    className="writing-v-rl text-justify bg-white max-h-full"
+                                    style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
+                                >
+                                    <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                                </div>
+                            </Scrollbar>
+                        )} */}
                     </div>
                 </div>
             </div>
