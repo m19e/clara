@@ -108,6 +108,8 @@ const VerticalEditor = () => {
     const [currentUser, setCurrentUser] = useState<null | User>(null);
     const [draftID, setDraftID] = useState<string>("no editting");
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             user ? handleEdittingDraft(user) : router.push("/auth");
@@ -122,6 +124,7 @@ const VerticalEditor = () => {
         const es = convertEditorStateFromJSON(content);
         setDraftID(did);
         setEditorState(es);
+        setLoading(false);
     };
 
     const setEdittingDraft = async (did, uid: string, es: EditorState) => {
@@ -199,7 +202,11 @@ const VerticalEditor = () => {
                                 className="writing-v-rl text-justify bg-white max-h-full"
                                 style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                             >
-                                <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                                {loading ? (
+                                    <h2>ローディング中</h2>
+                                ) : (
+                                    <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                                )}
                             </div>
                         </Scrollbar>
                     </div>
