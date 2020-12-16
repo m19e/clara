@@ -88,10 +88,10 @@ const VerticalEditor = () => {
     const [fs] = useAtom(fontSizeAtom);
     const [eh] = useAtom(editorHeightAtom);
 
-    const focusEditor = () => editor.current.focus();
+    // const focusEditor = () => editor.current.focus();
 
     useEffect(() => {
-        focusEditor();
+        // focusEditor();
 
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
@@ -186,7 +186,8 @@ const VerticalEditor = () => {
                 </div>
             </div>
             <div className={"min-h-screen flex flex-col"}>
-                <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}>
+                <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"}>
+                    {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
                         <Scrollbar
                             containerRef={(ref) => (ps.current = ref)}
