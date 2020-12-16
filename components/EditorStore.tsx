@@ -88,11 +88,9 @@ const VerticalEditor = () => {
     const [fs] = useAtom(fontSizeAtom);
     const [eh] = useAtom(editorHeightAtom);
 
-    // const focusEditor = () => editor.current.focus();
+    const focusEditor = () => editor.current.focus();
 
     useEffect(() => {
-        // focusEditor();
-
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             setWrapperHeight(height);
@@ -120,11 +118,12 @@ const VerticalEditor = () => {
         setCurrentUser(user);
         const ed = await getEdittingDraftData(user.uid);
         const { did, content } = ed;
-        console.log(did, content);
+        // console.log(did, content);
         const es = convertEditorStateFromJSON(content);
         setDraftID(did);
         setEditorState(es);
         setLoading(false);
+        focusEditor();
     };
 
     const setEdittingDraft = async (did, uid: string, es: EditorState) => {
@@ -202,11 +201,7 @@ const VerticalEditor = () => {
                                 className="writing-v-rl text-justify bg-white max-h-full"
                                 style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                             >
-                                {loading ? (
-                                    <h2>ローディング中</h2>
-                                ) : (
-                                    <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
-                                )}
+                                <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
                             </div>
                         </Scrollbar>
                     </div>
