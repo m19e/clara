@@ -6,7 +6,6 @@ import { Provider, atom, useAtom } from "jotai";
 import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
-import Skeleton from "react-loading-skeleton";
 
 import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
 
@@ -192,23 +191,8 @@ const VerticalEditor = () => {
                 <div className={"flex-1 flex flex-col flex-grow"}>
                     {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
-                        <div className="writing-v-rl" style={{ height: `${eh}px` }}>
-                            <div className="px-3 text-3xl">
-                                <Skeleton height={"95%"} count={10} />
-                            </div>
-                            <div className="px-3 text-3xl">
-                                <Skeleton height={"95%"} count={10} />
-                            </div>
-                        </div>
-                        {/* {loading ? (
-                            <div className="writing-v-rl" style={{ height: "710px" }}>
-                                <div className="px-3 text-4xl">
-                                    <Skeleton height={"100%"} count={10} />
-                                </div>
-                                <div className="px-3  text-4xl">
-                                    <Skeleton height={"100%"} count={10} />
-                                </div>
-                            </div>
+                        {loading ? (
+                            <div className="writing-v-rl" style={{ height: "710px" }}></div>
                         ) : (
                             <Scrollbar
                                 containerRef={(ref) => (ps.current = ref)}
@@ -223,7 +207,7 @@ const VerticalEditor = () => {
                                     <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
                                 </div>
                             </Scrollbar>
-                        )} */}
+                        )}
                     </div>
                 </div>
             </div>
