@@ -91,8 +91,6 @@ const VerticalEditor = () => {
     const focusEditor = () => editor.current.focus();
 
     useEffect(() => {
-        focusEditor();
-
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             setWrapperHeight(height);
@@ -108,6 +106,8 @@ const VerticalEditor = () => {
     const [currentUser, setCurrentUser] = useState<null | User>(null);
     const [draftID, setDraftID] = useState<string>("no editting");
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             user ? handleEdittingDraft(user) : router.push("/auth");
@@ -118,10 +118,12 @@ const VerticalEditor = () => {
         setCurrentUser(user);
         const ed = await getEdittingDraftData(user.uid);
         const { did, content } = ed;
-        console.log(did, content);
+        // console.log(did, content);
         const es = convertEditorStateFromJSON(content);
         setDraftID(did);
         setEditorState(es);
+        setLoading(false);
+        // focusEditor();
     };
 
     const setEdittingDraft = async (did, uid: string, es: EditorState) => {
@@ -179,28 +181,43 @@ const VerticalEditor = () => {
                     {/* <button className="p-2" onClick={() => createDraft(editorState)}>
                         create
                     </button> */}
-                    <p className="p-2">{draftID}</p>
+                    {/* <p className="p-2">{draftID}</p> */}
                     {/* <button className="p-2" onClick={() => updateDraft(editorState)}>
                         update
                     </button> */}
                 </div>
             </div>
             <div className={"min-h-screen flex flex-col"}>
-                <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}>
+                <div className={"flex-1 flex flex-col flex-grow"}>
+                    {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
-                        <Scrollbar
-                            containerRef={(ref) => (ps.current = ref)}
-                            onWheel={onMouseWheelPS}
-                            className="border border-dashed border-gray-400 pb-2"
-                            style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
-                        >
-                            <div
-                                className="writing-v-rl text-justify bg-white max-h-full"
-                                style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
-                            >
-                                <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                        {loading ? (
+                            <div className="flex-center w-40 h-40">
+                                <div className="flex flex-col h-20">
+                                    <div className="loader-before"></div>
+                                    <div className="w-4 h-4"></div>
+                                </div>
+                                <div className="loader"></div>
+                                <div className="flex flex-col h-20">
+                                    <div className="w-4 h-4"></div>
+                                    <div className="loader-after"></div>
+                                </div>
                             </div>
-                        </Scrollbar>
+                        ) : (
+                            <Scrollbar
+                                containerRef={(ref) => (ps.current = ref)}
+                                onWheel={onMouseWheelPS}
+                                className="border border-dashed border-gray-400 pb-2"
+                                style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
+                            >
+                                <div
+                                    className="writing-v-rl text-justify bg-white max-h-full"
+                                    style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
+                                >
+                                    <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                                </div>
+                            </Scrollbar>
+                        )}
                     </div>
                 </div>
             </div>
