@@ -22,3 +22,20 @@ export const useFontSize = () => {
 
     return [fSize, incFontSize, decFontSize];
 };
+
+export const lineWordsState = atom({
+    key: "lineWordsState",
+    default: 30,
+});
+
+export const useLineWords = () => {
+    const [lineWords, setLineWords] = useRecoilState(lineWordsState);
+    const incLineWords = useCallback(() => {
+        setLineWords((prev) => prev + 1);
+    }, []);
+    const decLineWords = useCallback(() => {
+        setLineWords((prev) => prev - 1);
+    }, []);
+
+    return [lineWords, incLineWords, decLineWords];
+};
