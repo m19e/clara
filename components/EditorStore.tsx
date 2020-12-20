@@ -2,20 +2,14 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import fb from "firebase";
 import React, { useState, useRef, useEffect, createRef } from "react";
-import { Provider, atom, useAtom } from "jotai";
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
 import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
+import { realFontSizeState, useFontSize, useLineWords, wrapperHeightState, editorHeightState, useIsDisabled } from "../store/editor";
 import Loader from "./Loader";
-
-const fontSizeAtom = atom(24);
-const lineCharsAtom = atom(30);
-const wrapperHeightAtom = atom(480);
-const editorHeightAtom = atom((get) => get(fontSizeAtom) * get(lineCharsAtom));
-const isDisabledFSAtom = atom((get) => (get(fontSizeAtom) + 4) * get(lineCharsAtom) > get(wrapperHeightAtom));
-const isDisabledLCAtom = atom((get) => get(fontSizeAtom) * (get(lineCharsAtom) + 1) > get(wrapperHeightAtom));
 
 type FooterProps = {
     did: string;
@@ -24,10 +18,9 @@ type FooterProps = {
 };
 
 const Footer = ({ did, create, update }: FooterProps) => {
-    const [fontSize, setFontSize] = useAtom(fontSizeAtom);
-    const [lineChars, setlineChars] = useAtom(lineCharsAtom);
-    const [isDisabledFS] = useAtom(isDisabledFSAtom);
-    const [isDisabledLC] = useAtom(isDisabledLCAtom);
+    const [fontSize, incFontSize, decFontSize] = useFontSize();
+    const [lineWords, incLineWords, decLineWords] = useLineWords();
+    const [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW] = useIsDisabled();
 
     return (
         <div className="fixed bottom-0 w-full">
@@ -39,22 +32,22 @@ const Footer = ({ did, create, update }: FooterProps) => {
                 </div>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
-                        <button onClick={() => setFontSize((prev) => prev + 4)} disabled={fontSize >= 48 || isDisabledFS}>
+                        <button onClick={() => incFontSize()} disabled={isDisabledIncFS}>
                             ↑
                         </button>
                         <p>fontsize:{fontSize}</p>
-                        <button onClick={() => setFontSize((prev) => prev - 4)} disabled={fontSize <= 16}>
+                        <button onClick={() => decFontSize()} disabled={isDisabledDecFS}>
                             ↓
                         </button>
                     </div>
                 </div>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
-                        <button onClick={() => setlineChars((prev) => prev + 1)} disabled={lineChars >= 40 || isDisabledLC}>
+                        <button onClick={() => incLineWords()} disabled={isDisabledIncLW}>
                             ↑
                         </button>
-                        <p>linechars:{lineChars}</p>
-                        <button onClick={() => setlineChars((prev) => prev - 1)} disabled={lineChars <= 20}>
+                        <p>linechars:{lineWords}</p>
+                        <button onClick={() => decLineWords()} disabled={isDisabledDecLW}>
                             ↓
                         </button>
                     </div>
@@ -85,9 +78,9 @@ const VerticalEditor = () => {
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
 
-    const [_, setWrapperHeight] = useAtom(wrapperHeightAtom);
-    const [fs] = useAtom(fontSizeAtom);
-    const [eh] = useAtom(editorHeightAtom);
+    const setWrapperHeight = useSetRecoilState(wrapperHeightState);
+    const fs = useRecoilValue(realFontSizeState);
+    const eh = useRecoilValue(editorHeightState);
 
     const focusEditor = () => editor.current.focus();
 
@@ -219,8 +212,8 @@ const VerticalEditor = () => {
 
 export default function VerticalEditorProvider() {
     return (
-        <Provider>
+        <RecoilRoot>
             <VerticalEditor />
-        </Provider>
+        </RecoilRoot>
     );
 }
