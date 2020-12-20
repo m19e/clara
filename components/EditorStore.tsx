@@ -8,6 +8,7 @@ import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
+import Loader from "./Loader";
 
 const fontSizeAtom = atom(24);
 const lineCharsAtom = atom(30);
@@ -192,17 +193,7 @@ const VerticalEditor = () => {
                     {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
                         {loading ? (
-                            <div className="flex-center w-40 h-40">
-                                <div className="flex flex-col h-20">
-                                    <div className="loader-before"></div>
-                                    <div className="w-4 h-4"></div>
-                                </div>
-                                <div className="loader"></div>
-                                <div className="flex flex-col h-20">
-                                    <div className="w-4 h-4"></div>
-                                    <div className="loader-after"></div>
-                                </div>
-                            </div>
+                            <Loader />
                         ) : (
                             <Scrollbar
                                 containerRef={(ref) => (ps.current = ref)}
