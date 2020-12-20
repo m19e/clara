@@ -76,7 +76,7 @@ const isDisabledDecLWState = selector({
     get: ({ get }) => get(lineWordsState) <= 20,
 });
 
-export const useIsDisabled = () => {
+export const useIsDisabled = (): boolean[] => {
     const isDisabledIncFS = useRecoilValue(isDisabledIncFSState);
     const isDisabledDecFS = useRecoilValue(isDisabledDecFSState);
     const isDisabledIncLW = useRecoilValue(isDisabledIncLWState);
