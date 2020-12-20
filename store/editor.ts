@@ -39,3 +39,8 @@ export const useLineWords = () => {
 
     return [lineWords, incLineWords, decLineWords];
 };
+
+export const wrapperHeightState = atom({
+    key: "wrapperHeightState",
+    default: 480,
+});
