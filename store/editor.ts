@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState } from "recoil";
+import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 import { useCallback } from "react";
 
 const pureFontSizeState = atom({
@@ -49,3 +49,38 @@ export const editorHeightState = selector({
     key: "editorHeightState",
     get: ({ get }) => get(realFontSizeState) * get(lineWordsState),
 });
+
+const isDisabledIncFSState = selector({
+    key: "isDisabledIncFSState",
+    get: ({ get }) => {
+        const rfs = get(realFontSizeState);
+        return (rfs + 4) * get(lineWordsState) > get(wrapperHeightState) || rfs >= 48;
+    },
+});
+
+const isDisabledDecFSState = selector({
+    key: "isDisabledDecFSState",
+    get: ({ get }) => get(realFontSizeState) <= 16,
+});
+
+const isDisabledIncLWState = selector({
+    key: "isDisabledIncLWState",
+    get: ({ get }) => {
+        const lw = get(lineWordsState);
+        return get(realFontSizeState) * (lw + 1) > get(wrapperHeightState) || lw >= 40;
+    },
+});
+
+const isDisabledDecLWState = selector({
+    key: "isDisabledDecLWState",
+    get: ({ get }) => get(lineWordsState) <= 20,
+});
+
+export const useIsDisabled = () => {
+    const isDisabledIncFS = useRecoilValue(isDisabledIncFSState);
+    const isDisabledDecFS = useRecoilValue(isDisabledDecFSState);
+    const isDisabledIncLW = useRecoilValue(isDisabledIncLWState);
+    const isDisabledDecLW = useRecoilValue(isDisabledDecLWState);
+
+    return [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW];
+};
