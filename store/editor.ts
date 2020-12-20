@@ -28,7 +28,7 @@ export const lineWordsState = atom({
     default: 30,
 });
 
-export const useLineWords = () => {
+export const useLineWords = (): [number, () => void, () => void] => {
     const [lineWords, setLineWords] = useRecoilState(lineWordsState);
     const incLineWords = useCallback(() => {
         setLineWords((prev) => prev + 1);
