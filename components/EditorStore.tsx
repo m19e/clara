@@ -11,13 +11,7 @@ import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraft
 import { realFontSizeState, useFontSize, useLineWords, wrapperHeightState, editorHeightState, useIsDisabled } from "../store/editor";
 import Loader from "./Loader";
 
-type FooterProps = {
-    did: string;
-    create: () => void;
-    update: () => void;
-};
-
-const Footer = ({ did, create, update }: FooterProps) => {
+const Footer = () => {
     const [fontSize, incFontSize, decFontSize] = useFontSize();
     const [lineWords, incLineWords, decLineWords] = useLineWords();
     const [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW] = useIsDisabled();
@@ -205,7 +199,7 @@ const VerticalEditor = () => {
                     </div>
                 </div>
             </div>
-            <Footer did={draftID} create={() => createDraft(editorState)} update={() => updateDraft(editorState)} />
+            <Footer />
         </>
     );
 };
