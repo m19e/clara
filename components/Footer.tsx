@@ -10,7 +10,11 @@ export default function Footer() {
             <div className="bg-gray-300 flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
-                        <p>control</p>
+                        <p>span</p>
+                        <div className="group">
+                            <p>display</p>
+                            <button className="transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100">button</button>
+                        </div>
                     </div>
                 </div>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
