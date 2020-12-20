@@ -129,9 +129,9 @@ const VerticalEditor = () => {
                 <div className="flex justify-center items-center" style={{ minHeight: "60px" }}>
                     {/* <button className="p-2" onClick={() => createDraft(editorState)}>
                         create
-                    </button> */}
-                    {/* <p className="p-2">{draftID}</p> */}
-                    {/* <button className="p-2" onClick={() => updateDraft(editorState)}>
+                    </button>
+                    <p className="p-2">{draftID}</p>
+                    <button className="p-2" onClick={() => updateDraft(editorState)}>
                         update
                     </button> */}
                 </div>
