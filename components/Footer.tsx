@@ -13,8 +13,11 @@ export default function Footer() {
                     <div className="flex flex-col">
                         <p>span</p>
                         <div className="group">
-                            <p>{isMincho ? "明朝体" : "ゴシック体"}</p>
-                            <button onClick={() => toggleFont()} className="transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100">
+                            <p className={isMincho ? "mincho" : "gothic"}>{isMincho ? "明朝体" : "ゴシック体"}</p>
+                            <button
+                                onClick={() => toggleFont()}
+                                className={"transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100" + (!isMincho ? " mincho" : " gothic")}
+                            >
                                 {!isMincho ? "明朝体" : "ゴシック体"}
                             </button>
                         </div>
