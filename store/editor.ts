@@ -1,7 +1,7 @@
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 import { useCallback } from "react";
 
-const isMinchoState = atom({
+export const isMinchoState = atom({
     key: "isMinchoState",
     default: true,
 });
