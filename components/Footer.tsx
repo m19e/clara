@@ -22,8 +22,12 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="w-24 h-24 m-2 flex-center">
-                    <div className="flex flex-col">
-                        <button className="outline-none focus:outline-none" onClick={() => incFontSize()} disabled={isDisabledIncFS}>
+                    <div className="flex flex-col group">
+                        <button
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            onClick={() => incFontSize()}
+                            disabled={isDisabledIncFS}
+                        >
                             <span className="w-full flex-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
                                     <polyline
@@ -38,7 +42,11 @@ export default function Footer() {
                             </span>
                         </button>
                         <p>大きさ {fontSize}</p>
-                        <button className="outline-none focus:outline-none" onClick={() => decFontSize()} disabled={isDisabledDecFS}>
+                        <button
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            onClick={() => decFontSize()}
+                            disabled={isDisabledDecFS}
+                        >
                             <span className="w-full flex-center">
                                 <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -55,8 +63,12 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="w-24 h-24 m-2 flex-center">
-                    <div className="flex flex-col">
-                        <button className="outline-none focus:outline-none" onClick={() => incLineWords()} disabled={isDisabledIncLW}>
+                    <div className="flex flex-col group">
+                        <button
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            onClick={() => incLineWords()}
+                            disabled={isDisabledIncLW}
+                        >
                             <span className="w-full flex-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
                                     <polyline
@@ -71,7 +83,11 @@ export default function Footer() {
                             </span>
                         </button>
                         <p>字数 {lineWords}</p>
-                        <button className="outline-none focus:outline-none" onClick={() => decLineWords()} disabled={isDisabledDecLW}>
+                        <button
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            onClick={() => decLineWords()}
+                            disabled={isDisabledDecLW}
+                        >
                             <span className="w-full flex-center">
                                 <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
                                     <path
