@@ -24,22 +24,66 @@ export default function Footer() {
                 <div className="w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
                         <button onClick={() => incFontSize()} disabled={isDisabledIncFS}>
-                            ↑
+                            <span className="w-full flex-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+                                    <polyline
+                                        fill="none"
+                                        stroke="#2A2E3B"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        points="7.328 1.672 7.328 7.328 1.672 7.328"
+                                        transform="rotate(-135 9.157 7.258)"
+                                    />
+                                </svg>
+                            </span>
                         </button>
                         <p>大きさ {fontSize}</p>
                         <button onClick={() => decFontSize()} disabled={isDisabledDecFS}>
-                            ↓
+                            <span className="w-full flex-center">
+                                <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m8.5.5-4 4-4-4"
+                                        fill="none"
+                                        stroke="#2a2e3b"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        transform="translate(6 8)"
+                                    />
+                                </svg>
+                            </span>
                         </button>
                     </div>
                 </div>
                 <div className="w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
                         <button onClick={() => incLineWords()} disabled={isDisabledIncLW}>
-                            ↑
+                            <span className="w-full flex-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+                                    <polyline
+                                        fill="none"
+                                        stroke="#2A2E3B"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        points="7.328 1.672 7.328 7.328 1.672 7.328"
+                                        transform="rotate(-135 9.157 7.258)"
+                                    />
+                                </svg>
+                            </span>
                         </button>
                         <p>字数 {lineWords}</p>
                         <button onClick={() => decLineWords()} disabled={isDisabledDecLW}>
-                            ↓
+                            <span className="w-full flex-center">
+                                <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="m8.5.5-4 4-4-4"
+                                        fill="none"
+                                        stroke="#2a2e3b"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        transform="translate(6 8)"
+                                    />
+                                </svg>
+                            </span>
                         </button>
                     </div>
                 </div>
