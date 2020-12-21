@@ -28,7 +28,7 @@ export default function Footer() {
                         <button onClick={() => incFontSize()} disabled={isDisabledIncFS}>
                             ↑
                         </button>
-                        <p>fontsize:{fontSize}</p>
+                        <p>大きさ {fontSize}</p>
                         <button onClick={() => decFontSize()} disabled={isDisabledDecFS}>
                             ↓
                         </button>
@@ -39,7 +39,7 @@ export default function Footer() {
                         <button onClick={() => incLineWords()} disabled={isDisabledIncLW}>
                             ↑
                         </button>
-                        <p>linechars:{lineWords}</p>
+                        <p>字数 {lineWords}</p>
                         <button onClick={() => decLineWords()} disabled={isDisabledDecLW}>
                             ↓
                         </button>
