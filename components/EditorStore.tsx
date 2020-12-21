@@ -137,7 +137,7 @@ const VerticalEditor = () => {
                     </button> */}
                 </div>
             </div>
-            <div className={"min-h-screen flex flex-col"}>
+            <div className="min-h-screen flex flex-col editor-bg">
                 <div className={"flex-1 flex flex-col flex-grow"}>
                     {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                     <div className={"flex-1 flex-center"} ref={wrapperRef}>
@@ -147,11 +147,12 @@ const VerticalEditor = () => {
                             <Scrollbar
                                 containerRef={(ref) => (ps.current = ref)}
                                 onWheel={onMouseWheelPS}
-                                className="border border-dashed border-gray-400 pb-2"
+                                // className="border border-dashed border-gray-400 pb-2"
+                                className="pb-2"
                                 style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
                             >
                                 <div
-                                    className={"writing-v-rl text-justify bg-white max-h-full" + (isMincho ? " mincho" : " gothic")}
+                                    className={"writing-v-rl text-justify max-h-full" + (isMincho ? " mincho" : " gothic")}
                                     style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                                 >
                                     <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
