@@ -8,11 +8,11 @@ export default function Footer() {
 
     return (
         <div className="fixed bottom-0 w-full elevation4 editor-bg transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100">
-            <div className="flex-center" style={{ minHeight: "120px" }}>
+            <div className={"flex-center" + (isMincho ? " mincho" : " gothic")} style={{ minHeight: "120px" }}>
                 <div className="w-24 h-24 m-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
-                        <span className={"w-full text-center" + (isMincho ? " mincho" : " gothic")}>{isMincho ? "明朝体" : "ゴシック体"}</span>
+                        <span className="w-full text-center">{isMincho ? "明朝体" : "ゴシック体"}</span>
                         <button
                             onClick={() => toggleFont()}
                             className={"transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100" + (!isMincho ? " mincho" : " gothic")}
