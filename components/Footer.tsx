@@ -8,8 +8,8 @@ export default function Footer() {
 
     return (
         <div className="fixed bottom-0 w-full elevation4 transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100">
-            <div className="bg-white flex-center" style={{ minHeight: "120px" }}>
-                <div className="bg-white w-24 h-24 m-2 flex-center">
+            <div className="editor-bg flex-center" style={{ minHeight: "120px" }}>
+                <div className="editor-bg w-24 h-24 m-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
                         <span className={"w-full text-center" + (isMincho ? " mincho" : " gothic")}>{isMincho ? "明朝体" : "ゴシック体"}</span>
@@ -21,7 +21,7 @@ export default function Footer() {
                         </button>
                     </div>
                 </div>
-                <div className="bg-white w-24 h-24 m-2 flex-center">
+                <div className="editor-bg w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
                         <button onClick={() => incFontSize()} disabled={isDisabledIncFS}>
                             ↑
@@ -32,7 +32,7 @@ export default function Footer() {
                         </button>
                     </div>
                 </div>
-                <div className="bg-white w-24 h-24 m-2 flex-center">
+                <div className="editor-bg w-24 h-24 m-2 flex-center">
                     <div className="flex flex-col">
                         <button onClick={() => incLineWords()} disabled={isDisabledIncLW}>
                             ↑
