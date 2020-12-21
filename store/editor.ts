@@ -1,6 +1,20 @@
 import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 import { useCallback } from "react";
 
+const isMinchoState = atom({
+    key: "isMinchoState",
+    default: true,
+});
+
+export const useIsMincho = (): [boolean, () => void] => {
+    const [isMincho, setIsMincho] = useRecoilState(isMinchoState);
+    const toggleFont = useCallback(() => {
+        setIsMincho((prev) => !prev);
+    }, []);
+
+    return [isMincho, toggleFont];
+};
+
 const pureFontSizeState = atom({
     key: "pureFontSizeState",
     default: 6,
