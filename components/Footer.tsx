@@ -10,17 +10,15 @@ export default function Footer() {
         <div className="fixed bottom-0 w-full">
             <div className="bg-gray-300 flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
-                    <div className="flex flex-col">
-                        <p>span</p>
-                        <div className="group">
-                            <p className={isMincho ? "mincho" : "gothic"}>{isMincho ? "明朝体" : "ゴシック体"}</p>
-                            <button
-                                onClick={() => toggleFont()}
-                                className={"transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100" + (!isMincho ? " mincho" : " gothic")}
-                            >
-                                {!isMincho ? "明朝体" : "ゴシック体"}
-                            </button>
-                        </div>
+                    <div className="group flex flex-col">
+                        <span className="h-6"></span>
+                        <span className={"w-full text-center" + (isMincho ? " mincho" : " gothic")}>{isMincho ? "明朝体" : "ゴシック体"}</span>
+                        <button
+                            onClick={() => toggleFont()}
+                            className={"transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100" + (!isMincho ? " mincho" : " gothic")}
+                        >
+                            {!isMincho ? "明朝体" : "ゴシック体"}
+                        </button>
                     </div>
                 </div>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
