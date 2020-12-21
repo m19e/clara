@@ -1,6 +1,7 @@
-import { useFontSize, useLineWords, useIsDisabled } from "../store/editor";
+import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "../store/editor";
 
 export default function Footer() {
+    const [isMincho, toggleFont] = useIsMincho();
     const [fontSize, incFontSize, decFontSize] = useFontSize();
     const [lineWords, incLineWords, decLineWords] = useLineWords();
     const [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW] = useIsDisabled();
@@ -12,8 +13,10 @@ export default function Footer() {
                     <div className="flex flex-col">
                         <p>span</p>
                         <div className="group">
-                            <p>display</p>
-                            <button className="transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100">button</button>
+                            <p>{isMincho ? "明朝体" : "ゴシック体"}</p>
+                            <button onClick={() => toggleFont()} className="transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100">
+                                {!isMincho ? "明朝体" : "ゴシック体"}
+                            </button>
                         </div>
                     </div>
                 </div>
