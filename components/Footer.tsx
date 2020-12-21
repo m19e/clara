@@ -7,8 +7,8 @@ export default function Footer() {
     const [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW] = useIsDisabled();
 
     return (
-        <div className="fixed bottom-0 w-full">
-            <div className="flex-center transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" style={{ minHeight: "120px" }}>
+        <div className="fixed bottom-0 w-full elevation4 transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100">
+            <div className="bg-white flex-center" style={{ minHeight: "120px" }}>
                 <div className="bg-white w-24 h-24 m-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
