@@ -8,7 +8,7 @@ import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
-import { realFontSizeState, wrapperHeightState, editorHeightState } from "../store/editor";
+import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState } from "../store/editor";
 import Footer from "./Footer";
 import Loader from "./Loader";
 
@@ -36,6 +36,7 @@ const VerticalEditor = () => {
     const setWrapperHeight = useSetRecoilState(wrapperHeightState);
     const fs = useRecoilValue(realFontSizeState);
     const eh = useRecoilValue(editorHeightState);
+    const isMincho = useRecoilValue(isMinchoState);
 
     const focusEditor = () => editor.current.focus();
 
@@ -150,7 +151,7 @@ const VerticalEditor = () => {
                                 style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
                             >
                                 <div
-                                    className="writing-v-rl text-justify bg-white max-h-full"
+                                    className={"writing-v-rl text-justify bg-white max-h-full" + (isMincho ? " mincho" : " gothic")}
                                     style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                                 >
                                     <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
