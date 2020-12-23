@@ -149,7 +149,7 @@ const VerticalEditor = () => {
                                 onWheel={onMouseWheelPS}
                                 // className="border border-dashed border-gray-400 pb-2"
                                 className="pb-2"
-                                style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh}px` }}
+                                style={{ maxHeight: "95%", maxWidth: "95%", height: `${eh + 8}px` }}
                             >
                                 <div
                                     className={"writing-v-rl text-justify max-h-full" + (isMincho ? " mincho" : " gothic")}
