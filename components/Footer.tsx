@@ -17,10 +17,7 @@ export default function Footer() {
                         </span>
                         <button
                             onClick={() => toggleFont()}
-                            className={
-                                "outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100" +
-                                (!isMincho ? " mincho" : " gothic")
-                            }
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
                         >
                             <span className="opacity-50 hover:opacity-100">{!isMincho ? "明朝体" : "ゴシック体"}</span>
                         </button>
