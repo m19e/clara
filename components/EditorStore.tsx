@@ -130,7 +130,7 @@ const VerticalEditor = () => {
             <Head>
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
-            <div className="fixed top-0 w-full">
+            <div className={"fixed top-0 w-full" + (isMincho ? " mincho" : " gothic")}>
                 <div className="flex justify-center items-center">
                     <p className="p-2 text-black opacity-50">{title}</p>
                 </div>
