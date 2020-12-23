@@ -153,7 +153,7 @@ const VerticalEditor = () => {
                             >
                                 <div
                                     className={"writing-v-rl text-justify max-h-full" + (isMincho ? " mincho" : " gothic")}
-                                    style={{ minHeight: "20em", minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
+                                    style={{ minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                                 >
                                     <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
                                 </div>
