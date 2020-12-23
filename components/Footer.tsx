@@ -22,7 +22,7 @@ export default function Footer() {
                                 (!isMincho ? " mincho" : " gothic")
                             }
                         >
-                            {!isMincho ? "明朝体" : "ゴシック体"}
+                            <span className="opacity-50 hover:opacity-100">{!isMincho ? "明朝体" : "ゴシック体"}</span>
                         </button>
                     </div>
                 </div>
