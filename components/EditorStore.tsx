@@ -127,7 +127,7 @@ const VerticalEditor = () => {
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
             <div className="fixed top-0 w-full">
-                <div className="flex justify-center items-center" style={{ minHeight: "60px" }}>
+                <div className="flex justify-center items-center">
                     <p className="p-2">{draftID}</p>
                 </div>
             </div>
