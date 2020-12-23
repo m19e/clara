@@ -108,6 +108,7 @@ const VerticalEditor = () => {
     };
 
     const [isSaved, setIsSaved] = useState(true);
+    const [title, setTitle] = useState("");
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -117,6 +118,9 @@ const VerticalEditor = () => {
     }, [editorState]);
 
     const handleEditorStateChange = (es: EditorState) => {
+        const firstBlockText = es.getCurrentContent().getBlockMap().first().getText().trim();
+        const formatTitle = firstBlockText.length < 20 ? firstBlockText : firstBlockText.slice(0, 20) + "…";
+        setTitle(formatTitle);
         setIsSaved(false);
         setEditorState(es);
     };
@@ -128,7 +132,7 @@ const VerticalEditor = () => {
             </Head>
             <div className="fixed top-0 w-full">
                 <div className="flex justify-center items-center">
-                    <p className="p-2">{draftID}</p>
+                    <p className="p-2">{title}</p>
                 </div>
             </div>
             <div className="min-h-screen flex flex-col editor-bg">
