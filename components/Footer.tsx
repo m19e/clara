@@ -35,8 +35,8 @@ export default function Footer() {
                                     <polyline
                                         fill="none"
                                         stroke="#2A2E3B"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         points="7.328 1.672 7.328 7.328 1.672 7.328"
                                         transform="rotate(-135 9.157 7.258)"
                                     />
@@ -55,8 +55,8 @@ export default function Footer() {
                                         d="m8.5.5-4 4-4-4"
                                         fill="none"
                                         stroke="#2a2e3b"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         transform="translate(6 8)"
                                     />
                                 </svg>
@@ -76,8 +76,8 @@ export default function Footer() {
                                     <polyline
                                         fill="none"
                                         stroke="#2A2E3B"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         points="7.328 1.672 7.328 7.328 1.672 7.328"
                                         transform="rotate(-135 9.157 7.258)"
                                     />
@@ -96,8 +96,8 @@ export default function Footer() {
                                         d="m8.5.5-4 4-4-4"
                                         fill="none"
                                         stroke="#2a2e3b"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         transform="translate(6 8)"
                                     />
                                 </svg>
