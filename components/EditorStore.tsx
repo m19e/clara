@@ -68,7 +68,6 @@ const VerticalEditor = () => {
         setCurrentUser(user);
         const ed = await getEdittingDraftData(user.uid);
         const { did, content } = ed;
-        // console.log(did, content);
         const es = convertEditorStateFromJSON(content);
         setDraftID(did);
         setEditorState(es);
@@ -123,6 +122,7 @@ const VerticalEditor = () => {
         setTitle(formatTitle);
         setIsSaved(false);
         setEditorState(es);
+        console.log(currentUser);
     };
 
     return (
