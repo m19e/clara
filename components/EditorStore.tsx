@@ -128,7 +128,7 @@ const VerticalEditor = () => {
             </Head>
             <div className={"fixed top-0 w-full" + (isMincho ? " mincho" : " gothic")}>
                 <div className="flex justify-center items-center">
-                    <p className="p-2 text-black opacity-50">{title}</p>
+                    <p className="p-5 text-black opacity-50">{title}</p>
                 </div>
             </div>
             <div className="min-h-screen flex flex-col editor-bg">
