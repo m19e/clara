@@ -63,6 +63,13 @@ const VerticalEditor = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (!isSaved) updateDraft(editorState);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [editorState]);
+
     const handleEdittingDraft = async (user: fb.User) => {
         setCurrentUser(user);
         const ed = await getEdittingDraftData(user.uid);
@@ -104,13 +111,6 @@ const VerticalEditor = () => {
             ps.current.scrollLeft -= e.deltaY;
         }
     };
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (!isSaved) updateDraft(editorState);
-        }, 5000);
-        return () => clearTimeout(timer);
-    }, [editorState]);
 
     const handleEditorStateChange = (es: EditorState) => {
         const firstBlockText = es.getCurrentContent().getBlockMap().first().getText().trim();
