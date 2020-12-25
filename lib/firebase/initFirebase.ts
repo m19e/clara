@@ -20,20 +20,24 @@ export async function loginWithTwitter() {
     try {
         const user = await auth.signInWithPopup(provider).then((res) => {
             console.log(0, res);
-            const { uid, displayName, photoURL } = res.user;
-            const userID = res.additionalUserInfo.username;
-            db.collection("user").doc(userID).set({
-                uid,
-                displayName,
-                photoURL,
-                userID,
-            });
+            createUser(res);
         });
         console.log(1, user);
     } catch (error) {
         console.error("login failed", error);
     }
 }
+
+const createUser = (res: firebase.auth.UserCredential) => {
+    const { uid, displayName, photoURL } = res.user;
+    const userID = res.additionalUserInfo.username;
+    db.collection("user").doc(userID).set({
+        uid,
+        displayName,
+        photoURL,
+        userID,
+    });
+};
 
 export async function logout() {
     try {
