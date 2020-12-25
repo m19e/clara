@@ -54,7 +54,7 @@ const VerticalEditor = () => {
 
     const router = useRouter();
     const [currentUser, setCurrentUser] = useState<null | User>(null);
-    const [draftID, setDraftID] = useState<string>("no editting");
+    const [draftID, setDraftID] = useState("");
 
     const [loading, setLoading] = useState(true);
 
