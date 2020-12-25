@@ -32,6 +32,13 @@ const VerticalEditor = () => {
     const editor = useRef(null);
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
+    const [currentUser, setCurrentUser] = useState<null | User>(null);
+    const [draftID, setDraftID] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [isSaved, setIsSaved] = useState(true);
+    const [title, setTitle] = useState("");
+
+    const router = useRouter();
 
     const setWrapperHeight = useSetRecoilState(wrapperHeightState);
     const fs = useRecoilValue(realFontSizeState);
@@ -55,12 +62,6 @@ const VerticalEditor = () => {
             resizeObs.disconnect();
         };
     }, []);
-
-    const router = useRouter();
-    const [currentUser, setCurrentUser] = useState<null | User>(null);
-    const [draftID, setDraftID] = useState("");
-
-    const [loading, setLoading] = useState(true);
 
     const handleEdittingDraft = async (user: fb.User) => {
         setCurrentUser(user);
@@ -103,9 +104,6 @@ const VerticalEditor = () => {
             ps.current.scrollLeft -= e.deltaY;
         }
     };
-
-    const [isSaved, setIsSaved] = useState(true);
-    const [title, setTitle] = useState("");
 
     useEffect(() => {
         const timer = setTimeout(() => {
