@@ -41,6 +41,10 @@ const VerticalEditor = () => {
     const focusEditor = () => editor.current.focus();
 
     useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            user ? handleEdittingDraft(user) : router.push("/auth");
+        });
+
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             setWrapperHeight(height);
@@ -57,12 +61,6 @@ const VerticalEditor = () => {
     const [draftID, setDraftID] = useState("");
 
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            user ? handleEdittingDraft(user) : router.push("/auth");
-        });
-    }, []);
 
     const handleEdittingDraft = async (user: fb.User) => {
         setCurrentUser(user);
