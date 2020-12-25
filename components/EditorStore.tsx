@@ -70,7 +70,7 @@ const VerticalEditor = () => {
         const { did, content } = ed;
         const es = convertEditorStateFromJSON(content);
         setDraftID(did);
-        setEditorState(es);
+        handleEditorStateChange(es);
         setLoading(false);
         // focusEditor();
     };
