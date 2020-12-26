@@ -19,6 +19,10 @@ export async function loginWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
     try {
         const user = await auth.signInWithPopup(provider).then((res) => {
+            // TODO:
+            // if (db.collection("user").doc(res.additionalUserInfo.username).exist()) {
+            //      reauthUser(res)
+            // }
             console.log(0, res);
             createUser(res);
         });
