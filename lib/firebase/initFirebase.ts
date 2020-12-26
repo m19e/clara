@@ -18,15 +18,11 @@ export const auth = firebase.auth();
 export async function loginWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
     try {
-        const user = await auth.signInWithPopup(provider).then((res) => {
-            // TODO:
-            // if (db.collection("user").doc(res.additionalUserInfo.username).exist()) {
-            //      reauthUser(res)
-            // }
-            console.log(0, res);
-            createUser(res);
-        });
-        console.log(1, user);
+        const res = await auth.signInWithPopup(provider);
+        const userDoc = await db.collection("user").doc(res.additionalUserInfo.username).get();
+        if (!userDoc.exists) {
+            await createUser(res);
+        }
     } catch (error) {
         console.error("login failed", error);
     }
