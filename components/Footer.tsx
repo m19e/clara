@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { useRecoilValue } from "recoil";
 import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "../store/editor";
+import { userProfileState } from "../store/user";
 import { updateFormat } from "../lib/firebase/initFirebase";
 
 export default function Footer() {
@@ -7,11 +9,11 @@ export default function Footer() {
     const [fontSize, incFontSize, decFontSize] = useFontSize();
     const [lineWords, incLineWords, decLineWords] = useLineWords();
     const [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW] = useIsDisabled();
+    const userProfile = useRecoilValue(userProfileState);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            // updateFormat("userID", isMincho, fontSize, lineWords);
-            // console.log("update:", "userID", isMincho, fontSize, lineWords);
+            updateFormat(userProfile.userID, isMincho, fontSize, lineWords);
         }, 5000);
         return () => clearTimeout(timer);
     }, [isMincho, fontSize, lineWords]);
