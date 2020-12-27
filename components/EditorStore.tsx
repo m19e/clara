@@ -73,8 +73,9 @@ const VerticalEditor = () => {
     }, [editorState]);
 
     const initEditor = async (user: fb.User) => {
-        const userID = await getUserID(user.uid);
-        const profile = { ...user, userID };
+        const { uid, displayName, photoURL } = user;
+        const userID = await getUserID(uid);
+        const profile = { uid, displayName, photoURL, userID };
         setCurrentUser(profile);
         setUserProfile(profile);
         const ed = await getEdittingDraftData(user.uid);
