@@ -29,7 +29,7 @@ const convertEditorStateToJSON = (es: EditorState): string => {
 
 const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
-    const editor = useRef(null);
+    const editorRef = useRef(null);
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
     const [currentUser, setCurrentUser] = useState<null | User>(null);
@@ -45,7 +45,7 @@ const VerticalEditor = () => {
     const eh = useRecoilValue(editorHeightState);
     const isMincho = useRecoilValue(isMinchoState);
 
-    const focusEditor = () => editor.current.focus();
+    const focusEditor = () => editorRef.current.focus();
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -161,7 +161,7 @@ const VerticalEditor = () => {
                                     className={"writing-v-rl text-justify max-h-full" + (isMincho ? " mincho" : " gothic")}
                                     style={{ minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                                 >
-                                    <Editor editorKey="editor" ref={editor} editorState={editorState} onChange={handleEditorStateChange} />
+                                    <Editor editorKey="editor" ref={editorRef} editorState={editorState} onChange={handleEditorStateChange} />
                                 </div>
                             </Scrollbar>
                         )}
