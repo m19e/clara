@@ -118,7 +118,6 @@ const VerticalEditor = () => {
         setTitle(formatTitle);
         setIsSaved(false);
         setEditorState(es);
-        console.log(currentUser);
     };
 
     return (
