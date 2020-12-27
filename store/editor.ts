@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useCallback } from "react";
 
 export const isMinchoState = atom({
@@ -52,6 +52,26 @@ export const useLineWords = (): [number, () => void, () => void] => {
     }, []);
 
     return [lineWords, incLineWords, decLineWords];
+};
+
+type FormatProps = {
+    isMincho: boolean;
+    fontSize: number;
+    lineWords: number;
+};
+
+export const useFormat = (): (({ isMincho, fontSize, lineWords }: FormatProps) => void) => {
+    const setIsMincho = useSetRecoilState(isMinchoState);
+    const setFontSize = useSetRecoilState(pureFontSizeState);
+    const setLineWords = useSetRecoilState(lineWordsState);
+
+    const setFormatAll = useCallback(({ isMincho, fontSize, lineWords }: FormatProps) => {
+        setIsMincho(isMincho);
+        setFontSize(fontSize);
+        setLineWords(lineWords);
+    }, []);
+
+    return setFormatAll;
 };
 
 export const wrapperHeightState = atom({
