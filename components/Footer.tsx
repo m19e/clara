@@ -15,7 +15,7 @@ export default function Footer() {
         const timer = setTimeout(() => {
             updateFormat(userProfile.userID, isMincho, fontSize, lineWords);
             // console.log("update:", userProfile.userID, isMincho, fontSize, lineWords);
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timer);
     }, [isMincho, fontSize, lineWords]);
 
