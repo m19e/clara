@@ -49,7 +49,7 @@ const VerticalEditor = () => {
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            user ? handleEdittingDraft(user) : router.push("/auth");
+            user ? initEditor(user) : router.push("/auth");
         });
 
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
@@ -70,7 +70,7 @@ const VerticalEditor = () => {
         return () => clearTimeout(timer);
     }, [editorState]);
 
-    const handleEdittingDraft = async (user: fb.User) => {
+    const initEditor = async (user: fb.User) => {
         const userID = await getUserID(user.uid);
         setCurrentUser({ ...user, userID });
         const ed = await getEdittingDraftData(user.uid);
