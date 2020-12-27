@@ -7,7 +7,7 @@ import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
+import { auth, getUserID, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState } from "../store/editor";
 import Footer from "./Footer";
 import Loader from "./Loader";
@@ -71,7 +71,8 @@ const VerticalEditor = () => {
     }, [editorState]);
 
     const handleEdittingDraft = async (user: fb.User) => {
-        setCurrentUser(user);
+        const userID = await getUserID(user.uid);
+        setCurrentUser({ ...user, userID });
         const ed = await getEdittingDraftData(user.uid);
         const { did, content } = ed;
         const es = convertEditorStateFromJSON(content);
