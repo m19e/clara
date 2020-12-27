@@ -1,10 +1,20 @@
+import { useEffect } from "react";
 import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "../store/editor";
+import { updateFormat } from "../lib/firebase/initFirebase";
 
 export default function Footer() {
     const [isMincho, toggleFont] = useIsMincho();
     const [fontSize, incFontSize, decFontSize] = useFontSize();
     const [lineWords, incLineWords, decLineWords] = useLineWords();
     const [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW] = useIsDisabled();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            // updateFormat("userID", isMincho, fontSize, lineWords);
+            // console.log("update:", "userID", isMincho, fontSize, lineWords);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [isMincho, fontSize, lineWords]);
 
     return (
         <div className="fixed bottom-0 w-full elevation4 editor-bg transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100">
