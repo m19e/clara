@@ -16,7 +16,7 @@ type User = {
     uid: string;
     displayName: string;
     photoURL: string;
-    userID?: string;
+    userID: string;
 };
 
 const convertEditorStateFromJSON = (json: string): EditorState => {
