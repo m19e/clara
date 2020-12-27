@@ -15,7 +15,7 @@ export const useIsMincho = (): [boolean, () => void] => {
     return [isMincho, toggleFont];
 };
 
-const pureFontSizeState = atom({
+export const pureFontSizeState = atom({
     key: "pureFontSizeState",
     default: 6,
 });
