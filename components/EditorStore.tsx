@@ -7,8 +7,17 @@ import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, getUserID, createDraftData, readDraftData, updateDraftData, getEdittingDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
-import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState } from "../store/editor";
+import {
+    auth,
+    getUserID,
+    getUserData,
+    createDraftData,
+    readDraftData,
+    updateDraftData,
+    getEdittingDraftData,
+    setEdittingDraftData,
+} from "../lib/firebase/initFirebase";
+import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { userProfileState } from "../store/user";
 import Footer from "./Footer";
 import Loader from "./Loader";
@@ -46,6 +55,7 @@ const VerticalEditor = () => {
     const eh = useRecoilValue(editorHeightState);
     const isMincho = useRecoilValue(isMinchoState);
     const setUserProfile = useSetRecoilState(userProfileState);
+    const setFormatAll = useFormat();
 
     const focusEditor = () => editorRef.current.focus();
 
@@ -78,6 +88,9 @@ const VerticalEditor = () => {
         const profile = { uid, displayName, photoURL, userID };
         setCurrentUser(profile);
         setUserProfile(profile);
+
+        await initFormat(userID);
+
         const ed = await getEdittingDraftData(user.uid);
         const { did, content } = ed;
         const es = convertEditorStateFromJSON(content);
@@ -85,6 +98,14 @@ const VerticalEditor = () => {
         handleEditorStateChange(es);
         setLoading(false);
         // focusEditor();
+    };
+
+    const initFormat = async (id: string) => {
+        const userData = await getUserData(id);
+        const im = userData.isMincho;
+        const { fontSize, lineWords } = userData;
+
+        setFormatAll({ isMincho: im, fontSize, lineWords });
     };
 
     const setEdittingDraft = async (did, uid: string, es: EditorState) => {
