@@ -48,6 +48,14 @@ export async function logout() {
     }
 }
 
+export async function getUserData(id: string) {
+    const userRef = db.collection("user").doc(id);
+    const userSnapshot = await userRef.get();
+    const userData = userSnapshot.data();
+
+    return userData;
+}
+
 export async function getUserID(uid: string) {
     const query = db.collection("user").where("uid", "==", uid);
     let result;
