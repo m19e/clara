@@ -48,7 +48,7 @@ export async function logout() {
     }
 }
 
-export async function getUserData(id: string) {
+export async function getUserID(id: string) {
     const query = db.collection("user").where("uid", "==", id);
     let result;
     try {
@@ -63,7 +63,7 @@ export async function getUserData(id: string) {
 }
 
 export async function getEdittingDraftData(uid: string) {
-    const id = await getUserData(uid);
+    const id = await getUserID(uid);
     const userRef = db.collection("user").doc(id);
     const user = await userRef.get();
     const { editting } = user.data();
@@ -73,13 +73,13 @@ export async function getEdittingDraftData(uid: string) {
 }
 
 export async function setEdittingDraftData(did, uid, draft: string) {
-    const id = await getUserData(uid);
+    const id = await getUserID(uid);
     const userRef = db.collection("user").doc(id);
     await userRef.update({ "editting.did": did, "editting.content": draft });
 }
 
 export async function createDraftData(uid, draft: string) {
-    const id = await getUserData(uid);
+    const id = await getUserID(uid);
     const userRef = db.collection("user").doc(id);
     const draftID = userRef.collection("draft").doc().id;
     await userRef.collection("draft").doc(draftID).set({ content: draft });
@@ -88,7 +88,7 @@ export async function createDraftData(uid, draft: string) {
 }
 
 export async function readDraftData(did, uid: string) {
-    const id = await getUserData(uid);
+    const id = await getUserID(uid);
     const draftRef = db.collection("user").doc(id).collection("draft").doc(did);
     const draft = await draftRef.get();
     const { content } = draft.data();
@@ -96,7 +96,7 @@ export async function readDraftData(did, uid: string) {
 }
 
 export async function updateDraftData(did, uid, draft: string) {
-    const id = await getUserData(uid);
+    const id = await getUserID(uid);
     const userRef = db.collection("user").doc(id).collection("draft").doc(did);
     await userRef.update({ content: draft });
 }
