@@ -121,6 +121,7 @@ const VerticalEditor = () => {
     };
 
     const readDraft = async () => {
+        // pass userID props to readDraftData
         const data = await readDraftData(currentUser.uid, draftID);
         const es = JSON.parse(data);
         setEditorState(es);
