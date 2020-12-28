@@ -21,7 +21,7 @@ export const pureFontSizeState = atom({
 });
 
 export const realFontSizeState = selector({
-    key: "realFtonSizeState",
+    key: "realFontSizeState",
     get: ({ get }) => get(pureFontSizeState) * 4,
 });
 
