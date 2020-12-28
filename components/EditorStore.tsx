@@ -19,7 +19,7 @@ import {
 } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { userProfileState } from "../store/user";
-import Footer from "./Footer";
+import Footer from "./EditorFooter";
 import Loader from "./Loader";
 
 type User = {
