@@ -125,10 +125,9 @@ const VerticalEditor = () => {
         handleEditorStateChange(es);
     };
 
-    const updateDraft = async (es: EditorState) => {
-        const data = convertEditorStateToJSON(es);
-        await updateDraftData(draftID, currentUser.uid, data);
-        await setEdittingDraftData(draftID, currentUser.uid, data);
+    const updateDraft = async (userID, did: string, es: EditorState) => {
+        const content = convertEditorStateToJSON(es);
+        await updateDraftData(did, userID, content);
         setIsSaved(true);
     };
 
