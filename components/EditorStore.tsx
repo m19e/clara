@@ -19,8 +19,9 @@ import {
 } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { userProfileState } from "../store/user";
-import Footer from "./EditorFooter";
-import Header from "./EditorHeader";
+// import Footer from "./EditorFooter";
+// import Header from "./EditorHeader";
+import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
 type User = {
@@ -150,7 +151,6 @@ const VerticalEditor = () => {
             <Head>
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
-            <Header />
             <div className="min-h-screen flex flex-col editor-bg">
                 <div className={"flex-1 flex flex-col flex-grow"}>
                     {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
@@ -176,7 +176,8 @@ const VerticalEditor = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
+            <Frame />
         </>
     );
 };
