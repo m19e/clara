@@ -74,7 +74,6 @@ export async function getEdittingDraftData(id: string) {
     const userRef = db.collection("user").doc(id);
     const user = await userRef.get();
     const { editting } = user.data();
-    console.log(editting);
 
     return editting;
 }
