@@ -21,7 +21,7 @@ export default function Footer() {
 
     return (
         <div className="fixed bottom-0 w-full elevation4 editor-bg">
-            <div className={"flex-center" + (isMincho ? " mincho" : " gothic")} style={{ minHeight: "120px" }}>
+            <div className="flex-center" style={{ minHeight: "120px" }}>
                 <div className="w-24 h-24 m-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
