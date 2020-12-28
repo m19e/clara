@@ -78,9 +78,9 @@ export async function getEdittingDraftData(id: string) {
     return editting;
 }
 
-export async function setEdittingDraftData(did, id, draft: string) {
+export async function setEdittingDraftData(did, id: string) {
     const userRef = db.collection("user").doc(id);
-    await userRef.update({ "editting.did": did, "editting.content": draft });
+    await userRef.update({ "editting.did": did });
 }
 
 export async function createDraftData(uid, draft: string) {
