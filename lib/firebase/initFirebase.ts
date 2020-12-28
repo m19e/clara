@@ -78,8 +78,7 @@ export async function getEdittingDraftData(id: string) {
     return editting;
 }
 
-export async function setEdittingDraftData(did, uid, draft: string) {
-    const id = await getUserID(uid);
+export async function setEdittingDraftData(did, id, draft: string) {
     const userRef = db.collection("user").doc(id);
     await userRef.update({ "editting.did": did, "editting.content": draft });
 }
@@ -100,8 +99,7 @@ export async function readDraftData(id, did: string) {
     return content;
 }
 
-export async function updateDraftData(did, uid, draft: string) {
-    const id = await getUserID(uid);
+export async function updateDraftData(did, id, draft: string) {
     const userRef = db.collection("user").doc(id).collection("draft").doc(did);
     await userRef.update({ content: draft });
 }
