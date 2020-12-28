@@ -83,8 +83,7 @@ export async function setEdittingDraftData(did, id: string) {
     await userRef.update({ "editting.did": did });
 }
 
-export async function createDraftData(uid, draft: string) {
-    const id = await getUserID(uid);
+export async function createDraftData(id, draft: string) {
     const userRef = db.collection("user").doc(id);
     const draftID = userRef.collection("draft").doc().id;
     await userRef.collection("draft").doc(draftID).set({ content: draft });
