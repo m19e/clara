@@ -77,7 +77,7 @@ const VerticalEditor = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (!isSaved) updateDraft(editorState);
+            if (!isSaved) updateDraft(currentUser.userID, draftID, editorState);
         }, 5000);
         return () => clearTimeout(timer);
     }, [editorState]);
