@@ -112,10 +112,10 @@ const VerticalEditor = () => {
     };
 
     const createDraft = async (es: EditorState) => {
-        const data = convertEditorStateToJSON(es);
-        const dID = await createDraftData(currentUser.uid, data);
-        setDraftID(dID);
-        await setEdittingDraft(dID, currentUser.uid, es);
+        const content = convertEditorStateToJSON(es);
+        const did = await createDraftData(currentUser.userID, content);
+        setDraftID(did);
+        await setEdittingDraft(did, currentUser.userID);
     };
 
     const readDraft = async (userID, did: string) => {
