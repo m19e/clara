@@ -91,7 +91,7 @@ const VerticalEditor = () => {
 
         await initFormat(userID);
 
-        const ed = await getEdittingDraftData(user.uid);
+        const ed = await getEdittingDraftData(userID);
         const { did, content } = ed;
         const es = convertEditorStateFromJSON(content);
         setDraftID(did);
