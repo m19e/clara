@@ -103,7 +103,7 @@ export async function updateDraftData(did, id, draft: string) {
     await userRef.update({ content: draft });
 }
 
-export async function updateFormat(userID: string, isMincho: boolean, fontSize: number, lineWords: number) {
+export async function updateFormat(userID: string, isMincho: boolean, fontSize, lineWords: number) {
     const userRef = db.collection("user").doc(userID);
     await userRef.set({ isMincho, fontSize, lineWords }, { merge: true });
 }
