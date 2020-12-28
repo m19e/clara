@@ -93,8 +93,8 @@ const VerticalEditor = () => {
 
         const ed = await getEdittingDraftData(userID);
         const { did } = ed;
-        await readDraft(userID, did);
         setDraftID(did);
+        await readDraft(userID, did);
         setLoading(false);
         // focusEditor();
     };
