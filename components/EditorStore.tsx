@@ -107,9 +107,8 @@ const VerticalEditor = () => {
         setFormatAll({ isMincho: im, fontSize, lineWords });
     };
 
-    const setEdittingDraft = async (did, uid: string, es: EditorState) => {
-        const draft = convertEditorStateToJSON(es);
-        await setEdittingDraftData(did, uid, draft);
+    const setEdittingDraft = async (did, id: string) => {
+        await setEdittingDraftData(did, id);
     };
 
     const createDraft = async (es: EditorState) => {
