@@ -92,10 +92,9 @@ const VerticalEditor = () => {
         await initFormat(userID);
 
         const ed = await getEdittingDraftData(userID);
-        const { did, content } = ed;
-        const es = convertEditorStateFromJSON(content);
+        const { did } = ed;
+        await readDraft(userID, did);
         setDraftID(did);
-        handleEditorStateChange(es);
         setLoading(false);
         // focusEditor();
     };
@@ -120,11 +119,11 @@ const VerticalEditor = () => {
         await setEdittingDraft(dID, currentUser.uid, es);
     };
 
-    const readDraft = async () => {
+    const readDraft = async (userID, did: string) => {
         // pass userID props to readDraftData
-        const data = await readDraftData(currentUser.uid, draftID);
-        const es = JSON.parse(data);
-        setEditorState(es);
+        const content = await readDraftData(userID, did);
+        const es = convertEditorStateFromJSON(content);
+        handleEditorStateChange(es);
     };
 
     const updateDraft = async (es: EditorState) => {
