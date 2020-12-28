@@ -70,8 +70,7 @@ export async function getUserID(uid: string) {
     return result;
 }
 
-export async function getEdittingDraftData(uid: string) {
-    const id = await getUserID(uid);
+export async function getEdittingDraftData(id: string) {
     const userRef = db.collection("user").doc(id);
     const user = await userRef.get();
     const { editting } = user.data();
