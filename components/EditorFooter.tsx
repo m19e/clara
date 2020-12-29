@@ -55,7 +55,7 @@ export default function Footer() {
                                 </svg>
                             </span>
                         </button>
-                        <p className="opacity-75">大きさ{fontSize}</p>
+                        <p className="opacity-75">大きさ {fontSize}</p>
                         <button
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => decFontSize()}
