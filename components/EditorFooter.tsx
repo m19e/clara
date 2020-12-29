@@ -34,7 +34,7 @@ export default function Footer() {
                         </button>
                     </div>
                 </div>
-                <span className="mx-3 opacity-25">・</span>
+                <span className={"opacity-25 " + (isMincho ? "mr-3" : "mx-3")}>・</span>
                 <div className="my-2 flex-center">
                     <div className="flex flex-col group">
                         <button
