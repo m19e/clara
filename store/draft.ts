@@ -1,6 +1,12 @@
-import { atom } from "recoil";
+import { atom, useRecoilState } from "recoil";
 
 export const titleState = atom({
     key: "title",
     default: "無題",
 });
+
+export const useTitle = (): [string, (string) => void] => {
+    const [title, setTitle] = useRecoilState(titleState);
+
+    return [title, setTitle];
+};
