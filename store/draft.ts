@@ -1,7 +1,7 @@
 import { atom, useRecoilState } from "recoil";
 
 export const titleState = atom({
-    key: "title",
+    key: "titleState",
     default: "無題",
 });
 
