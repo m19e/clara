@@ -22,7 +22,7 @@ export default function Footer() {
     return (
         <div className="fixed bottom-0 w-full elevation4 editor-bg">
             <div className="flex-center" style={{ minHeight: "80px" }}>
-                <div className="w-24 m-2 flex-center">
+                <div className="w-24 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
                         <span className="w-full text-center border-t border-b border-solid border-black border-opacity-20">
@@ -36,7 +36,7 @@ export default function Footer() {
                         </button>
                     </div>
                 </div>
-                <div className="w-24 m-2 flex-center">
+                <div className="w-24 flex-center">
                     <div className="flex flex-col group">
                         <button
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
@@ -77,7 +77,7 @@ export default function Footer() {
                         </button>
                     </div>
                 </div>
-                <div className="w-24 m-2 flex-center">
+                <div className="w-24 flex-center">
                     <div className="flex flex-col group">
                         <button
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
