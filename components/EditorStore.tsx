@@ -162,7 +162,7 @@ const VerticalEditor = () => {
                                 containerRef={(ref) => (ps.current = ref)}
                                 onWheel={onMouseWheelPS}
                                 // className="border border-dashed border-gray-400 pb-2"
-                                className="pb-2 w-full"
+                                className="pb-2 max-w-full"
                                 style={{ maxHeight: "95%", height: `${eh + 8}px` }}
                             >
                                 <div
