@@ -25,12 +25,12 @@ export default function Footer() {
                 <div className="my-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
-                        <span className="w-full text-center">{isMincho ? "明朝体" : "ゴシック体"}</span>
+                        <span className="w-full text-center opacity-75">{isMincho ? "明朝体" : "ゴシック体"}</span>
                         <button
                             onClick={() => toggleFont()}
-                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                         >
-                            <span className="opacity-50 hover:opacity-100">{!isMincho ? "明朝体" : "ゴシック体"}</span>
+                            <span className="opacity-50 hover:opacity-75">{!isMincho ? "明朝体" : "ゴシック体"}</span>
                         </button>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ export default function Footer() {
                 <div className="my-2 flex-center">
                     <div className="flex flex-col group">
                         <button
-                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => incFontSize()}
                             disabled={isDisabledIncFS}
                         >
@@ -55,9 +55,9 @@ export default function Footer() {
                                 </svg>
                             </span>
                         </button>
-                        <p>大きさ{fontSize}</p>
+                        <p className="opacity-75">大きさ{fontSize}</p>
                         <button
-                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => decFontSize()}
                             disabled={isDisabledDecFS}
                         >
@@ -80,7 +80,7 @@ export default function Footer() {
                 <div className="my-2 flex-center">
                     <div className="flex flex-col group">
                         <button
-                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => incLineWords()}
                             disabled={isDisabledIncLW}
                         >
@@ -97,9 +97,9 @@ export default function Footer() {
                                 </svg>
                             </span>
                         </button>
-                        <p>字数 {lineWords}</p>
+                        <p className="opacity-75">字数 {lineWords}</p>
                         <button
-                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-100"
+                            className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => decLineWords()}
                             disabled={isDisabledDecLW}
                         >
