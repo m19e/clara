@@ -6,7 +6,7 @@ export default function Header() {
         <div className="shadow-sm editor-bg fixed top-0 w-full">
             <div className="flex justify-between items-center">
                 <div className="w-20"></div>
-                <p className="text-black opacity-50 py-5 flex-grow-0">{title}</p>
+                <p className="text-black opacity-75 py-5 flex-grow-0">{title}</p>
                 <div className="w-20">
                     <div className="flex justify-end items-center">
                         <span className="px-4 opacity-50">
