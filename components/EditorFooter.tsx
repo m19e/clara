@@ -20,7 +20,7 @@ export default function Footer() {
     }, [isMincho, fontSize, lineWords]);
 
     return (
-        <div className="fixed bottom-0 w-full elevation4 editor-bg">
+        <div className="fixed bottom-0 w-full shadow-2xl editor-bg">
             <div className="flex-center" style={{ minHeight: "80px" }}>
                 <div className="my-2 flex-center">
                     <div className="group flex flex-col">
