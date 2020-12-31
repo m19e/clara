@@ -23,12 +23,6 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-end items-center">
                         <span className="px-4 opacity-50">
-                            {/* <svg className="w-8 h-8" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" fillRule="evenodd" stroke="#2a2e3b" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="m5.029 10.429h10" />
-                                    <path d="m10.029 15.429v-10.001" />
-                                </g>
-                            </svg> */}
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="#2a2e3b">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
