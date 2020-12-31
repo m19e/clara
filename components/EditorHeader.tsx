@@ -6,11 +6,17 @@ export default function Header() {
         <div className="shadow-sm editor-bg fixed top-0 w-full">
             <div className="flex justify-between items-center">
                 <div className="w-20"></div>
-                <div className="py-5 flex-grow-0 flex-center">
+                <div className="py-5 flex-grow-0 flex-center group">
                     <div className="w-6"></div>
                     <p className="text-black opacity-75 px-1">{title}</p>
-                    <div className="w-6">
-                        <svg className="opacity-50 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#2a2e3b">
+                    <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50">
+                        <svg
+                            className="w-4 h-4 opacity-50 hover:opacity-100"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="#2a2e3b"
+                        >
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
