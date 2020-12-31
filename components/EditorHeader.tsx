@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useTitle } from "../store/draft";
 
 export default function Header() {
     const [title, setTitle] = useTitle();
     const [isTitleEdit, setIsTitleEdit] = useState(false);
+    const editTitleRef = useRef(null);
 
     const toggleTitleEdit = () => {
         setIsTitleEdit((prev) => !prev);
@@ -12,6 +13,12 @@ export default function Header() {
     const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
     };
+
+    useEffect(() => {
+        if (isTitleEdit) {
+            editTitleRef.current.focus();
+        }
+    }, [isTitleEdit]);
 
     return (
         <div className="shadow-sm editor-bg fixed top-0 w-full">
@@ -22,8 +29,9 @@ export default function Header() {
                     {isTitleEdit ? (
                         <>
                             <input
-                                className="text-black opacity-75 mx-1 px-4 shadow-inner editor-bg outline-none focus:outline-none"
+                                className="text-black opacity-75 mx-1 px-4 shadow-inner editor-bg rounded outline-none focus:outline-none"
                                 type="text"
+                                ref={editTitleRef}
                                 value={title}
                                 onChange={(e) => onTitleChange(e)}
                                 style={{ width: title.length + 2 + "rem" }}
