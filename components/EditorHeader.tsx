@@ -22,7 +22,7 @@ export default function Header() {
                     {isTitleEdit ? (
                         <>
                             <input
-                                className="text-black opacity-75 px-2"
+                                className="text-black opacity-75 px-2 outline-none focus:outline-none"
                                 type="text"
                                 value={title}
                                 onChange={(e) => onTitleChange(e)}
