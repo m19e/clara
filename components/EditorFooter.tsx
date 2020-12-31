@@ -43,7 +43,7 @@ export default function Footer() {
                             disabled={isDisabledIncFS}
                         >
                             <span className="w-full flex-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+                                {/* <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
                                     <polyline
                                         fill="none"
                                         stroke="#2A2E3B"
@@ -51,6 +51,13 @@ export default function Footer() {
                                         strokeLinejoin="round"
                                         points="7.328 1.672 7.328 7.328 1.672 7.328"
                                         transform="rotate(-135 9.157 7.258)"
+                                    />
+                                </svg> */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                        clipRule="evenodd"
                                     />
                                 </svg>
                             </span>
@@ -62,7 +69,7 @@ export default function Footer() {
                             disabled={isDisabledDecFS}
                         >
                             <span className="w-full flex-center">
-                                <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+                                {/* <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="m8.5.5-4 4-4-4"
                                         fill="none"
@@ -70,6 +77,13 @@ export default function Footer() {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         transform="translate(6 8)"
+                                    />
+                                </svg> */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="2A2E3B">
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"
                                     />
                                 </svg>
                             </span>
@@ -85,14 +99,11 @@ export default function Footer() {
                             disabled={isDisabledIncLW}
                         >
                             <span className="w-full flex-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
-                                    <polyline
-                                        fill="none"
-                                        stroke="#2A2E3B"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        points="7.328 1.672 7.328 7.328 1.672 7.328"
-                                        transform="rotate(-135 9.157 7.258)"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                        clipRule="evenodd"
                                     />
                                 </svg>
                             </span>
@@ -104,14 +115,11 @@ export default function Footer() {
                             disabled={isDisabledDecLW}
                         >
                             <span className="w-full flex-center">
-                                <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="2A2E3B">
                                     <path
-                                        d="m8.5.5-4 4-4-4"
-                                        fill="none"
-                                        stroke="#2a2e3b"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        transform="translate(6 8)"
+                                        fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"
                                     />
                                 </svg>
                             </span>
