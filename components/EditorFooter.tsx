@@ -43,16 +43,6 @@ export default function Footer() {
                             disabled={isDisabledIncFS}
                         >
                             <span className="w-full flex-center opacity-50 hover:opacity-75">
-                                {/* <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
-                                    <polyline
-                                        fill="none"
-                                        stroke="#2A2E3B"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        points="7.328 1.672 7.328 7.328 1.672 7.328"
-                                        transform="rotate(-135 9.157 7.258)"
-                                    />
-                                </svg> */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
                                     <path
                                         fillRule="evenodd"
@@ -69,16 +59,6 @@ export default function Footer() {
                             disabled={isDisabledDecFS}
                         >
                             <span className="w-full flex-center opacity-50 hover:opacity-75">
-                                {/* <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="m8.5.5-4 4-4-4"
-                                        fill="none"
-                                        stroke="#2a2e3b"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        transform="translate(6 8)"
-                                    />
-                                </svg> */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
                                     <path
                                         fillRule="evenodd"
