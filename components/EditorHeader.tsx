@@ -22,7 +22,7 @@ export default function Header() {
                     {isTitleEdit ? (
                         <>
                             <input
-                                className="text-black opacity-75 px-2 outline-none focus:outline-none"
+                                className="text-black opacity-75 mx-1 px-4 shadow-inner editor-bg outline-none focus:outline-none"
                                 type="text"
                                 value={title}
                                 onChange={(e) => onTitleChange(e)}
@@ -42,7 +42,7 @@ export default function Header() {
                         </>
                     ) : (
                         <>
-                            <p className="text-black opacity-75 px-1">{title}</p>
+                            <p className="text-black opacity-75 mx-1 px-4">{title}</p>
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
