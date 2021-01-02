@@ -29,12 +29,12 @@ export default function Header() {
                     {isTitleEdit ? (
                         <>
                             <input
-                                className="text-black opacity-75 mx-1 px-4 shadow-inner editor-bg rounded outline-none focus:outline-none"
+                                className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
                                 type="text"
                                 ref={editTitleRef}
                                 value={title}
                                 onChange={(e) => onTitleChange(e)}
-                                style={{ width: title.length + 2 + "rem" }}
+                                style={{ width: title.length + 1 + "rem" }}
                             />
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
@@ -50,7 +50,7 @@ export default function Header() {
                         </>
                     ) : (
                         <>
-                            <p className="text-black opacity-75 mx-1 px-4">{title}</p>
+                            <p className="text-black opacity-75 mx-1 px-2">{title}</p>
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
