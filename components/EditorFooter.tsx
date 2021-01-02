@@ -32,7 +32,7 @@ export default function Footer() {
                             onClick={() => toggleFont()}
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                         >
-                            <span className="opacity-50 hover:opacity-75">{!isMincho ? "明朝体" : "ゴシック体"}</span>
+                            <span className="opacity-50 hover:opacity-100">{!isMincho ? "明朝体" : "ゴシック体"}</span>
                         </button>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ export default function Footer() {
                             onClick={() => incFontSize()}
                             disabled={isDisabledIncFS}
                         >
-                            <span className="w-full flex-center opacity-50 hover:opacity-75">
+                            <span className="w-full flex-center opacity-50 hover:opacity-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
                                     <path
                                         fillRule="evenodd"
@@ -60,7 +60,7 @@ export default function Footer() {
                             onClick={() => decFontSize()}
                             disabled={isDisabledDecFS}
                         >
-                            <span className="w-full flex-center opacity-50 hover:opacity-75">
+                            <span className="w-full flex-center opacity-50 hover:opacity-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
                                     <path
                                         fillRule="evenodd"
@@ -80,7 +80,7 @@ export default function Footer() {
                             onClick={() => incLineWords()}
                             disabled={isDisabledIncLW}
                         >
-                            <span className="w-full flex-center opacity-50 hover:opacity-75">
+                            <span className="w-full flex-center opacity-50 hover:opacity-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
                                     <path
                                         fillRule="evenodd"
@@ -96,7 +96,7 @@ export default function Footer() {
                             onClick={() => decLineWords()}
                             disabled={isDisabledDecLW}
                         >
-                            <span className="w-full flex-center opacity-50 hover:opacity-75">
+                            <span className="w-full flex-center opacity-50 hover:opacity-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#2A2E3B">
                                     <path
                                         fillRule="evenodd"
