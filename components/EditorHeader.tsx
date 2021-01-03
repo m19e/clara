@@ -52,6 +52,7 @@ export default function Header() {
                                     ref={editTitleRef}
                                     value={tempTitle}
                                     onChange={handleTempTitleChange}
+                                    onBlur={toggleTitleEdit}
                                     style={{ width: tempTitle.length + 1 + "rem" }}
                                 />
                             </form>
