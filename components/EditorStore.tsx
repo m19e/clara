@@ -19,6 +19,7 @@ import {
 } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { userProfileState } from "../store/user";
+import { useDraftID } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
@@ -43,7 +44,6 @@ const VerticalEditor = () => {
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
     const [currentUser, setCurrentUser] = useState<null | User>(null);
-    const [draftID, setDraftID] = useState("");
     const [loading, setLoading] = useState(true);
     const [isSaved, setIsSaved] = useState(true);
 
@@ -55,6 +55,7 @@ const VerticalEditor = () => {
     const isMincho = useRecoilValue(isMinchoState);
     const setUserProfile = useSetRecoilState(userProfileState);
     const setFormatAll = useFormat();
+    const [draftID, setDraftID] = useDraftID();
 
     const focusEditor = () => editorRef.current.focus();
 
