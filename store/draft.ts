@@ -15,7 +15,7 @@ export const draftIDState = atom<string | null>({
     default: null,
 });
 
-export const useDraftID = () => {
+export const useDraftID = (): [string, (string) => void] => {
     const [draftID, setDraftID] = useRecoilState(draftIDState);
     return [draftID, setDraftID];
 };
