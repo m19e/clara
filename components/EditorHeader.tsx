@@ -3,6 +3,7 @@ import { useTitle } from "../store/draft";
 
 export default function Header() {
     const [title, setTitle] = useTitle();
+    const [tempTitle, setTempTitle] = useState("");
     const [isTitleEdit, setIsTitleEdit] = useState(false);
     const editTitleRef = useRef(null);
 
@@ -11,7 +12,7 @@ export default function Header() {
     };
 
     const onTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
+        setTempTitle(e.target.value);
     };
 
     useEffect(() => {
@@ -32,7 +33,7 @@ export default function Header() {
                                 className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
                                 type="text"
                                 ref={editTitleRef}
-                                value={title}
+                                value={tempTitle}
                                 onChange={onTempTitleChange}
                                 style={{ width: title.length + 1 + "rem" }}
                             />
