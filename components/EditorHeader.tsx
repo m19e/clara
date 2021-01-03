@@ -22,6 +22,11 @@ export default function Header() {
         }
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        toggleTitleEdit();
+    };
+
     const onTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTempTitle(e.target.value);
     };
@@ -40,14 +45,16 @@ export default function Header() {
                     <div className="w-6"></div>
                     {isTitleEdit ? (
                         <>
-                            <input
-                                className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
-                                type="text"
-                                ref={editTitleRef}
-                                value={tempTitle}
-                                onChange={onTempTitleChange}
-                                style={{ width: tempTitle.length + 1 + "rem" }}
-                            />
+                            <form onSubmit={handleSubmit}>
+                                <input
+                                    className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
+                                    type="text"
+                                    ref={editTitleRef}
+                                    value={tempTitle}
+                                    onChange={onTempTitleChange}
+                                    style={{ width: tempTitle.length + 1 + "rem" }}
+                                />
+                            </form>
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
