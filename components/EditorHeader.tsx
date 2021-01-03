@@ -12,7 +12,10 @@ export default function Header() {
             if (!prev) {
                 setTempTitle(title);
             } else {
-                setTitle(tempTitle);
+                const tempTitleTrimmed = tempTitle.trim();
+                if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
+                    setTitle(tempTitle);
+                }
             }
             return !prev;
         });
