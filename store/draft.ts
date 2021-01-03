@@ -7,7 +7,6 @@ export const titleState = atom({
 
 export const useTitle = (): [string, (string) => void] => {
     const [title, setTitle] = useRecoilState(titleState);
-
     return [title, setTitle];
 };
 
