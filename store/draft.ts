@@ -10,3 +10,13 @@ export const useTitle = (): [string, (string) => void] => {
 
     return [title, setTitle];
 };
+
+export const draftIDState = atom<string | null>({
+    key: "draft/id",
+    default: null,
+});
+
+export const useDraftID = () => {
+    const [draftID, setDraftID] = useRecoilState(draftIDState);
+    return [draftID, setDraftID];
+};
