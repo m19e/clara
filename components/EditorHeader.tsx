@@ -42,7 +42,7 @@ export default function Header() {
                                 ref={editTitleRef}
                                 value={tempTitle}
                                 onChange={onTempTitleChange}
-                                style={{ width: title.length + 1 + "rem" }}
+                                style={{ width: tempTitle.length + 1 + "rem" }}
                             />
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
