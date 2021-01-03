@@ -27,7 +27,7 @@ export default function Header() {
         toggleTitleEdit();
     };
 
-    const onTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTempTitle(e.target.value);
     };
 
@@ -51,7 +51,7 @@ export default function Header() {
                                     type="text"
                                     ref={editTitleRef}
                                     value={tempTitle}
-                                    onChange={onTempTitleChange}
+                                    onChange={handleTempTitleChange}
                                     style={{ width: tempTitle.length + 1 + "rem" }}
                                 />
                             </form>
