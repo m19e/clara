@@ -94,8 +94,8 @@ export async function createDraftData(id, draft: string) {
 export async function readDraftData(id, did: string) {
     const draftRef = db.collection("user").doc(id).collection("draft").doc(did);
     const draft = await draftRef.get();
-    const { content } = draft.data();
-    return content;
+    const { title, content } = draft.data();
+    return { title, content };
 }
 
 export async function updateDraftData(did, id, draft: string) {
