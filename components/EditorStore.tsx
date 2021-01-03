@@ -139,7 +139,6 @@ const VerticalEditor = () => {
     };
 
     const handleEditorStateChange = (es: EditorState) => {
-        const firstBlockText = es.getCurrentContent().getBlockMap().first().getText().trim();
         setIsSaved(false);
         setEditorState(es);
     };
