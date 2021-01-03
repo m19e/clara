@@ -48,7 +48,6 @@ const VerticalEditor = () => {
     const [draftID, setDraftID] = useState("");
     const [loading, setLoading] = useState(true);
     const [isSaved, setIsSaved] = useState(true);
-    const [title, setTitle] = useState("");
 
     const router = useRouter();
 
@@ -141,7 +140,6 @@ const VerticalEditor = () => {
     const handleEditorStateChange = (es: EditorState) => {
         const firstBlockText = es.getCurrentContent().getBlockMap().first().getText().trim();
         const formatTitle = firstBlockText.length < 20 ? firstBlockText : firstBlockText.slice(0, 20) + "…";
-        setTitle(formatTitle);
         setIsSaved(false);
         setEditorState(es);
     };
