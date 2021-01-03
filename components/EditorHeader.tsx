@@ -8,17 +8,18 @@ export default function Header() {
     const editTitleRef = useRef(null);
 
     const toggleTitleEdit = () => {
-        setIsTitleEdit((prev) => {
-            if (!prev) {
-                setTempTitle(title);
-            } else {
-                const tempTitleTrimmed = tempTitle.trim();
-                if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
-                    setTitle(tempTitleTrimmed);
-                }
+        if (!isTitleEdit) {
+            setTempTitle(title);
+            setIsTitleEdit((prev) => !prev);
+        } else {
+            const tempTitleTrimmed = tempTitle.trim();
+            if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
+                setTitle(tempTitleTrimmed);
             }
-            return !prev;
-        });
+            setTimeout(() => {
+                setIsTitleEdit((prev) => !prev);
+            }, 50);
+        }
     };
 
     const onTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
