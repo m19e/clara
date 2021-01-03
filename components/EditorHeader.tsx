@@ -1,13 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useTitle } from "../store/draft";
+import { useTitle, useDraftID } from "../store/draft";
+import { useProfile } from "../store/user";
+import { updateDraftTitle } from "../lib/firebase/initFirebase";
 
 export default function Header() {
     const [title, setTitle] = useTitle();
+    const [draftID] = useDraftID();
+    const [profile] = useProfile();
     const [tempTitle, setTempTitle] = useState("");
     const [isTitleEdit, setIsTitleEdit] = useState(false);
     const editTitleRef = useRef(null);
 
-    const toggleTitleEdit = () => {
+    const toggleTitleEdit = async () => {
         if (!isTitleEdit) {
             setTempTitle(title);
             setIsTitleEdit((prev) => !prev);
@@ -15,6 +19,7 @@ export default function Header() {
             const tempTitleTrimmed = tempTitle.trim();
             if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
                 setTitle(tempTitleTrimmed);
+                await updateDraftTitle(profile.userID, draftID, tempTitleTrimmed);
             }
             setTimeout(() => {
                 setIsTitleEdit((prev) => !prev);
