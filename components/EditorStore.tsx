@@ -19,7 +19,7 @@ import {
 } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { userProfileState } from "../store/user";
-import { useDraftID } from "../store/draft";
+import { useDraftID, useTitle } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
@@ -56,6 +56,7 @@ const VerticalEditor = () => {
     const setUserProfile = useSetRecoilState(userProfileState);
     const setFormatAll = useFormat();
     const [draftID, setDraftID] = useDraftID();
+    const [, setTitle] = useTitle();
 
     const focusEditor = () => editorRef.current.focus();
 
@@ -119,8 +120,9 @@ const VerticalEditor = () => {
     };
 
     const readDraft = async (userID, did: string) => {
-        const content = await readDraftData(userID, did);
+        const { title, content } = await readDraftData(userID, did);
         const es = convertEditorStateFromJSON(content);
+        setTitle(title);
         handleEditorStateChange(es);
     };
 
