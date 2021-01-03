@@ -42,7 +42,6 @@ export default function Header() {
             <div className="flex justify-between items-center">
                 <div className="w-20"></div>
                 <div className="py-5 flex-grow-0 flex-center group">
-                    <div className="w-6"></div>
                     {isTitleEdit ? (
                         <>
                             <form onSubmit={handleSubmit}>
@@ -56,7 +55,7 @@ export default function Header() {
                                     style={{ width: tempTitle.length + 1 + "rem" }}
                                 />
                             </form>
-                            <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
+                            {/* <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -66,10 +65,11 @@ export default function Header() {
                                 >
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
-                            </div>
+                            </div> */}
                         </>
                     ) : (
                         <>
+                            <div className="w-6"></div>
                             <p className="text-black opacity-75 mx-1 px-2">{title}</p>
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
                                 <svg
