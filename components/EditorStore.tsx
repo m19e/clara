@@ -140,7 +140,6 @@ const VerticalEditor = () => {
 
     const handleEditorStateChange = (es: EditorState) => {
         const firstBlockText = es.getCurrentContent().getBlockMap().first().getText().trim();
-        const formatTitle = firstBlockText.length < 20 ? firstBlockText : firstBlockText.slice(0, 20) + "…";
         setIsSaved(false);
         setEditorState(es);
     };
