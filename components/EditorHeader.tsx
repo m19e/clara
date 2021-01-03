@@ -10,7 +10,7 @@ export default function Header() {
         setIsTitleEdit((prev) => !prev);
     };
 
-    const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
     };
 
@@ -33,7 +33,7 @@ export default function Header() {
                                 type="text"
                                 ref={editTitleRef}
                                 value={title}
-                                onChange={onTitleChange}
+                                onChange={onTempTitleChange}
                                 style={{ width: title.length + 1 + "rem" }}
                             />
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
