@@ -148,32 +148,36 @@ const VerticalEditor = () => {
             <Head>
                 <style>{`* { margin: 0px; overflow: hidden; }`}</style>
             </Head>
-            <div className="min-h-screen flex flex-col editor-bg">
-                <div className={"flex-1 flex flex-col flex-grow"}>
-                    {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
-                    <div className={"flex-1 flex-center"} ref={wrapperRef}>
-                        {loading ? (
-                            <Loader />
-                        ) : (
-                            <Scrollbar
-                                containerRef={(ref) => (ps.current = ref)}
-                                onWheel={onMouseWheelPS}
-                                // className="border border-dashed border-gray-400 pb-2"
-                                className="pb-4 max-w-full"
-                                style={{ maxHeight: "95%", height: `${eh + 16}px` }}
-                            >
-                                <div
-                                    className={"writing-v-rl text-justify max-h-full px-6" + (isMincho ? " mincho" : " gothic")}
-                                    style={{ minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
-                                >
-                                    <Editor editorKey="editor" ref={editorRef} editorState={editorState} onChange={handleEditorStateChange} />
-                                </div>
-                            </Scrollbar>
-                        )}
-                    </div>
+            {loading ? (
+                <div className="min-h-screen flex-center editor-bg">
+                    <Loader />
                 </div>
-            </div>
-            <Frame />
+            ) : (
+                <>
+                    <div className="min-h-screen flex flex-col editor-bg">
+                        <div className={"flex-1 flex flex-col flex-grow"}>
+                            {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
+                            <div className={"flex-1 flex-center"} ref={wrapperRef}>
+                                <Scrollbar
+                                    containerRef={(ref) => (ps.current = ref)}
+                                    onWheel={onMouseWheelPS}
+                                    // className="border border-dashed border-gray-400 pb-2"
+                                    className="pb-4 max-w-full"
+                                    style={{ maxHeight: "95%", height: `${eh + 16}px` }}
+                                >
+                                    <div
+                                        className={"writing-v-rl text-justify max-h-full px-6" + (isMincho ? " mincho" : " gothic")}
+                                        style={{ minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
+                                    >
+                                        <Editor editorKey="editor" ref={editorRef} editorState={editorState} onChange={handleEditorStateChange} />
+                                    </div>
+                                </Scrollbar>
+                            </div>
+                        </div>
+                    </div>
+                    <Frame />
+                </>
+            )}
         </>
     );
 };
