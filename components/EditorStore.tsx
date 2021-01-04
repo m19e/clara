@@ -85,15 +85,15 @@ const VerticalEditor = () => {
 
     const initEditor = async (user: fb.User) => {
         const { uid, displayName, photoURL } = user;
-        const userID = await getUserID(uid);
+        const userData = await getUserData(uid);
+        const im = userData.isMincho;
+        const { userID, editting, fontSize, lineWords } = userData;
         const profile = { uid, displayName, photoURL, userID };
+        const { did } = editting;
+
+        setFormatAll({ isMincho: im, fontSize, lineWords });
         setCurrentUser(profile);
         setUserProfile(profile);
-
-        await initFormat(userID);
-
-        const ed = await getEdittingDraftData(userID);
-        const { did } = ed;
         setDraftID(did);
         await readDraft(userID, did);
         setLoading(false);
