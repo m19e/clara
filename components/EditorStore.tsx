@@ -14,13 +14,6 @@ import { useDraftID, useTitle } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
-type User = {
-    uid: string;
-    displayName: string;
-    photoURL: string;
-    userID: string;
-};
-
 const convertEditorStateFromJSON = (json: string): EditorState => {
     return EditorState.createWithContent(convertFromRaw(JSON.parse(json)));
 };
