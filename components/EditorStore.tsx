@@ -70,14 +70,13 @@ const VerticalEditor = () => {
         const { uid, displayName, photoURL } = user;
         const userData = await getUserData(uid);
         const im = userData.isMincho;
-        const { userID, editting, fontSize, lineWords } = userData;
+        const { userID, recent, fontSize, lineWords } = userData;
         const profile = { uid, displayName, photoURL, userID };
-        const { did } = editting;
 
         setFormatAll({ isMincho: im, fontSize, lineWords });
         setUserProfile(profile);
-        setDraftID(did);
-        await readDraft(userID, did);
+        setDraftID(recent);
+        await readDraft(userID, recent);
         setLoading(false);
         // focusEditor();
     };
