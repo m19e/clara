@@ -56,20 +56,6 @@ export async function getUserData(uid: string) {
     return userData;
 }
 
-export async function getUserID(uid: string) {
-    const query = db.collection("user").where("uid", "==", uid);
-    let result;
-    try {
-        const snapshot = await query.get();
-        snapshot.forEach((doc) => {
-            result = doc.data().userID;
-        });
-    } catch (error) {
-        console.log(error);
-    }
-    return result;
-}
-
 export async function getEdittingDraftData(id: string) {
     const userRef = db.collection("user").doc(id);
     const user = await userRef.get();
