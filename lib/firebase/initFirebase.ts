@@ -56,7 +56,7 @@ export async function getUserData(uid: string) {
     return userData;
 }
 
-export async function getEdittingDraftID(id: string) {
+export async function getRecentDraftID(id: string) {
     const userRef = db.collection("user").doc(id);
     const user = await userRef.get();
     const { editting } = user.data();
@@ -64,7 +64,7 @@ export async function getEdittingDraftID(id: string) {
     return editting;
 }
 
-export async function setEdittingDraftID(did, id: string) {
+export async function setRecentDraftID(did, id: string) {
     const userRef = db.collection("user").doc(id);
     await userRef.update({ recent: did });
 }

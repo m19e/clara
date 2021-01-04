@@ -7,7 +7,7 @@ import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
+import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { useProfile } from "../store/user";
 import { useDraftID, useTitle } from "../store/draft";
@@ -83,7 +83,7 @@ const VerticalEditor = () => {
     };
 
     const setEdittingDraft = async (did, id: string) => {
-        await setEdittingDraftData(did, id);
+        await setRecentDraftID(did, id);
     };
 
     const createDraft = async (es: EditorState) => {
