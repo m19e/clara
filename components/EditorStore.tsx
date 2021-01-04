@@ -7,16 +7,7 @@ import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import {
-    auth,
-    getUserID,
-    getUserData,
-    createDraftData,
-    readDraftData,
-    updateDraftData,
-    getEdittingDraftData,
-    setEdittingDraftData,
-} from "../lib/firebase/initFirebase";
+import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
 import { userProfileState } from "../store/user";
 import { useDraftID, useTitle } from "../store/draft";
