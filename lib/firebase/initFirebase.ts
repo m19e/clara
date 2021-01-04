@@ -73,7 +73,6 @@ export async function createDraftData(id, draft: string) {
     const userRef = db.collection("user").doc(id);
     const draftID = userRef.collection("draft").doc().id;
     await userRef.collection("draft").doc(draftID).set({ content: draft });
-    // const docID = await userRef.set({ content: draft });
     return draftID;
 }
 
