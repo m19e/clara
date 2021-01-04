@@ -100,14 +100,6 @@ const VerticalEditor = () => {
         // focusEditor();
     };
 
-    const initFormat = async (id: string) => {
-        const userData = await getUserData(id);
-        const im = userData.isMincho;
-        const { fontSize, lineWords } = userData;
-
-        setFormatAll({ isMincho: im, fontSize, lineWords });
-    };
-
     const setEdittingDraft = async (did, id: string) => {
         await setEdittingDraftData(did, id);
     };
