@@ -9,7 +9,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setEdittingDraftData } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
-import { userProfileState } from "../store/user";
+import { useProfile } from "../store/user";
 import { useDraftID, useTitle } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
@@ -34,7 +34,6 @@ const VerticalEditor = () => {
     const editorRef = useRef(null);
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
-    const [currentUser, setCurrentUser] = useState<null | User>(null);
     const [loading, setLoading] = useState(true);
     const [isSaved, setIsSaved] = useState(true);
 
@@ -44,7 +43,7 @@ const VerticalEditor = () => {
     const fs = useRecoilValue(realFontSizeState);
     const eh = useRecoilValue(editorHeightState);
     const isMincho = useRecoilValue(isMinchoState);
-    const setUserProfile = useSetRecoilState(userProfileState);
+    const [userProfile, setUserProfile] = useProfile();
     const setFormatAll = useFormat();
     const [draftID, setDraftID] = useDraftID();
     const [, setTitle] = useTitle();
@@ -69,7 +68,7 @@ const VerticalEditor = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (!isSaved) updateDraft(currentUser.userID, draftID, editorState);
+            if (!isSaved) updateDraft(userProfile.userID, draftID, editorState);
         }, 5000);
         return () => clearTimeout(timer);
     }, [editorState]);
@@ -83,7 +82,6 @@ const VerticalEditor = () => {
         const { did } = editting;
 
         setFormatAll({ isMincho: im, fontSize, lineWords });
-        setCurrentUser(profile);
         setUserProfile(profile);
         setDraftID(did);
         await readDraft(userID, did);
