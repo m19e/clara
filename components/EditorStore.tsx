@@ -14,14 +14,6 @@ import { useDraftID, useTitle } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
-const convertEditorStateFromJSON = (json: string): EditorState => {
-    return EditorState.createWithContent(convertFromRaw(JSON.parse(json)));
-};
-
-const convertEditorStateToJSON = (es: EditorState): string => {
-    return JSON.stringify(convertToRaw(es.getCurrentContent()));
-};
-
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
 
 const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
@@ -98,14 +90,12 @@ const VerticalEditor = () => {
 
     const readDraft = async (userID, did: string) => {
         const { title, content } = await readDraftData(userID, did);
-        // const es = convertEditorStateFromJSON(content);
         const es = createEditorStateWithText(content);
         setTitle(title);
         handleEditorStateChange(es);
     };
 
     const updateDraft = async (userID, did: string, es: EditorState) => {
-        // const content = convertEditorStateToJSON(es);
         const content = createTextWithEditorState(es);
         await updateDraftData(did, userID, content);
         setIsSaved(true);
