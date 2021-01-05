@@ -142,12 +142,39 @@ const VerticalEditor = () => {
                                     </div>
                                 </Scrollbar>
                             </div>
+                            <CharCounter editorState={editorState} />
                         </div>
                     </div>
                     <Frame />
                 </>
             )}
         </>
+    );
+};
+
+type CharCounterProps = {
+    editorState: EditorState;
+};
+
+const CharCounter = ({ editorState }: CharCounterProps) => {
+    const getCharCount = (es: EditorState): number => {
+        const plainText = es.getCurrentContent().getPlainText("");
+        const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
+        const cleanString = plainText.replace(regex, "").trim(); // replace above characters w/ nothing
+        return Array.from(cleanString).length;
+    };
+
+    const count = getCharCount(editorState);
+
+    return (
+        <div className="w-full flex-center">
+            <div className="m-1">
+                <span className="mincho opacity-50">
+                    {count}
+                    {`(+${count})`}字
+                </span>
+            </div>
+        </div>
     );
 };
 
