@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import fb from "firebase";
 import React, { useState, useRef, useEffect, createRef } from "react";
 import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
-import { Editor, EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import { Editor, EditorState, ContentState, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -21,6 +21,10 @@ const convertEditorStateFromJSON = (json: string): EditorState => {
 const convertEditorStateToJSON = (es: EditorState): string => {
     return JSON.stringify(convertToRaw(es.getCurrentContent()));
 };
+
+const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
+
+const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
 
 const VerticalEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
@@ -94,13 +98,15 @@ const VerticalEditor = () => {
 
     const readDraft = async (userID, did: string) => {
         const { title, content } = await readDraftData(userID, did);
-        const es = convertEditorStateFromJSON(content);
+        // const es = convertEditorStateFromJSON(content);
+        const es = createEditorStateWithText(content);
         setTitle(title);
         handleEditorStateChange(es);
     };
 
     const updateDraft = async (userID, did: string, es: EditorState) => {
-        const content = convertEditorStateToJSON(es);
+        // const content = convertEditorStateToJSON(es);
+        const content = createTextWithEditorState(es);
         await updateDraftData(did, userID, content);
         setIsSaved(true);
     };
