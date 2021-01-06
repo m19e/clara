@@ -171,7 +171,7 @@ const CharCounter = ({ editorState }: CharCounterProps) => {
             <div className="m-1">
                 <span className="mincho opacity-50">
                     {count}
-                    {`(+${count})`}字
+                    {/* {`(+${count})`} */}字
                 </span>
             </div>
         </div>
