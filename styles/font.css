@@ -1,5 +1,19 @@
+@font-face {
+    font-family: "MyEllipsis";
+    font-weight: normal;
+    src: local("YuGothic-Medium"), local("Yu Gothic Medium"), local("YuGothic-Regular");
+    unicode-range: U+2026;
+}
+
+@font-face {
+    font-family: "MyEllipsis";
+    font-weight: bold;
+    src: local("YuGothic-Bold"), local("Yu Gothic");
+    unicode-range: U+2026;
+}
+
 .mincho {
-    font-family: "Times New Roman", TimesNewRoman, "Yu Mincho", YuMincho, serif;
+    font-family: MyEllipsis, "Times New Roman", TimesNewRoman, "Yu Mincho", YuMincho, serif;
 }
 
 @font-face {
@@ -15,5 +29,5 @@
 }
 
 .gothic {
-    font-family: "Helvetica Neue", Helvetica, Arial, MyYuGothicM, YuGothic, sans-serif;
+    font-family: MyEllipsis, "Helvetica Neue", Helvetica, Arial, "MyYuGothicM", YuGothic, sans-serif;
 }
