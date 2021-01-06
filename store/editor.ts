@@ -17,12 +17,12 @@ export const useIsMincho = (): [boolean, () => void] => {
 
 export const pureFontSizeState = atom({
     key: "pureFontSizeState",
-    default: 12,
+    default: 7,
 });
 
 export const realFontSizeState = selector({
     key: "realFontSizeState",
-    get: ({ get }) => get(pureFontSizeState) * 2,
+    get: ({ get }) => (get(pureFontSizeState) + 5) * 2,
 });
 
 export const useFontSize = (): [number, () => void, () => void] => {
