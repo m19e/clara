@@ -17,12 +17,12 @@ export const useIsMincho = (): [boolean, () => void] => {
 
 export const pureFontSizeState = atom({
     key: "pureFontSizeState",
-    default: 6,
+    default: 12,
 });
 
 export const realFontSizeState = selector({
     key: "realFontSizeState",
-    get: ({ get }) => get(pureFontSizeState) * 4,
+    get: ({ get }) => get(pureFontSizeState) * 2,
 });
 
 export const useFontSize = (): [number, () => void, () => void] => {
@@ -88,13 +88,13 @@ const isDisabledIncFSState = selector({
     key: "isDisabledIncFSState",
     get: ({ get }) => {
         const rfs = get(realFontSizeState);
-        return (rfs + 4) * get(lineWordsState) > get(wrapperHeightState) || rfs >= 48;
+        return (rfs + 2) * get(lineWordsState) > get(wrapperHeightState) || rfs >= 48;
     },
 });
 
 const isDisabledDecFSState = selector({
     key: "isDisabledDecFSState",
-    get: ({ get }) => get(realFontSizeState) <= 16,
+    get: ({ get }) => get(realFontSizeState) <= 12,
 });
 
 const isDisabledIncLWState = selector({
