@@ -45,7 +45,29 @@ export default function Header() {
     return (
         <div className="shadow-sm editor-bg fixed top-0 w-full">
             <div className="flex justify-between items-center">
-                <div className="w-20"></div>
+                <div className="w-20">
+                    <div className="flex justify-start items-center">
+                        <span className="px-4 opacity-50">
+                            {/* <svg
+                                className="w-5 h-5 opacity-50 hover:opacity-100"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
+                                />
+                            </svg> */}
+                            <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
                 <div className="py-5 flex-grow-0 flex-center group">
                     {isTitleEdit ? (
                         <>
@@ -98,8 +120,19 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-end items-center">
                         <span className="px-4 opacity-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="#2a2e3b">
+                            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="#2a2e3b">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg> */}
+                            <svg
+                                className="w-5 h-5 opacity-50 hover:opacity-100"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
                         </span>
                     </div>
