@@ -163,7 +163,18 @@ const VerticalEditor = () => {
                     break;
 
                 case "ArrowRight":
+                    if (offset > lineWords) {
+                        setSelectionState(offset - lineWords);
+                    } else {
+                        const beforeKey = content.getKeyBefore(key);
+                        if (!beforeKey) return "move-selection-to-start-of-block";
+                        const beforeLen = content.getBlockForKey(beforeKey).getLength();
+                        const beforeTargetLine = Math.floor(beforeLen / lineWords) * lineWords;
+                        const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
+                        setSelectionState(beforeOffset, beforeKey);
+                    }
                     break;
+
                 case "ArrowLeft":
                     break;
             }
