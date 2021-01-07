@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import fb from "firebase";
 import React, { useState, useRef, useEffect, createRef } from "react";
 import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
-import { Editor, EditorState, ContentState, convertFromRaw, convertToRaw } from "draft-js";
+import { Editor, EditorState, ContentState, getDefaultKeyBinding, convertFromRaw, convertToRaw } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -107,6 +107,10 @@ const VerticalEditor = () => {
         }
     };
 
+    const handleKeyBinding = (e: React.KeyboardEvent) => {
+        return getDefaultKeyBinding(e);
+    };
+
     const handleEditorStateChange = (es: EditorState) => {
         setIsSaved(false);
         setEditorState(es);
@@ -138,7 +142,13 @@ const VerticalEditor = () => {
                                         className={"writing-v-rl text-justify max-h-full px-6" + (isMincho ? " mincho" : " gothic")}
                                         style={{ minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                                     >
-                                        <Editor editorKey="editor" ref={editorRef} editorState={editorState} onChange={handleEditorStateChange} />
+                                        <Editor
+                                            editorKey="editor"
+                                            ref={editorRef}
+                                            editorState={editorState}
+                                            onChange={handleEditorStateChange}
+                                            keyBindingFn={handleKeyBinding}
+                                        />
                                     </div>
                                 </Scrollbar>
                             </div>
