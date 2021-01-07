@@ -176,6 +176,22 @@ const VerticalEditor = () => {
                     break;
 
                 case "ArrowLeft":
+                    if (blockLen > lineWords) {
+                        if (blockLen >= offset + lineWords) {
+                            setSelectionState(offset + lineWords);
+                        } else {
+                            const afterKey = content.getKeyAfter(key);
+                            if (!afterKey || offset % lineWords > blockLen % lineWords) return "move-selection-to-end-of-block";
+                            const afterLen = content.getBlockForKey(afterKey).getLength();
+                            setSelectionState(Math.min(offset % lineWords, afterLen), afterKey);
+                        }
+                    } else {
+                        const afterKey = content.getKeyAfter(key);
+                        if (!afterKey) return "move-selection-to-end-of-block";
+                        const afterLen = content.getBlockForKey(afterKey).getLength();
+                        const afterOffset = afterLen < offset ? afterLen : offset;
+                        setSelectionState(afterOffset, afterKey);
+                    }
                     break;
             }
             return null;
