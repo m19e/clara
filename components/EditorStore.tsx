@@ -131,6 +131,8 @@ const VerticalEditor = () => {
         }
 
         if (e.key.includes("Arrow")) {
+            e.preventDefault();
+
             const selection = editorState.getSelection();
             const content = editorState.getCurrentContent();
             const offset = selection.getAnchorOffset();
