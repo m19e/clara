@@ -107,6 +107,23 @@ const VerticalEditor = () => {
         }
     };
 
+    const setSelectionState = (d: number, k: string = editorState.getSelection().getAnchorKey()) => {
+        const selection = editorState.getSelection();
+        let { anchorOffset, focusOffset, anchorKey, focusKey } = JSON.parse(JSON.stringify(selection));
+        anchorOffset = d;
+        focusOffset = d;
+        anchorKey = k;
+        focusKey = k;
+        const newSelection = selection.merge({
+            anchorOffset,
+            focusOffset,
+            anchorKey,
+            focusKey,
+        });
+        const newEditor = EditorState.forceSelection(editorState, newSelection);
+        setEditorState(newEditor);
+    };
+
     const handleKeyBinding = (e: React.KeyboardEvent) => {
         if (e.key === "Tab") {
             e.preventDefault();
