@@ -114,7 +114,24 @@ const VerticalEditor = () => {
         }
 
         if (e.key.includes("Arrow")) {
-            console.log(e.key);
+            const selection = editorState.getSelection();
+            const content = editorState.getCurrentContent();
+            const offset = selection.getAnchorOffset();
+            const key = selection.getAnchorKey();
+            const blockLen = content.getBlockForKey(key).getLength();
+
+            switch (e.key) {
+                case "ArrowUp":
+                    break;
+                case "ArrowDown":
+                    break;
+                case "ArrowRight":
+                    break;
+                case "ArrowLeft":
+                    break;
+                default:
+                    return null;
+            }
         }
 
         return getDefaultKeyBinding(e);
