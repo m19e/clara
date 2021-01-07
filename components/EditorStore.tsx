@@ -8,7 +8,7 @@ import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
-import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat } from "../store/editor";
+import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
 import { useProfile } from "../store/user";
 import { useDraftID, useTitle } from "../store/draft";
 import Frame from "./EditorFrame";
@@ -36,6 +36,7 @@ const VerticalEditor = () => {
     const setFormatAll = useFormat();
     const [draftID, setDraftID] = useDraftID();
     const [, setTitle] = useTitle();
+    const [lineWords] = useLineWords();
 
     const focusEditor = () => editorRef.current.focus();
 
