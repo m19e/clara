@@ -143,7 +143,7 @@ const VerticalEditor = () => {
                 case "ArrowUp":
                     if (offset === 0) {
                         const beforeKey = content.getKeyBefore(key);
-                        if (!beforeKey) return null;
+                        if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
                         setSelectionState(beforeLen, beforeKey);
                     } else {
