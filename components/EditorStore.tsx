@@ -108,6 +108,10 @@ const VerticalEditor = () => {
     };
 
     const handleKeyBinding = (e: React.KeyboardEvent) => {
+        if (e.key.includes("Arrow")) {
+            console.log(e.key);
+        }
+
         return getDefaultKeyBinding(e);
     };
 
