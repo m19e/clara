@@ -169,6 +169,10 @@ const VerticalEditor = () => {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) return "move-selection-to-start-of-block";
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
+                        if (beforeLen === lineWords) {
+                            setSelectionState(offset, beforeKey);
+                            break;
+                        }
                         const beforeTargetLine = Math.floor(beforeLen / lineWords) * lineWords;
                         const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
                         setSelectionState(beforeOffset, beforeKey);
