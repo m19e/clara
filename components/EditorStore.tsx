@@ -141,16 +141,24 @@ const VerticalEditor = () => {
 
             switch (e.key) {
                 case "ArrowUp":
+                    if (offset === 0) {
+                        const beforeKey = content.getKeyBefore(key);
+                        if (!beforeKey) return null;
+                        const beforeLen = content.getBlockForKey(beforeKey).getLength();
+                        setSelectionState(beforeLen, beforeKey);
+                    } else {
+                        setSelectionState(offset - 1);
+                    }
                     break;
+
                 case "ArrowDown":
                     break;
                 case "ArrowRight":
                     break;
                 case "ArrowLeft":
                     break;
-                default:
-                    return null;
             }
+            return null;
         }
 
         return getDefaultKeyBinding(e);
