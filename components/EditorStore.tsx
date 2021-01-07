@@ -108,7 +108,7 @@ const VerticalEditor = () => {
         }
     };
 
-    const setSelectionState = (d: number, k: string = editorState.getSelection().getAnchorKey()) => {
+    const setSelectionCaret = (d: number, k: string = editorState.getSelection().getAnchorKey()) => {
         const selection = editorState.getSelection();
         let { anchorOffset, focusOffset, anchorKey, focusKey } = JSON.parse(JSON.stringify(selection));
         anchorOffset = d;
@@ -146,9 +146,9 @@ const VerticalEditor = () => {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
-                        setSelectionState(beforeLen, beforeKey);
+                        setSelectionCaret(beforeLen, beforeKey);
                     } else {
-                        setSelectionState(offset - 1);
+                        setSelectionCaret(offset - 1);
                     }
                     break;
 
@@ -156,45 +156,45 @@ const VerticalEditor = () => {
                     if (offset === blockLen) {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
-                        setSelectionState(0, afterKey);
+                        setSelectionCaret(0, afterKey);
                     } else {
-                        setSelectionState(offset + 1);
+                        setSelectionCaret(offset + 1);
                     }
                     break;
 
                 case "ArrowRight":
                     if (offset > lineWords) {
-                        setSelectionState(offset - lineWords);
+                        setSelectionCaret(offset - lineWords);
                     } else {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) return "move-selection-to-start-of-block";
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
                         if (beforeLen === lineWords) {
-                            setSelectionState(offset, beforeKey);
+                            setSelectionCaret(offset, beforeKey);
                             break;
                         }
                         const beforeTargetLine = Math.floor(beforeLen / lineWords) * lineWords;
                         const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
-                        setSelectionState(beforeOffset, beforeKey);
+                        setSelectionCaret(beforeOffset, beforeKey);
                     }
                     break;
 
                 case "ArrowLeft":
                     if (blockLen > lineWords) {
                         if (blockLen >= offset + lineWords) {
-                            setSelectionState(offset + lineWords);
+                            setSelectionCaret(offset + lineWords);
                         } else {
                             const afterKey = content.getKeyAfter(key);
                             if (!afterKey || offset % lineWords > blockLen % lineWords) return "move-selection-to-end-of-block";
                             const afterLen = content.getBlockForKey(afterKey).getLength();
-                            setSelectionState(Math.min(offset % lineWords, afterLen), afterKey);
+                            setSelectionCaret(Math.min(offset % lineWords, afterLen), afterKey);
                         }
                     } else {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) return "move-selection-to-end-of-block";
                         const afterLen = content.getBlockForKey(afterKey).getLength();
                         const afterOffset = afterLen < offset ? afterLen : offset;
-                        setSelectionState(afterOffset, afterKey);
+                        setSelectionCaret(afterOffset, afterKey);
                     }
                     break;
             }
