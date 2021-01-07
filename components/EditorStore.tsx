@@ -108,6 +108,11 @@ const VerticalEditor = () => {
     };
 
     const handleKeyBinding = (e: React.KeyboardEvent) => {
+        if (e.key === "Tab") {
+            e.preventDefault();
+            return null;
+        }
+
         if (e.key.includes("Arrow")) {
             console.log(e.key);
         }
