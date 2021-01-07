@@ -159,6 +159,10 @@ const VerticalEditor = () => {
 
             switch (e.key) {
                 case "ArrowUp":
+                    if (e.shiftKey) {
+                        setSelectionRange(-1);
+                        break;
+                    }
                     if (offset === 0) {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
@@ -170,6 +174,10 @@ const VerticalEditor = () => {
                     break;
 
                 case "ArrowDown":
+                    if (e.shiftKey) {
+                        setSelectionRange(1);
+                        break;
+                    }
                     if (offset === blockLen) {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
