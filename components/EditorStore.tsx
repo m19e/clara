@@ -152,7 +152,15 @@ const VerticalEditor = () => {
                     break;
 
                 case "ArrowDown":
+                    if (offset === blockLen) {
+                        const afterKey = content.getKeyAfter(key);
+                        if (!afterKey) break;
+                        setSelectionState(0, afterKey);
+                    } else {
+                        setSelectionState(offset + 1);
+                    }
                     break;
+
                 case "ArrowRight":
                     break;
                 case "ArrowLeft":
