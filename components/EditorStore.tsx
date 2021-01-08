@@ -14,6 +14,20 @@ import { useDraftID, useTitle } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
+type SelectionRange = {
+    anchorOffset: number;
+    focusOffset: number;
+    anchorKey: string;
+    focusKey: string;
+};
+
+type SelectionRangeOverride = {
+    anchorOffset: number;
+    focusOffset?: number;
+    anchorKey?: string;
+    focusKey?: string;
+};
+
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
 
 const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
