@@ -171,12 +171,22 @@ const VerticalEditor = () => {
             const key = selection.getAnchorKey();
             const blockLen = content.getBlockForKey(key).getLength();
 
-            switch (e.key) {
-                case "ArrowUp":
-                    if (e.shiftKey) {
+            if (e.shiftKey) {
+                switch (e.key) {
+                    case "ArrowUp":
                         setSelectionRange(-1);
                         break;
-                    }
+
+                    case "ArrowDown":
+                        setSelectionRange(1);
+                        break;
+                }
+
+                return null;
+            }
+
+            switch (e.key) {
+                case "ArrowUp":
                     if (offset === 0) {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
@@ -188,10 +198,6 @@ const VerticalEditor = () => {
                     break;
 
                 case "ArrowDown":
-                    if (e.shiftKey) {
-                        setSelectionRange(1);
-                        break;
-                    }
                     if (offset === blockLen) {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
