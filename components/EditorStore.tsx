@@ -166,9 +166,9 @@ const VerticalEditor = () => {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
-                        setSelectionRange(selection, { anchorOffset: beforeLen, focusOffset: beforeLen, anchorKey: beforeKey, focusKey: beforeKey });
+                        setSelectionCaret(selection, beforeLen, beforeKey);
                     } else {
-                        setSelectionRange(selection, { anchorOffset: offset - 1, focusOffset: offset - 1 });
+                        setSelectionCaret(selection, offset - 1, key);
                     }
                     break;
 
@@ -176,45 +176,45 @@ const VerticalEditor = () => {
                     if (offset === blockLen) {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
-                        setSelectionRange(selection, { anchorOffset: 0, focusOffset: 0, anchorKey: afterKey, focusKey: afterKey });
+                        setSelectionCaret(selection, 0, afterKey);
                     } else {
-                        setSelectionRange(selection, { anchorOffset: offset + 1, focusOffset: offset + 1 });
+                        setSelectionCaret(selection, offset + 1, key);
                     }
                     break;
 
                 case "ArrowRight":
                     if (offset > lineWords) {
-                        setSelectionCaret(offset - lineWords);
+                        setSelectionCaret(selection, offset - lineWords, key);
                     } else {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) return "move-selection-to-start-of-block";
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
                         if (beforeLen === lineWords) {
-                            setSelectionCaret(offset, beforeKey);
+                            setSelectionCaret(selection, offset, beforeKey);
                             break;
                         }
                         const beforeTargetLine = Math.floor(beforeLen / lineWords) * lineWords;
                         const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
-                        setSelectionCaret(beforeOffset, beforeKey);
+                        setSelectionCaret(selection, beforeOffset, beforeKey);
                     }
                     break;
 
                 case "ArrowLeft":
                     if (blockLen > lineWords) {
                         if (blockLen >= offset + lineWords) {
-                            setSelectionCaret(offset + lineWords);
+                            setSelectionCaret(selection, offset + lineWords, key);
                         } else {
                             const afterKey = content.getKeyAfter(key);
                             if (!afterKey || offset % lineWords > blockLen % lineWords) return "move-selection-to-end-of-block";
                             const afterLen = content.getBlockForKey(afterKey).getLength();
-                            setSelectionCaret(Math.min(offset % lineWords, afterLen), afterKey);
+                            setSelectionCaret(selection, Math.min(offset % lineWords, afterLen), afterKey);
                         }
                     } else {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) return "move-selection-to-end-of-block";
                         const afterLen = content.getBlockForKey(afterKey).getLength();
                         const afterOffset = afterLen < offset ? afterLen : offset;
-                        setSelectionCaret(afterOffset, afterKey);
+                        setSelectionCaret(selection, afterOffset, afterKey);
                     }
                     break;
             }
