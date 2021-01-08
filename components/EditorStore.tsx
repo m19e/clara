@@ -146,39 +146,28 @@ const VerticalEditor = () => {
             const key = selection.getAnchorKey();
             const blockLen = content.getBlockForKey(key).getLength();
 
-            if (e.shiftKey) {
-                switch (e.key) {
-                    case "ArrowUp":
-                        setSelectionRange(selection, { anchorOffset: offset - 1 });
-                        break;
-
-                    case "ArrowDown":
-                        setSelectionRange(selection, { anchorOffset: offset + 1 });
-                        break;
-                }
-
-                return null;
-            }
-
             switch (e.key) {
                 case "ArrowUp":
                     if (offset === 0) {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
-                        setSelectionCaret(selection, beforeLen, beforeKey);
+                        e.shiftKey
+                            ? setSelectionRange(selection, { anchorOffset: beforeLen, anchorKey: beforeKey })
+                            : setSelectionCaret(selection, beforeLen, beforeKey);
                     } else {
-                        setSelectionCaret(selection, offset - 1, key);
+                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: offset - 1 }) : setSelectionCaret(selection, offset - 1, key);
                     }
                     break;
 
                 case "ArrowDown":
                     if (offset === blockLen) {
-                        const afterKey = content.getKeyAfter(key);
+                        const afterKey = content.getKeyAfter(selection.getFocusKey());
                         if (!afterKey) break;
-                        setSelectionCaret(selection, 0, afterKey);
+                        console.log("block bottom");
+                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey }) : setSelectionCaret(selection, 0, afterKey);
                     } else {
-                        setSelectionCaret(selection, offset + 1, key);
+                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: offset + 1 }) : setSelectionCaret(selection, offset + 1, key);
                     }
                     break;
 
