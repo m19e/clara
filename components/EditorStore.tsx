@@ -308,10 +308,7 @@ const CharCounter = ({ editorState }: CharCounterProps) => {
     return (
         <div className="w-full flex-center">
             <div className="m-1">
-                <span className="mincho opacity-50">
-                    {count}
-                    {/* {`(+${count})`} */}字
-                </span>
+                <span className="mincho opacity-50">{count}字</span>
             </div>
         </div>
     );
