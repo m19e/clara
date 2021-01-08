@@ -48,20 +48,6 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-start items-center">
                         <span className="px-4 opacity-50">
-                            {/* <svg
-                                className="w-5 h-5 opacity-50 hover:opacity-100"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
-                                />
-                            </svg> */}
                             <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
@@ -70,30 +56,17 @@ export default function Header() {
                 </div>
                 <div className="py-5 flex-grow-0 flex-center group">
                     {isTitleEdit ? (
-                        <>
-                            <form onSubmit={handleSubmit}>
-                                <input
-                                    className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
-                                    type="text"
-                                    ref={editTitleRef}
-                                    value={tempTitle}
-                                    onChange={handleTempTitleChange}
-                                    onBlur={toggleTitleEdit}
-                                    style={{ width: tempTitle.length + 1 + "rem" }}
-                                />
-                            </form>
-                            {/* <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
-                                <svg
-                                    className="w-4 h-4 opacity-50 hover:opacity-100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="#2a2e3b"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div> */}
-                        </>
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
+                                type="text"
+                                ref={editTitleRef}
+                                value={tempTitle}
+                                onChange={handleTempTitleChange}
+                                onBlur={toggleTitleEdit}
+                                style={{ width: tempTitle.length + 1 + "rem" }}
+                            />
+                        </form>
                     ) : (
                         <>
                             <div className="w-6"></div>
@@ -120,9 +93,6 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-end items-center">
                         <span className="px-4 opacity-50">
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="#2a2e3b">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg> */}
                             <svg
                                 className="w-5 h-5"
                                 xmlns="http://www.w3.org/2000/svg"
