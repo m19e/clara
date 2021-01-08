@@ -187,7 +187,12 @@ const VerticalEditor = () => {
                         setSelectionCaret(selection, offset - lineWords, key);
                     } else {
                         const beforeKey = content.getKeyBefore(key);
-                        if (!beforeKey) return "move-selection-to-start-of-block";
+                        if (!beforeKey) {
+                            if (ps.current) {
+                                ps.current.scrollLeft += fs * 1.5;
+                            }
+                            return "move-selection-to-start-of-block";
+                        }
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
                         if (beforeLen === lineWords) {
                             setSelectionCaret(selection, offset, beforeKey);
@@ -197,6 +202,9 @@ const VerticalEditor = () => {
                         const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
                         setSelectionCaret(selection, beforeOffset, beforeKey);
                     }
+                    if (ps.current) {
+                        ps.current.scrollLeft += fs * 1.5;
+                    }
                     break;
 
                 case "ArrowLeft":
@@ -205,7 +213,12 @@ const VerticalEditor = () => {
                             setSelectionCaret(selection, offset + lineWords, key);
                         } else {
                             const afterKey = content.getKeyAfter(key);
-                            if (!afterKey || offset % lineWords > blockLen % lineWords) return "move-selection-to-end-of-block";
+                            if (!afterKey || offset % lineWords > blockLen % lineWords) {
+                                if (ps.current) {
+                                    ps.current.scrollLeft -= fs * 1.5;
+                                }
+                                return "move-selection-to-end-of-block";
+                            }
                             const afterLen = content.getBlockForKey(afterKey).getLength();
                             setSelectionCaret(selection, Math.min(offset % lineWords, afterLen), afterKey);
                         }
@@ -215,6 +228,9 @@ const VerticalEditor = () => {
                         const afterLen = content.getBlockForKey(afterKey).getLength();
                         const afterOffset = afterLen < offset ? afterLen : offset;
                         setSelectionCaret(selection, afterOffset, afterKey);
+                    }
+                    if (ps.current) {
+                        ps.current.scrollLeft -= fs * 1.5;
                     }
                     break;
             }
