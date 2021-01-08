@@ -7,7 +7,7 @@ export default function Header() {
     const [title, setTitle] = useTitle();
     const [draftID] = useDraftID();
     const [profile] = useProfile();
-    const [tempTitle, setTempTitle] = useState("");
+    const [temptitle, setTempTitle] = useState("");
     const [isTitleEdit, setIsTitleEdit] = useState(false);
     const editTitleRef = useRef(null);
 
@@ -16,7 +16,7 @@ export default function Header() {
             setTempTitle(title);
             setIsTitleEdit((prev) => !prev);
         } else {
-            const tempTitleTrimmed = tempTitle.trim();
+            const tempTitleTrimmed = temptitle.trim();
             if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
                 setTitle(tempTitleTrimmed);
                 await updateDraftTitle(profile.userID, draftID, tempTitleTrimmed);
@@ -61,10 +61,10 @@ export default function Header() {
                                 className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
                                 type="text"
                                 ref={editTitleRef}
-                                value={tempTitle}
+                                value={temptitle}
                                 onChange={handleTempTitleChange}
                                 onBlur={toggleTitleEdit}
-                                style={{ width: tempTitle.length + 1 + "rem" }}
+                                style={{ width: temptitle.length + 1 + "rem" }}
                             />
                         </form>
                     ) : (
