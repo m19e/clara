@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import fb from "firebase";
 import React, { useState, useRef, useEffect, createRef } from "react";
 import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
-import { Editor, EditorState, ContentState, getDefaultKeyBinding } from "draft-js";
+import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -139,19 +139,8 @@ const VerticalEditor = () => {
         setEditorState(newEditor);
     };
 
-    const setSelectionRange = (mover: number) => {
-        const selection = editorState.getSelection();
-        // console.log(selection.getIsBackward());
-        // console.log("anchor:", selection.getAnchorOffset(), " focus:", selection.getFocusOffset());
-        let { anchorOffset, focusOffset, anchorKey, focusKey } = JSON.parse(JSON.stringify(selection));
-        anchorOffset = anchorOffset + mover;
-        // focusOffset = d;
-        const newSelection = selection.merge({
-            anchorOffset,
-            focusOffset,
-            anchorKey,
-            focusKey,
-        });
+    const setSelectionRange = (selection: SelectionState, override: SelectionRangeOverride) => {
+        const newSelection = selection.merge(override);
         const newEditor = EditorState.forceSelection(editorState, newSelection);
         setEditorState(newEditor);
     };
