@@ -173,9 +173,9 @@ const VerticalEditor = () => {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
-                        setSelectionCaret(beforeLen, beforeKey);
+                        setSelectionRange(selection, { anchorOffset: beforeLen, focusOffset: beforeLen, anchorKey: beforeKey, focusKey: beforeKey });
                     } else {
-                        setSelectionCaret(offset - 1);
+                        setSelectionRange(selection, { anchorOffset: offset - 1, focusOffset: offset - 1 });
                     }
                     break;
 
@@ -183,9 +183,9 @@ const VerticalEditor = () => {
                     if (offset === blockLen) {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
-                        setSelectionCaret(0, afterKey);
+                        setSelectionRange(selection, { anchorOffset: 0, focusOffset: 0, anchorKey: afterKey, focusKey: afterKey });
                     } else {
-                        setSelectionCaret(offset + 1);
+                        setSelectionRange(selection, { anchorOffset: offset + 1, focusOffset: offset + 1 });
                     }
                     break;
 
