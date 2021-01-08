@@ -156,11 +156,11 @@ const VerticalEditor = () => {
             if (e.shiftKey) {
                 switch (e.key) {
                     case "ArrowUp":
-                        setSelectionRange(-1);
+                        setSelectionRange(selection, { anchorOffset: offset - 1 });
                         break;
 
                     case "ArrowDown":
-                        setSelectionRange(1);
+                        setSelectionRange(selection, { anchorOffset: offset + 1 });
                         break;
                 }
 
