@@ -115,21 +115,14 @@ const VerticalEditor = () => {
         }
     };
 
-    const setSelectionCaret = (d: number, k: string = editorState.getSelection().getAnchorKey()) => {
-        const selection = editorState.getSelection();
-        let { anchorOffset, focusOffset, anchorKey, focusKey } = JSON.parse(JSON.stringify(selection));
-        anchorOffset = d;
-        focusOffset = d;
-        anchorKey = k;
-        focusKey = k;
-        const newSelection = selection.merge({
-            anchorOffset,
-            focusOffset,
-            anchorKey,
-            focusKey,
-        });
-        const newEditor = EditorState.forceSelection(editorState, newSelection);
-        setEditorState(newEditor);
+    const setSelectionCaret = (selection: SelectionState, offset: number, key: string) => {
+        const override: SelectionRangeOverride = {
+            anchorOffset: offset,
+            focusOffset: offset,
+            anchorKey: key,
+            focusKey: key,
+        };
+        setSelectionRange(selection, override);
     };
 
     const setSelectionRange = (selection: SelectionState, override: SelectionRangeOverride) => {
