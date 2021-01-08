@@ -281,7 +281,7 @@ const VerticalEditor = () => {
                                     </div>
                                 </Scrollbar>
                             </div>
-                            <CharCounter editorState={editorState} />
+                            {/* <CharCounter editorState={editorState} /> */}
                         </div>
                     </div>
                     <Frame />
