@@ -154,13 +154,15 @@ const VerticalEditor = () => {
                         if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
                         if (e.shiftKey) {
-                            setSelectionRange(selection, { anchorOffset: beforeLen, anchorKey: beforeKey });
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? false : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: beforeLen, anchorKey: beforeKey, isBackward });
                         } else {
                             setSelectionCaret(selection, beforeLen, beforeKey);
                         }
                     } else {
                         if (e.shiftKey) {
-                            setSelectionRange(selection, { anchorOffset: offset - 1 });
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? false : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: offset - 1, isBackward });
                         } else {
                             setSelectionCaret(selection, offset - 1, key);
                         }
