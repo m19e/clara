@@ -128,7 +128,10 @@ const VerticalEditor = () => {
 
     const setSelectionRange = (selection: SelectionState, override: SelectionRangeOverride) => {
         const newSelection = selection.merge(override);
+        console.log("-----------------------------------------------divide-----------------------------------------------------");
+        console.log(selection.getIsBackward(), JSON.parse(JSON.stringify(newSelection)));
         const newEditor = EditorState.forceSelection(editorState, newSelection);
+        console.log(selection.getIsBackward(), JSON.parse(JSON.stringify(newEditor.getSelection())));
         setEditorState(newEditor);
     };
 
