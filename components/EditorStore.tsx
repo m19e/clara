@@ -176,8 +176,6 @@ const VerticalEditor = () => {
                     if (offset === blockLen) {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
-                        console.log("block bottom");
-                        console.log(JSON.parse(JSON.stringify(selection)));
                         if (e.shiftKey) {
                             const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? true : selection.getIsBackward();
                             setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey, isBackward });
