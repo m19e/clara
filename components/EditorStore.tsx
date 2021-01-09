@@ -174,13 +174,20 @@ const VerticalEditor = () => {
                         const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
                         console.log("block bottom");
-                        e.shiftKey
-                            ? setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey, isBackward: true })
-                            : setSelectionCaret(selection, 0, afterKey);
+                        console.log(JSON.parse(JSON.stringify(selection)));
+                        if (e.shiftKey) {
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? true : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, 0, afterKey);
+                        }
                     } else {
-                        e.shiftKey
-                            ? setSelectionRange(selection, { anchorOffset: offset + 1, isBackward: true })
-                            : setSelectionCaret(selection, offset + 1, key);
+                        if (e.shiftKey) {
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? true : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: offset + 1, isBackward });
+                        } else {
+                            setSelectionCaret(selection, offset + 1, key);
+                        }
                     }
                     break;
 
