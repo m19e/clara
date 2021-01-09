@@ -207,7 +207,13 @@ const VerticalEditor = () => {
                         }
                         const beforeTargetLine = Math.floor(beforeLen / lineWords) * lineWords;
                         const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
-                        setSelectionCaret(selection, beforeOffset, beforeKey);
+                        if (e.shiftKey) {
+                            const isBackward =
+                                key === selection.getFocusKey() && offset - lineWords <= selection.getFocusOffset() ? false : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: beforeOffset, anchorKey: beforeKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, beforeOffset, beforeKey);
+                        }
                     }
                     if (ps.current) {
                         ps.current.scrollLeft += fs * 1.5;
@@ -223,10 +229,20 @@ const VerticalEditor = () => {
                         } else {
                             const afterKey = content.getKeyAfter(key);
                             if (!afterKey || offset % lineWords > blockLen % lineWords) {
+                                if (e.shiftKey) {
+                                    setSelectionRange(selection, { anchorOffset: blockLen });
+                                    break;
+                                }
                                 return "move-selection-to-end-of-block";
                             }
                             const afterLen = content.getBlockForKey(afterKey).getLength();
-                            setSelectionCaret(selection, Math.min(offset % lineWords, afterLen), afterKey);
+                            if (e.shiftKey) {
+                                const isBackward =
+                                    key === selection.getFocusKey() && offset + lineWords >= selection.getFocusOffset() ? true : selection.getIsBackward();
+                                setSelectionRange(selection, { anchorOffset: Math.min(offset % lineWords, afterLen), anchorKey: afterKey, isBackward });
+                            } else {
+                                setSelectionCaret(selection, Math.min(offset % lineWords, afterLen), afterKey);
+                            }
                         }
                     } else {
                         const afterKey = content.getKeyAfter(key);
