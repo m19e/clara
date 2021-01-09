@@ -153,11 +153,17 @@ const VerticalEditor = () => {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) break;
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
-                        e.shiftKey
-                            ? setSelectionRange(selection, { anchorOffset: beforeLen, anchorKey: beforeKey })
-                            : setSelectionCaret(selection, beforeLen, beforeKey);
+                        if (e.shiftKey) {
+                            setSelectionRange(selection, { anchorOffset: beforeLen, anchorKey: beforeKey });
+                        } else {
+                            setSelectionCaret(selection, beforeLen, beforeKey);
+                        }
                     } else {
-                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: offset - 1 }) : setSelectionCaret(selection, offset - 1, key);
+                        if (e.shiftKey) {
+                            setSelectionRange(selection, { anchorOffset: offset - 1 });
+                        } else {
+                            setSelectionCaret(selection, offset - 1, key);
+                        }
                     }
                     break;
 
