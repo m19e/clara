@@ -19,6 +19,7 @@ type SelectionRangeOverride = {
     focusOffset?: number;
     anchorKey?: string;
     focusKey?: string;
+    isBackward?: boolean;
 };
 
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
@@ -162,18 +163,22 @@ const VerticalEditor = () => {
 
                 case "ArrowDown":
                     if (offset === blockLen) {
-                        const afterKey = content.getKeyAfter(selection.getFocusKey());
+                        const afterKey = content.getKeyAfter(key);
                         if (!afterKey) break;
                         console.log("block bottom");
-                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey }) : setSelectionCaret(selection, 0, afterKey);
+                        e.shiftKey
+                            ? setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey, isBackward: true })
+                            : setSelectionCaret(selection, 0, afterKey);
                     } else {
-                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: offset + 1 }) : setSelectionCaret(selection, offset + 1, key);
+                        e.shiftKey
+                            ? setSelectionRange(selection, { anchorOffset: offset + 1, isBackward: true })
+                            : setSelectionCaret(selection, offset + 1, key);
                     }
                     break;
 
                 case "ArrowRight":
                     if (offset > lineWords) {
-                        setSelectionCaret(selection, offset - lineWords, key);
+                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: offset - lineWords }) : setSelectionCaret(selection, offset - lineWords, key);
                     } else {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) {
@@ -199,7 +204,9 @@ const VerticalEditor = () => {
                 case "ArrowLeft":
                     if (blockLen > lineWords) {
                         if (blockLen >= offset + lineWords) {
-                            setSelectionCaret(selection, offset + lineWords, key);
+                            e.shiftKey
+                                ? setSelectionRange(selection, { anchorOffset: offset + lineWords })
+                                : setSelectionCaret(selection, offset + lineWords, key);
                         } else {
                             const afterKey = content.getKeyAfter(key);
                             if (!afterKey || offset % lineWords > blockLen % lineWords) {
@@ -216,7 +223,9 @@ const VerticalEditor = () => {
                         if (!afterKey) return "move-selection-to-end-of-block";
                         const afterLen = content.getBlockForKey(afterKey).getLength();
                         const afterOffset = afterLen < offset ? afterLen : offset;
-                        setSelectionCaret(selection, afterOffset, afterKey);
+                        e.shiftKey
+                            ? setSelectionRange(selection, { anchorOffset: afterOffset, anchorKey: afterKey })
+                            : setSelectionCaret(selection, afterOffset, afterKey);
                     }
                     if (ps.current) {
                         ps.current.scrollLeft -= fs * 1.5;
