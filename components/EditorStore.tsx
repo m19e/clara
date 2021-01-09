@@ -197,9 +197,6 @@ const VerticalEditor = () => {
                     } else {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) {
-                            if (ps.current) {
-                                ps.current.scrollLeft += fs * 1.5;
-                            }
                             return "move-selection-to-start-of-block";
                         }
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
@@ -225,9 +222,6 @@ const VerticalEditor = () => {
                         } else {
                             const afterKey = content.getKeyAfter(key);
                             if (!afterKey || offset % lineWords > blockLen % lineWords) {
-                                if (ps.current) {
-                                    ps.current.scrollLeft -= fs * 1.5;
-                                }
                                 return "move-selection-to-end-of-block";
                             }
                             const afterLen = content.getBlockForKey(afterKey).getLength();
