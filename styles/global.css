@@ -13,4 +13,16 @@
     background-color: #f9f9fa;
 }
 
+.system-font {
+    font-family: "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Verdana, sans-serif;
+    font-weight: 700;
+}
+
+.btn-twitter {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-image: url(/twitterlogo.svg);
+    background-repeat: no-repeat;
+    background-position: 16px;
+}
+
 @tailwind utilities;
