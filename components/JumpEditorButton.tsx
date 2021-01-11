@@ -1,11 +1,20 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { auth, loginWithTwitter } from "../lib/firebase/initFirebase";
 
 export default function JumpEditorButton() {
+    const router = useRouter();
     const [showModal, setShowModal] = React.useState(false);
+
+    const checkProfile = () => {
+        auth.onAuthStateChanged((user) => {
+            user ? router.push("/auth/editor") : setShowModal(true);
+        });
+    };
 
     return (
         <>
-            <div className="flex-center mx-4 px-6 bg-gray-200 bg-opacity-60 rounded-2xl cursor-pointer" onClick={() => setShowModal(true)}>
+            <div className="flex-center mx-4 px-6 bg-gray-200 bg-opacity-60 rounded-2xl cursor-pointer" onClick={() => checkProfile()}>
                 <span className="gothic font-black opacity-60 py-2" style={{ fontSize: "14px" }}>
                     小説を書く
                 </span>
@@ -43,7 +52,7 @@ export default function JumpEditorButton() {
                                 <span className="gothic font-thin opacity-70 w-full text-center pt-3 pb-4" style={{ fontSize: "14px" }}>
                                     ログインして執筆を始めましょう。
                                 </span>
-                                <div className="btn-twitter flex-center w-64 rounded-2xl cursor-pointer">
+                                <div className="btn-twitter flex-center w-64 rounded-2xl cursor-pointer" onClick={() => loginWithTwitter()}>
                                     <span className="system-font opacity-60 py-1" style={{ fontSize: "14px" }}>
                                         Twitterでログイン
                                     </span>
