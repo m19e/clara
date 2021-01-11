@@ -25,7 +25,7 @@ export default function JumpEditorButton() {
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full py-4 px-4 bg-white outline-none focus:outline-none">
                                 <div className="flex justify-end">
                                     <svg
-                                        className="cursor-pointer"
+                                        className="opacity-50 cursor-pointer"
                                         onClick={() => setShowModal(false)}
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
