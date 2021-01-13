@@ -61,7 +61,7 @@ export default function NovelView() {
     };
 
     return (
-        <div className="w-full h-screen relative flex-center editor-bg">
+        <div className="w-full h-screen flex-center editor-bg">
             <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheelPS} className="pb-4 max-h-full flex items-center">
                 <div className="writing-v-rl max-h-full px-4" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
                     <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
@@ -73,7 +73,7 @@ export default function NovelView() {
                     </div>
                 </div>
             </Scrollbar>
-            <div className="writing-v-rl absolute bottom-0 right-0 mb-4 w-10 h-40 editor-bg border border-solid border-gray-300"></div>
+            <div className="fixed bottom-0 right-0 mb-4 w-10 h-40 editor-bg border border-solid border-gray-300"></div>
         </div>
     );
 }
