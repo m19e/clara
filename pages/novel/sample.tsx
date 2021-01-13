@@ -52,6 +52,7 @@ export default function NovelView() {
         )
     );
     const ps = useRef<HTMLElement>();
+    const [fontSize, setFontSize] = useState<FontSizeState>("xl");
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
@@ -67,7 +68,7 @@ export default function NovelView() {
                         <p className="text-4xl font-bold opacity-75">作品タイトル</p>
                         <p className="text-xl font-semibold opacity-50">作者名</p>
                     </div>
-                    <div className="mincho text-2xl leading-relaxed text-justify">
+                    <div className={"mincho leading-relaxed text-justify text-" + fontSize}>
                         <Editor editorState={editorState} onChange={(_) => null} readOnly={true} />
                     </div>
                 </div>
