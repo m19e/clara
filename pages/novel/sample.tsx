@@ -3,6 +3,8 @@ import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
+type FontSizeState = "base" | "xl" | "2xl";
+
 export default function NovelView() {
     const [editorState] = useState(
         EditorState.createWithContent(
