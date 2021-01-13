@@ -73,7 +73,7 @@ export default function NovelView() {
                     </div>
                 </div>
             </Scrollbar>
-            <div className="writing-v-rl absolute bottom-0 right-0 mb-4 w-10 h-40 bg-gray-200"></div>
+            <div className="writing-v-rl absolute bottom-0 right-0 mb-4 w-10 h-40 editor-bg border border-solid border-gray-300"></div>
         </div>
     );
 }
