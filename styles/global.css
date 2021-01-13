@@ -26,13 +26,11 @@
 }
 
 .novelView-header {
-    @apply w-0 h-10;
-
-    transition: all 300ms 0s ease;
+    @apply -right-12 transition-all duration-500;
 }
 
 .novelView-header__show {
-    @apply w-10 border border-solid border-gray-300;
+    @apply right-0;
 }
 
 @tailwind utilities;
