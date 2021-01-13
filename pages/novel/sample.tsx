@@ -75,14 +75,17 @@ export default function NovelView() {
                     </div>
                 </div>
             </Scrollbar>
-            <div className={"fixed bottom-0 right-0 mb-4 editor-bg novelView-header" + (show ? " novelView-header__show" : "")}>
-                <div className="flex-col jusify-center h-full w-full">
+            <div
+                className={
+                    "fixed bottom-0 w-12 h-44 mb-4 editor-bg border border-r-0 border-solid border-gray-300 novelView-header" +
+                    (show ? " novelView-header__show" : "")
+                }
+            >
+                <div className="flex-col flex-center w-full h-full">
                     <svg
-                        className="w-8 h-8 transition opacity-50 hover:opacity-70"
+                        className="w-full h-8 transition opacity-50 hover:opacity-70"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
-                        width="24"
-                        height="24"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                     >
@@ -91,6 +94,43 @@ export default function NovelView() {
                             strokeLinejoin="round"
                             strokeWidth={2}
                             d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                        />
+                    </svg>
+                    <svg
+                        className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                    </svg>
+                    <svg
+                        className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        />
+                    </svg>
+                    <svg
+                        className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
                         />
                     </svg>
                 </div>
