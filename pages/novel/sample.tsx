@@ -53,9 +53,11 @@ export default function NovelView() {
     );
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontSize] = useState<FontSizeState>("xl");
+    const [show, setShow] = useState(true);
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
+            setShow(e.deltaY < 0);
             ps.current.scrollLeft -= e.deltaY;
         }
     };
@@ -73,7 +75,26 @@ export default function NovelView() {
                     </div>
                 </div>
             </Scrollbar>
-            <div className="fixed bottom-0 right-0 mb-4 w-10 h-40 editor-bg border border-solid border-gray-300"></div>
+            <div className={"fixed bottom-0 right-0 mb-4 editor-bg novelView-header" + (show ? " novelView-header__show" : "")}>
+                <div className="flex-col jusify-center h-full w-full">
+                    <svg
+                        className="w-8 h-8 transition opacity-50 hover:opacity-70"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                        />
+                    </svg>
+                </div>
+            </div>
         </div>
     );
 }
