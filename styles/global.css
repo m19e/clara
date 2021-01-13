@@ -25,4 +25,14 @@
     background-position: 16px;
 }
 
+.novelView-header {
+    @apply w-0 h-10;
+
+    transition: all 300ms 0s ease;
+}
+
+.novelView-header__show {
+    @apply w-10 border border-solid border-gray-300;
+}
+
 @tailwind utilities;
