@@ -18,7 +18,7 @@ export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontM
     return (
         <>
             <svg
-                className="w-full h-8 transition opacity-50 hover:opacity-70"
+                className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -42,7 +42,7 @@ export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontM
                                 </div>
                                 <div className="pr-2">
                                     <span className="gothic">文字の大きさ</span>
-                                    <div className="h-56 w-10 border border-solid rounded flex-center justify-around">
+                                    <div className={"h-56 w-10 border border-solid rounded flex-center justify-around" + " " + font}>
                                         <div
                                             className={
                                                 "h-16 w-10 flex-grow flex-center cursor-pointer" +

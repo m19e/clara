@@ -112,6 +112,15 @@ export default function NovelView() {
                 }
             >
                 <div className="flex-col flex-center w-full h-full">
+                    <svg
+                        className="w-full h-8 transition opacity-50 hover:opacity-70"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                    </svg>
                     <NovelViewerConfig
                         fontSize={fontSize}
                         toggleFontSmall={setFontBase}
@@ -121,15 +130,6 @@ export default function NovelView() {
                         setMincho={setMincho}
                         setGothic={setGothic}
                     />
-                    <svg
-                        className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                    </svg>
                     <svg
                         className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
                         xmlns="http://www.w3.org/2000/svg"
