@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -6,6 +6,21 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import NovelViewerConfig from "../../components/NovelViewerConfig";
 
 type FontSizeState = "base" | "xl" | "2xl";
+
+const useFontSize = (fs: FontSizeState) => {
+    const [fontSize, setFontSize] = useState(fs);
+    const setFontBase = useCallback(() => {
+        setFontSize("base");
+    }, []);
+    const setFontXl = useCallback(() => {
+        setFontSize("xl");
+    }, []);
+    const setFont2xl = useCallback(() => {
+        setFontSize("2xl");
+    }, []);
+
+    return [fontSize, setFontBase, setFontXl, setFont2xl];
+};
 
 export default function NovelView() {
     const [editorState] = useState(
