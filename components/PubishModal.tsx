@@ -21,8 +21,8 @@ export default function PublishModal() {
                 <>
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-sm">
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full p-6 bg-white outline-none focus:outline-none">
-                                <span>test</span>
+                            <div className="gothic border-0 rounded-lg shadow-lg relative flex flex-col w-full p-6 bg-white outline-none focus:outline-none">
+                                <span onClick={() => setShowModal(false)}>キャンセル</span>
                             </div>
                         </div>
                     </div>
