@@ -16,7 +16,6 @@ export default function Footer() {
             if (userProfile) {
                 updateFormat(userProfile.userID, isMincho, fontSize, lineWords);
             }
-            // console.log("update:", userProfile.userID, isMincho, fontSize, lineWords);
         }, 10000);
         return () => clearTimeout(timer);
     }, [isMincho, fontSize, lineWords]);
