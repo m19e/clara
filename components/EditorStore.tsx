@@ -282,7 +282,6 @@ const VerticalEditor = () => {
                 <>
                     <div className="min-h-screen flex flex-col editor-bg">
                         <div className={"flex-1 flex flex-col flex-grow"}>
-                            {/* <div className={"flex-1 flex flex-col flex-grow bg-yellow-100"} onClick={focusEditor}> */}
                             <div className={"flex-1 flex-center"} ref={wrapperRef}>
                                 <Scrollbar
                                     containerRef={(ref) => (ps.current = ref)}
