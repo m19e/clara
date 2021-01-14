@@ -10,7 +10,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
 import { useProfile } from "../store/user";
-import { useDraftID, useTitle } from "../store/draft";
+import { useDraftID, useTitle, useContent } from "../store/draft";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
@@ -44,6 +44,7 @@ export default function VerticalEditor() {
     const setFormatAll = useFormat();
     const [draftID, setDraftID] = useDraftID();
     const [, setTitle] = useTitle();
+    const [, setContent] = useContent();
     const [lineWords] = useLineWords();
 
     const focusEditor = () => editorRef.current.focus();
@@ -264,6 +265,7 @@ export default function VerticalEditor() {
     const handleEditorStateChange = (es: EditorState) => {
         setIsSaved(false);
         setEditorState(es);
+        setContent(createTextWithEditorState(es));
     };
 
     return (
