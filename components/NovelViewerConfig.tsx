@@ -7,9 +7,12 @@ type ViewerConfigProps = {
     toggleFontSmall: () => void;
     toggleFontMedium: () => void;
     toggleFontLarge: () => void;
+    font: "mincho" | "gothic";
+    setMincho: () => void;
+    setGothic: () => void;
 };
 
-export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge }: ViewerConfigProps) {
+export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic }: ViewerConfigProps) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -71,10 +74,22 @@ export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontM
                                 <div className="pr-2">
                                     <span className="gothic">書体</span>
                                     <div className="h-56 w-10 text-lg border border-solid rounded flex-center justify-around">
-                                        <div className="h-28 w-10 flex-grow flex-center cursor-pointer">
+                                        <div
+                                            className={
+                                                "h-28 w-10 flex-grow flex-center cursor-pointer" +
+                                                (font === "mincho" ? " text-white bg-gray-400 rounded-t" : "")
+                                            }
+                                            onClick={() => setMincho()}
+                                        >
                                             <span className="mincho">明朝</span>
                                         </div>
-                                        <div className="h-28 w-10 flex-grow flex-center border-t cursor-pointer">
+                                        <div
+                                            className={
+                                                "h-28 w-10 flex-grow flex-center border-t cursor-pointer" +
+                                                (font === "gothic" ? " text-white bg-gray-400 rounded-b" : "")
+                                            }
+                                            onClick={() => setGothic()}
+                                        >
                                             <span className="gothic">ゴシック</span>
                                         </div>
                                     </div>
