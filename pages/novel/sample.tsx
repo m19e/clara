@@ -72,7 +72,7 @@ export default function NovelView() {
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [show, setShow] = useState(true);
 
-    const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
+    const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
             setShow(e.deltaY < 0);
             ps.current.scrollLeft -= e.deltaY;
@@ -81,7 +81,7 @@ export default function NovelView() {
 
     return (
         <div className="w-full h-screen flex-center editor-bg">
-            <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheelPS} className="pb-4 max-h-full flex items-center">
+            <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className="pb-4 max-h-full flex items-center">
                 <div className="writing-v-rl max-h-full px-4" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
                     <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                         <p className="text-4xl font-bold opacity-75">作品タイトル</p>
