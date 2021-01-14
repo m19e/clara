@@ -27,12 +27,12 @@ export default function Footer() {
                 <div className="my-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
-                        <span className="w-full text-center opacity-75">{isMincho ? "明朝体" : "ゴシック体"}</span>
+                        <span className="w-full text-center opacity-75">{isMincho ? "明朝" : "ゴシック"}</span>
                         <button
                             onClick={() => toggleFont()}
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                         >
-                            <span className="opacity-50 hover:opacity-100">{!isMincho ? "明朝体" : "ゴシック体"}</span>
+                            <span className="opacity-50 hover:opacity-100">{!isMincho ? "明朝" : "ゴシック"}</span>
                         </button>
                     </div>
                 </div>
