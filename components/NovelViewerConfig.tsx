@@ -40,13 +40,30 @@ export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontM
                                 <div className="pr-2">
                                     <span className="gothic">文字の大きさ</span>
                                     <div className="h-56 w-10 border border-solid rounded flex-center justify-around">
-                                        <div className="h-16 w-10 flex-grow flex-center cursor-pointer" onClick={() => toggleFontSmall()}>
+                                        <div
+                                            className={
+                                                "h-16 w-10 flex-grow flex-center cursor-pointer" +
+                                                (fontSize === "base" ? " text-white bg-gray-400 rounded-t" : "")
+                                            }
+                                            onClick={() => toggleFontSmall()}
+                                        >
                                             <span className="text-base">小</span>
                                         </div>
-                                        <div className="h-16 w-10 flex-grow flex-center border-t cursor-pointer" onClick={() => toggleFontMedium()}>
+                                        <div
+                                            className={
+                                                "h-16 w-10 flex-grow flex-center border-t cursor-pointer" + (fontSize === "xl" ? " text-white bg-gray-400" : "")
+                                            }
+                                            onClick={() => toggleFontMedium()}
+                                        >
                                             <span className="text-xl">中</span>
                                         </div>
-                                        <div className="h-16 w-10 flex-grow flex-center border-t cursor-pointer" onClick={() => toggleFontLarge()}>
+                                        <div
+                                            className={
+                                                "h-16 w-10 flex-grow flex-center border-t cursor-pointer" +
+                                                (fontSize === "2xl" ? " text-white bg-gray-400 rounded-b" : "")
+                                            }
+                                            onClick={() => toggleFontLarge()}
+                                        >
                                             <span className="text-2xl">大</span>
                                         </div>
                                     </div>
