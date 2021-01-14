@@ -100,7 +100,7 @@ export default function NovelView() {
                         <p className="text-4xl font-bold opacity-75">作品タイトル</p>
                         <p className="text-xl font-semibold opacity-50">作者名</p>
                     </div>
-                    <div className={"leading-relaxed text-justify text-" + fontSize + " " + font}>
+                    <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
                         <Editor editorState={editorState} onChange={(_) => null} readOnly={true} />
                     </div>
                 </div>
