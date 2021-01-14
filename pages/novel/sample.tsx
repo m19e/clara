@@ -95,7 +95,7 @@ export default function NovelView() {
     return (
         <div className="w-full h-screen flex-center editor-bg">
             <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className="pb-4 max-h-full flex items-center">
-                <div className="writing-v-rl max-h-full px-4" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
+                <div className="writing-v-rl max-h-full" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
                     <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                         <p className="text-4xl font-bold opacity-75">作品タイトル</p>
                         <p className="text-xl font-semibold opacity-50">作者名</p>
