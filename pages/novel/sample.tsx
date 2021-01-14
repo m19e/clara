@@ -69,7 +69,7 @@ export default function NovelView() {
         )
     );
     const ps = useRef<HTMLElement>();
-    const [fontSize, setFontSize] = useState<FontSizeState>("xl");
+    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [show, setShow] = useState(true);
 
     const onMouseWheelPS = (e: React.WheelEvent<HTMLElement>) => {
