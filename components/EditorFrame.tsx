@@ -8,8 +8,8 @@ export default function Frame() {
     return (
         <div className={"transition-opacity duration-1000 ease-out opacity-0 hover:opacity-100" + (isMincho ? " mincho" : " gothic")}>
             {/* <div className={"opacity-100" + (isMincho ? " mincho" : " gothic")}> */}
-            <Header />
             <Footer />
+            <Header />
         </div>
     );
 }
