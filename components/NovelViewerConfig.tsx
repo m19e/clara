@@ -18,7 +18,7 @@ export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontM
     return (
         <>
             <svg
-                className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
+                className="w-full h-8 transition opacity-50 hover:opacity-70"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
