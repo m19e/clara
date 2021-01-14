@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import { useTitle, useDraftID } from "../store/draft";
 import { useProfile } from "../store/user";
@@ -48,9 +49,13 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-start items-center">
                         <span className="px-4 opacity-50">
-                            <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                            </svg>
+                            <Link href="/">
+                                <a>
+                                    <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                    </svg>
+                                </a>
+                            </Link>
                         </span>
                     </div>
                 </div>
