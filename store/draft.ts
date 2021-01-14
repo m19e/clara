@@ -19,3 +19,13 @@ export const useDraftID = (): [string, (string) => void] => {
     const [draftID, setDraftID] = useRecoilState(draftIDState);
     return [draftID, setDraftID];
 };
+
+export const draftContentState = atom({
+    key: "draft/content",
+    default: "",
+});
+
+export const useDraftContent = () => {
+    const [content, setContent] = useRecoilState(draftContentState);
+    return [content, setContent];
+};
