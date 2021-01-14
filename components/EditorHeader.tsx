@@ -1,13 +1,15 @@
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
-import { useTitle, useDraftID } from "../store/draft";
+import { useTitle, useDraftID, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
 import { updateDraftTitle } from "../lib/firebase/initFirebase";
+import PublishModal from "./PubishModal";
 
 export default function Header() {
     const [title, setTitle] = useTitle();
     const [draftID] = useDraftID();
     const [profile] = useProfile();
+    const [content] = useContent();
     const [temptitle, setTempTitle] = useState("");
     const [isTitleEdit, setIsTitleEdit] = useState(false);
     const editTitleRef = useRef(null);
@@ -97,18 +99,8 @@ export default function Header() {
                 </div>
                 <div className="w-20">
                     <div className="flex justify-end items-center">
-                        <span className="px-4 opacity-50">
-                            <svg
-                                className="w-6 h-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                            </svg>
+                        <span className="px-4">
+                            <PublishModal />
                         </span>
                     </div>
                 </div>
