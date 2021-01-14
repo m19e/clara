@@ -22,6 +22,18 @@ const useFontSize = (fs: FontSizeState): [FontSizeState, () => void, () => void,
     return [fontSize, setFontBase, setFontXl, setFont2xl];
 };
 
+const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
+    const [font, setFont] = useState(f);
+    const setMincho = useCallback(() => {
+        setFont("mincho");
+    }, []);
+    const setGothic = useCallback(() => {
+        setFont("gothic");
+    }, []);
+
+    return [font, setMincho, setGothic];
+};
+
 export default function NovelView() {
     const [editorState] = useState(
         EditorState.createWithContent(
@@ -70,6 +82,7 @@ export default function NovelView() {
     );
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
+    const [font, setMincho, setGothic] = useFont("mincho");
     const [show, setShow] = useState(true);
 
     const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
@@ -87,7 +100,7 @@ export default function NovelView() {
                         <p className="text-4xl font-bold opacity-75">作品タイトル</p>
                         <p className="text-xl font-semibold opacity-50">作者名</p>
                     </div>
-                    <div className={"mincho leading-relaxed text-justify text-" + fontSize}>
+                    <div className={"leading-relaxed text-justify text-" + fontSize + " " + font}>
                         <Editor editorState={editorState} onChange={(_) => null} readOnly={true} />
                     </div>
                 </div>
