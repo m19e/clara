@@ -25,7 +25,7 @@ export const draftContentState = atom({
     default: "",
 });
 
-export const useDraftContent = () => {
+export const useContent = () => {
     const [content, setContent] = useRecoilState(draftContentState);
     return [content, setContent];
 };
