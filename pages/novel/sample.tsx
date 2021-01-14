@@ -99,7 +99,7 @@ export default function NovelView() {
                 }
             >
                 <div className="flex-col flex-center w-full h-full">
-                    <NovelViewerConfig />
+                    <NovelViewerConfig fontSize={fontSize} toggleFontSmall={setFontBase} toggleFontMedium={setFontXl} toggleFontLarge={setFont2xl} />
                     <svg
                         className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
                         xmlns="http://www.w3.org/2000/svg"
