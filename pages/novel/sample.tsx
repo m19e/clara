@@ -7,7 +7,7 @@ import NovelViewerConfig from "../../components/NovelViewerConfig";
 
 type FontSizeState = "base" | "xl" | "2xl";
 
-const useFontSize = (fs: FontSizeState) => {
+const useFontSize = (fs: FontSizeState): [FontSizeState, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
     const setFontBase = useCallback(() => {
         setFontSize("base");
