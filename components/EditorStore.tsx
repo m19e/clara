@@ -26,7 +26,7 @@ const createEditorStateWithText = (text: string): EditorState => EditorState.cre
 
 const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
 
-const VerticalEditor = () => {
+export default function VerticalEditor() {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editorRef = useRef(null);
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
@@ -312,7 +312,7 @@ const VerticalEditor = () => {
             )}
         </>
     );
-};
+}
 
 type CharCounterProps = {
     editorState: EditorState;
@@ -336,7 +336,3 @@ const CharCounter = ({ editorState }: CharCounterProps) => {
         </div>
     );
 };
-
-export default function VerticalEditorProvider() {
-    return <VerticalEditor />;
-}
