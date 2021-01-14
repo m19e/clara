@@ -1,6 +1,15 @@
 import { useState } from "react";
 
-export default function NovelViewConfig() {
+type FontSizeState = "base" | "xl" | "2xl";
+
+type ViewerConfigProps = {
+    fontSize: FontSizeState;
+    toggleFontSmall: () => void;
+    toggleFontMedium: () => void;
+    toggleFontLarge: () => void;
+};
+
+export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge }: ViewerConfigProps) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -31,13 +40,13 @@ export default function NovelViewConfig() {
                                 <div className="pr-2">
                                     <span className="gothic">文字の大きさ</span>
                                     <div className="h-56 w-10 border border-solid rounded flex-center justify-around">
-                                        <div className="h-16 w-10 flex-grow flex-center cursor-pointer">
+                                        <div className="h-16 w-10 flex-grow flex-center cursor-pointer" onClick={() => toggleFontSmall()}>
                                             <span className="text-base">小</span>
                                         </div>
-                                        <div className="h-16 w-10 flex-grow flex-center border-t cursor-pointer">
+                                        <div className="h-16 w-10 flex-grow flex-center border-t cursor-pointer" onClick={() => toggleFontMedium()}>
                                             <span className="text-xl">中</span>
                                         </div>
-                                        <div className="h-16 w-10 flex-grow flex-center border-t cursor-pointer">
+                                        <div className="h-16 w-10 flex-grow flex-center border-t cursor-pointer" onClick={() => toggleFontLarge()}>
                                             <span className="text-2xl">大</span>
                                         </div>
                                     </div>
