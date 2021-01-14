@@ -145,7 +145,7 @@ export default function NovelView() {
                         />
                     </svg> */}
                     <svg
-                        className="w-full h-6 mt-2 transition"
+                        className="w-full h-6 mt-2 cursor-pointer"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="#55acee"
                         // viewBox="0 0 24 24"
