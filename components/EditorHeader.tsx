@@ -65,13 +65,13 @@ export default function Header() {
                     {isTitleEdit ? (
                         <form onSubmit={handleSubmit}>
                             <input
-                                className="text-black opacity-75 mx-1 px-2 shadow-inner editor-bg rounded outline-none focus:outline-none"
+                                className="text-black opacity-75 mx-2 text-center shadow-inner editor-bg rounded outline-none focus:outline-none"
                                 type="text"
                                 ref={editTitleRef}
                                 value={temptitle}
                                 onChange={handleTempTitleChange}
                                 onBlur={toggleTitleEdit}
-                                style={{ width: temptitle.length + 1 + "rem" }}
+                                style={{ minWidth: "10rem", maxWidth: "50rem", width: `${temptitle.length + 1}rem` }}
                             />
                         </form>
                     ) : (
