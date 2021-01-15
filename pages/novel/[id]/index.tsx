@@ -5,7 +5,7 @@ import NovelViewer from "../../../components/NovelViewer";
 import { INovelDataSerializable, getAllNovelIDs, getNovel } from "../../../lib/firebase/initFirebase";
 
 export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
-    return <NovelViewer content={novel.content} />;
+    return <NovelViewer novel={novel} />;
 }
 
 const getDisplayTime = (milli: number): string => {

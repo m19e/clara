@@ -4,6 +4,7 @@ import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import NovelViewerConfig from "./NovelViewerConfig";
+import { INovelDataSerializable } from "../lib/firebase/initFirebase";
 
 type FontSizeState = "base" | "xl" | "2xl";
 
@@ -34,8 +35,8 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
     return [font, setMincho, setGothic];
 };
 
-export default function NovelView({ content }: { content: string }) {
-    const [editorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
+export default function NovelView({ novel }: { novel: INovelDataSerializable }) {
+    const [editorState] = useState(EditorState.createWithContent(ContentState.createFromText(novel.content)));
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
