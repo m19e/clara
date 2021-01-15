@@ -22,7 +22,6 @@ export default function PublishModal() {
 
     const confirm = async () => {
         const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
-        // console.log(Object.assign(novel, { author_uid: "secret" }));
         await publishNovel(novel);
         toggleShowModal();
     };
