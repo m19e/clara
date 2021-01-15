@@ -97,3 +97,24 @@ export async function updateDraftTitle(userID, did, newTitle: string) {
     const draftRef = db.collection("user").doc(userID).collection("draft").doc(did);
     await draftRef.set({ title: newTitle }, { merge: true });
 }
+
+interface INovelProp {
+    id: string;
+    title: string;
+    text: string;
+    author_name: string;
+    author_id: string;
+}
+
+interface INovelData extends INovelProp {
+    created_at: firebase.firestore.FieldValue;
+    updated_at: firebase.firestore.FieldValue;
+}
+
+export async function publishNovel(novel: INovelProp) {
+    const novelData: INovelData = Object.assign(novel, {
+        created_at: firebase.firestore.FieldValue.serverTimestamp(),
+        updated_at: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    await db.collection("novel").doc(novel.id).set(novelData);
+}
