@@ -1,12 +1,17 @@
 import { useRouter } from "next/router";
-import ErrorPage from "next/error";
 import firebase from "firebase/app";
 import NovelViewer from "../../../components/NovelViewer";
+import Loader from "../../../components/Loader";
 import { INovelDataSerializable, getAllNovelIDs, getNovel } from "../../../lib/firebase/initFirebase";
 
 export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
     const router = useRouter();
-    if (!router.isFallback && !novel?.id) return <ErrorPage statusCode={404} />;
+    if (router.isFallback)
+        return (
+            <div className="min-h-screen min-w-full flex-center">
+                <Loader />
+            </div>
+        );
 
     return <NovelViewer novel={novel} />;
 }
@@ -23,6 +28,7 @@ const getDisplayTime = (milli: number): string => {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
     const novel = await getNovel(params.id);
+    if (!novel) return { notFound: true };
     const update = {
         created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
         updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
@@ -33,6 +39,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
         props: {
             novel: serializable,
         },
+        revalidate: 600,
     };
 }
 
@@ -47,6 +54,6 @@ export async function getStaticPaths() {
                 },
             };
         }),
-        fallback: false,
+        fallback: true,
     };
 }
