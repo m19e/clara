@@ -46,8 +46,8 @@ export default function Header() {
     }, [isTitleEdit]);
 
     return (
-        <div className="shadow-sm editor-bg fixed top-0 w-full">
-            <div className="flex justify-between items-center">
+        <div className="shadow-sm editor-bg fixed top-0 w-full flex-center">
+            <div className="container flex justify-between items-center">
                 <div className="w-20">
                     <div className="flex justify-start items-center">
                         <span className="px-4 opacity-50">
