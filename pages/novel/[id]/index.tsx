@@ -5,6 +5,9 @@ import NovelViewer from "../../../components/NovelViewer";
 import { INovelDataSerializable, getAllNovelIDs, getNovel } from "../../../lib/firebase/initFirebase";
 
 export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
+    const router = useRouter();
+    if (!router.isFallback && !novel?.id) return <ErrorPage statusCode={404} />;
+
     return <NovelViewer novel={novel} />;
 }
 
