@@ -100,7 +100,7 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-end items-center">
                         <span className="px-4">
-                            <PublishModal />
+                            <PublishModal title={title} />
                         </span>
                     </div>
                 </div>
