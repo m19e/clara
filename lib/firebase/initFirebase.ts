@@ -102,8 +102,9 @@ interface INovelProp {
     id: string;
     title: string;
     text: string;
-    author_name: string;
     author_id: string;
+    author_uid: string;
+    author_name: string;
 }
 
 interface INovelData extends INovelProp {
