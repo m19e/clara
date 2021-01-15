@@ -112,6 +112,11 @@ export interface INovelData extends INovelProp {
     updated_at: firebase.firestore.FieldValue;
 }
 
+export interface INovelDataSerializable extends INovelProp {
+    created_at: string;
+    updated_at: string;
+}
+
 export async function publishNovel(novel: INovelProp) {
     const novelData: INovelData = Object.assign(novel, {
         created_at: firebase.firestore.FieldValue.serverTimestamp(),
