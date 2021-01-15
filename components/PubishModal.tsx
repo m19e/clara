@@ -1,6 +1,7 @@
 import { useIsShowPublishModal } from "../store/editor";
 import { useDraftID, useTitle, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
+import { publishNovel } from "../lib/firebase/initFirebase";
 
 interface INovelProp {
     id: string;
@@ -18,6 +19,13 @@ export default function PublishModal() {
     const [title] = useTitle();
     const [content] = useContent();
     const [profile] = useProfile();
+
+    const confirm = async () => {
+        const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
+        // console.log(Object.assign(novel, { author_uid: "secret" }));
+        await publishNovel(novel);
+        toggleShowModal();
+    };
 
     return (
         <>
@@ -44,7 +52,9 @@ export default function PublishModal() {
                                     <span className="cursor-pointer" onClick={() => toggleShowModal()}>
                                         取消
                                     </span>
-                                    <span className="cursor-pointer">投稿する</span>
+                                    <span className="cursor-pointer" onClick={() => confirm()}>
+                                        投稿する
+                                    </span>
                                 </div>
                             </div>
                         </div>
