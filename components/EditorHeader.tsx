@@ -77,8 +77,8 @@ export default function Header() {
                     ) : (
                         <>
                             <div className="w-6"></div>
-                            <p className="text-black opacity-50 mx-1">{title}</p>
-                            <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-50" onClick={toggleTitleEdit}>
+                            <p className="text-black opacity-60 mx-1">{title}</p>
+                            <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-60" onClick={toggleTitleEdit}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
                                     xmlns="http://www.w3.org/2000/svg"
