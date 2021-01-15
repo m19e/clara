@@ -118,3 +118,17 @@ export const useIsDisabled = (): boolean[] => {
 
     return [isDisabledIncFS, isDisabledDecFS, isDisabledIncLW, isDisabledDecLW];
 };
+
+const isShowPublishModalState = atom({
+    key: "editor/isShowPublishModal",
+    default: false,
+});
+
+export const useIsShowPublishModal = (): [boolean, () => void] => {
+    const [isShowPublishModal, setIsShowPublishModal] = useRecoilState(isShowPublishModalState);
+    const toggleIsShowIsShowPublishModal = useCallback(() => {
+        setIsShowPublishModal((prev) => !prev);
+    }, []);
+
+    return [isShowPublishModal, toggleIsShowIsShowPublishModal];
+};
