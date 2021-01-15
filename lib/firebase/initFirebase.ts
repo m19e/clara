@@ -98,7 +98,7 @@ export async function updateDraftTitle(userID, did, newTitle: string) {
     await draftRef.set({ title: newTitle }, { merge: true });
 }
 
-interface INovelProp {
+export interface INovelProp {
     id: string;
     title: string;
     content: string;
@@ -107,7 +107,7 @@ interface INovelProp {
     author_name: string;
 }
 
-interface INovelData extends INovelProp {
+export interface INovelData extends INovelProp {
     created_at: firebase.firestore.FieldValue;
     updated_at: firebase.firestore.FieldValue;
 }
