@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useIsShowPublishModal } from "../store/editor";
 
 export default function PublishModal({ title }: { title: string }) {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, toggleShowModal] = useIsShowPublishModal();
 
     return (
         <>
@@ -13,7 +13,7 @@ export default function PublishModal({ title }: { title: string }) {
                 height="24"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                onClick={() => setShowModal(true)}
+                onClick={() => toggleShowModal()}
             >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
@@ -25,7 +25,7 @@ export default function PublishModal({ title }: { title: string }) {
                                 <span className="mincho text-xl">「{title}」</span>
                                 <span className="w-full text-center opacity-75">を投稿しますか？</span>
                                 <div className="flex justify-between opacity-80 mt-10">
-                                    <span className="cursor-pointer" onClick={() => setShowModal(false)}>
+                                    <span className="cursor-pointer" onClick={() => toggleShowModal()}>
                                         取消
                                     </span>
                                     <span className="cursor-pointer">投稿する</span>
