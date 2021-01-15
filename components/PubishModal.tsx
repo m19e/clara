@@ -25,8 +25,10 @@ export default function PublishModal({ title }: { title: string }) {
                                 <span className="mincho text-xl">「{title}」</span>
                                 <span className="w-full text-center opacity-75">を投稿しますか？</span>
                                 <div className="flex justify-between opacity-80 mt-10">
-                                    <span onClick={() => setShowModal(false)}>取消</span>
-                                    <span>投稿する</span>
+                                    <span className="cursor-pointer" onClick={() => setShowModal(false)}>
+                                        取消
+                                    </span>
+                                    <span className="cursor-pointer">投稿する</span>
                                 </div>
                             </div>
                         </div>
