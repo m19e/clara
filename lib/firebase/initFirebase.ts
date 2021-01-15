@@ -124,3 +124,15 @@ export async function publishNovel(novel: INovelProp) {
     });
     await db.collection("novel").doc(novel.id).set(novelData);
 }
+
+export async function getAllNovelIDs(): Promise<string[]> {
+    const snapshot = await db.collection("novel").get();
+    const ids = snapshot.docs.map((doc) => doc.id);
+    return ids;
+}
+
+export async function getNovel(id: string): Promise<INovelData> {
+    const snapshot = await db.collection("novel").doc(id).get();
+    const novel = snapshot.data() as INovelData;
+    return novel;
+}
