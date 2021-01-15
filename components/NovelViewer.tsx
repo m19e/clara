@@ -86,7 +86,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
             </Scrollbar>
             <div
                 className={
-                    "fixed bottom-0 w-12 mb-4 editor-bg border border-r-0 border-solid border-gray-300 novelView-header" +
+                    "fixed bottom-0 w-12 mb-4 editor-bg border border-r-0 border-solid border-gray-300 rounded-l-lg novelView-header" +
                     (show ? " novelView-header__show" : "")
                 }
             >
