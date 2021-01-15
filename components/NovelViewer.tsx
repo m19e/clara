@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -41,6 +41,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
     const [show, setShow] = useState(true);
+    const [display, setDisplay] = useState(false);
     const viewerConfig = {
         fontSize,
         toggleFontSmall: setFontBase,
@@ -51,6 +52,13 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
         setGothic,
     };
 
+    useEffect(() => {
+        if (ps.current) {
+            ps.current.scrollLeft += ps.current.scrollWidth;
+            setDisplay(true);
+        }
+    }, []);
+
     const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
             setShow(e.deltaY < 0);
@@ -60,7 +68,11 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
 
     return (
         <div className="w-full h-screen flex-center editor-bg">
-            <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className="pb-4 max-h-full flex items-center">
+            <Scrollbar
+                containerRef={(ref) => (ps.current = ref)}
+                onWheel={onMouseWheel}
+                className={"pb-4 max-h-full flex items-center" + (display ? "" : " opacity-0")}
+            >
                 <div className="writing-v-rl max-h-full" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
                     <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                         <p className="text-sm pt-1 opacity-50">{novel.created_at}</p>
