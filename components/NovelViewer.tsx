@@ -41,6 +41,15 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
     const [show, setShow] = useState(true);
+    const viewerConfig = {
+        fontSize,
+        toggleFontSmall: setFontBase,
+        toggleFontMedium: setFontXl,
+        toggleFontLarge: setFont2xl,
+        font,
+        setMincho,
+        setGothic,
+    };
 
     const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
@@ -54,8 +63,9 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
             <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className="pb-4 max-h-full flex items-center">
                 <div className="writing-v-rl max-h-full" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
                     <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
-                        <p className="text-4xl font-bold opacity-75">作品タイトル</p>
-                        <p className="text-xl font-semibold opacity-50">作者名</p>
+                        <p className="text-sm pt-1 opacity-50">{novel.created_at}</p>
+                        <p className="text-4xl font-bold opacity-75">{novel.title}</p>
+                        <p className="text-xl font-semibold pt-1 opacity-50">{novel.author_name}</p>
                     </div>
                     <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
                         <Editor editorState={editorState} onChange={(_) => null} readOnly={true} />
@@ -78,15 +88,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg> */}
-                    <NovelViewerConfig
-                        fontSize={fontSize}
-                        toggleFontSmall={setFontBase}
-                        toggleFontMedium={setFontXl}
-                        toggleFontLarge={setFont2xl}
-                        font={font}
-                        setMincho={setMincho}
-                        setGothic={setGothic}
-                    />
+                    <NovelViewerConfig viewerConfig={viewerConfig} />
                     {/* <svg
                         className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
                         xmlns="http://www.w3.org/2000/svg"

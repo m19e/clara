@@ -12,8 +12,9 @@ type ViewerConfigProps = {
     setGothic: () => void;
 };
 
-export default function NovelViewConfig({ fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic }: ViewerConfigProps) {
+export default function NovelViewConfig({ viewerConfig }: { viewerConfig: ViewerConfigProps }) {
     const [showModal, setShowModal] = useState(false);
+    const { fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic } = viewerConfig;
 
     return (
         <>
