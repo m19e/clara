@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
-import { useTitle, useDraftID, useContent } from "../store/draft";
+import { useTitle, useDraftID } from "../store/draft";
 import { useProfile } from "../store/user";
 import { updateDraftTitle } from "../lib/firebase/initFirebase";
 import PublishModal from "./PubishModal";
@@ -9,7 +9,6 @@ export default function Header() {
     const [title, setTitle] = useTitle();
     const [draftID] = useDraftID();
     const [profile] = useProfile();
-    const [content] = useContent();
     const [temptitle, setTempTitle] = useState("");
     const [isTitleEdit, setIsTitleEdit] = useState(false);
     const editTitleRef = useRef(null);
@@ -100,7 +99,7 @@ export default function Header() {
                 <div className="w-20">
                     <div className="flex justify-end items-center">
                         <span className="px-4">
-                            <PublishModal title={title} />
+                            <PublishModal />
                         </span>
                     </div>
                 </div>

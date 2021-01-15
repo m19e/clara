@@ -1,7 +1,23 @@
 import { useIsShowPublishModal } from "../store/editor";
+import { useDraftID, useTitle, useContent } from "../store/draft";
+import { useProfile } from "../store/user";
 
-export default function PublishModal({ title }: { title: string }) {
+interface INovelProp {
+    id: string;
+    title: string;
+    content: string;
+    author_id: string;
+    author_uid: string;
+    author_name: string;
+}
+
+export default function PublishModal() {
     const [showModal, toggleShowModal] = useIsShowPublishModal();
+
+    const [id] = useDraftID();
+    const [title] = useTitle();
+    const [content] = useContent();
+    const [profile] = useProfile();
 
     return (
         <>
