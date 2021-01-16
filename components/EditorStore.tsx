@@ -289,7 +289,6 @@ export default function VerticalEditor() {
                                 <Scrollbar
                                     containerRef={(ref) => (ps.current = ref)}
                                     onWheel={onMouseWheel}
-                                    // className="border border-dashed border-gray-400 pb-2"
                                     className="pb-4 w-full"
                                     style={{ maxHeight: "95%", height: `${eh + 16}px` }}
                                 >
