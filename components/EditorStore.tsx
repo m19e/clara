@@ -247,9 +247,13 @@ export default function VerticalEditor() {
                         if (!afterKey) return "move-selection-to-end-of-block";
                         const afterLen = content.getBlockForKey(afterKey).getLength();
                         const afterOffset = afterLen < offset ? afterLen : offset;
-                        e.shiftKey
-                            ? setSelectionRange(selection, { anchorOffset: afterOffset, anchorKey: afterKey })
-                            : setSelectionCaret(selection, afterOffset, afterKey);
+                        if (e.shiftKey) {
+                            const isBackward =
+                                key === selection.getFocusKey() && offset + lineWords >= selection.getFocusOffset() ? true : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: afterOffset, anchorKey: afterKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, afterOffset, afterKey);
+                        }
                     }
                     if (ps.current) {
                         ps.current.scrollLeft -= fs * 1.5;

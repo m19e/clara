@@ -1,7 +1,8 @@
+import { useRouter } from "next/router";
 import { useIsShowPublishModal } from "../store/editor";
 import { useDraftID, useTitle, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
-import { publishNovel } from "../lib/firebase/initFirebase";
+import { publishNovel, createDraftData } from "../lib/firebase/initFirebase";
 
 interface INovelProp {
     id: string;
@@ -20,9 +21,13 @@ export default function PublishModal() {
     const [content] = useContent();
     const [profile] = useProfile();
 
+    const router = useRouter();
+
     const confirm = async () => {
         const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
         await publishNovel(novel);
+        await createDraftData(profile.userID);
+        router.push(`/novel/${id}`);
         toggleShowModal();
     };
 
