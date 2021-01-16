@@ -69,11 +69,11 @@ export async function setRecentDraftID(did, id: string) {
     await userRef.update({ recent: did });
 }
 
-export async function createDraftData(id, draft: string) {
+export async function createDraftData(id: string) {
     const userRef = db.collection("user").doc(id);
     const draftID = userRef.collection("draft").doc().id;
-    await userRef.collection("draft").doc(draftID).set({ content: draft });
-    return draftID;
+    await userRef.collection("draft").doc(draftID).set({ title: "無題", content: "執筆を始める" });
+    await setRecentDraftID(draftID, id);
 }
 
 export async function readDraftData(id, did: string) {
