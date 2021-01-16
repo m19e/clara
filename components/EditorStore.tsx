@@ -196,6 +196,10 @@ export default function VerticalEditor() {
                     } else {
                         const beforeKey = content.getKeyBefore(key);
                         if (!beforeKey) {
+                            if (e.shiftKey) {
+                                setSelectionRange(selection, { anchorOffset: 0 });
+                                break;
+                            }
                             return "move-selection-to-start-of-block";
                         }
                         const beforeLen = content.getBlockForKey(beforeKey).getLength();
@@ -244,7 +248,13 @@ export default function VerticalEditor() {
                         }
                     } else {
                         const afterKey = content.getKeyAfter(key);
-                        if (!afterKey) return "move-selection-to-end-of-block";
+                        if (!afterKey) {
+                            if (e.shiftKey) {
+                                setSelectionRange(selection, { anchorOffset: blockLen });
+                                break;
+                            }
+                            return "move-selection-to-end-of-block";
+                        }
                         const afterLen = content.getBlockForKey(afterKey).getLength();
                         const afterOffset = afterLen < offset ? afterLen : offset;
                         if (e.shiftKey) {
