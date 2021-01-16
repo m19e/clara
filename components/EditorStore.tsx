@@ -286,11 +286,11 @@ export default function VerticalEditor() {
                                     containerRef={(ref) => (ps.current = ref)}
                                     onWheel={onMouseWheel}
                                     // className="border border-dashed border-gray-400 pb-2"
-                                    className="pb-4 max-w-full"
+                                    className="pb-4 w-full"
                                     style={{ maxHeight: "95%", height: `${eh + 16}px` }}
                                 >
                                     <div
-                                        className={"writing-v-rl text-justify max-h-full px-6" + (isMincho ? " mincho" : " gothic")}
+                                        className={"writing-v-rl text-justify max-h-full px-6 m-auto" + (isMincho ? " mincho" : " gothic")}
                                         style={{ minWidth: "5em", fontSize: `${fs}px`, height: `${eh}px` }}
                                     >
                                         <Editor
