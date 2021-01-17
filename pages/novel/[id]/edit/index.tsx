@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getAllNovelIDs, getNovel, auth } from "../../../../lib/firebase/initFirebase";
 import Loader from "../../../../components/Loader";
 
+import NovelEditor from "../../../../components/NovelEditor";
+
 type NovelEditProps = {
     author_uid: string;
     id: string;
@@ -33,12 +35,7 @@ export default function NovelEdit({ author_uid, id, title, content }: NovelEditP
     }, []);
 
     if (validAuth) {
-        return (
-            <div>
-                <h1>{title}</h1>
-                <h2>{content}</h2>
-            </div>
-        );
+        return <NovelEditor title={title} content={content} />;
     } else {
         return (
             <div className="min-h-screen min-w-full flex-center bg-gray-100">
