@@ -1,14 +1,17 @@
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { getAllNovelIDs, getNovel } from "../../../../lib/firebase/initFirebase";
+import { useEffect } from "react";
+import { getAllNovelIDs, getNovel, auth } from "../../../../lib/firebase/initFirebase";
 import Loader from "../../../../components/Loader";
 
 type NovelEditProps = {
+    author_uid: string;
+    id: string;
     title: string;
     content: string;
 };
 
-export default function NovelEdit({ title, content }: NovelEditProps) {
+export default function NovelEdit({ author_uid, id, title, content }: NovelEditProps) {
     const router = useRouter();
     if (router.isFallback) {
         return (
@@ -17,6 +20,12 @@ export default function NovelEdit({ title, content }: NovelEditProps) {
             </div>
         );
     }
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            !(user && user.uid === author_uid) && router.push(`/novel/${id}`);
+        });
+    }, []);
 
     return (
         <div>
@@ -29,10 +38,12 @@ export default function NovelEdit({ title, content }: NovelEditProps) {
 export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
     const novel = await getNovel(params.id);
     if (!novel) return { notFound: true };
-    const { title, content } = novel;
+    const { author_uid, id, title, content } = novel;
 
     return {
         props: {
+            author_uid,
+            id,
             title,
             content,
         },
