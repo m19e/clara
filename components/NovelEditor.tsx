@@ -29,7 +29,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                         <p className="text-4xl font-bold opacity-75">{title}</p>
                     </div>
                     <div
-                        className="text-justify pl-16 mincho"
+                        className="leading-relaxed text-justify pl-16 mincho"
                         style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px", fontSize: "24px" }}
                     >
                         <Editor editorState={editorState} onChange={(_) => null} readOnly />
