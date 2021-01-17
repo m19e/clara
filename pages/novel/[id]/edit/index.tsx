@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getAllNovelIDs, getNovel, auth } from "../../../../lib/firebase/initFirebase";
 import Loader from "../../../../components/Loader";
 
@@ -13,9 +13,10 @@ type NovelEditProps = {
 
 export default function NovelEdit({ author_uid, id, title, content }: NovelEditProps) {
     const router = useRouter();
+    const [validAuth, setValidAuth] = useState(false);
     if (router.isFallback) {
         return (
-            <div className="min-h-screen min-w-full flex-center">
+            <div className="min-h-screen min-w-full flex-center bg-gray-100">
                 <Loader />
             </div>
         );
@@ -23,16 +24,28 @@ export default function NovelEdit({ author_uid, id, title, content }: NovelEditP
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            !(user && user.uid === author_uid) && router.push(`/novel/${id}`);
+            if (user && user.uid === author_uid) {
+                setValidAuth(true);
+            } else {
+                router.push(`/novel/${id}`);
+            }
         });
     }, []);
 
-    return (
-        <div>
-            <h1>{title}</h1>
-            <h2>{content}</h2>
-        </div>
-    );
+    if (validAuth) {
+        return (
+            <div>
+                <h1>{title}</h1>
+                <h2>{content}</h2>
+            </div>
+        );
+    } else {
+        return (
+            <div className="min-h-screen min-w-full flex-center bg-gray-100">
+                <Loader />
+            </div>
+        );
+    }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
