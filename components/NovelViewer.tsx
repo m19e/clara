@@ -74,7 +74,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                 onWheel={onMouseWheel}
                 className={"pb-4 max-h-full flex items-center" + (display ? "" : " opacity-0")}
             >
-                <div className="writing-v-rl max-h-full" style={{ height: "665px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
+                <div className="writing-v-rl max-h-full" style={{ height: "720px", maxHeight: "85vh", minHeight: `${1.5 * 20}rem` }}>
                     <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                         <p className="text-sm pt-1 opacity-50">{novel.created_at}</p>
                         <p className="text-4xl font-bold opacity-75">{novel.title}</p>
