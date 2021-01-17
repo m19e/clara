@@ -24,11 +24,16 @@ export default function NovelEditor({ title, content }: { title: string; content
     return (
         <div ref={editorRef} className="h-screen w-full flex-center editor-bg">
             <Scrollbar className="h-full w-full flex items-center">
-                <div
-                    className="px-6 writing-v-rl text-justify mincho"
-                    style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px", fontSize: "24px" }}
-                >
-                    <Editor editorState={editorState} onChange={(_) => null} readOnly />
+                <div className="writing-v-rl">
+                    <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
+                        <p className="text-4xl font-bold opacity-75">{title}</p>
+                    </div>
+                    <div
+                        className="text-justify pl-16 mincho"
+                        style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px", fontSize: "24px" }}
+                    >
+                        <Editor editorState={editorState} onChange={(_) => null} readOnly />
+                    </div>
                 </div>
             </Scrollbar>
         </div>
