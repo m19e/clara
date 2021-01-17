@@ -36,7 +36,7 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
 };
 
 export default function NovelView({ novel }: { novel: INovelDataSerializable }) {
-    const contentArray = novel.content.split("\n").map((line) => (line === "" ? "　" : line));
+    const contentArray = novel.content.split("\n").map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
@@ -82,8 +82,8 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                     </div>
                     <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
                         {contentArray.map((line) => (
-                            <div className={line === "　" ? "h-0 overflow-hidden" : ""}>
-                                <span>{line}</span>
+                            <div className={line.class}>
+                                <span>{line.text}</span>
                             </div>
                         ))}
                     </div>
