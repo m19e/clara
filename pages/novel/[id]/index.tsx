@@ -7,12 +7,13 @@ import { INovelDataSerializable, getAllNovelIDs, getNovel } from "../../../lib/f
 
 export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
     const router = useRouter();
-    if (router.isFallback)
+    if (router.isFallback) {
         return (
             <div className="min-h-screen min-w-full flex-center">
                 <Loader />
             </div>
         );
+    }
 
     return <NovelViewer novel={novel} />;
 }
