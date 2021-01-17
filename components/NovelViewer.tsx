@@ -82,7 +82,12 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                         <p className="text-xl font-semibold pt-1 opacity-50">{novel.author_name}</p>
                     </div>
                     <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
-                        <Editor editorState={editorState} onChange={(_) => null} readOnly={true} />
+                        {/* <Editor editorState={editorState} onChange={(_) => null} readOnly={true} /> */}
+                        {novel.content.split("\n").map((text) => (
+                            <div>
+                                <span className={"text-" + fontSize}>{text === "" ? "　" : text}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </Scrollbar>
