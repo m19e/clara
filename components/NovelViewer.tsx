@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -37,7 +36,6 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
 };
 
 export default function NovelView({ novel }: { novel: INovelDataSerializable }) {
-    const [editorState] = useState(EditorState.createWithContent(ContentState.createFromText(novel.content)));
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
@@ -82,7 +80,6 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                         <p className="text-xl font-semibold pt-1 opacity-50">{novel.author_name}</p>
                     </div>
                     <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
-                        {/* <Editor editorState={editorState} onChange={(_) => null} readOnly={true} /> */}
                         {novel.content.split("\n").map((text) => (
                             <div>
                                 <span className={"text-" + fontSize}>{text === "" ? "　" : text}</span>
