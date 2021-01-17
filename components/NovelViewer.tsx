@@ -81,8 +81,8 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                         <p className="text-xl font-semibold pt-1 opacity-50">{novel.author_name}</p>
                     </div>
                     <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
-                        {contentArray.map((line) => (
-                            <div className={line.class}>
+                        {contentArray.map((line, i) => (
+                            <div key={"novelview-line-" + (i + 1)} className={line.class}>
                                 <span>{line.text}</span>
                             </div>
                         ))}
