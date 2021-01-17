@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import firebase from "firebase/app";
 import NovelViewer from "../../../components/NovelViewer";
@@ -26,7 +27,7 @@ const getDisplayTime = (milli: number): string => {
     return y + m + d + ho + mi;
 };
 
-export async function getStaticProps({ params }: { params: { id: string } }) {
+export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
     const novel = await getNovel(params.id);
     if (!novel) return { notFound: true };
     const update = {
@@ -41,9 +42,9 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
         },
         revalidate: 600,
     };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
     const ids = await getAllNovelIDs();
 
     return {
@@ -56,4 +57,4 @@ export async function getStaticPaths() {
         }),
         fallback: true,
     };
-}
+};
