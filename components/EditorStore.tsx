@@ -93,7 +93,7 @@ export default function VerticalEditor() {
 
     const createDraft = async (es: EditorState) => {
         const content = createTextWithEditorState(es);
-        const did = await createDraftData(userProfile.userID, content);
+        const did = await createDraftData(userProfile.userID);
         setDraftID(did);
         await setEdittingDraft(did, userProfile.userID);
     };
