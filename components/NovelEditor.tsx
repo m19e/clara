@@ -27,7 +27,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                 <div className="writing-v-rl h-full flex flex-col items-center">
                     <div style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px" }}>
                         <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
-                            <div className="flex items-center">
+                            <div className="flex items-center flex-wrap">
                                 <span className="text-4xl font-bold opacity-75">{title}</span>
                                 <span className="mt-2 w-7 h-7 flex-center rounded bg-gray-300 transition-opacity opacity-50 hover:opacity-60">
                                     <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
