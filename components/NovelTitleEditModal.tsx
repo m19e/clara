@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function TitleEditModal({ title, setTitle }: { title: string; setTitle: (string) => void }) {
     const [showModal, setShowModal] = useState(false);
     const [tempTitle, setTempTitle] = useState(title);
+    const [titleCharCount, setTitleCharCount] = useState(Array.from(title).length);
     const editTitleRef = useRef(null);
 
     useEffect(() => {
@@ -19,6 +20,14 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
     const updateTitle = () => {
         tempTitle.trim() === "" ? setTitle("無題") : setTitle(tempTitle.trim());
         setShowModal(false);
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const charCount = Array.from(e.currentTarget.value).length;
+        if (charCount <= 100) {
+            setTempTitle(e.currentTarget.value);
+            setTitleCharCount(charCount);
+        }
     };
 
     return (
@@ -48,9 +57,9 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                                     className="w-72 py-1 editor-bg gothic text-2xl text-center rounded shadow-inner outline-none focus:outline-none"
                                     ref={editTitleRef}
                                     value={tempTitle}
-                                    onChange={(e) => setTempTitle(e.currentTarget.value)}
+                                    onChange={(e) => handleChange(e)}
                                 />
-                                <span className="w-full text-right text-sm opacity-50">0/100</span>
+                                <span className="w-full text-right text-sm opacity-50">{titleCharCount}/100</span>
                                 <div className="flex justify-between opacity-80 mt-10">
                                     <span className="cursor-pointer" onClick={() => setShowModal(false)}>
                                         取消
