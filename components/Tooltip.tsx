@@ -33,7 +33,7 @@ export default function Tooltip({ text, d }: { text: string; d: string }) {
                 className={(tooltipShow ? "" : "hidden ") + "editor-bg mr-2 block z-50 no-underline break-words rounded-xl border border-solid border-gray-300"}
                 ref={tooltipRef}
             >
-                <div className="writing-v-rl opacity-60 font-semibold p-3 mb-0">
+                <div className="writing-v-rl opacity-70 font-semibold p-3 mb-0">
                     <p>{text}</p>
                 </div>
             </div>
