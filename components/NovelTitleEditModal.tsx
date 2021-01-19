@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TitleEditModal({ title }: { title: string }) {
+export default function TitleEditModal({ title, setTitle }: { title: string; setTitle: (string) => void }) {
     const [showModal, setShowModal] = useState(false);
     const [tempTitle, setTempTitle] = useState(title);
 
@@ -10,6 +10,7 @@ export default function TitleEditModal({ title }: { title: string }) {
     };
 
     const updateTitle = () => {
+        setTitle(tempTitle);
         setShowModal(false);
     };
 
