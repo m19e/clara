@@ -1,12 +1,53 @@
-import { useState, useEffect, createRef, RefObject } from "react";
+import { useState, useEffect, createRef, RefObject, useCallback } from "react";
 import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
+
+import NovelViewerConfig from "./NovelViewerConfig";
+
+const useFontSize = (fs: "base" | "xl" | "2xl"): ["base" | "xl" | "2xl", () => void, () => void, () => void] => {
+    const [fontSize, setFontSize] = useState(fs);
+    const setFontBase = useCallback(() => {
+        setFontSize("base");
+    }, []);
+    const setFontXl = useCallback(() => {
+        setFontSize("xl");
+    }, []);
+    const setFont2xl = useCallback(() => {
+        setFontSize("2xl");
+    }, []);
+
+    return [fontSize, setFontBase, setFontXl, setFont2xl];
+};
+
+const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
+    const [font, setFont] = useState(f);
+    const setMincho = useCallback(() => {
+        setFont("mincho");
+    }, []);
+    const setGothic = useCallback(() => {
+        setFont("gothic");
+    }, []);
+
+    return [font, setMincho, setGothic];
+};
 
 export default function NovelEditor({ title, content }: { title: string; content: string }) {
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const [editorHeight, setEditorHeight] = useState(480);
+
+    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
+    const [font, setMincho, setGothic] = useFont("mincho");
+    const viewerConfig = {
+        fontSize,
+        toggleFontSmall: setFontBase,
+        toggleFontMedium: setFontXl,
+        toggleFontLarge: setFont2xl,
+        font,
+        setMincho,
+        setGothic,
+    };
 
     useEffect(() => {
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
@@ -41,7 +82,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                                 </span>
                             </div>
                         </div>
-                        <div className="leading-relaxed text-justify pl-16 mincho" style={{ fontSize: "24px" }}>
+                        <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
                             <Editor editorState={editorState} onChange={setEditorState} />
                         </div>
                     </div>
@@ -67,20 +108,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                    <svg
-                        className="w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                        />
-                    </svg>
+                    <NovelViewerConfig viewerConfig={viewerConfig} />
                 </div>
             </div>
         </div>
