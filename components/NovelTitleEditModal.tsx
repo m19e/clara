@@ -10,7 +10,7 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
     };
 
     const updateTitle = () => {
-        setTitle(tempTitle);
+        tempTitle.trim() === "" ? setTitle("無題") : setTitle(tempTitle.trim());
         setShowModal(false);
     };
 
