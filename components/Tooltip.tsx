@@ -16,15 +16,27 @@ export default function Tooltip({ d }: { d: string }) {
     };
 
     return (
-        <svg
-            className="w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            ref={btnRef}
-        >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
-        </svg>
+        <>
+            <svg
+                className="w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                onMouseEnter={openLeftTooltip}
+                onMouseLeave={closeLeftTooltip}
+                ref={btnRef}
+            >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
+            </svg>
+            <div
+                className={(tooltipShow ? "" : "hidden ") + "editor-bg mr-2 block z-50 no-underline break-words rounded-xl border border-solid border-gray-300"}
+                ref={tooltipRef}
+            >
+                <div className="writing-v-rl opacity-75 text-sm font-semibold p-3 mb-0">
+                    <p>削除</p>
+                </div>
+            </div>
+        </>
     );
 }
