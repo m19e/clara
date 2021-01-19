@@ -95,7 +95,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                 </div>
             </Scrollbar>
             <div className={"fixed bottom-0 w-12 mb-4 editor-bg border border-r-0 border-solid border-gray-300 rounded-l-lg novelView-header__show"}>
-                <div className="flex-col flex-center w-full my-3">
+                <div className="flex-col flex-center w-full my-2">
                     <svg
                         className="w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer"
                         xmlns="http://www.w3.org/2000/svg"
