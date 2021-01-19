@@ -72,7 +72,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                     <div style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px" }}>
                         <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                             <div className="flex items-center flex-wrap">
-                                <span className="text-4xl font-bold opacity-75">{rootTitle}</span>
+                                <span className="text-4xl font-bold whitespace-pre opacity-75">{rootTitle}</span>
                                 <span className="mt-2 w-8 h-8 border border-solid border-gray-300 rounded-full shadow flex-center cursor-pointer">
                                     <TitleEditModal title={rootTitle} setTitle={setRootTitle} />
                                 </span>
