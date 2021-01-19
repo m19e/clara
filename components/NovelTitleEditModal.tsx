@@ -50,6 +50,7 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                                     value={tempTitle}
                                     onChange={(e) => setTempTitle(e.currentTarget.value)}
                                 />
+                                <span className="w-full text-right text-sm opacity-50">0/100</span>
                                 <div className="flex justify-between opacity-80 mt-10">
                                     <span className="cursor-pointer" onClick={() => setShowModal(false)}>
                                         取消
