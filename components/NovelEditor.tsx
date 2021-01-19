@@ -106,15 +106,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <svg
-                        className="w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    <Tooltip text="取消" d="M6 18L18 6M6 6l12 12" />
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
                         <Tooltip
