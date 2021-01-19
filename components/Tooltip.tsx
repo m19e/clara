@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Popper from "popper.js";
 
-export default function Tooltip({ text, d }: { text: string; d: string }) {
+export default function Tooltip({ text, d, classOverride = "" }: { text: string; d: string; classOverride?: string }) {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
@@ -18,7 +18,7 @@ export default function Tooltip({ text, d }: { text: string; d: string }) {
     return (
         <>
             <svg
-                className="w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer"
+                className={classOverride === "" ? "w-full h-8 transition opacity-50 hover:opacity-70 cursor-pointer" : classOverride}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
