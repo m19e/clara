@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Popper from "popper.js";
 
-export default function Tooltip({ d }: { d: string }) {
+export default function Tooltip({ text, d }: { text: string; d: string }) {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
@@ -34,7 +34,7 @@ export default function Tooltip({ d }: { d: string }) {
                 ref={tooltipRef}
             >
                 <div className="writing-v-rl opacity-75 text-sm font-semibold p-3 mb-0">
-                    <p>削除</p>
+                    <p>{text}</p>
                 </div>
             </div>
         </>
