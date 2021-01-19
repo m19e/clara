@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function TitleEditModal({ title, setTitle }: { title: string; setTitle: (string) => void }) {
     const [showModal, setShowModal] = useState(false);
     const [tempTitle, setTempTitle] = useState(title);
+    const editTitleRef = useRef(null);
+
+    useEffect(() => {
+        if (showModal) {
+            editTitleRef.current.focus();
+        }
+    }, [showModal]);
 
     const initModal = () => {
         setTempTitle(title);
@@ -39,6 +46,7 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                                 <input
                                     type="text"
                                     className="w-72 py-1 editor-bg gothic text-2xl text-center rounded shadow-inner outline-none focus:outline-none"
+                                    ref={editTitleRef}
                                     value={tempTitle}
                                     onChange={(e) => setTempTitle(e.currentTarget.value)}
                                 />
