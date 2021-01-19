@@ -73,7 +73,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                                 <span className="text-4xl font-bold opacity-75">{title}</span>
                                 <span className="mt-2 w-8 h-8 border border-solid border-gray-300 rounded-full shadow flex-center cursor-pointer">
                                     <svg
-                                        className="w-6 h-6 transition-opacity opacity-30 hover:opacity-50"
+                                        className="w-6 h-6 opacity-50"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
