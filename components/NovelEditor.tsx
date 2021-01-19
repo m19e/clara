@@ -72,20 +72,11 @@ export default function NovelEditor({ title, content }: { title: string; content
                             <div className="flex items-center flex-wrap">
                                 <span className="text-4xl font-bold opacity-75">{title}</span>
                                 <span className="mt-2 w-8 h-8 border border-solid border-gray-300 rounded-full shadow flex-center cursor-pointer">
-                                    <svg
-                                        className="w-6 h-6 transition-opacity opacity-30 hover:opacity-50"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                        />
-                                    </svg>
+                                    <Tooltip
+                                        text="タイトルを編集"
+                                        classOverride="w-6 h-6 transition-opacity opacity-30 hover:opacity-50"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                    />
                                 </span>
                             </div>
                         </div>
