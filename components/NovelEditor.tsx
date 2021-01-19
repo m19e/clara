@@ -73,7 +73,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                             <div className="flex items-center flex-wrap">
                                 <span className="text-4xl font-bold opacity-75">{title}</span>
                                 <span className="mt-2 w-8 h-8 border border-solid border-gray-300 rounded-full shadow flex-center cursor-pointer">
-                                    <TitleEditModal />
+                                    <TitleEditModal title={title} />
                                 </span>
                             </div>
                         </div>

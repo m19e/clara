@@ -1,7 +1,17 @@
 import { useState } from "react";
 
-export default function TitleEditModal() {
+export default function TitleEditModal({ title }: { title: string }) {
     const [showModal, setShowModal] = useState(false);
+    const [tempTitle, setTempTitle] = useState(title);
+
+    const initModal = () => {
+        setTempTitle(title);
+        setShowModal(true);
+    };
+
+    const updateTitle = () => {
+        setShowModal(false);
+    };
 
     return (
         <div style={{ writingMode: "initial" }}>
@@ -11,7 +21,7 @@ export default function TitleEditModal() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                onClick={() => setShowModal(true)}
+                onClick={() => initModal()}
             >
                 <path
                     strokeLinecap="round"
@@ -28,12 +38,14 @@ export default function TitleEditModal() {
                                 <input
                                     type="text"
                                     className="w-72 py-1 editor-bg gothic text-2xl text-center rounded shadow-inner outline-none focus:outline-none"
+                                    value={tempTitle}
+                                    onChange={(e) => setTempTitle(e.currentTarget.value)}
                                 />
                                 <div className="flex justify-between opacity-80 mt-10">
                                     <span className="cursor-pointer" onClick={() => setShowModal(false)}>
                                         取消
                                     </span>
-                                    <span className="cursor-pointer" onClick={() => confirm()}>
+                                    <span className="cursor-pointer" onClick={() => updateTitle()}>
                                         更新
                                     </span>
                                 </div>
