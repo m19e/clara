@@ -58,19 +58,21 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                             <div className="gothic border-0 rounded-lg shadow-lg relative flex flex-col w-full p-6 pt-4 pb-3 bg-white outline-none focus:outline-none">
                                 <input
                                     type="text"
-                                    className="w-96 py-1 editor-bg gothic text-xl text-center rounded shadow-inner outline-none focus:outline-none"
+                                    className="w-80 py-1 editor-bg gothic text-xl text-center rounded shadow-inner outline-none focus:outline-none"
                                     ref={editTitleRef}
                                     value={tempTitle}
                                     onChange={(e) => handleChange(e)}
                                 />
                                 <span className="w-full text-right text-sm opacity-50">{titleCharCount}/100</span>
-                                <div className="flex justify-between opacity-80 mt-10">
-                                    <span className="cursor-pointer" onClick={() => setShowModal(false)}>
-                                        取消
-                                    </span>
-                                    <span className="cursor-pointer" onClick={() => updateTitle()}>
-                                        更新
-                                    </span>
+                                <div className="flex-center">
+                                    <div className="flex justify-between w-60 opacity-80 mt-10">
+                                        <span className="cursor-pointer" onClick={() => setShowModal(false)}>
+                                            取消
+                                        </span>
+                                        <span className="cursor-pointer" onClick={() => updateTitle()}>
+                                            更新
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
