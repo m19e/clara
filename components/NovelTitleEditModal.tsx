@@ -67,13 +67,13 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                                 <div className="flex-center">
                                     <div className="flex justify-between w-72 opacity-80 mt-10">
                                         <span
-                                            className="px-6 py-1 text-center border border-solid border-gray-300 rounded-3xl cursor-pointer"
+                                            className="px-6 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer"
                                             onClick={() => setShowModal(false)}
                                         >
                                             取消
                                         </span>
                                         <span
-                                            className="px-6 py-1 text-center border border-solid border-gray-300 rounded-3xl cursor-pointer"
+                                            className="px-6 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer"
                                             onClick={() => updateTitle()}
                                         >
                                             更新
