@@ -23,10 +23,14 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const charCount = Array.from(e.currentTarget.value).length;
+        const arrayTitle = Array.from(e.currentTarget.value);
+        const charCount = arrayTitle.length;
         if (charCount <= 100) {
             setTempTitle(e.currentTarget.value);
             setTitleCharCount(charCount);
+        } else {
+            setTempTitle(arrayTitle.slice(0, 100).join(""));
+            setTitleCharCount(100);
         }
     };
 
