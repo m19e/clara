@@ -54,11 +54,11 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
             {showModal && (
                 <>
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-sm">
+                        <div className="relative w-auto my-6 mx-auto max-w-md">
                             <div className="gothic border-0 rounded-lg shadow-lg relative flex flex-col w-full p-6 pt-4 pb-3 bg-white outline-none focus:outline-none">
                                 <input
                                     type="text"
-                                    className="w-72 py-1 editor-bg gothic text-2xl text-center rounded shadow-inner outline-none focus:outline-none"
+                                    className="w-96 py-1 editor-bg gothic text-xl text-center rounded shadow-inner outline-none focus:outline-none"
                                     ref={editTitleRef}
                                     value={tempTitle}
                                     onChange={(e) => handleChange(e)}
