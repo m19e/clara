@@ -73,17 +73,17 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         };
     }, [realFontSize]);
 
-    const updateNovelEdit = async () => {
+    const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
         await updateNovel(id, rootTitle, text);
         router.push(`/novel/${id}`);
     };
 
-    const backNovelPage = () => {
+    const confirmBack = () => {
         router.push(`/novel/${id}`);
     };
 
-    const deleteNovel = async () => {
+    const confirmDelete = async () => {
         console.log("delete");
     };
 
@@ -114,7 +114,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                         message="編集内容を保存しますか？"
                         confirmText="保存する"
                         cancelText="閉じる"
-                        confirmFunc={updateNovelEdit}
+                        confirmFunc={confirmUpdate}
                     />
                     <ConfirmableModal
                         popperText="取消"
@@ -122,7 +122,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                         message="小説ページに戻りますか？"
                         confirmText="戻る"
                         cancelText="閉じる"
-                        confirmFunc={backNovelPage}
+                        confirmFunc={confirmBack}
                     />
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
@@ -132,7 +132,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                             message="この小説を削除しますか？"
                             confirmText="削除する"
                             cancelText="閉じる"
-                            confirmFunc={deleteNovel}
+                            confirmFunc={confirmDelete}
                         />
                     </div>
                 </div>
