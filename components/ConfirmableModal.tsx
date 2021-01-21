@@ -7,9 +7,10 @@ type ConfirmableProps = {
     message: string;
     confirmText: string;
     cancelText: string;
+    confirmFunc: () => void;
 };
 
-export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText }: ConfirmableProps) {
+export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc }: ConfirmableProps) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -33,7 +34,7 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                         </span>
                                         <span
                                             className="w-28 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer"
-                                            onClick={() => null}
+                                            onClick={() => confirmFunc()}
                                         >
                                             {confirmText}
                                         </span>

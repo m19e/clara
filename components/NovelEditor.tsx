@@ -69,11 +69,17 @@ export default function NovelEditor({ title, content }: { title: string; content
         };
     }, [realFontSize]);
 
-    const updateNovelEdit = () => {};
+    const updateNovelEdit = async () => {
+        console.log("update");
+    };
 
-    const backNovelPage = () => {};
+    const backNovelPage = () => {
+        console.log("back");
+    };
 
-    const deleteNovel = () => {};
+    const deleteNovel = async () => {
+        console.log("delete");
+    };
 
     return (
         <div ref={editorRef} className="w-full h-screen editor-bg">
@@ -96,8 +102,22 @@ export default function NovelEditor({ title, content }: { title: string; content
             </Scrollbar>
             <div className={"fixed bottom-0 w-12 mb-4 editor-bg border border-r-0 border-solid border-gray-300 rounded-l-lg novelView-header__show"}>
                 <div className="flex-col flex-center w-full my-2">
-                    <ConfirmableModal popperText="保存" d="M5 13l4 4L19 7" message="編集内容を保存しますか？" confirmText="保存する" cancelText="閉じる" />
-                    <ConfirmableModal popperText="取消" d="M6 18L18 6M6 6l12 12" message="小説ページに戻りますか？" confirmText="戻る" cancelText="閉じる" />
+                    <ConfirmableModal
+                        popperText="保存"
+                        d="M5 13l4 4L19 7"
+                        message="編集内容を保存しますか？"
+                        confirmText="保存する"
+                        cancelText="閉じる"
+                        confirmFunc={updateNovelEdit}
+                    />
+                    <ConfirmableModal
+                        popperText="取消"
+                        d="M6 18L18 6M6 6l12 12"
+                        message="小説ページに戻りますか？"
+                        confirmText="戻る"
+                        cancelText="閉じる"
+                        confirmFunc={backNovelPage}
+                    />
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
                         <ConfirmableModal
@@ -106,6 +126,7 @@ export default function NovelEditor({ title, content }: { title: string; content
                             message="この小説を削除しますか？"
                             confirmText="削除する"
                             cancelText="閉じる"
+                            confirmFunc={deleteNovel}
                         />
                     </div>
                 </div>
