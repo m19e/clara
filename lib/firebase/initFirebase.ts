@@ -141,3 +141,8 @@ export async function updateNovel(id: string, title: string, content: string) {
     const novelRef = db.collection("novel").doc(id);
     await novelRef.update({ title, content, updated_at: firebase.firestore.FieldValue.serverTimestamp() });
 }
+
+export async function deleteNovel(id: string) {
+    const novelRef = db.collection("novel").doc(id);
+    await novelRef.delete();
+}
