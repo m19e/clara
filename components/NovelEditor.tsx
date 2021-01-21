@@ -90,8 +90,8 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     return (
         <div ref={editorRef} className="w-full h-screen editor-bg">
             <Scrollbar className="w-full h-full">
-                <div className="writing-v-rl h-full flex flex-col items-center">
-                    <div style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px" }}>
+                <div className="h-full flex justify-end items-center">
+                    <div className="writing-v-rl" style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px" }}>
                         <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                             <div className="flex items-center flex-wrap">
                                 <span className="text-4xl font-bold whitespace-pre-wrap opacity-75">{rootTitle}</span>
