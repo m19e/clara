@@ -7,19 +7,23 @@ import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
 
-const useFontSize = (fs: "base" | "xl" | "2xl"): ["base" | "xl" | "2xl", () => void, () => void, () => void] => {
+const useFontSize = (fs: "base" | "xl" | "2xl", rfs: 16 | 20 | 24): ["base" | "xl" | "2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
+    const [realFontSize, setRealFontSize] = useState(rfs);
     const setFontBase = useCallback(() => {
         setFontSize("base");
+        setRealFontSize(16);
     }, []);
     const setFontXl = useCallback(() => {
         setFontSize("xl");
+        setRealFontSize(20);
     }, []);
     const setFont2xl = useCallback(() => {
         setFontSize("2xl");
+        setRealFontSize(24);
     }, []);
 
-    return [fontSize, setFontBase, setFontXl, setFont2xl];
+    return [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl];
 };
 
 const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
@@ -40,7 +44,7 @@ export default function NovelEditor({ title, content }: { title: string; content
     const [editorHeight, setEditorHeight] = useState(480);
     const [rootTitle, setRootTitle] = useState(title);
 
-    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
+    const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl", 20);
     const [font, setMincho, setGothic] = useFont("mincho");
     const viewerConfig = {
         fontSize,
@@ -56,14 +60,14 @@ export default function NovelEditor({ title, content }: { title: string; content
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             const heightTQ = Math.floor(height * 0.75);
-            setEditorHeight(heightTQ - (heightTQ % 20));
+            setEditorHeight(heightTQ - (heightTQ % realFontSize));
         });
         editorRef.current && resizeObs.observe(editorRef.current);
 
         return () => {
             resizeObs.disconnect();
         };
-    }, []);
+    }, [realFontSize]);
 
     return (
         <div ref={editorRef} className="w-full h-screen editor-bg">
