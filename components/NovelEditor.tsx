@@ -79,7 +79,6 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
 
     const backNovelPage = () => {
         router.push(`/novel/${id}`);
-        console.log("back");
     };
 
     const deleteNovel = async () => {
