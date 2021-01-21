@@ -7,6 +7,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
+import { updateNovel } from "../lib/firebase/initFirebase";
 
 const useFontSize = (fs: "base" | "xl" | "2xl", rfs: 16 | 20 | 24): ["base" | "xl" | "2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
@@ -73,8 +74,9 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     }, [realFontSize]);
 
     const updateNovelEdit = async () => {
+        const text = editorState.getCurrentContent().getPlainText();
+        await updateNovel(id, rootTitle, text);
         router.push(`/novel/${id}`);
-        console.log("update");
     };
 
     const backNovelPage = () => {
