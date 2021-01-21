@@ -5,7 +5,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
-import Tooltip from "./Tooltip";
+import ConfirmableModal from "./ConfirmableModal";
 
 const useFontSize = (fs: "base" | "xl" | "2xl"): ["base" | "xl" | "2xl", () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
@@ -86,13 +86,16 @@ export default function NovelEditor({ title, content }: { title: string; content
             </Scrollbar>
             <div className={"fixed bottom-0 w-12 mb-4 editor-bg border border-r-0 border-solid border-gray-300 rounded-l-lg novelView-header__show"}>
                 <div className="flex-col flex-center w-full my-2">
-                    <Tooltip text="保存" d="M5 13l4 4L19 7" />
-                    <Tooltip text="取消" d="M6 18L18 6M6 6l12 12" />
+                    <ConfirmableModal popperText="保存" d="M5 13l4 4L19 7" message="編集内容を保存しますか？" confirmText="保存する" cancelText="閉じる" />
+                    <ConfirmableModal popperText="取消" d="M6 18L18 6M6 6l12 12" message="小説ページに戻りますか？" confirmText="戻る" cancelText="閉じる" />
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
-                        <Tooltip
-                            text="削除"
+                        <ConfirmableModal
+                            popperText="削除"
                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            message="この小説を削除しますか？"
+                            confirmText="削除する"
+                            cancelText="閉じる"
                         />
                     </div>
                 </div>
