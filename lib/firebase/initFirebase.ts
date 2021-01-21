@@ -136,3 +136,8 @@ export async function getNovel(id: string): Promise<INovelData> {
     const novel = snapshot.data() as INovelData;
     return novel;
 }
+
+export async function updateNovel(id: string, title: string, content: string) {
+    const novelRef = db.collection("novel").doc(id);
+    await novelRef.update({ title, content, updated_at: firebase.firestore.FieldValue.serverTimestamp() });
+}
