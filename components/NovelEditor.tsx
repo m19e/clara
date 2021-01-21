@@ -69,6 +69,12 @@ export default function NovelEditor({ title, content }: { title: string; content
         };
     }, [realFontSize]);
 
+    const updateNovelEdit = () => {};
+
+    const backNovelPage = () => {};
+
+    const deleteNovel = () => {};
+
     return (
         <div ref={editorRef} className="w-full h-screen editor-bg">
             <Scrollbar className="w-full h-full">
