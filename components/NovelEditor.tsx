@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState, useEffect, createRef, RefObject, useCallback } from "react";
 import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
@@ -56,6 +57,8 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         setGothic,
     };
 
+    const router = useRouter();
+
     useEffect(() => {
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
@@ -70,10 +73,12 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     }, [realFontSize]);
 
     const updateNovelEdit = async () => {
+        router.push(`/novel/${id}`);
         console.log("update");
     };
 
     const backNovelPage = () => {
+        router.push(`/novel/${id}`);
         console.log("back");
     };
 
