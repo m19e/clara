@@ -38,7 +38,7 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
     return [font, setMincho, setGothic];
 };
 
-export default function NovelEditor({ title, content }: { title: string; content: string }) {
+export default function NovelEditor({ id, title, content }: { id: string; title: string; content: string }) {
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const [editorHeight, setEditorHeight] = useState(480);

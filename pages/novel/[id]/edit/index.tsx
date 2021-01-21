@@ -35,7 +35,7 @@ export default function NovelEdit({ author_uid, id, title, content }: NovelEditP
     }, []);
 
     if (validAuth) {
-        return <NovelEditor title={title} content={content} />;
+        return <NovelEditor id={id} title={title} content={content} />;
     } else {
         return (
             <div className="min-h-screen min-w-full flex-center bg-gray-100">
