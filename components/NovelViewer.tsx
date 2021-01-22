@@ -68,9 +68,9 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
     };
 
     return (
-        <div className="w-full h-screen flex-center editor-bg">
-            <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className={"w-full h-full" + (display ? "" : " opacity-0")}>
-                <div className="h-full flex justify-end items-center">
+        <div className="w-full h-screen flex justify-end editor-bg">
+            <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className={display ? "" : " opacity-0"}>
+                <div className="h-full flex items-center">
                     <div className="writing-v-rl" style={{ height: "75vh", minHeight: `${1.5 * 20}rem` }}>
                         <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                             <p className="text-sm pt-1 opacity-50">{novel.created_at}</p>
