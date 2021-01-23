@@ -15,6 +15,14 @@ type ConfirmableProps = {
 
 export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc, back = false, novelID }: ConfirmableProps) {
     const [showModal, setShowModal] = useState(false);
+    const [inTask, setInTask] = useState(false);
+
+    const execConfirm = async () => {
+        if (!inTask) {
+            setInTask(true);
+            await confirmFunc();
+        }
+    };
 
     return (
         <>
@@ -44,7 +52,7 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                         ) : (
                                             <span
                                                 className="w-28 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer"
-                                                onClick={() => confirmFunc()}
+                                                onClick={() => execConfirm()}
                                             >
                                                 {confirmText}
                                             </span>
