@@ -6,7 +6,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 import Tooltip from "./Tooltip";
 import NovelViewerConfig from "./NovelViewerConfig";
-import { INovelDataSerializable } from "../lib/firebase/initFirebase";
+import { INovelDataSerializable, auth } from "../lib/firebase/initFirebase";
 
 type FontSizeState = "base" | "xl" | "2xl";
 
@@ -42,8 +42,9 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const [display, setDisplay] = useState(false);
+    const [isAuthor, setIsAuthor] = useState(false);
     const viewerConfig = {
         fontSize,
         toggleFontSmall: setFontBase,
@@ -60,6 +61,13 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
             ps.current.scrollLeft += ps.current.scrollWidth;
             setDisplay(true);
         }
+
+        auth.onAuthStateChanged((user) => {
+            if (user && user.uid === novel.author_uid) {
+                setIsAuthor(true);
+            }
+            setShow(true);
+        });
     }, []);
 
     const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
@@ -105,16 +113,18 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg> */}
-                    <div className="mb-8">
-                        <Link href={`/novel/${novel.id}/edit`}>
-                            <a>
-                                <Tooltip
-                                    text="小説を編集"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                />
-                            </a>
-                        </Link>
-                    </div>
+                    {isAuthor && (
+                        <div className="mb-8">
+                            <Link href={`/novel/${novel.id}/edit`}>
+                                <a>
+                                    <Tooltip
+                                        text="小説を編集"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                    />
+                                </a>
+                            </Link>
+                        </div>
+                    )}
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     {/* <svg
                         className="w-full h-8 mt-2 transition opacity-50 hover:opacity-70"
