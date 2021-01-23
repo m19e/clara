@@ -75,7 +75,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                     <div className="writing-v-rl" style={{ height: "75vh", minHeight: `${1.5 * 20}rem` }}>
                         <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                             <p className="text-sm pt-1 opacity-50">{novel.created_at}</p>
-                            <p className="text-4xl font-bold opacity-75">{novel.title}</p>
+                            <p className="text-4xl font-bold whitespace-pre-wrap opacity-75">{novel.title}</p>
                             <p className="text-xl font-semibold pt-1 opacity-50">{novel.author_name}</p>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
