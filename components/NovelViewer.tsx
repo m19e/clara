@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useState, useRef, useCallback, useEffect } from "react";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -105,10 +106,14 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg> */}
                     <div className="mb-8">
-                        <Tooltip
-                            text="小説を編集"
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        />
+                        <Link href={`/novel/${novel.id}/edit`} prefetch>
+                            <a>
+                                <Tooltip
+                                    text="小説を編集"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                />
+                            </a>
+                        </Link>
                     </div>
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     {/* <svg
