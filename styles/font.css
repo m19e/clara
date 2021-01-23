@@ -12,8 +12,22 @@
     unicode-range: U+2026;
 }
 
+@font-face {
+    font-family: "MyBoxDrawings";
+    font-weight: normal;
+    src: local("YuMin-Medium"), local("YuMincho-Regular");
+    unicode-range: U+2500;
+}
+
+@font-face {
+    font-family: "MyBoxDrawings";
+    font-weight: bold;
+    src: local("YuMin-Demibold"), local("YuMincho-Demibold");
+    unicode-range: U+2500;
+}
+
 .mincho {
-    font-family: MyEllipsis, "Times New Roman", TimesNewRoman, "Yu Mincho", YuMincho, serif;
+    font-family: MyEllipsis, MyBoxDrawings, "Times New Roman", TimesNewRoman, "Yu Mincho", YuMincho, serif;
 }
 
 @font-face {
@@ -29,5 +43,5 @@
 }
 
 .gothic {
-    font-family: MyEllipsis, "Helvetica Neue", Helvetica, Arial, "MyYuGothicM", YuGothic, sans-serif;
+    font-family: MyEllipsis, MyBoxDrawings, "Helvetica Neue", Helvetica, Arial, "MyYuGothicM", YuGothic, sans-serif;
 }
