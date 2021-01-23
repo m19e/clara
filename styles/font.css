@@ -1,14 +1,14 @@
 @font-face {
     font-family: "MyEllipsis";
     font-weight: normal;
-    src: local("YuGothic-Medium"), local("Yu Gothic Medium"), local("YuGothic-Regular");
+    src: local("YuMin-Medium"), local("YuMincho-Regular");
     unicode-range: U+2026;
 }
 
 @font-face {
     font-family: "MyEllipsis";
     font-weight: bold;
-    src: local("YuGothic-Bold"), local("Yu Gothic");
+    src: local("YuMin-Demibold"), local("YuMincho-Demibold");
     unicode-range: U+2026;
 }
 
