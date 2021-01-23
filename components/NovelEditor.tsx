@@ -123,7 +123,8 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                         message="小説ページに戻りますか？"
                         confirmText="戻る"
                         cancelText="閉じる"
-                        confirmFunc={confirmBack}
+                        back
+                        novelID={id}
                     />
                     <NovelViewerConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
