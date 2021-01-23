@@ -1,7 +1,13 @@
 import { useState, useRef } from "react";
 import Popper from "popper.js";
 
-export default function Tooltip({ text, d, classOverride = "" }: { text: string; d: string; classOverride?: string }) {
+type TooltipProps = {
+    text: string;
+    d: string;
+    classOverride?: string;
+};
+
+export default function Tooltip({ text, d, classOverride = "" }: TooltipProps) {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
