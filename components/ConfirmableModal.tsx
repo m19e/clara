@@ -38,20 +38,20 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                 <div className="flex-center">
                                     <div className="flex justify-between w-72 opacity-80 mt-12">
                                         <span
-                                            className="w-20 text-center font-semibold opacity-75 editor-bg border-b border-solid border-gray-300 cursor-pointer"
+                                            className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-300 cursor-pointer"
                                             onClick={() => setShowModal(false)}
                                         >
                                             {cancelText}
                                         </span>
                                         {back ? (
                                             <Link href={`/novel/${novelID}`}>
-                                                <a className="w-20 text-center font-semibold opacity-75 editor-bg border-b border-solid border-gray-300 cursor-pointer">
+                                                <a className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-300 cursor-pointer">
                                                     {confirmText}
                                                 </a>
                                             </Link>
                                         ) : (
                                             <span
-                                                className="w-20 text-center font-semibold opacity-75 editor-bg border-b border-solid border-gray-300 cursor-pointer"
+                                                className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-300 cursor-pointer"
                                                 onClick={() => execConfirm()}
                                             >
                                                 {confirmText}
