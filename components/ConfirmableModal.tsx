@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import Tooltip from "./Tooltip";
 
@@ -7,10 +8,12 @@ type ConfirmableProps = {
     message: string;
     confirmText: string;
     cancelText: string;
-    confirmFunc: () => void;
+    confirmFunc?: () => void;
+    back?: boolean;
+    novelID?: string;
 };
 
-export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc }: ConfirmableProps) {
+export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc, back = false, novelID }: ConfirmableProps) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -32,12 +35,20 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                         >
                                             {cancelText}
                                         </span>
-                                        <span
-                                            className="w-28 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer"
-                                            onClick={() => confirmFunc()}
-                                        >
-                                            {confirmText}
-                                        </span>
+                                        {back ? (
+                                            <Link href={`/novel/${novelID}`}>
+                                                <a className="w-28 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer">
+                                                    {confirmText}
+                                                </a>
+                                            </Link>
+                                        ) : (
+                                            <span
+                                                className="w-28 py-1 text-center font-semibold opacity-75 editor-bg border border-solid border-gray-300 rounded-3xl cursor-pointer"
+                                                onClick={() => confirmFunc()}
+                                            >
+                                                {confirmText}
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>
