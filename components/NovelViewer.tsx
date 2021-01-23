@@ -106,7 +106,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg> */}
                     <div className="mb-8">
-                        <Link href={`/novel/${novel.id}/edit`} prefetch>
+                        <Link href={`/novel/${novel.id}/edit`}>
                             <a>
                                 <Tooltip
                                     text="小説を編集"
