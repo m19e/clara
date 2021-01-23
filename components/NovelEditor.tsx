@@ -103,8 +103,8 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                     </div>
                 </div>
             </Scrollbar>
-            <div className={"fixed bottom-0 w-12 mb-4 editor-bg border border-r-0 border-solid border-gray-300 rounded-l-lg novelView-header__show"}>
-                <div className="flex-col flex-center w-full my-2">
+            <div className={"fixed bottom-0 w-12 mb-4 mr-2 novelView-header__show"}>
+                <div className="flex-col flex-center w-full">
                     <ConfirmableModal
                         popperText="保存"
                         d="M5 13l4 4L19 7"
