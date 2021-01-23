@@ -114,7 +114,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                         confirmFunc={confirmUpdate}
                     />
                     <ConfirmableModal
-                        popperText="取消"
+                        popperText="戻る"
                         d="M6 18L18 6M6 6l12 12"
                         message="小説ページに戻りますか？"
                         confirmText="戻る"
