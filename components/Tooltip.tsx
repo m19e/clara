@@ -5,9 +5,12 @@ type TooltipProps = {
     text: string;
     d: string;
     classOverride?: string;
+    fill?: "none" | string;
+    stroke?: "currentColor" | string;
+    viewBox?: "0 0 24 24" | string;
 };
 
-export default function Tooltip({ text, d, classOverride = "" }: TooltipProps) {
+export default function Tooltip({ text, d, classOverride = "", fill = "none", stroke = "currentColor", viewBox = "0 0 24 24" }: TooltipProps) {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
@@ -26,9 +29,9 @@ export default function Tooltip({ text, d, classOverride = "" }: TooltipProps) {
             <svg
                 className={classOverride === "" ? "w-full h-8 transition-opacity opacity-50 hover:opacity-70 cursor-pointer" : classOverride}
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+                fill={fill}
+                viewBox={viewBox}
+                stroke={stroke}
                 onMouseEnter={openLeftTooltip}
                 onMouseLeave={closeLeftTooltip}
                 ref={btnRef}
