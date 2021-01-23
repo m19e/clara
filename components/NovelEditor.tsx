@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect, createRef, RefObject, useCallback } from "react";
+import { useState, useEffect, createRef, useRef, RefObject, useCallback } from "react";
 import { Editor, EditorState, ContentState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -43,6 +43,8 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
 export default function NovelEditor({ id, title, content }: { id: string; title: string; content: string }) {
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
+    const ps = useRef<HTMLElement>();
+    const [showScrollbar, setShowScrollbar] = useState(false);
     const [editorHeight, setEditorHeight] = useState(480);
     const [rootTitle, setRootTitle] = useState(title);
 
@@ -68,6 +70,11 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         });
         editorRef.current && resizeObs.observe(editorRef.current);
 
+        if (ps.current) {
+            ps.current.scrollLeft += ps.current.scrollWidth;
+            setShowScrollbar(true);
+        }
+
         return () => {
             resizeObs.disconnect();
         };
@@ -84,9 +91,19 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         router.push("/");
     };
 
+    const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
+        if (ps.current) {
+            ps.current.scrollLeft -= e.deltaY;
+        }
+    };
+
     return (
         <div ref={editorRef} className="w-full h-screen flex justify-end editor-bg">
-            <Scrollbar>
+            <Scrollbar
+                containerRef={(ref) => (ps.current = ref)}
+                onWheel={onMouseWheel}
+                className={showScrollbar ? "transition-opacity opacity-100" : " opacity-0"}
+            >
                 <div className="h-full flex items-center">
                     <div className="writing-v-rl" style={{ height: `${editorHeight}px`, maxHeight: "720px", minHeight: "480px" }}>
                         <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
