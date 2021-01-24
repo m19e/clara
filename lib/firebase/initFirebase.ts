@@ -48,18 +48,25 @@ export async function logout() {
     }
 }
 
-export async function getUserDataByUID(uid: string) {
+type UserProfile = {
+    uid: string;
+    displayName: string;
+    photoURL: string;
+    userID: string;
+};
+
+export async function getUserDataByUID(uid: string): Promise<UserProfile> {
     const query = db.collection("user").where("uid", "==", uid);
     const snapshot = await query.get();
-    const userData = snapshot.docs[0].data();
+    const userData = snapshot.docs[0].data() as UserProfile;
 
     return userData;
 }
 
-export async function getUserDataByID(id: string) {
+export async function getUserDataByID(id: string): Promise<UserProfile> {
     const query = db.collection("user").doc(id);
     const userDoc = await query.get();
-    const userData = userDoc.data();
+    const userData = userDoc.data() as UserProfile;
 
     return userData;
 }
