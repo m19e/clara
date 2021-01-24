@@ -22,7 +22,7 @@ export default function Top() {
                     <div className="container flex-center">
                         <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
                             {displayList.map((_, i) => (
-                                <div className="w-3/4 mt-8 xl:max-w-lg xl:mx-4 2xl:max-w-xl border-b border-solid border-gray-300">
+                                <div className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
                                     <p className="text-2xl font-semibold whitespace-pre-wrap opacity-75">小説{i + 1}のタイトル</p>
                                     <div className="flex justify-between mt-1 items-baseline">
                                         <p className="opacity-75">小説の作者</p>
@@ -30,7 +30,7 @@ export default function Top() {
                                     </div>
                                 </div>
                             ))}
-                            <div className="w-full max-w-xl mx-4"></div>
+                            <div className="w-full max-w-xl mx-8"></div>
                             {hasMore && (
                                 <div className="w-full flex-center my-8 editor-bg">
                                     <button
