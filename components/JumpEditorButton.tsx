@@ -14,7 +14,7 @@ export default function JumpEditorButton() {
 
     return (
         <>
-            <div className="flex-center mx-4 px-6 bg-gray-200 bg-opacity-60 rounded-2xl cursor-pointer" onClick={() => checkProfile()}>
+            <div className="flex-center px-6 bg-gray-200 bg-opacity-60 rounded-2xl cursor-pointer" onClick={() => checkProfile()}>
                 <span className="gothic font-black opacity-60 py-2" style={{ fontSize: "14px" }}>
                     小説を書く
                 </span>
