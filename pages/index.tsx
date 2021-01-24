@@ -33,8 +33,12 @@ export default function Top() {
                             <div className="w-full max-w-xl mx-4"></div>
                             {hasMore && (
                                 <div className="w-full flex-center my-8 editor-bg">
-                                    <button className="p-2 border border-solid border-gray-300" onClick={() => displayMore()}>
-                                        Load More
+                                    <button
+                                        className="gothic text-gray-500 bg-transparent border border-solid border-gray-500 transition-all hover:bg-gray-400 hover:border-gray-400 hover:text-white font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none"
+                                        type="button"
+                                        onClick={() => displayMore()}
+                                    >
+                                        もっと見る
                                     </button>
                                 </div>
                             )}
