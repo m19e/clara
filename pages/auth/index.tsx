@@ -1,7 +1,7 @@
 import React, { useEffect, FC, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { auth, loginWithTwitter, logout, getUserData } from "../../lib/firebase/initFirebase";
+import { auth, loginWithTwitter, logout, getUserDataByUID } from "../../lib/firebase/initFirebase";
 
 type User = {
     uid: string;
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Profile = ({ id }: Props) => {
-    const { data, error } = useSWR(id, getUserData);
+    const { data, error } = useSWR(id, getUserDataByUID);
 
     if (error) return <div>{error.message}</div>;
     else if (!data) return <p>Loading...</p>;
