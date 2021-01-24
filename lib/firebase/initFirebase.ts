@@ -131,6 +131,12 @@ export async function getAllNovelIDs(): Promise<string[]> {
     return ids;
 }
 
+export async function getAllNovel(sort: "desc" | "asc"): Promise<INovelData[]> {
+    const snapshot = await db.collection("novel").orderBy("created_at", sort).get();
+    const novels = snapshot.docs.map((doc) => doc.data() as INovelData);
+    return novels;
+}
+
 export async function getNovel(id: string): Promise<INovelData> {
     const snapshot = await db.collection("novel").doc(id).get();
     const novel = snapshot.data() as INovelData;
