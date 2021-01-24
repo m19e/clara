@@ -6,7 +6,7 @@ export default function Layout({ children }) {
             <nav className="h-16 w-full flex-center editor-bg">
                 <div className="container flex-center">
                     <div className="w-11/12 flex flex-wrap items-center justify-between">
-                        <h1 className="mincho font-black text-3xl text-gray-600 mx-4">Clara</h1>
+                        <h1 className="mincho font-black text-3xl text-gray-600">Clara</h1>
                         <JumpEditorButton />
                     </div>
                 </div>
