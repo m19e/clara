@@ -20,7 +20,7 @@ export default function Top() {
             <div className="flex-center">
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
-                        <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg">
+                        <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
                             {displayList.map((_, i) => (
                                 <div className="w-3/4 mt-8 xl:max-w-lg xl:mx-4 2xl:max-w-xl border-b border-solid border-gray-300">
                                     <p className="text-2xl font-semibold whitespace-pre-wrap opacity-75">小説{i + 1}のタイトル</p>
