@@ -15,9 +15,7 @@ export default function JumpEditorButton() {
     return (
         <>
             <div className="flex-center px-6 bg-gray-200 bg-opacity-60 rounded-2xl cursor-pointer" onClick={() => checkProfile()}>
-                <span className="gothic font-black opacity-60 py-2" style={{ fontSize: "14px" }}>
-                    小説を書く
-                </span>
+                <span className="gothic font-black text-sm opacity-60 py-2">小説を書く</span>
                 <svg className="w-4 h-4 opacity-50 hover:opacity-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                         strokeLinecap="round"
