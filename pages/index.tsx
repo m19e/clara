@@ -42,7 +42,7 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                                     </div>
                                 </div>
                             ))}
-                            <div className="w-full max-w-xl mx-8"></div>
+                            <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
                             <div className="w-full flex-center my-8 editor-bg">
                                 {hasMore && (
                                     <button
