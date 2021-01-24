@@ -48,7 +48,7 @@ export async function logout() {
     }
 }
 
-export async function getUserData(uid: string) {
+export async function getUserDataByUID(uid: string) {
     const query = db.collection("user").where("uid", "==", uid);
     const snapshot = await query.get();
     const userData = snapshot.docs[0].data();
