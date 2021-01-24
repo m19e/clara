@@ -40,8 +40,8 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                                 </div>
                             ))}
                             <div className="w-full max-w-xl mx-8"></div>
-                            {hasMore && (
-                                <div className="w-full flex-center my-8 editor-bg">
+                            <div className="w-full flex-center my-8 editor-bg">
+                                {hasMore && (
                                     <button
                                         className="gothic text-gray-500 bg-transparent border border-solid border-gray-500 transition-all hover:bg-gray-400 hover:border-gray-400 hover:text-white font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none"
                                         type="button"
@@ -49,8 +49,8 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                                     >
                                         もっと見る
                                     </button>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
