@@ -7,7 +7,7 @@ import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, getUserData, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
+import { auth, getUserDataByUID, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
 import { useProfile } from "../store/user";
 import { useDraftID, useTitle, useContent } from "../store/draft";
@@ -74,7 +74,7 @@ export default function VerticalEditor() {
 
     const initEditor = async (user: fb.User) => {
         const { uid, displayName, photoURL } = user;
-        const userData = await getUserData(uid);
+        const userData = await getUserDataByUID(uid);
         const im = userData.isMincho;
         const { userID, recent, fontSize, lineWords } = userData;
         const profile = { uid, displayName, photoURL, userID };
