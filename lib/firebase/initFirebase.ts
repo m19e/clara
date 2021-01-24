@@ -56,6 +56,12 @@ export async function getUserData(uid: string) {
     return userData;
 }
 
+export async function getAllUserID() {
+    const snapshot = await db.collection("user").get();
+    const ids = snapshot.docs.map((doc) => doc.id);
+    return ids;
+}
+
 export async function getRecentDraftID(id: string) {
     const userRef = db.collection("user").doc(id);
     const user = await userRef.get();
