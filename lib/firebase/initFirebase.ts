@@ -48,7 +48,7 @@ export async function logout() {
     }
 }
 
-type UserProfile = {
+export type UserProfile = {
     uid: string;
     displayName: string;
     photoURL: string;
@@ -172,4 +172,10 @@ export async function updateNovel(id: string, title: string, content: string) {
 export async function deleteNovel(id: string) {
     const novelRef = db.collection("novel").doc(id);
     await novelRef.delete();
+}
+
+export async function getAllUserNovelByID(id: string, sort: "desc" | "asc"): Promise<INovelData[]> {
+    const snapshot = await db.collection("novel").where("userID", "==", id).orderBy("created_at", sort).get();
+    const novels = snapshot.docs.map((doc) => doc.data() as INovelData);
+    return novels;
 }
