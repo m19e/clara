@@ -1,10 +1,19 @@
+import { GetStaticProps } from "next";
 import { useState } from "react";
+import firebase from "firebase/app";
 import Layout from "../components/Layout";
+import { INovelDataSerializable, getAllNovel } from "../lib/firebase/initFirebase";
 
-export default function Top() {
-    const [rootList] = useState([...Array(100)]);
-    const [displayList, setDisplayList] = useState(rootList.slice(0, 20));
-    const [hasMore, setHasMore] = useState(rootList.length > 10);
+const getCharCount = (text: string): number => {
+    const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
+    const cleanString = text.replace(regex, "").trim(); // replace above characters w/ nothing
+    return Array.from(cleanString).length;
+};
+
+export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
+    const [rootList] = useState(novels);
+    const [displayList, setDisplayList] = useState(novels.slice(0, 20));
+    const [hasMore, setHasMore] = useState(novels.length > 20);
 
     const displayMore = () => {
         const displayListLen = displayList.length;
@@ -21,12 +30,12 @@ export default function Top() {
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
                         <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
-                            {displayList.map((_, i) => (
-                                <div className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                                    <p className="text-2xl font-semibold whitespace-pre-wrap opacity-75">小説{i + 1}のタイトル</p>
+                            {displayList.map((novel, i) => (
+                                <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
+                                    <p className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</p>
                                     <div className="flex justify-between mt-1 items-baseline">
-                                        <p className="opacity-75">小説の作者</p>
-                                        <p className="text-sm opacity-50">小説の文字数</p>
+                                        <p className="opacity-75">{novel.author_name}</p>
+                                        <p className="text-sm opacity-50">{getCharCount(novel.content)}字</p>
                                     </div>
                                 </div>
                             ))}
@@ -49,3 +58,32 @@ export default function Top() {
         </Layout>
     );
 }
+
+const getDisplayTime = (milli: number): string => {
+    const dt = new Date(milli);
+    const y = dt.getFullYear() + "/";
+    const m = dt.getMonth() + 1 + "/";
+    const d = dt.getDate() + " ";
+    const ho = ("00" + dt.getHours()).slice(-2) + ":";
+    const mi = ("00" + dt.getMinutes()).slice(-2);
+    return y + m + d + ho + mi;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+    const novels = await getAllNovel("desc");
+    const serializables: INovelDataSerializable[] = novels.map((novel) => {
+        const update = {
+            created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
+            updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
+        };
+        const s = Object.assign(novel, update) as INovelDataSerializable;
+        return s;
+    });
+
+    return {
+        props: {
+            novels: serializables,
+        },
+        revalidate: 600,
+    };
+};
