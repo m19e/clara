@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import { useState } from "react";
 import firebase from "firebase/app";
 import Layout from "../components/Layout";
@@ -32,7 +33,9 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                         <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
                             {displayList.map((novel, i) => (
                                 <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                                    <p className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</p>
+                                    <Link href={`/novel/${novel.id}`}>
+                                        <a className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
+                                    </Link>
                                     <div className="flex justify-between mt-1 items-baseline">
                                         <p className="opacity-75">{novel.author_name}</p>
                                         <p className="text-sm opacity-50">{getCharCount(novel.content)}字</p>
