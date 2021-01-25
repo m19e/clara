@@ -30,7 +30,6 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                             </div>
                             <div className="mt-6 border-t border-gray-300 text-center">
                                 <div className="flex flex-col items-center justify-end">
-                                    {/* <div className="w-full lg:w-9/12 px-4"></div> */}
                                     {novels.map((novel, i) => (
                                         <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
                                             <div className="flex justify-start">
