@@ -39,6 +39,18 @@ const createUser = async (res: firebase.auth.UserCredential) => {
     });
 };
 
+const updateUser = async (res: firebase.auth.UserCredential) => {
+    const { displayName, photoURL } = res.user;
+    const userID = res.additionalUserInfo.username;
+    await db.collection("user").doc(userID).set(
+        {
+            displayName,
+            photoURL,
+        },
+        { merge: true }
+    );
+};
+
 export async function logout() {
     try {
         await auth.signOut();
