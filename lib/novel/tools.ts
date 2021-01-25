@@ -1,6 +1,6 @@
 export const getTextCharCount = (text: string): number => {
-    const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
-    const cleanString = text.replace(regex, "").trim(); // replace above characters w/ nothing
+    const regex = /(?:\r\n|\r|\n)/g;
+    const cleanString = text.replace(regex, "").trim();
     return Array.from(cleanString).length;
 };
 
