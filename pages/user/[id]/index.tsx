@@ -44,6 +44,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                             </div>
                                         </div>
                                     ))}
+                                    <div className="w-full flex-center my-8 editor-bg"></div>
                                 </div>
                             </div>
                         </div>
