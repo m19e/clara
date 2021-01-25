@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GetStaticProps } from "next";
 import firebase from "firebase/app";
 import Layout from "../../../components/Layout";
@@ -6,12 +7,7 @@ import { getAllUserID, getAllUserNovelByID, getUserDataByID, UserProfile, INovel
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     return (
         <Layout>
-            {/* <div className="flex-center flex-col mt-4">
-                <img className="w-36 h-36 mb-2 rounded-full" src={user.photoURL.replace(/_normal/, "")} alt="" />
-                <h3 className="text-2xl font-semibold text-gray-800">{user.displayName}</h3>
-                <span className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold">@{user.userID}</span>
-            </div> */}
-            <div className="h-full pt-16 mt-72">
+            <div className="flex-center pt-16 mt-72">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                         <div className="px-6">
@@ -32,8 +28,22 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                 <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold">@{user.userID}</div>
                             </div>
                             <div className="mt-6 border-t border-gray-300 text-center">
-                                <div className="flex flex-col items-center">
-                                    <div className="w-full lg:w-9/12 px-4"></div>
+                                <div className="flex flex-col items-center justify-end">
+                                    {/* <div className="w-full lg:w-9/12 px-4"></div> */}
+                                    {novels.map((novel, i) => (
+                                        <div key={"novel-0" + i} className="w-2/3 max-w-xl mt-12 border-b border-solid border-gray-300">
+                                            <div className="flex">
+                                                <Link href={`/novel/${novel.id}`}>
+                                                    <a className="w-full text-left text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">
+                                                        {novel.title}
+                                                    </a>
+                                                </Link>
+                                            </div>
+                                            <div className="flex justify-end mt-2 items-baseline">
+                                                <p className="text-sm opacity-50">{novel.created_at}</p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
