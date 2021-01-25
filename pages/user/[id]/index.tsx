@@ -3,6 +3,7 @@ import { GetStaticProps } from "next";
 import firebase from "firebase/app";
 import Layout from "../../../components/Layout";
 import { getAllUserID, getAllUserNovelByID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
+import { getDisplayTime } from "../../../lib/novel/tools";
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     return (
@@ -52,16 +53,6 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
         </Layout>
     );
 }
-
-const getDisplayTime = (milli: number): string => {
-    const dt = new Date(milli);
-    const y = dt.getFullYear() + "/";
-    const m = dt.getMonth() + 1 + "/";
-    const d = dt.getDate() + " ";
-    const ho = ("00" + dt.getHours()).slice(-2) + ":";
-    const mi = ("00" + dt.getMinutes()).slice(-2);
-    return y + m + d + ho + mi;
-};
 
 export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
     const user = await getUserDataByID(params.id);

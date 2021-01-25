@@ -4,6 +4,7 @@ import firebase from "firebase/app";
 import NovelViewer from "../../../components/NovelViewer";
 import Loader from "../../../components/Loader";
 import { INovelDataSerializable, getAllNovelIDs, getNovel } from "../../../lib/firebase/initFirebase";
+import { getDisplayTime } from "../../../lib/novel/tools";
 
 export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
     const router = useRouter();
@@ -17,16 +18,6 @@ export default function NovelIndex({ novel }: { novel: INovelDataSerializable })
 
     return <NovelViewer novel={novel} />;
 }
-
-const getDisplayTime = (milli: number): string => {
-    const dt = new Date(milli);
-    const y = dt.getFullYear() + "/";
-    const m = dt.getMonth() + 1 + "/";
-    const d = dt.getDate() + " ";
-    const ho = ("00" + dt.getHours()).slice(-2) + ":";
-    const mi = ("00" + dt.getMinutes()).slice(-2);
-    return y + m + d + ho + mi;
-};
 
 export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
     const novel = await getNovel(params.id);
