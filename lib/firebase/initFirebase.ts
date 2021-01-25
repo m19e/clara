@@ -20,7 +20,9 @@ export async function loginWithTwitter() {
     try {
         const res = await auth.signInWithPopup(provider);
         const userDoc = await db.collection("user").doc(res.additionalUserInfo.username).get();
-        if (!userDoc.exists) {
+        if (userDoc.exists) {
+            await updateUser(res);
+        } else {
             await createUser(res);
         }
     } catch (error) {
