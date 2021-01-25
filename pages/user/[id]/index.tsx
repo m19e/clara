@@ -37,7 +37,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                                     <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
                                                 </Link>
                                             </div>
-                                            <div className="flex justify-end mt-2 items-baseline">
+                                            <div className="flex justify-end mt-4 items-baseline">
                                                 <p className="text-sm opacity-50">{novel.created_at}</p>
                                             </div>
                                         </div>
