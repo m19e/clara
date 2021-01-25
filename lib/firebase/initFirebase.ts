@@ -41,8 +41,7 @@ const createUser = async (res: firebase.auth.UserCredential) => {
 
 export async function logout() {
     try {
-        const user = await auth.signOut();
-        console.log(user);
+        await auth.signOut();
     } catch (error) {
         console.error("login failed", error);
     }
