@@ -8,8 +8,8 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
     return (
         <Layout>
             <div className="flex-center pt-16 mt-72">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                <div className="container max-w-4xl mx-auto px-4">
+                    <div className="flex flex-col min-w-0 break-words editor-bg w-full mb-6 shadow-xl rounded-lg -mt-64">
                         <div className="px-6">
                             <div className="flex flex-wrap justify-center">
                                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
