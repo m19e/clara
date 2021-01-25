@@ -7,7 +7,7 @@ import { getAllUserID, getAllUserNovelByID, getUserDataByID, UserProfile, INovel
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     return (
         <Layout>
-            <div className="flex-center pt-16 pb-8 mt-72">
+            <div className="flex-center pt-16 pb-4 mt-72">
                 <div className="container max-w-4xl mx-auto px-4">
                     <div className="flex flex-col min-w-0 break-words editor-bg w-full mb-6 rounded-lg -mt-64">
                         <div className="px-6">
