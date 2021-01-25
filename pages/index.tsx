@@ -4,12 +4,7 @@ import { useState } from "react";
 import firebase from "firebase/app";
 import Layout from "../components/Layout";
 import { INovelDataSerializable, getAllNovel } from "../lib/firebase/initFirebase";
-
-const getCharCount = (text: string): number => {
-    const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
-    const cleanString = text.replace(regex, "").trim(); // replace above characters w/ nothing
-    return Array.from(cleanString).length;
-};
+import { getDisplayTime, getTextCharCount } from "../lib/novel/tools";
 
 export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
@@ -38,7 +33,7 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                                     </Link>
                                     <div className="flex justify-between mt-4 items-baseline">
                                         <p className="opacity-75">{novel.author_name}</p>
-                                        <p className="text-sm opacity-50">{getCharCount(novel.content)}字</p>
+                                        <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
                                     </div>
                                 </div>
                             ))}
@@ -61,16 +56,6 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
         </Layout>
     );
 }
-
-const getDisplayTime = (milli: number): string => {
-    const dt = new Date(milli);
-    const y = dt.getFullYear() + "/";
-    const m = dt.getMonth() + 1 + "/";
-    const d = dt.getDate() + " ";
-    const ho = ("00" + dt.getHours()).slice(-2) + ":";
-    const mi = ("00" + dt.getMinutes()).slice(-2);
-    return y + m + d + ho + mi;
-};
 
 export const getStaticProps: GetStaticProps = async () => {
     const novels = await getAllNovel("desc");
