@@ -133,8 +133,8 @@ export async function createDraftData(id: string) {
     await setRecentDraftID(draftID, id);
 }
 
-export async function readDraftData(id, did: string) {
-    const draftRef = db.collection("user").doc(id).collection("draft").doc(did);
+export async function readDraftData(uid, did: string) {
+    const draftRef = db.collection("user").doc(uid).collection("draft").doc(did);
     const draft = await draftRef.get();
     const { title, content } = draft.data();
     return { title, content };
