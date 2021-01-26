@@ -2,7 +2,7 @@ import Link from "next/link";
 import { GetStaticProps } from "next";
 import firebase from "firebase/app";
 import Layout from "../../../components/Layout";
-import { getAllUserID, getAllUserNovelByID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
+import { getAllUserID, getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
@@ -56,7 +56,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
 export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
     const user = await getUserDataByID(params.id);
     if (!user) return { notFound: true };
-    const novels = await getAllUserNovelByID(user.uid, "desc");
+    const novels = await getAllUserNovelByUID(user.uid, "desc");
     const serializables: INovelDataSerializable[] = novels.map((novel) => {
         const update = {
             created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),

@@ -207,7 +207,7 @@ export async function deleteNovel(id: string) {
     await novelRef.delete();
 }
 
-export async function getAllUserNovelByID(uid: string, sort: "desc" | "asc"): Promise<INovelData[]> {
+export async function getAllUserNovelByUID(uid: string, sort: "desc" | "asc"): Promise<INovelData[]> {
     const snapshot = await db.collection("novel").where("author_uid", "==", uid).orderBy("created_at", sort).get();
     const novels = snapshot.docs.map((doc) => doc.data() as INovelData);
     return novels;
