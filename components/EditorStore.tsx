@@ -7,7 +7,7 @@ import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, getUserDataByUID, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
+import { auth, getUserDataByUID, readDraftData, updateDraftData } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
 import { useProfile } from "../store/user";
 import { useDraftID, useTitle, useContent } from "../store/draft";
@@ -85,17 +85,6 @@ export default function VerticalEditor() {
         await readDraft(uid, recent);
         setLoading(false);
         // focusEditor();
-    };
-
-    const setEdittingDraft = async (did, id: string) => {
-        await setRecentDraftID(did, id);
-    };
-
-    const createDraft = async (es: EditorState) => {
-        const content = createTextWithEditorState(es);
-        const did = await createDraftData(userProfile.userID);
-        setDraftID(did);
-        await setEdittingDraft(did, userProfile.userID);
     };
 
     const readDraft = async (uid, did: string) => {
