@@ -56,7 +56,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
 export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
     const user = await getUserDataByID(params.id);
     if (!user) return { notFound: true };
-    const novels = await getAllUserNovelByID(params.id, "desc");
+    const novels = await getAllUserNovelByID(user.uid, "desc");
     const serializables: INovelDataSerializable[] = novels.map((novel) => {
         const update = {
             created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
