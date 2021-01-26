@@ -25,7 +25,7 @@ export async function loginWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
     try {
         const res = await auth.signInWithPopup(provider);
-        const userDoc = await db.collection("user").doc(res.additionalUserInfo.username).get();
+        const userDoc = await db.collection("user").doc(res.user.uid).get();
         if (userDoc.exists) {
             const { displayName, userID, uid } = userDoc.data() as { [key: string]: string };
             const { name, screen_name, profile_image_url_https } = res.additionalUserInfo.profile as UserTwitterProfile;
@@ -49,20 +49,26 @@ export async function loginWithTwitter() {
 const createUser = async (res: firebase.auth.UserCredential) => {
     const { uid, displayName, photoURL } = res.user;
     const userID = res.additionalUserInfo.username;
-    await db.collection("user").doc(userID).set({
+    const userRef = db.collection("user").doc(res.user.uid);
+    await userRef.set({
         uid,
         displayName,
         photoURL,
         userID,
     });
+    const draftRef = userRef.collection("draft").doc();
+    const draftID = draftRef.id;
+    await draftRef.set({ title: "無題", content: "執筆を始める" });
+    await userRef.set({ recent: draftID }, { merge: true });
 };
 
 const updateUser = async (res: firebase.auth.UserCredential) => {
     const { displayName, photoURL } = res.user;
     const userID = res.additionalUserInfo.username;
-    await db.collection("user").doc(userID).set(
+    await db.collection("user").doc(res.user.uid).set(
         {
             displayName,
+            userID,
             photoURL,
         },
         { merge: true }
