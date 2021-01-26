@@ -97,9 +97,9 @@ export async function getUserDataByUID(uid: string) {
 }
 
 export async function getUserDataByID(id: string): Promise<UserProfile> {
-    const query = db.collection("user").doc(id);
-    const userDoc = await query.get();
-    const userData = userDoc.data() as UserProfile;
+    const query = db.collection("user").where("userID", "==", id);
+    const userDocs = await query.get();
+    const userData = userDocs.docs[0].data() as UserProfile;
 
     return userData;
 }
