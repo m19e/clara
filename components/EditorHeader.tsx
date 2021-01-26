@@ -21,7 +21,7 @@ export default function Header() {
             const tempTitleTrimmed = temptitle.trim();
             if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
                 setTitle(tempTitleTrimmed);
-                await updateDraftTitle(profile.userID, draftID, tempTitleTrimmed);
+                await updateDraftTitle(profile.uid, draftID, tempTitleTrimmed);
             }
             setTimeout(() => {
                 setIsTitleEdit((prev) => !prev);

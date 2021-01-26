@@ -150,8 +150,8 @@ export async function updateFormat(uid: string, isMincho: boolean, fontSize, lin
     await userRef.set({ isMincho, fontSize, lineWords }, { merge: true });
 }
 
-export async function updateDraftTitle(userID, did, newTitle: string) {
-    const draftRef = db.collection("user").doc(userID).collection("draft").doc(did);
+export async function updateDraftTitle(uid, did, newTitle: string) {
+    const draftRef = db.collection("user").doc(uid).collection("draft").doc(did);
     await draftRef.set({ title: newTitle }, { merge: true });
 }
 
