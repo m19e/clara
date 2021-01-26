@@ -49,7 +49,7 @@ export async function loginWithTwitter() {
 const createUser = async (res: firebase.auth.UserCredential) => {
     const { uid, displayName, photoURL } = res.user;
     const userID = res.additionalUserInfo.username;
-    const userRef = db.collection("user").doc(res.user.uid);
+    const userRef = db.collection("user").doc(uid);
     await userRef.set({
         uid,
         displayName,
@@ -63,9 +63,9 @@ const createUser = async (res: firebase.auth.UserCredential) => {
 };
 
 const updateUser = async (res: firebase.auth.UserCredential) => {
-    const { displayName, photoURL } = res.user;
+    const { uid, displayName, photoURL } = res.user;
     const userID = res.additionalUserInfo.username;
-    await db.collection("user").doc(res.user.uid).set(
+    await db.collection("user").doc(uid).set(
         {
             displayName,
             userID,
