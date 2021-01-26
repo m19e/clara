@@ -91,10 +91,10 @@ export type UserProfile = {
     userID: string;
 };
 
-export async function getUserDataByUID(uid: string): Promise<UserProfile> {
-    const query = db.collection("user").where("uid", "==", uid);
+export async function getUserDataByUID(uid: string) {
+    const query = db.collection("user").doc(uid);
     const snapshot = await query.get();
-    const userData = snapshot.docs[0].data() as UserProfile;
+    const userData = snapshot.data();
 
     return userData;
 }
