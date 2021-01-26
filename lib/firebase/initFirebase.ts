@@ -56,6 +56,7 @@ const createUser = async (res: firebase.auth.UserCredential) => {
         photoURL,
         userID,
     });
+    await updateFormat(uid, true, 7, 30);
     const draftRef = userRef.collection("draft").doc();
     const draftID = draftRef.id;
     await draftRef.set({ title: "無題", content: "執筆を始める" });
