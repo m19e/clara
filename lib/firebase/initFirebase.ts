@@ -15,12 +15,25 @@ if (!firebase.apps.length) {
 export const db = firebase.firestore();
 export const auth = firebase.auth();
 
+type UserTwitterProfile = {
+    name: string;
+    screen_name: string;
+    profile_image_url_https: string;
+};
+
 export async function loginWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider();
     try {
         const res = await auth.signInWithPopup(provider);
-        const userDoc = await db.collection("user").doc(res.additionalUserInfo.username).get();
+        const userDoc = await db.collection("user").doc(res.user.uid).get();
         if (userDoc.exists) {
+            const { displayName, userID, uid } = userDoc.data() as { [key: string]: string };
+            const { name, screen_name, profile_image_url_https } = res.additionalUserInfo.profile as UserTwitterProfile;
+            if (displayName !== name || userID !== screen_name) {
+                const allUserNovel = await db.collection("novel").where("author_uid", "==", uid).get();
+                await allUserNovel.forEach((snapshot) => snapshot.ref.set({ author_name: name, author_id: screen_name }, { merge: true }));
+            }
+            await auth.currentUser.updateProfile({ displayName: name, photoURL: profile_image_url_https.replace(/_normal/, "") });
             await updateUser(res);
         } else {
             await createUser(res);
@@ -33,20 +46,27 @@ export async function loginWithTwitter() {
 const createUser = async (res: firebase.auth.UserCredential) => {
     const { uid, displayName, photoURL } = res.user;
     const userID = res.additionalUserInfo.username;
-    await db.collection("user").doc(userID).set({
+    const userRef = db.collection("user").doc(uid);
+    await userRef.set({
         uid,
         displayName,
         photoURL,
         userID,
     });
+    await updateFormat(uid, true, 7, 30);
+    const draftRef = userRef.collection("draft").doc();
+    const draftID = draftRef.id;
+    await draftRef.set({ title: "無題", content: "執筆を始める" });
+    await userRef.set({ recent: draftID }, { merge: true });
 };
 
 const updateUser = async (res: firebase.auth.UserCredential) => {
-    const { displayName, photoURL } = res.user;
+    const { uid, displayName, photoURL } = res.user;
     const userID = res.additionalUserInfo.username;
-    await db.collection("user").doc(userID).set(
+    await db.collection("user").doc(uid).set(
         {
             displayName,
+            userID,
             photoURL,
         },
         { merge: true }
@@ -68,25 +88,25 @@ export type UserProfile = {
     userID: string;
 };
 
-export async function getUserDataByUID(uid: string): Promise<UserProfile> {
-    const query = db.collection("user").where("uid", "==", uid);
+export async function getUserDataByUID(uid: string) {
+    const query = db.collection("user").doc(uid);
     const snapshot = await query.get();
-    const userData = snapshot.docs[0].data() as UserProfile;
+    const userData = snapshot.data();
 
     return userData;
 }
 
 export async function getUserDataByID(id: string): Promise<UserProfile> {
-    const query = db.collection("user").doc(id);
-    const userDoc = await query.get();
-    const userData = userDoc.data() as UserProfile;
+    const query = db.collection("user").where("userID", "==", id);
+    const userDocs = await query.get();
+    const userData = userDocs.docs[0].data() as UserProfile;
 
     return userData;
 }
 
 export async function getAllUserID() {
     const snapshot = await db.collection("user").get();
-    const ids = snapshot.docs.map((doc) => doc.id);
+    const ids = snapshot.docs.map((doc) => (doc.data() as UserProfile).userID);
     return ids;
 }
 
@@ -110,25 +130,25 @@ export async function createDraftData(id: string) {
     await setRecentDraftID(draftID, id);
 }
 
-export async function readDraftData(id, did: string) {
-    const draftRef = db.collection("user").doc(id).collection("draft").doc(did);
+export async function readDraftData(uid, did: string) {
+    const draftRef = db.collection("user").doc(uid).collection("draft").doc(did);
     const draft = await draftRef.get();
     const { title, content } = draft.data();
     return { title, content };
 }
 
-export async function updateDraftData(did, id, draft: string) {
-    const userRef = db.collection("user").doc(id).collection("draft").doc(did);
+export async function updateDraftData(did, uid, draft: string) {
+    const userRef = db.collection("user").doc(uid).collection("draft").doc(did);
     await userRef.update({ content: draft });
 }
 
-export async function updateFormat(userID: string, isMincho: boolean, fontSize, lineWords: number) {
-    const userRef = db.collection("user").doc(userID);
+export async function updateFormat(uid: string, isMincho: boolean, fontSize, lineWords: number) {
+    const userRef = db.collection("user").doc(uid);
     await userRef.set({ isMincho, fontSize, lineWords }, { merge: true });
 }
 
-export async function updateDraftTitle(userID, did, newTitle: string) {
-    const draftRef = db.collection("user").doc(userID).collection("draft").doc(did);
+export async function updateDraftTitle(uid, did, newTitle: string) {
+    const draftRef = db.collection("user").doc(uid).collection("draft").doc(did);
     await draftRef.set({ title: newTitle }, { merge: true });
 }
 
@@ -187,8 +207,8 @@ export async function deleteNovel(id: string) {
     await novelRef.delete();
 }
 
-export async function getAllUserNovelByID(id: string, sort: "desc" | "asc"): Promise<INovelData[]> {
-    const snapshot = await db.collection("novel").where("author_id", "==", id).orderBy("created_at", sort).get();
+export async function getAllUserNovelByUID(uid: string, sort: "desc" | "asc"): Promise<INovelData[]> {
+    const snapshot = await db.collection("novel").where("author_uid", "==", uid).orderBy("created_at", sort).get();
     const novels = snapshot.docs.map((doc) => doc.data() as INovelData);
     return novels;
 }

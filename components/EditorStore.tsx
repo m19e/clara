@@ -7,7 +7,7 @@ import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, getUserDataByUID, createDraftData, readDraftData, updateDraftData, setRecentDraftID } from "../lib/firebase/initFirebase";
+import { auth, getUserDataByUID, readDraftData, updateDraftData } from "../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
 import { useProfile } from "../store/user";
 import { useDraftID, useTitle, useContent } from "../store/draft";
@@ -67,7 +67,7 @@ export default function VerticalEditor() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (!isSaved) updateDraft(userProfile.userID, draftID, editorState);
+            if (!isSaved) updateDraft(userProfile.uid, draftID, editorState);
         }, 5000);
         return () => clearTimeout(timer);
     }, [editorState]);
@@ -82,32 +82,21 @@ export default function VerticalEditor() {
         setFormatAll({ isMincho: im, fontSize, lineWords });
         setUserProfile(profile);
         setDraftID(recent);
-        await readDraft(userID, recent);
+        await readDraft(uid, recent);
         setLoading(false);
         // focusEditor();
     };
 
-    const setEdittingDraft = async (did, id: string) => {
-        await setRecentDraftID(did, id);
-    };
-
-    const createDraft = async (es: EditorState) => {
-        const content = createTextWithEditorState(es);
-        const did = await createDraftData(userProfile.userID);
-        setDraftID(did);
-        await setEdittingDraft(did, userProfile.userID);
-    };
-
-    const readDraft = async (userID, did: string) => {
-        const { title, content } = await readDraftData(userID, did);
+    const readDraft = async (uid, did: string) => {
+        const { title, content } = await readDraftData(uid, did);
         const es = createEditorStateWithText(content);
         setTitle(title);
         handleEditorStateChange(es);
     };
 
-    const updateDraft = async (userID, did: string, es: EditorState) => {
+    const updateDraft = async (uid, did: string, es: EditorState) => {
         const content = createTextWithEditorState(es);
-        await updateDraftData(did, userID, content);
+        await updateDraftData(did, uid, content);
         setIsSaved(true);
     };
 

@@ -14,7 +14,7 @@ export default function Footer() {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (userProfile) {
-                updateFormat(userProfile.userID, isMincho, fontSize, lineWords);
+                updateFormat(userProfile.uid, isMincho, fontSize, lineWords);
             }
         }, 10000);
         return () => clearTimeout(timer);
