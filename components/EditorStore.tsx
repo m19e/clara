@@ -67,7 +67,7 @@ export default function VerticalEditor() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (!isSaved) updateDraft(userProfile.userID, draftID, editorState);
+            if (!isSaved) updateDraft(userProfile.uid, draftID, editorState);
         }, 5000);
         return () => clearTimeout(timer);
     }, [editorState]);
@@ -105,9 +105,9 @@ export default function VerticalEditor() {
         handleEditorStateChange(es);
     };
 
-    const updateDraft = async (userID, did: string, es: EditorState) => {
+    const updateDraft = async (uid, did: string, es: EditorState) => {
         const content = createTextWithEditorState(es);
-        await updateDraftData(did, userID, content);
+        await updateDraftData(did, uid, content);
         setIsSaved(true);
     };
 

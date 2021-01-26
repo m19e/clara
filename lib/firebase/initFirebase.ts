@@ -140,8 +140,8 @@ export async function readDraftData(uid, did: string) {
     return { title, content };
 }
 
-export async function updateDraftData(did, id, draft: string) {
-    const userRef = db.collection("user").doc(id).collection("draft").doc(did);
+export async function updateDraftData(did, uid, draft: string) {
+    const userRef = db.collection("user").doc(uid).collection("draft").doc(did);
     await userRef.update({ content: draft });
 }
 
