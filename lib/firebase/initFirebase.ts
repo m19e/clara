@@ -106,7 +106,7 @@ export async function getUserDataByID(id: string): Promise<UserProfile> {
 
 export async function getAllUserID() {
     const snapshot = await db.collection("user").get();
-    const ids = snapshot.docs.map((doc) => doc.id);
+    const ids = snapshot.docs.map((doc) => (doc.data() as UserProfile).userID);
     return ids;
 }
 
