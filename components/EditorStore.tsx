@@ -82,7 +82,7 @@ export default function VerticalEditor() {
         setFormatAll({ isMincho: im, fontSize, lineWords });
         setUserProfile(profile);
         setDraftID(recent);
-        await readDraft(userID, recent);
+        await readDraft(uid, recent);
         setLoading(false);
         // focusEditor();
     };
@@ -98,8 +98,8 @@ export default function VerticalEditor() {
         await setEdittingDraft(did, userProfile.userID);
     };
 
-    const readDraft = async (userID, did: string) => {
-        const { title, content } = await readDraftData(userID, did);
+    const readDraft = async (uid, did: string) => {
+        const { title, content } = await readDraftData(uid, did);
         const es = createEditorStateWithText(content);
         setTitle(title);
         handleEditorStateChange(es);
