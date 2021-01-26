@@ -30,12 +30,9 @@ export async function loginWithTwitter() {
             const { displayName, userID, uid } = userDoc.data() as { [key: string]: string };
             const { name, screen_name, profile_image_url_https } = res.additionalUserInfo.profile as UserTwitterProfile;
             if (displayName !== name || userID !== screen_name) {
-                console.log("should update novel data");
-
                 const allUserNovel = await db.collection("novel").where("author_uid", "==", uid).get();
                 await allUserNovel.forEach((snapshot) => snapshot.ref.set({ author_name: name, author_id: screen_name }, { merge: true }));
             }
-
             await auth.currentUser.updateProfile({ displayName: name, photoURL: profile_image_url_https.replace(/_normal/, "") });
             await updateUser(res);
         } else {
