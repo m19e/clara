@@ -10,6 +10,7 @@ const DISPLAY_NOVEL_SPAN = 3;
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
+    const [empty] = useState(rootList.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
 
@@ -46,29 +47,37 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                             </div>
                             <div className="mt-6 border-t border-gray-300 text-center">
                                 <div className="flex flex-col items-center justify-end">
-                                    {displayList.map((novel, i) => (
-                                        <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
-                                            <div className="flex justify-start">
-                                                <Link href={`/novel/${novel.id}`}>
-                                                    <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
-                                                </Link>
-                                            </div>
-                                            <div className="flex justify-end mt-4 items-baseline">
-                                                <p className="text-sm opacity-50">{novel.created_at}</p>
-                                            </div>
+                                    {empty ? (
+                                        <div className="w-3/4 max-w-xl my-12">
+                                            <span className="text-xl gothic font-semibold opacity-40">まだ小説は投稿されていません</span>
                                         </div>
-                                    ))}
-                                    <div className="w-full flex-center my-8 editor-bg">
-                                        {hasMore && (
-                                            <button
-                                                className="gothic text-gray-500 bg-transparent border border-solid border-gray-500 transition-all hover:bg-gray-400 hover:border-gray-400 hover:text-white font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none"
-                                                type="button"
-                                                onClick={() => displayMore()}
-                                            >
-                                                もっと見る
-                                            </button>
-                                        )}
-                                    </div>
+                                    ) : (
+                                        <>
+                                            {displayList.map((novel, i) => (
+                                                <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
+                                                    <div className="flex justify-start">
+                                                        <Link href={`/novel/${novel.id}`}>
+                                                            <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="flex justify-end mt-4 items-baseline">
+                                                        <p className="text-sm opacity-50">{novel.created_at}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            <div className="w-full flex-center my-8 editor-bg">
+                                                {hasMore && (
+                                                    <button
+                                                        className="gothic text-gray-500 bg-transparent border border-solid border-gray-500 transition-all hover:bg-gray-400 hover:border-gray-400 hover:text-white font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none"
+                                                        type="button"
+                                                        onClick={() => displayMore()}
+                                                    >
+                                                        もっと見る
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
