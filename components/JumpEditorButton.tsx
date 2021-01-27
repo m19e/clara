@@ -1,10 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { auth, loginWithTwitter } from "../lib/firebase/initFirebase";
 
 export default function JumpEditorButton() {
     const router = useRouter();
-    const [showModal, setShowModal] = React.useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const checkProfile = () => {
         auth.onAuthStateChanged((user) => {
