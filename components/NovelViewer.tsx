@@ -87,7 +87,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                             <p className="text-4xl font-bold whitespace-pre-wrap text-gray-800">{novel.title}</p>
                             <div className="pt-1 mr-1">
                                 <Link href={`/user/${novel.author_id}`}>
-                                    <a className="border-r pr-1.5">
+                                    <a className="pr-1.5 border-r border-gray-400 border-opacity-0 hover:border-opacity-100">
                                         <span className="text-xl font-semibold text-gray-600">{novel.author_name}</span>
                                     </a>
                                 </Link>
