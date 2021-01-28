@@ -32,7 +32,9 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                                         <a className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
                                     </Link>
                                     <div className="flex justify-between mt-4 items-baseline">
-                                        <p className="opacity-75">{novel.author_name}</p>
+                                        <Link href={`/user/${novel.author_id}`}>
+                                            <a className="opacity-75">{novel.author_name}</a>
+                                        </Link>
                                         <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
                                     </div>
                                 </div>
