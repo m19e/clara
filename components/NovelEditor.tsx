@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, createRef, useRef, RefObject, useCallback } from "react";
-import { Editor, EditorState, ContentState } from "draft-js";
+import { Editor, EditorState, ContentState, SelectionState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -103,6 +103,22 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
+    };
+
+    const setSelectionCaret = (selection: SelectionState, offset: number, key: string) => {
+        const override: SelectionRangeOverride = {
+            anchorOffset: offset,
+            focusOffset: offset,
+            anchorKey: key,
+            focusKey: key,
+        };
+        setSelectionRange(selection, override);
+    };
+
+    const setSelectionRange = (selection: SelectionState, override: SelectionRangeOverride) => {
+        const newSelection = selection.merge(override);
+        const newEditor = EditorState.forceSelection(editorState, newSelection);
+        setEditorState(newEditor);
     };
 
     return (
