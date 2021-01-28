@@ -9,6 +9,14 @@ import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
 import { updateNovel, deleteNovel } from "../lib/firebase/initFirebase";
 
+type SelectionRangeOverride = {
+    anchorOffset: number;
+    focusOffset?: number;
+    anchorKey?: string;
+    focusKey?: string;
+    isBackward?: boolean;
+};
+
 const useFontSize = (fs: "base" | "xl" | "2xl", rfs: 16 | 20 | 24): ["base" | "xl" | "2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
     const [realFontSize, setRealFontSize] = useState(rfs);
