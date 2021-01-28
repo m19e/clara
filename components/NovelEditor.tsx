@@ -212,7 +212,6 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                         }
                     }
                     ps.current.scrollLeft += realFontSize * 1.5 + 2;
-
                     break;
 
                 case "ArrowLeft":
