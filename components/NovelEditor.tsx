@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, createRef, useRef, RefObject, useCallback } from "react";
-import { Editor, EditorState, ContentState, SelectionState } from "draft-js";
+import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -124,6 +124,142 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         setEditorState(newEditor);
     };
 
+    const handleKeyBinding = (e: React.KeyboardEvent) => {
+        if (e.key === "Tab") {
+            e.preventDefault();
+            return null;
+        }
+        if (e.key.includes("Arrow")) {
+            e.preventDefault();
+
+            const selection = editorState.getSelection();
+            const content = editorState.getCurrentContent();
+            const offset = selection.getAnchorOffset();
+            const key = selection.getAnchorKey();
+            const blockLen = content.getBlockForKey(key).getLength();
+
+            switch (e.key) {
+                case "ArrowUp":
+                    if (offset === 0) {
+                        const beforeKey = content.getKeyBefore(key);
+                        if (!beforeKey) break;
+                        const beforeLen = content.getBlockForKey(beforeKey).getLength();
+                        if (e.shiftKey) {
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? false : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: beforeLen, anchorKey: beforeKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, beforeLen, beforeKey);
+                        }
+                    } else {
+                        if (e.shiftKey) {
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? false : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: offset - 1, isBackward });
+                        } else {
+                            setSelectionCaret(selection, offset - 1, key);
+                        }
+                    }
+                    break;
+
+                case "ArrowDown":
+                    if (offset === blockLen) {
+                        const afterKey = content.getKeyAfter(key);
+                        if (!afterKey) break;
+                        if (e.shiftKey) {
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? true : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: 0, anchorKey: afterKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, 0, afterKey);
+                        }
+                    } else {
+                        if (e.shiftKey) {
+                            const isBackward = key === selection.getFocusKey() && offset === selection.getFocusOffset() ? true : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: offset + 1, isBackward });
+                        } else {
+                            setSelectionCaret(selection, offset + 1, key);
+                        }
+                    }
+                    break;
+
+                case "ArrowRight":
+                    if (offset > lineWords) {
+                        e.shiftKey ? setSelectionRange(selection, { anchorOffset: offset - lineWords }) : setSelectionCaret(selection, offset - lineWords, key);
+                    } else {
+                        const beforeKey = content.getKeyBefore(key);
+                        if (!beforeKey) {
+                            if (e.shiftKey) {
+                                setSelectionRange(selection, { anchorOffset: 0 });
+                                break;
+                            }
+                            return "move-selection-to-start-of-block";
+                        }
+                        const beforeLen = content.getBlockForKey(beforeKey).getLength();
+                        if (beforeLen === lineWords) {
+                            setSelectionCaret(selection, offset, beforeKey);
+                            break;
+                        }
+                        const beforeTargetLine = Math.floor(beforeLen / lineWords) * lineWords;
+                        const beforeOffset = beforeTargetLine + Math.min(offset % lineWords, beforeLen % lineWords);
+                        if (e.shiftKey) {
+                            const isBackward =
+                                key === selection.getFocusKey() && offset - lineWords <= selection.getFocusOffset() ? false : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: beforeOffset, anchorKey: beforeKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, beforeOffset, beforeKey);
+                        }
+                    }
+                    break;
+
+                case "ArrowLeft":
+                    if (blockLen > lineWords) {
+                        if (blockLen >= offset + lineWords) {
+                            e.shiftKey
+                                ? setSelectionRange(selection, { anchorOffset: offset + lineWords })
+                                : setSelectionCaret(selection, offset + lineWords, key);
+                        } else {
+                            const afterKey = content.getKeyAfter(key);
+                            if (!afterKey || offset % lineWords > blockLen % lineWords) {
+                                if (e.shiftKey) {
+                                    setSelectionRange(selection, { anchorOffset: blockLen });
+                                    break;
+                                }
+                                return "move-selection-to-end-of-block";
+                            }
+                            const afterLen = content.getBlockForKey(afterKey).getLength();
+                            if (e.shiftKey) {
+                                const isBackward =
+                                    key === selection.getFocusKey() && offset + lineWords >= selection.getFocusOffset() ? true : selection.getIsBackward();
+                                setSelectionRange(selection, { anchorOffset: Math.min(offset % lineWords, afterLen), anchorKey: afterKey, isBackward });
+                            } else {
+                                setSelectionCaret(selection, Math.min(offset % lineWords, afterLen), afterKey);
+                            }
+                        }
+                    } else {
+                        const afterKey = content.getKeyAfter(key);
+                        if (!afterKey) {
+                            if (e.shiftKey) {
+                                setSelectionRange(selection, { anchorOffset: blockLen });
+                                break;
+                            }
+                            return "move-selection-to-end-of-block";
+                        }
+                        const afterLen = content.getBlockForKey(afterKey).getLength();
+                        const afterOffset = afterLen < offset ? afterLen : offset;
+                        if (e.shiftKey) {
+                            const isBackward =
+                                key === selection.getFocusKey() && offset + lineWords >= selection.getFocusOffset() ? true : selection.getIsBackward();
+                            setSelectionRange(selection, { anchorOffset: afterOffset, anchorKey: afterKey, isBackward });
+                        } else {
+                            setSelectionCaret(selection, afterOffset, afterKey);
+                        }
+                    }
+                    break;
+            }
+            return null;
+        }
+
+        return getDefaultKeyBinding(e);
+    };
+
     return (
         <div ref={editorRef} className="w-full h-screen flex justify-end editor-bg">
             <Scrollbar
@@ -142,7 +278,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                             </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
-                            <Editor editorState={editorState} onChange={setEditorState} />
+                            <Editor editorState={editorState} onChange={setEditorState} keyBindingFn={handleKeyBinding} />
                         </div>
                     </div>
                 </div>
