@@ -17,7 +17,7 @@ type SelectionRangeOverride = {
     isBackward?: boolean;
 };
 
-const useFontSize = (
+const useFormat = (
     fs: "base" | "xl" | "2xl",
     rfs: 16 | 20 | 24,
     lh: 1.5 | 1.75 | 2.0
@@ -65,7 +65,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     const [lineWords, setLineWords] = useState(0);
     const [rootTitle, setRootTitle] = useState(title);
 
-    const [fontSize, realFontSize, lineHeight, setFontBase, setFontXl, setFont2xl] = useFontSize("xl", 20, 1.75);
+    const [fontSize, realFontSize, lineHeight, setFontBase, setFontXl, setFont2xl] = useFormat("xl", 20, 1.75);
     const [font, setMincho, setGothic] = useFont("mincho");
     const viewerConfig = {
         fontSize,
