@@ -6,6 +6,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 import Tooltip from "./Tooltip";
 import NovelViewerConfig from "./NovelViewerConfig";
+import HomeButton from "./HomeButton";
 import { INovelDataSerializable, auth } from "../lib/firebase/initFirebase";
 
 type FontSizeState = "base" | "xl" | "2xl";
@@ -105,6 +106,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
             </Scrollbar>
             <div className={"fixed bottom-0 w-12 mb-4 mr-2 novelView-header" + (show ? " novelView-header__show" : "")}>
                 <div className="flex-col flex-center w-full">
+                    <HomeButton />
                     {isAuthor && (
                         <Link href={`/novel/${novel.id}/edit`}>
                             <a>
