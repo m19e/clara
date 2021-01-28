@@ -89,7 +89,7 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                 </div>
                                 <div className="flex justify-end mr-4">
                                     <span
-                                        className="h-14 gothic text-lg font-semibold text-gray-500 text-center border-l border-gray-400 cursor-pointer"
+                                        className="h-14 gothic text-lg font-semibold text-gray-500 text-center border-r border-gray-400 border-opacity-0 hover:border-opacity-100 cursor-pointer"
                                         onClick={() => setShowModal(false)}
                                     >
                                         完了
