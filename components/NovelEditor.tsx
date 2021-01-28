@@ -211,6 +211,8 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                             setSelectionCaret(selection, beforeOffset, beforeKey);
                         }
                     }
+                    ps.current.scrollLeft += realFontSize * 1.5 + 2;
+
                     break;
 
                 case "ArrowLeft":
@@ -256,6 +258,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                             setSelectionCaret(selection, afterOffset, afterKey);
                         }
                     }
+                    ps.current.scrollLeft -= realFontSize * 1.5 + 2;
                     break;
             }
             return null;
