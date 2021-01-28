@@ -54,6 +54,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     const ps = useRef<HTMLElement>();
     const [showScrollbar, setShowScrollbar] = useState(false);
     const [editorHeight, setEditorHeight] = useState(480);
+    const [lineWords, setLineWords] = useState(0);
     const [rootTitle, setRootTitle] = useState(title);
 
     const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl", 20);
@@ -74,7 +75,9 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             const heightTQ = Math.floor(height * 0.75);
-            setEditorHeight(heightTQ - (heightTQ % realFontSize));
+            const eh = heightTQ - (heightTQ % realFontSize);
+            setEditorHeight(eh);
+            setLineWords(eh / realFontSize);
         });
         editorRef.current && resizeObs.observe(editorRef.current);
 
