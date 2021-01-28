@@ -17,31 +17,23 @@ type SelectionRangeOverride = {
     isBackward?: boolean;
 };
 
-const useFormat = (
-    fs: "base" | "xl" | "2xl",
-    rfs: 16 | 20 | 24,
-    lh: 1.5 | 1.75 | 2.0
-): ["base" | "xl" | "2xl", 16 | 20 | 24, 1.5 | 1.75 | 2.0, () => void, () => void, () => void] => {
+const useFormat = (fs: "base" | "xl" | "2xl", rfs: 16 | 20 | 24): ["base" | "xl" | "2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
     const [realFontSize, setRealFontSize] = useState(rfs);
-    const [lineHeight, setLineHeight] = useState(lh);
     const setFontBase = useCallback(() => {
         setFontSize("base");
         setRealFontSize(16);
-        setLineHeight(1.5);
     }, []);
     const setFontXl = useCallback(() => {
         setFontSize("xl");
         setRealFontSize(20);
-        setLineHeight(1.75);
     }, []);
     const setFont2xl = useCallback(() => {
         setFontSize("2xl");
         setRealFontSize(24);
-        setLineHeight(2.0);
     }, []);
 
-    return [fontSize, realFontSize, lineHeight, setFontBase, setFontXl, setFont2xl];
+    return [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl];
 };
 
 const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
@@ -65,7 +57,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     const [lineWords, setLineWords] = useState(0);
     const [rootTitle, setRootTitle] = useState(title);
 
-    const [fontSize, realFontSize, lineHeight, setFontBase, setFontXl, setFont2xl] = useFormat("xl", 20, 1.75);
+    const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("xl", 20);
     const [font, setMincho, setGothic] = useFont("mincho");
     const viewerConfig = {
         fontSize,
