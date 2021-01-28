@@ -83,7 +83,11 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             const heightTQ = Math.floor(height * 0.75);
-            const eh = heightTQ - (heightTQ % realFontSize);
+            const eh = ((h: number, rfs: number) => {
+                if (h > 720) return 720;
+                if (h < 480) return 480;
+                return h - (h % rfs);
+            })(heightTQ, realFontSize);
             setEditorHeight(eh);
             setLineWords(eh / realFontSize);
         });
