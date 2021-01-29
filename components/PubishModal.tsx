@@ -53,7 +53,7 @@ export default function PublishModal() {
                                 className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <span className="mincho text-xl">「{title}」</span>
+                                <span className="mincho text-xl">{title}</span>
                                 <span className="w-full text-center opacity-75">を投稿しますか？</span>
                                 <div className="flex justify-between opacity-80 mt-10">
                                     <span className="cursor-pointer" onClick={() => toggleShowModal()}>
