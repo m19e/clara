@@ -42,7 +42,7 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                             >
                                 <div className="flex-center text-lg">{message}</div>
                                 <div className="flex-center">
-                                    <div className="flex justify-between w-72 mt-10">
+                                    <div className="flex justify-between w-72 mt-12">
                                         <span
                                             className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                             onClick={() => setShowModal(false)}
