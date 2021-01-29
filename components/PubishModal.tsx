@@ -15,12 +15,10 @@ interface INovelProp {
 
 export default function PublishModal() {
     const [showModal, toggleShowModal] = useIsShowPublishModal();
-
     const [id] = useDraftID();
     const [title] = useTitle();
     const [content] = useContent();
     const [profile] = useProfile();
-
     const router = useRouter();
 
     const confirm = async () => {
