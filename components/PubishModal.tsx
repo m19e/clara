@@ -54,7 +54,7 @@ export default function PublishModal() {
                                 <span className="w-full text-center opacity-75">を投稿しますか？</span>
                                 <div className="flex justify-between opacity-80 mt-10">
                                     <span className="cursor-pointer" onClick={() => toggleShowModal()}>
-                                        取消
+                                        閉じる
                                     </span>
                                     <span className="cursor-pointer" onClick={() => confirm()}>
                                         投稿する
