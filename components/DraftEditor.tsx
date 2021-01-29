@@ -100,7 +100,7 @@ export default function VerticalEditor() {
         setIsSaved(true);
     };
 
-    const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
@@ -287,7 +287,7 @@ export default function VerticalEditor() {
                             <div className={"flex-1 flex-center"} ref={wrapperRef}>
                                 <Scrollbar
                                     containerRef={(ref) => (ps.current = ref)}
-                                    onWheel={onMouseWheel}
+                                    onWheel={handleWheel}
                                     className="pb-4 w-full"
                                     style={{ maxHeight: "95%", height: `${eh + 16}px` }}
                                 >
