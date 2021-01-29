@@ -305,7 +305,6 @@ export default function VerticalEditor() {
                                     </div>
                                 </Scrollbar>
                             </div>
-                            {/* <CharCounter editorState={editorState} /> */}
                         </div>
                     </div>
                     <Frame />
@@ -322,8 +321,8 @@ type CharCounterProps = {
 const CharCounter = ({ editorState }: CharCounterProps) => {
     const getCharCount = (es: EditorState): number => {
         const plainText = es.getCurrentContent().getPlainText("");
-        const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
-        const cleanString = plainText.replace(regex, "").trim(); // replace above characters w/ nothing
+        const regex = /(?:\r\n|\r|\n)/g;
+        const cleanString = plainText.replace(regex, "").trim();
         return Array.from(cleanString).length;
     };
 
