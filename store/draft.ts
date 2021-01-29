@@ -29,3 +29,13 @@ export const useContent = (): [string, (string) => void] => {
     const [content, setContent] = useRecoilState(draftContentState);
     return [content, setContent];
 };
+
+export const isTitleEditState = atom({
+    key: "draft/isTitleEdit",
+    default: false,
+});
+
+export const useIsTitleEdit = (): [boolean, (boolean) => void] => {
+    const [isTitleEdit, setIsTitleEdit] = useRecoilState(isTitleEditState);
+    return [isTitleEdit, setIsTitleEdit];
+};
