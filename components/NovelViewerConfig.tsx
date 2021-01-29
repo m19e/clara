@@ -37,10 +37,10 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <div className="flex justify-start">
-                                    <span className="text-xl">書式設定</span>
+                                    <span className="text-xl text-gray-800">書式設定</span>
                                 </div>
                                 <div className="mr-4">
-                                    <span>文字の大きさ</span>
+                                    <span className="text-gray-800">文字の大きさ</span>
                                     <div className={"h-56 w-10 border border-solid rounded flex-center justify-around" + " " + font}>
                                         <div
                                             className={
@@ -71,7 +71,7 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                     </div>
                                 </div>
                                 <div className="pr-2">
-                                    <span>書体</span>
+                                    <span className="text-gray-800">書体</span>
                                     <div className="h-56 w-10 text-lg border border-solid rounded flex-center justify-around">
                                         <div
                                             className={
