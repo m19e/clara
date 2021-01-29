@@ -53,7 +53,7 @@ export default function PublishModal() {
                                 className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <span className="mincho text-xl text-center">{title}</span>
+                                <span className="mincho text-lg text-center">{title}</span>
                                 <span className="w-full text-center opacity-75">を投稿しますか？</span>
                                 <div className="flex justify-between w-72 opacity-80 mt-10">
                                     <span
