@@ -26,7 +26,7 @@ export default function PublishModal() {
     const confirm = async () => {
         const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
         await publishNovel(novel);
-        await createDraftData(profile.userID);
+        await createDraftData(profile.uid);
         router.push(`/novel/${id}`);
         toggleShowModal();
     };
