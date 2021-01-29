@@ -93,7 +93,7 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex justify-end mr-4">
+                                <div className="flex justify-end mr-6">
                                     <span
                                         className="h-12 text-lg text-black text-center border-r border-gray-400 cursor-pointer"
                                         onClick={() => setShowModal(false)}
