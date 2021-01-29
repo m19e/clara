@@ -21,7 +21,7 @@ export default function PublishModal() {
     const [profile] = useProfile();
     const router = useRouter();
 
-    const confirm = async () => {
+    const publish = async () => {
         const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
         await publishNovel(novel);
         await createDraftData(profile.uid);
@@ -65,7 +65,7 @@ export default function PublishModal() {
                                     </span>
                                     <span
                                         className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
-                                        onClick={() => confirm()}
+                                        onClick={() => publish()}
                                     >
                                         投稿する
                                     </span>
