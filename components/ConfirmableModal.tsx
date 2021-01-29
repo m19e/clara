@@ -18,10 +18,9 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
     const [inTask, setInTask] = useState(false);
 
     const execConfirm = async () => {
-        if (!inTask) {
-            setInTask(true);
-            await confirmFunc();
-        }
+        if (inTask) return;
+        setInTask(true);
+        await confirmFunc();
     };
 
     return (
