@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
-import { useTitle, useDraftID } from "../store/draft";
+import { useTitle, useDraftID, useIsTitleEdit } from "../store/draft";
 import { useProfile } from "../store/user";
 import { updateDraftTitle } from "../lib/firebase/initFirebase";
 import PublishModal from "./PubishModal";
@@ -10,7 +10,7 @@ export default function Header() {
     const [draftID] = useDraftID();
     const [profile] = useProfile();
     const [temptitle, setTempTitle] = useState("");
-    const [isTitleEdit, setIsTitleEdit] = useState(false);
+    const [isTitleEdit, setIsTitleEdit] = useIsTitleEdit();
     const editTitleRef = useRef(null);
 
     const toggleTitleEdit = async () => {
