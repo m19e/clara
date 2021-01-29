@@ -56,10 +56,16 @@ export default function PublishModal() {
                                 <span className="mincho text-xl text-center">{title}</span>
                                 <span className="w-full text-center opacity-75">を投稿しますか？</span>
                                 <div className="flex justify-between w-72 opacity-80 mt-10">
-                                    <span className="cursor-pointer" onClick={() => toggleShowModal()}>
+                                    <span
+                                        className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-400 cursor-pointer"
+                                        onClick={() => toggleShowModal()}
+                                    >
                                         閉じる
                                     </span>
-                                    <span className="cursor-pointer" onClick={() => confirm()}>
+                                    <span
+                                        className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-400 cursor-pointer"
+                                        onClick={() => confirm()}
+                                    >
                                         投稿する
                                     </span>
                                 </div>
