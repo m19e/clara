@@ -65,15 +65,15 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                                 />
                                 <span className="w-full text-right text-sm opacity-50">{titleCharCount}/100</span>
                                 <div className="flex-center">
-                                    <div className="flex justify-between w-72 opacity-80 mt-12">
+                                    <div className="flex justify-between w-72 mt-12">
                                         <span
-                                            className="px-4 text-center font-semibold opacity-75 border-b border-solid border-gray-400 cursor-pointer"
+                                            className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                             onClick={() => setShowModal(false)}
                                         >
                                             取消
                                         </span>
                                         <span
-                                            className="px-4 text-center font-semibold opacity-75 border-b border-solid border-gray-400 cursor-pointer"
+                                            className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                             onClick={() => updateTitle()}
                                         >
                                             更新
