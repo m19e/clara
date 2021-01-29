@@ -44,20 +44,20 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                 <div className="flex-center">
                                     <div className="flex justify-between w-72 mt-10">
                                         <span
-                                            className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
+                                            className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                             onClick={() => setShowModal(false)}
                                         >
                                             {cancelText}
                                         </span>
                                         {back ? (
                                             <Link href={`/novel/${novelID}`}>
-                                                <a className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer">
+                                                <a className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer">
                                                     {confirmText}
                                                 </a>
                                             </Link>
                                         ) : (
                                             <span
-                                                className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
+                                                className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                                 onClick={() => execConfirm()}
                                             >
                                                 {confirmText}
