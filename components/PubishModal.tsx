@@ -54,16 +54,16 @@ export default function PublishModal() {
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <span className="mincho text-lg font-semibold text-center">{title}</span>
-                                <span className="w-full text-center opacity-75">を投稿しますか？</span>
-                                <div className="flex justify-between w-72 opacity-80 mt-10">
+                                <span className="w-full text-center text-gray-500">を投稿しますか？</span>
+                                <div className="flex justify-between w-72 mt-10">
                                     <span
-                                        className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-400 cursor-pointer"
+                                        className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-400 cursor-pointer"
                                         onClick={() => toggleShowModal()}
                                     >
                                         閉じる
                                     </span>
                                     <span
-                                        className="w-20 text-center font-semibold opacity-75 border-b border-solid border-gray-400 cursor-pointer"
+                                        className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-400 cursor-pointer"
                                         onClick={() => confirm()}
                                     >
                                         投稿する
