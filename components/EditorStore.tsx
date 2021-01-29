@@ -51,7 +51,7 @@ export default function VerticalEditor() {
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            user ? initEditor(user) : router.push("/auth");
+            user ? initEditor(user) : router.push("/");
         });
 
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
