@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useIsShowPublishModal } from "../store/editor";
 import { useDraftID, useTitle, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
@@ -20,8 +21,11 @@ export default function PublishModal() {
     const [content] = useContent();
     const [profile] = useProfile();
     const router = useRouter();
+    const [inTask, setInTask] = useState(false);
 
     const publish = async () => {
+        if (inTask) return;
+        setInTask(true);
         const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
         await publishNovel(novel);
         await createDraftData(profile.uid);
