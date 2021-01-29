@@ -33,14 +33,14 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                     >
                         <div className="relative w-auto my-6 mx-auto max-w-sm">
                             <div
-                                className="writing-v-rl border-0 rounded shadow-lg relative flex flex-col w-full p-6 bg-white outline-none focus:outline-none"
+                                className="writing-v-rl gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 bg-white outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <div className="flex justify-start">
-                                    <span className="gothic text-xl">書式設定</span>
+                                    <span className="text-xl">書式設定</span>
                                 </div>
                                 <div className="mr-4">
-                                    <span className="gothic">文字の大きさ</span>
+                                    <span>文字の大きさ</span>
                                     <div className={"h-56 w-10 border border-solid rounded flex-center justify-around" + " " + font}>
                                         <div
                                             className={
@@ -71,7 +71,7 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                     </div>
                                 </div>
                                 <div className="pr-2">
-                                    <span className="gothic">書体</span>
+                                    <span>書体</span>
                                     <div className="h-56 w-10 text-lg border border-solid rounded flex-center justify-around">
                                         <div
                                             className={
@@ -95,7 +95,7 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                 </div>
                                 <div className="flex justify-end mr-4">
                                     <span
-                                        className="h-12 gothic text-lg text-black text-center border-r border-gray-400 cursor-pointer"
+                                        className="h-12 text-lg text-black text-center border-r border-gray-400 cursor-pointer"
                                         onClick={() => setShowModal(false)}
                                     >
                                         完了
