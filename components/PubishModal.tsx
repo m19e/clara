@@ -30,7 +30,6 @@ export default function PublishModal() {
         await publishNovel(novel);
         await createDraftData(profile.uid);
         router.push(`/novel/${id}`);
-        toggleShowModal();
     };
 
     return (
