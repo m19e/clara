@@ -53,8 +53,8 @@ export default function PublishModal() {
                                 className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <span className="mincho text-lg font-semibold text-center">{title}</span>
-                                <span className="w-full text-center text-gray-500">を投稿しますか？</span>
+                                <span className="mincho text-lg text-gray-800 font-semibold text-center">{title}</span>
+                                <span className="w-full text-center text-gray-600">を投稿しますか？</span>
                                 <div className="flex justify-between w-72 mt-10">
                                     <span
                                         className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-400 cursor-pointer"
