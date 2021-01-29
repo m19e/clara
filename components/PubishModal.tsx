@@ -57,13 +57,13 @@ export default function PublishModal() {
                                 <span className="w-full text-center text-gray-600">を投稿しますか？</span>
                                 <div className="flex justify-between w-72 mt-10">
                                     <span
-                                        className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 cursor-pointer"
+                                        className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                         onClick={() => toggleShowModal()}
                                     >
                                         閉じる
                                     </span>
                                     <span
-                                        className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 cursor-pointer"
+                                        className="w-20 text-center font-semibold text-gray-500 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                         onClick={() => confirm()}
                                     >
                                         投稿する
