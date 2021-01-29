@@ -95,7 +95,7 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                 </div>
                                 <div className="flex justify-end mr-6">
                                     <span
-                                        className="h-12 text-lg text-black text-center border-r border-gray-400 cursor-pointer"
+                                        className="py-2 text-lg text-gray-600 text-center border-r border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                         onClick={() => setShowModal(false)}
                                     >
                                         完了
