@@ -70,6 +70,9 @@ export default function Header() {
                                 value={temptitle}
                                 onChange={handleTempTitleChange}
                                 onBlur={toggleTitleEdit}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Tab") e.preventDefault();
+                                }}
                                 style={{ minWidth: "10rem", maxWidth: "50rem", width: `${temptitle.length + 1}rem` }}
                             />
                         </form>

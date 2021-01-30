@@ -62,6 +62,9 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
                                     ref={editTitleRef}
                                     value={tempTitle}
                                     onChange={(e) => handleChange(e)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Tab") e.preventDefault();
+                                    }}
                                 />
                                 <span className="w-full text-right text-sm opacity-50">{titleCharCount}/100</span>
                                 <div className="flex-center">
