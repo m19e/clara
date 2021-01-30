@@ -1,16 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { auth, loginWithTwitter } from "../lib/firebase/initFirebase";
+import { loginWithTwitter } from "../lib/firebase/initFirebase";
 
-export default function JumpEditorButton() {
+export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }) {
     const [showModal, setShowModal] = useState(false);
-    const [isLoggedin, setIsLoggedin] = useState(false);
-
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            setIsLoggedin(!!user);
-        });
-    }, []);
 
     return (
         <>
