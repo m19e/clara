@@ -48,9 +48,15 @@ export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }
             )}
             {showModal && (
                 <>
-                    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div
+                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        onClick={() => setShowModal(false)}
+                    >
                         <div className="relative w-auto my-6 mx-auto max-w-sm">
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full py-4 px-4 bg-white outline-none focus:outline-none">
+                            <div
+                                className="border-0 rounded-lg shadow-lg relative flex flex-col w-full py-4 px-4 bg-white outline-none focus:outline-none"
+                                onClick={(e) => e.stopPropagation()}
+                            >
                                 <div className="flex justify-end">
                                     <svg
                                         className="opacity-50 cursor-pointer"
