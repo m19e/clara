@@ -57,20 +57,6 @@ export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }
                                 className="border-0 rounded-lg shadow-lg relative flex flex-col w-full py-4 px-4 bg-white outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <div className="flex justify-end">
-                                    <svg
-                                        className="opacity-50 cursor-pointer"
-                                        onClick={() => setShowModal(false)}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </div>
                                 <div className="flex-center px-2">
                                     <span className="gothic font-black opacity-60">小説を書く</span>
                                 </div>
