@@ -8,7 +8,7 @@ export default function JumpEditorButton() {
 
     const checkProfile = () => {
         auth.onAuthStateChanged((user) => {
-            user ? router.push("/auth/editor") : setShowModal(true);
+            user ? router.push("/editor") : setShowModal(true);
         });
     };
 
