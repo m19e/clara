@@ -1,9 +1,16 @@
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { loginWithTwitter } from "../lib/firebase/initFirebase";
 
 export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }) {
     const [showModal, setShowModal] = useState(false);
+    const router = useRouter();
+
+    const login = async () => {
+        await loginWithTwitter();
+        router.push("/editor");
+    };
 
     return (
         <>
@@ -63,7 +70,7 @@ export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }
                                 <span className="gothic font-thin opacity-70 w-full text-center pt-3 pb-4" style={{ fontSize: "14px" }}>
                                     ログインして執筆を始めましょう。
                                 </span>
-                                <div className="btn-twitter flex-center w-64 rounded-2xl cursor-pointer" onClick={() => loginWithTwitter()}>
+                                <div className="btn-twitter flex-center w-64 rounded-2xl cursor-pointer" onClick={() => login()}>
                                     <span className="system-font opacity-60 py-1" style={{ fontSize: "14px" }}>
                                         Twitterでログイン
                                     </span>
