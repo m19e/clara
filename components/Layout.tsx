@@ -5,10 +5,12 @@ import { auth } from "../lib/firebase/initFirebase";
 
 export default function Layout({ children }) {
     const [isLoggedin, setIsLoggedin] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setIsLoggedin(!!user);
+            setCurrentUser(user);
         });
     }, []);
 
@@ -20,7 +22,11 @@ export default function Layout({ children }) {
                         <Link href="/">
                             <a className="mincho font-black text-3xl text-gray-600">Clara</a>
                         </Link>
-                        <JumpEditorButton isLoggedin={isLoggedin} />
+                        <div className="flex">
+                            <JumpEditorButton isLoggedin={isLoggedin} />
+                            {/* user dropdown menu (if loggedin display) */}
+                            <img className="w-9 h-9 ml-2 rounded-full" src={(currentUser.photoURL as string).replace(/.jpg/, "_normal.jpg")} />
+                        </div>
                     </div>
                 </div>
             </nav>
