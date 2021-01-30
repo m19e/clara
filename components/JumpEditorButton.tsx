@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { auth, loginWithTwitter } from "../lib/firebase/initFirebase";
 
 export default function JumpEditorButton() {
-    const router = useRouter();
     const [showModal, setShowModal] = useState(false);
     const [isLoggedin, setIsLoggedin] = useState(false);
 
