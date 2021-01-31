@@ -1,16 +1,23 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import JumpEditorButton from "./JumpEditorButton";
 import UserMenu from "./UserMenu";
-import { auth } from "../lib/firebase/initFirebase";
+import { auth, getUserDataByUID } from "../lib/firebase/initFirebase";
+import { useProfile } from "../store/user";
 
 export default function Layout({ children }) {
-    const [currentUser, setCurrentUser] = useState(null);
+    const [profile, setProfile] = useProfile();
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
+        auth.onAuthStateChanged(async (user) => {
             if (user) {
-                setCurrentUser(user);
+                const { uid, displayName, photoURL } = user;
+                const userData = await getUserDataByUID(uid);
+                const { userID } = userData;
+                setProfile({ uid, displayName, photoURL, userID });
+                console.log({ uid, displayName, photoURL, userID });
+            } else {
+                setProfile(null);
             }
         });
     }, []);
@@ -24,8 +31,8 @@ export default function Layout({ children }) {
                             <a className="mincho font-black text-3xl text-gray-600">Clara</a>
                         </Link>
                         <div className="flex">
-                            <JumpEditorButton isLoggedin={!!currentUser} />
-                            <UserMenu user={currentUser} />
+                            <JumpEditorButton isLoggedin={!!profile} />
+                            <UserMenu user={profile} />
                         </div>
                     </div>
                 </div>
