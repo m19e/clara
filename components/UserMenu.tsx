@@ -82,7 +82,7 @@ export default function UserMenu({ user }: { user: User | null }) {
                                 <Link href={`/user/${user.userID}`}>
                                     <a className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-100"}>マイページ</a>
                                 </Link>
-                                <div className="h-0 border border-solid border-t-0 border-gray-100" />
+                                <div className="h-0 border border-solid border-t-0 border-gray-300" />
                             </>
                         )}
                         <div
