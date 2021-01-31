@@ -25,7 +25,6 @@ export default function Layout({ children }) {
                         </Link>
                         <div className="flex">
                             <JumpEditorButton isLoggedin={isLoggedin} />
-                            {/* user dropdown menu (if loggedin display) */}
                             <UserMenu user={currentUser} />
                         </div>
                     </div>
