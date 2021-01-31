@@ -38,7 +38,7 @@ export default function UserMenu({ user }: { user: User | null }) {
             <div className="w-full">
                 <div className="relative inline-flex align-middle w-full">
                     <div
-                        className="w-9 h-9 ml-2 flex-center rounded-full bg-gray-200 outline-none focus:outline-none"
+                        className="w-9 h-9 ml-2 flex-center rounded-full bg-gray-200 cursor-pointer outline-none focus:outline-none"
                         ref={btnDropdownRef}
                         onClick={() => {
                             dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
@@ -87,13 +87,12 @@ export default function UserMenu({ user }: { user: User | null }) {
                                 <div className="h-0 border border-solid border-t-0 border-gray-300" />
                             </>
                         )}
-                        <a
-                            href="#pablo"
-                            className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}
+                        <div
+                            className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-200"}
                             onClick={() => handleLogInOut()}
                         >
                             {user ? "ログアウト" : "ログイン"}
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
