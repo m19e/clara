@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Popper from "popper.js";
 import { loginWithTwitter, logout } from "../lib/firebase/initFirebase";
 
 type User = {
     photoURL: string;
+    userID: string;
 };
 
 export default function UserMenu({ user }: { user: User | null }) {
@@ -77,13 +79,9 @@ export default function UserMenu({ user }: { user: User | null }) {
                     >
                         {user && (
                             <>
-                                <a
-                                    href="#pablo"
-                                    className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}
-                                    onClick={(e) => e.preventDefault()}
-                                >
-                                    マイページ
-                                </a>
+                                <Link href={`/user/${user.userID}`}>
+                                    <a className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}>マイページ</a>
+                                </Link>
                                 <div className="h-0 border border-solid border-t-0 border-gray-300" />
                             </>
                         )}
