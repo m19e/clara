@@ -60,8 +60,9 @@ export default function UserMenu({ user }: { user: User | null }) {
                     </div>
                     <div
                         ref={popoverDropdownRef}
-                        className={(dropdownPopoverShow ? "block " : "hidden ") + "text-base z-50 list-none text-left rounded shadow-md editor-bg mt-5 -ml-36"}
-                        style={{ minWidth: "12rem" }}
+                        className={
+                            (dropdownPopoverShow ? "block " : "hidden ") + "text-base w-48 z-50 list-none text-left rounded shadow-md editor-bg mt-5 -ml-36"
+                        }
                     >
                         {user && (
                             <>
