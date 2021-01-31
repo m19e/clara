@@ -64,7 +64,7 @@ export default function Header() {
                     {isTitleEdit ? (
                         <form onSubmit={handleSubmit}>
                             <input
-                                className="text-black opacity-75 mx-2 text-center shadow-inner editor-bg rounded outline-none focus:outline-none"
+                                className="text-gray-900 mx-2 text-center shadow-inner editor-bg rounded outline-none focus:outline-none"
                                 type="text"
                                 ref={editTitleRef}
                                 value={temptitle}
@@ -79,7 +79,7 @@ export default function Header() {
                     ) : (
                         <>
                             <div className="w-6"></div>
-                            <p className="text-black opacity-75 mx-1">{title}</p>
+                            <p className="text-gray-900 mx-1">{title}</p>
                             <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-60" onClick={toggleTitleEdit}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
