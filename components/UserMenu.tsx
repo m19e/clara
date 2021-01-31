@@ -67,17 +67,17 @@ export default function UserMenu({ user }: { user: User | null }) {
                             <>
                                 <a
                                     href="#pablo"
-                                    className={"text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent"}
+                                    className={"text-sm p-4 font-normal block w-full whitespace-no-wrap bg-transparent"}
                                     onClick={(e) => e.preventDefault()}
                                 >
                                     マイページ
                                 </a>
-                                <div className="h-0 my-2 border border-solid border-t-0 border-gray-300" />
+                                <div className="h-0 border border-solid border-t-0 border-gray-300" />
                             </>
                         )}
                         <a
                             href="#pablo"
-                            className={"text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}
+                            className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}
                             onClick={() => handleLogInOut()}
                         >
                             {user ? "ログアウト" : "ログイン"}
