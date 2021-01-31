@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { createCanvas } from "canvas";
+import { createCanvas, registerFont } from "canvas";
+import path from "path";
 
 const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     const WIDTH = 1200 as const;
@@ -7,10 +8,19 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     const DX = 0 as const;
     const DY = 0 as const;
     const canvas = createCanvas(WIDTH, HEIGHT);
-    const ctx = canvas.getContext("2d");
 
+    const ctx = canvas.getContext("2d");
     ctx.fillStyle = "#FFF";
     ctx.fillRect(DX, DY, WIDTH, HEIGHT);
+
+    registerFont(path.resolve("./fonts/NotoSansJP-Medium.otf"), {
+        family: "notosansjp",
+    });
+    ctx.font = "60px notosansjp";
+    ctx.fillStyle = "#000000";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("小説のタイトル", 600, 300);
 
     const buffer = canvas.toBuffer();
 
