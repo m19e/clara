@@ -38,7 +38,7 @@ export default function UserMenu({ user }: { user: User | null }) {
             <div className="w-full">
                 <div className="relative inline-flex align-middle w-full">
                     <div
-                        className="w-9 h-9 ml-2 flex-center rounded-full bg-gray-200"
+                        className="w-9 h-9 ml-2 flex-center rounded-full bg-gray-200 outline-none focus:outline-none"
                         ref={btnDropdownRef}
                         onClick={() => {
                             dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
