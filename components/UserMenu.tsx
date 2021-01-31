@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Popper from "popper.js";
 import { loginWithTwitter, logout } from "../lib/firebase/initFirebase";
 
@@ -8,8 +8,13 @@ type User = {
 
 export default function UserMenu({ user }: { user: User | null }) {
     const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
-    const btnDropdownRef = useRef();
+    const btnDropdownRef = useRef<HTMLDivElement>();
     const popoverDropdownRef = useRef();
+
+    useEffect(() => {
+        dropdownPopoverShow && btnDropdownRef.current.focus();
+    }, [dropdownPopoverShow]);
+
     const openDropdownPopover = () => {
         new Popper(btnDropdownRef.current, popoverDropdownRef.current, {
             placement: "bottom-start",
@@ -38,6 +43,8 @@ export default function UserMenu({ user }: { user: User | null }) {
                         onClick={() => {
                             dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
                         }}
+                        onBlur={() => closeDropdownPopover()}
+                        tabIndex={0}
                     >
                         {user ? (
                             <img className="w-full h-full rounded-full" src={user.photoURL.replace(/.jpg/, "_normal.jpg")} />
