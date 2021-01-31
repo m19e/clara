@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import Popper from "popper.js";
+import { loginWithTwitter, logout } from "../lib/firebase/initFirebase";
 
 type User = {
     photoURL: string;
@@ -17,6 +18,14 @@ export default function UserMenu({ user }: { user: User | null }) {
     };
     const closeDropdownPopover = () => {
         setDropdownPopoverShow(false);
+    };
+
+    const handleLogInOut = async () => {
+        if (user) {
+            await logout();
+        } else {
+            await loginWithTwitter();
+        }
     };
 
     return (
@@ -69,7 +78,7 @@ export default function UserMenu({ user }: { user: User | null }) {
                         <a
                             href="#pablo"
                             className={"text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}
-                            onClick={(e) => e.preventDefault()}
+                            onClick={() => handleLogInOut()}
                         >
                             {user ? "ログアウト" : "ログイン"}
                         </a>
