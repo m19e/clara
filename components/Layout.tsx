@@ -5,13 +5,13 @@ import UserMenu from "./UserMenu";
 import { auth } from "../lib/firebase/initFirebase";
 
 export default function Layout({ children }) {
-    const [isLoggedin, setIsLoggedin] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            setIsLoggedin(!!user);
-            setCurrentUser(user);
+            if (user) {
+                setCurrentUser(user);
+            }
         });
     }, []);
 
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
                             <a className="mincho font-black text-3xl text-gray-600">Clara</a>
                         </Link>
                         <div className="flex">
-                            <JumpEditorButton isLoggedin={isLoggedin} />
+                            <JumpEditorButton isLoggedin={!!currentUser} />
                             <UserMenu user={currentUser} />
                         </div>
                     </div>
