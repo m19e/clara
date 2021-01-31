@@ -10,7 +10,7 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     const canvas = createCanvas(WIDTH, HEIGHT);
 
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = "#f9f9fa";
     ctx.fillRect(DX, DY, WIDTH, HEIGHT);
 
     registerFont(path.resolve("./fonts/NotoSansJP-Medium.otf"), {
