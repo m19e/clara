@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import JumpEditorButton from "./JumpEditorButton";
+import UserMenu from "./UserMenu";
 import { auth } from "../lib/firebase/initFirebase";
 
 export default function Layout({ children }) {
@@ -25,7 +26,7 @@ export default function Layout({ children }) {
                         <div className="flex">
                             <JumpEditorButton isLoggedin={isLoggedin} />
                             {/* user dropdown menu (if loggedin display) */}
-                            <img className="w-9 h-9 ml-2 rounded-full" src={(currentUser.photoURL as string).replace(/.jpg/, "_normal.jpg")} />
+                            <UserMenu user={currentUser} />
                         </div>
                     </div>
                 </div>
