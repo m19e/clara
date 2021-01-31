@@ -43,7 +43,11 @@ export default function UserMenu({ user }: { user: User | null }) {
                         onClick={() => {
                             dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
                         }}
-                        onBlur={() => closeDropdownPopover()}
+                        onBlur={() =>
+                            setTimeout(() => {
+                                closeDropdownPopover();
+                            }, 200)
+                        }
                         tabIndex={0}
                     >
                         {user ? (
