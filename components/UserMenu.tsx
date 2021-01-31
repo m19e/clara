@@ -75,7 +75,7 @@ export default function UserMenu({ user }: { user: User | null }) {
                             <>
                                 <a
                                     href="#pablo"
-                                    className={"text-sm p-4 font-normal block w-full whitespace-no-wrap bg-transparent"}
+                                    className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-200"}
                                     onClick={(e) => e.preventDefault()}
                                 >
                                     マイページ
