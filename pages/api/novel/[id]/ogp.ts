@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createCanvas, registerFont, CanvasRenderingContext2D } from "canvas";
 import path from "path";
+import fs from "fs";
 
 const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     const WIDTH = 1200 as const;
@@ -46,15 +47,16 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
 
     ctx.fillStyle = "rgba(75, 85, 99, 1)";
     ctx.font = "36px id";
-    ctx.fillText("作者のID", 600, 580);
+    ctx.fillText("@作者のID", 600, 580);
 
     const buffer = canvas.toBuffer();
+    fs.writeFileSync(path.resolve(`./public/ogp/test.png`), buffer);
 
-    res.writeHead(200, {
-        "Content-Type": "image/png",
-        "Content-Length": buffer.length,
-    });
-    res.end(buffer, "binary");
+    // res.writeHead(200, {
+    //     "Content-Type": "image/png",
+    //     "Content-Length": buffer.length,
+    // });
+    // res.end(buffer, "binary");
 };
 
 const splitByMeasureWidth = (text: string, maxWidth: number, context: CanvasRenderingContext2D) => {
