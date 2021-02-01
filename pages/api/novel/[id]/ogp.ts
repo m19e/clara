@@ -15,6 +15,7 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     ctx.fillRect(DX, DY, WIDTH, HEIGHT);
 
     const PADDING = 80 as const;
+    const LINE_HEIGHT = 80 as const;
 
     registerFont(path.resolve("./fonts/NotoSerifJP-Black.otf"), {
         family: "logo",
@@ -39,10 +40,10 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     const lineWidth = WIDTH - PADDING * 2;
     const titleLines = splitByMeasureWidth(text, lineWidth, ctx);
     const titleLinesLen = titleLines.length;
-    const titleHeight = titleLinesLen * PADDING;
+    const titleHeight = titleLinesLen * LINE_HEIGHT;
 
-    titleLines.reverse().forEach((line, i) => {
-        ctx.fillText(line, 600, 320 - i * PADDING);
+    titleLines.forEach((line, i) => {
+        ctx.fillText(line, 600, 315 + i * LINE_HEIGHT);
     });
 
     ctx.fillStyle = "rgba(75, 85, 99, 1)";
@@ -52,11 +53,11 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     const buffer = canvas.toBuffer();
     fs.writeFileSync(path.resolve(`./public/ogp/test.png`), buffer);
 
-    // res.writeHead(200, {
-    //     "Content-Type": "image/png",
-    //     "Content-Length": buffer.length,
-    // });
-    // res.end(buffer, "binary");
+    res.writeHead(200, {
+        "Content-Type": "image/png",
+        "Content-Length": buffer.length,
+    });
+    res.end(buffer, "binary");
 };
 
 const splitByMeasureWidth = (text: string, maxWidth: number, context: CanvasRenderingContext2D) => {
