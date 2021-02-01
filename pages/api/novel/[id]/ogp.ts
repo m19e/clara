@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { createCanvas, registerFont } from "canvas";
+import { createCanvas, registerFont, CanvasRenderingContext2D } from "canvas";
 import path from "path";
 
 const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
@@ -35,6 +35,22 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
         "Content-Length": buffer.length,
     });
     res.end(buffer, "binary");
+};
+
+const splitByMeasureWidth = (text: string, maxWidth: number, context: CanvasRenderingContext2D) => {
+    const chars = Array.from(text);
+    let line = "";
+    let lines = [];
+    for (const char of chars) {
+        if (maxWidth <= context.measureText(line + char).width) {
+            lines.push(line);
+            line = char;
+        } else {
+            line += char;
+        }
+    }
+    lines.push(line);
+    return lines;
 };
 
 export default createOgp;
