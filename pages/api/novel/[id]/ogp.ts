@@ -13,20 +13,40 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     ctx.fillStyle = "#f9f9fa";
     ctx.fillRect(DX, DY, WIDTH, HEIGHT);
 
+    const PADDING = 80 as const;
+
+    registerFont(path.resolve("./fonts/NotoSerifJP-Black.otf"), {
+        family: "logo",
+    });
     registerFont(path.resolve("./fonts/NotoSansJP-Black.otf"), {
         family: "title",
     });
     registerFont(path.resolve("./fonts/NotoSansJP-Light.otf"), {
         family: "id",
     });
-    ctx.font = "72px title";
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "rgba(75, 85, 99, 1)";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("小説のタイトル", 600, 300);
 
+    ctx.font = "32px logo";
+    ctx.fillText("Clara", 600, 50);
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "64px title";
+    const text = "小説のタイトル";
+
+    const lineWidth = WIDTH - PADDING * 2;
+    const titleLines = splitByMeasureWidth(text, lineWidth, ctx);
+    const titleLinesLen = titleLines.length;
+    const titleHeight = titleLinesLen * PADDING;
+
+    titleLines.reverse().forEach((line, i) => {
+        ctx.fillText(line, 600, 320 - i * PADDING);
+    });
+
+    ctx.fillStyle = "rgba(75, 85, 99, 1)";
     ctx.font = "36px id";
-    ctx.fillText("作者のID", 600, 500);
+    ctx.fillText("作者のID", 600, 580);
 
     const buffer = canvas.toBuffer();
 
