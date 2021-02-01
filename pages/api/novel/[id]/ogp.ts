@@ -41,9 +41,10 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     const titleLines = splitByMeasureWidth(text, lineWidth, ctx);
     const titleLinesLen = titleLines.length;
     const titleHeight = titleLinesLen * LINE_HEIGHT;
+    const startLine = Math.floor(315 + (LINE_HEIGHT - titleHeight) / 2);
 
     titleLines.forEach((line, i) => {
-        ctx.fillText(line, 600, 315 + i * LINE_HEIGHT);
+        ctx.fillText(line, 600, startLine + i * LINE_HEIGHT);
     });
 
     ctx.fillStyle = "rgba(75, 85, 99, 1)";
