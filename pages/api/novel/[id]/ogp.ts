@@ -13,14 +13,20 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     ctx.fillStyle = "#f9f9fa";
     ctx.fillRect(DX, DY, WIDTH, HEIGHT);
 
-    registerFont(path.resolve("./fonts/NotoSansJP-Medium.otf"), {
-        family: "notosansjp",
+    registerFont(path.resolve("./fonts/NotoSansJP-Black.otf"), {
+        family: "title",
     });
-    ctx.font = "60px notosansjp";
+    registerFont(path.resolve("./fonts/NotoSansJP-Light.otf"), {
+        family: "id",
+    });
+    ctx.font = "72px title";
     ctx.fillStyle = "#000000";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText("小説のタイトル", 600, 300);
+
+    ctx.font = "36px id";
+    ctx.fillText("作者のID", 600, 500);
 
     const buffer = canvas.toBuffer();
 
