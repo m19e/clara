@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next/types";
 import { createCanvas, registerFont, CanvasRenderingContext2D } from "canvas";
 import path from "path";
 
