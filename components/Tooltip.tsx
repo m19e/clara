@@ -1,13 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useRef, ReactNode } from "react";
 import Popper from "popper.js";
 
 type TooltipProps = {
     text: string;
-    d: string;
+    d?: string;
     classOverride?: string;
     fill?: "none" | string;
     stroke?: "currentColor" | string;
     viewBox?: "0 0 24 24" | string;
+    child?: ReactNode;
 };
 
 export default function Tooltip({
@@ -17,6 +18,7 @@ export default function Tooltip({
     fill = "none",
     stroke = "currentColor",
     viewBox = "0 0 24 24",
+    child = null,
 }: TooltipProps) {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
@@ -34,18 +36,24 @@ export default function Tooltip({
     return (
         <>
             <div className="w-10 h-10 mt-2 editor-bg rounded-full shadow-md flex-center">
-                <svg
-                    className={classOverride}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill={fill}
-                    viewBox={viewBox}
-                    stroke={stroke}
-                    onMouseEnter={openLeftTooltip}
-                    onMouseLeave={closeLeftTooltip}
-                    ref={btnRef}
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
-                </svg>
+                {child ? (
+                    <div onMouseEnter={openLeftTooltip} onMouseLeave={closeLeftTooltip} ref={btnRef}>
+                        {child}
+                    </div>
+                ) : (
+                    <svg
+                        className={classOverride}
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill={fill}
+                        viewBox={viewBox}
+                        stroke={stroke}
+                        onMouseEnter={openLeftTooltip}
+                        onMouseLeave={closeLeftTooltip}
+                        ref={btnRef}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
+                    </svg>
+                )}
             </div>
             <div
                 className={(tooltipShow ? "" : "hidden ") + "editor-bg mr-4 block z-50 no-underline break-words rounded-xl border border-solid border-gray-300"}
