@@ -8,6 +8,7 @@ import { getDisplayTime, getTextCharCount } from "../lib/novel/tools";
 
 export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
+    const [empty] = useState(rootList.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, 20));
     const [hasMore, setHasMore] = useState(novels.length > 20);
 
@@ -26,31 +27,39 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
                         <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
-                            {displayList.map((novel, i) => (
-                                <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                                    <Link href={`/novel/${novel.id}`}>
-                                        <a className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
-                                    </Link>
-                                    <div className="flex justify-between mt-4 items-baseline">
-                                        <Link href={`/user/${novel.author_id}`}>
-                                            <a className="opacity-75">{novel.author_name}</a>
-                                        </Link>
-                                        <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
-                                    </div>
+                            {empty ? (
+                                <div className="w-3/4 max-w-xl my-12 flex-center">
+                                    <span className="text-xl gothic font-semibold opacity-40">まだ小説は投稿されていません</span>
                                 </div>
-                            ))}
-                            <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
-                            <div className="w-full flex-center my-8 editor-bg">
-                                {hasMore && (
-                                    <button
-                                        className="gothic text-gray-500 bg-transparent border border-solid border-gray-500 transition-all hover:bg-gray-400 hover:border-gray-400 hover:text-white font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none"
-                                        type="button"
-                                        onClick={() => displayMore()}
-                                    >
-                                        もっと見る
-                                    </button>
-                                )}
-                            </div>
+                            ) : (
+                                <>
+                                    {displayList.map((novel, i) => (
+                                        <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
+                                            <Link href={`/novel/${novel.id}`}>
+                                                <a className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
+                                            </Link>
+                                            <div className="flex justify-between mt-4 items-baseline">
+                                                <Link href={`/user/${novel.author_id}`}>
+                                                    <a className="opacity-75">{novel.author_name}</a>
+                                                </Link>
+                                                <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
+                                    <div className="w-full flex-center my-8 editor-bg">
+                                        {hasMore && (
+                                            <button
+                                                className="gothic text-gray-500 bg-transparent border border-solid border-gray-500 transition-all hover:bg-gray-400 hover:border-gray-400 hover:text-white font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none"
+                                                type="button"
+                                                onClick={() => displayMore()}
+                                            >
+                                                もっと見る
+                                            </button>
+                                        )}
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
