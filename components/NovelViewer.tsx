@@ -134,7 +134,6 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                             </Link>
                         )}
                         <NovelViewerConfig viewerConfig={viewerConfig} />
-                        <HomeButton />
                         <a
                             href={
                                 "https://twitter.com/intent/tweet?text=" +
@@ -154,6 +153,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                                 fill="currentColor"
                             />
                         </a>
+                        <HomeButton />
                     </div>
                 </div>
             </div>
