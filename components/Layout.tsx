@@ -15,7 +15,6 @@ export default function Layout({ children }) {
                 const userData = await getUserDataByUID(uid);
                 const { userID } = userData;
                 setProfile({ uid, displayName, photoURL, userID });
-                console.log({ uid, displayName, photoURL, userID });
             } else {
                 setProfile(null);
             }
