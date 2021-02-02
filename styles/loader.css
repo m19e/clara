@@ -12,7 +12,7 @@
     75% {
         height: 64px;
         margin-bottom: 0;
-        background-color: #7ea7bd;
+        background-color: #8c9196;
     }
 
     100% {
@@ -34,7 +34,7 @@
     75% {
         height: 64px;
         margin-bottom: 0;
-        background-color: #7ea7bd;
+        background-color: #8c9196;
     }
 
     100% {
@@ -56,7 +56,7 @@
     75% {
         height: 80px;
         margin-bottom: 0;
-        background-color: #7ea7bd;
+        background-color: #8c9196;
     }
 
     100% {
@@ -78,7 +78,7 @@
     75% {
         height: 80px;
         margin-bottom: 0;
-        background-color: #7ea7bd;
+        background-color: #8c9196;
     }
 
     100% {
@@ -91,7 +91,7 @@
 .loader-after {
     width: 8px;
     height: 80px;
-    background-color: #7ea7bd;
+    background-color: #8c9196;
     border-radius: 1px;
     margin: 0 4px;
 }
