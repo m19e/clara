@@ -28,9 +28,13 @@ export default function Layout({ children }) {
                 <div className="container flex-center">
                     <div className="w-11/12 flex flex-wrap items-center justify-between">
                         <div className="flex-center">
-                            <img className="w-6 h-6 mr-1" src="/icon-64x64.png" alt="Clara" />
                             <Link href="/">
-                                <a className="mincho font-black text-3xl text-gray-600">Clara</a>
+                                <a>
+                                    <div className="flex-center">
+                                        <img className="w-6 h-6 mr-1.5" src="/icon-64x64.png" alt="Clara" />
+                                        <span className="mincho font-black text-3xl text-gray-600">Clara</span>
+                                    </div>
+                                </a>
                             </Link>
                         </div>
                         <div className="flex">
