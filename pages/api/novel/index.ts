@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createCanvas, registerFont, CanvasRenderingContext2D } from "canvas";
 import path from "path";
-import fs from "fs";
 
 const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     const WIDTH = 1200 as const;
