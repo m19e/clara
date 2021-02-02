@@ -16,14 +16,14 @@
     font-family: "MyBoxDrawings";
     font-weight: normal;
     src: local("YuMin-Medium"), local("YuMincho-Regular");
-    unicode-range: U+2500;
+    unicode-range: U+203C, U+2047, U+2048, U+2049, U+2500;
 }
 
 @font-face {
     font-family: "MyBoxDrawings";
     font-weight: bold;
     src: local("YuMin-Demibold"), local("YuMincho-Demibold");
-    unicode-range: U+2500;
+    unicode-range: U+203C, U+2047, U+2048, U+2049, U+2500;
 }
 
 .mincho {
