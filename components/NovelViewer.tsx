@@ -92,8 +92,8 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                 <title>{novel.title}</title>
                 <meta name="description" content="ClaraNovel" />
                 <meta name="og:title" property="og:title" content={novel.title} />
-                <meta name="og:image" property="og:image" content={"http://localhost:3000" + imagePath} />
-                <meta name="og:url" property="og:url" content={"http://localhost:3000" + router.asPath} />
+                <meta name="og:image" property="og:image" content={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath} />
+                <meta name="og:url" property="og:url" content={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath} />
                 <meta name="twitter:card" content="summary" />
             </Head>
             <div className="w-full h-screen flex justify-end editor-bg">
@@ -140,7 +140,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                                 "https://twitter.com/intent/tweet?text=" +
                                 encodeURIComponent(`${novel.title} #claranovel`) +
                                 "&url=" +
-                                "http://localhost:3000" +
+                                process.env.NEXT_PUBLIC_SITE_ROOT_URL +
                                 router.asPath
                             }
                             target="_blank"
