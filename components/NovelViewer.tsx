@@ -44,8 +44,29 @@ const getOgpImagePath = (title: string, author: string) => {
     return `/api/novel?${query}`;
 };
 
+const markPairs = [
+    { target: "！？", replace: "⁉" },
+    { target: "？！", replace: "⁈" },
+    { target: "！！", replace: "‼" },
+    { target: "？？", replace: "⁇" },
+    { target: "!?", replace: "⁉" },
+    { target: "?!", replace: "⁈" },
+    { target: "!!", replace: "‼" },
+    { target: "??", replace: "⁇" },
+];
+
+const getReplacedText = (text: string): string => {
+    let result = text;
+    for (const pair of markPairs) {
+        if (result.includes(pair.target)) result = result.split(pair.target).join(pair.replace);
+    }
+    return result;
+};
+
 export default function NovelView({ novel }: { novel: INovelDataSerializable }) {
-    const contentArray = novel.content.split("\n").map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
+    const contentArray = getReplacedText(novel.content)
+        .split("\n")
+        .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
     const [font, setMincho, setGothic] = useFont("mincho");
