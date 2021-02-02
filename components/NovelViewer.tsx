@@ -138,7 +138,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
                         <a
                             href={
                                 "https://twitter.com/intent/tweet?text=" +
-                                encodeURIComponent(novel.title + " | " + novel.author_name) +
+                                encodeURIComponent(`${novel.title} #claranovel`) +
                                 "&url=" +
                                 "http://localhost:3000" +
                                 router.asPath
