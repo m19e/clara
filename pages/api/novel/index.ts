@@ -1,8 +1,27 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { createCanvas, registerFont, CanvasRenderingContext2D } from "canvas";
 import path from "path";
+import { parseRequest } from "./_lib/parser";
 
-const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+const ogpHandler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+    try {
+        const { title, author } = parseRequest(req);
+        const file = createOgp(title, author);
+        res.writeHead(200, {
+            "Content-Type": "image/png",
+            "Content-Length": file.length,
+            "Cache-Control": `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`,
+        });
+        res.end(file, "binary");
+    } catch (e) {
+        res.statusCode = 500;
+        res.setHeader("Content-Type", "text/html");
+        res.end("<h1>Internal Error</h1><p>Sorry, there was a problem</p>");
+        console.error(e);
+    }
+};
+
+const createOgp = (title: string, author: string): Buffer => {
     const WIDTH = 1200 as const;
     const HEIGHT = 630 as const;
     const DX = 0 as const;
@@ -34,7 +53,6 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
 
     ctx.fillStyle = "#000000";
     ctx.font = "64px title";
-    const title = "小説のタイトル";
 
     const lineWidth = WIDTH - PADDING * 2;
     const titleLines = splitByMeasureWidth(title, lineWidth, ctx);
@@ -48,15 +66,9 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
 
     ctx.fillStyle = "rgba(75, 85, 99, 1)";
     ctx.font = "36px id";
-    ctx.fillText("@作者のID", 600, 580);
+    ctx.fillText(`@${author}`, 600, 580);
 
-    const buffer = canvas.toBuffer();
-
-    res.writeHead(200, {
-        "Content-Type": "image/png",
-        "Content-Length": buffer.length,
-    });
-    res.end(buffer, "binary");
+    return canvas.toBuffer("image/png");
 };
 
 const splitByMeasureWidth = (text: string, maxWidth: number, context: CanvasRenderingContext2D) => {
@@ -75,4 +87,4 @@ const splitByMeasureWidth = (text: string, maxWidth: number, context: CanvasRend
     return lines;
 };
 
-export default createOgp;
+export default ogpHandler;
