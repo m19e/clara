@@ -266,6 +266,12 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         return getDefaultKeyBinding(e);
     };
 
+    const handleEditorChange = (es: EditorState) => {
+        // 編集中blockだけチェックする
+        // 一旦NovelViewerだけ対応する
+        setEditorState(es);
+    };
+
     return (
         <div ref={editorRef} className="w-full h-screen flex justify-end editor-bg">
             <Scrollbar
@@ -284,7 +290,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                             </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
-                            <Editor editorState={editorState} onChange={setEditorState} keyBindingFn={handleKeyBinding} />
+                            <Editor editorState={editorState} onChange={handleEditorChange} keyBindingFn={handleKeyBinding} />
                         </div>
                     </div>
                 </div>
