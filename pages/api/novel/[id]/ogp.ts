@@ -35,10 +35,10 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
 
     ctx.fillStyle = "#000000";
     ctx.font = "64px title";
-    const text = "小説のタイトル";
+    const title = "小説のタイトル";
 
     const lineWidth = WIDTH - PADDING * 2;
-    const titleLines = splitByMeasureWidth(text, lineWidth, ctx);
+    const titleLines = splitByMeasureWidth(title, lineWidth, ctx);
     const titleLinesLen = titleLines.length;
     const titleHeight = titleLinesLen * LINE_HEIGHT;
     const startLine = Math.floor(315 + (LINE_HEIGHT - titleHeight) / 2);
@@ -52,7 +52,6 @@ const createOgp = async (req: NextApiRequest, res: NextApiResponse): Promise<voi
     ctx.fillText("@作者のID", 600, 580);
 
     const buffer = canvas.toBuffer();
-    fs.writeFileSync(path.resolve(`./public/ogp/test.png`), buffer);
 
     res.writeHead(200, {
         "Content-Type": "image/png",
