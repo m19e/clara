@@ -89,7 +89,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
     return (
         <>
             <Head>
-                <title>{novel.title}</title>
+                <title>{`${novel.title} - ${novel.author_name} | Clara`}</title>
                 <meta name="description" content="ClaraNovel" />
                 <meta name="og:title" property="og:title" content={novel.title} />
                 <meta name="og:image" property="og:image" content={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath} />
