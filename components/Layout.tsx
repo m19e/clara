@@ -32,7 +32,7 @@ export default function Layout({ children }) {
                                 <a>
                                     <div className="flex-center">
                                         <img className="w-6 h-6 mr-1.5" src="/icon-64x64.png" alt="Clara" />
-                                        <span className="mincho font-black text-3xl text-gray-600">Clara</span>
+                                        <span className="mincho font-black text-3xl text-gray-700">Clara</span>
                                     </div>
                                 </a>
                             </Link>
