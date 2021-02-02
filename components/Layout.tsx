@@ -27,9 +27,12 @@ export default function Layout({ children }) {
             <nav className="h-16 w-full flex-center editor-bg">
                 <div className="container flex-center">
                     <div className="w-11/12 flex flex-wrap items-center justify-between">
-                        <Link href="/">
-                            <a className="mincho font-black text-3xl text-gray-600">Clara</a>
-                        </Link>
+                        <div className="flex-center">
+                            <img className="w-6 h-6 mr-1" src="/icon-64x64.png" alt="Clara" />
+                            <Link href="/">
+                                <a className="mincho font-black text-3xl text-gray-600">Clara</a>
+                            </Link>
+                        </div>
                         <div className="flex">
                             <JumpEditorButton isLoggedin={!!profile} />
                             <UserMenu user={profile} />
