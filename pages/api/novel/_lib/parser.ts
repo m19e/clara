@@ -1,7 +1,7 @@
 import { NextApiRequest } from "next/types";
 import { parse } from "url";
 
-export function parseRequest(req: NextApiRequest) {
+export const parseRequest = (req: NextApiRequest) => {
     console.log("HTTP " + req.url);
     const { query } = parse(req.url || "/", true);
     const { title, author } = query || {};
@@ -17,4 +17,4 @@ export function parseRequest(req: NextApiRequest) {
         title: title ? decodeURIComponent(title) : null,
         author,
     };
-}
+};
