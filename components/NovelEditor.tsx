@@ -4,6 +4,7 @@ import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
+import Header from "../components/Header";
 import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
@@ -274,6 +275,18 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
 
     return (
         <div ref={editorRef} className="w-full h-screen flex justify-end editor-bg">
+            <Header
+                title={"小説を編集 | Clara"}
+                description={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                ogTitle={"Clara"}
+                ogDescription={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twTitle={"Clara"}
+                twDescription={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL}
+                twCard="summary"
+            />
             <Scrollbar
                 containerRef={(ref) => (ps.current = ref)}
                 onWheel={onMouseWheel}
