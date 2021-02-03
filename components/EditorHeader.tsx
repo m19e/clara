@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useTitle, useDraftID, useIsTitleEdit } from "../store/draft";
 import { useProfile } from "../store/user";
 import { updateDraftTitle } from "../lib/firebase/initFirebase";
+import NextHeader from "../components/Header";
 import PublishModal from "./PubishModal";
 
 export default function Header() {
@@ -53,6 +54,18 @@ export default function Header() {
 
     return (
         <div className="shadow-sm editor-bg fixed top-0 w-full flex-center">
+            <NextHeader
+                title={title + " | Clara"}
+                description={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                ogTitle={"Clara"}
+                ogDescription={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twTitle={"Clara"}
+                twDescription={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL}
+                twCard="summary"
+            />
             <div className="container flex justify-between items-center">
                 <div className="w-20">
                     <div className="flex justify-start items-center">
