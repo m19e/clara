@@ -125,6 +125,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
     const user = await getUserDataByID(params.id);
     if (!user) return { notFound: true };
     const novels = await getAllUserNovelByUID(user.uid, "desc");
+    console.log(novels);
     const serializables: INovelDataSerializable[] =
         novels.map((novel) => {
             const update = {
