@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import firebase from "firebase/app";
 import Layout from "../components/Layout";
+import Header from "../components/Header";
 import { INovelDataSerializable, getAllNovel } from "../lib/firebase/initFirebase";
 import { getDisplayTime, getTextCharCount } from "../lib/novel/tools";
 
@@ -23,6 +24,18 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
 
     return (
         <Layout>
+            <Header
+                title={"Clara"}
+                description={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                ogTitle={"Clara"}
+                ogDescription={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twTitle={"Clara"}
+                twDescription={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
+                twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL}
+                twCard="summary"
+            />
             <div className="flex-center">
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
