@@ -1,4 +1,3 @@
-import { deflate } from "zlib";
 import Head from "next/head";
 
 type OGP = {
