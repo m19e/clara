@@ -3,6 +3,7 @@ import { GetStaticProps } from "next";
 import { useState } from "react";
 import firebase from "firebase/app";
 import Layout from "../../../components/Layout";
+import Header from "../../../components/Header";
 import { getAllUserID, getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
@@ -25,6 +26,18 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
 
     return (
         <Layout>
+            <Header
+                title={`${user.displayName} | Clara`}
+                description={"Clara"}
+                ogTitle={`${user.displayName} | Clara`}
+                ogDescription={"Clara"}
+                ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twTitle={`${user.displayName} | Clara`}
+                twDescription={"Clara"}
+                twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + `/user/${user.userID}`}
+                twCard="summary"
+            />
             <div className="flex-center pt-16 pb-4 mt-72">
                 <div className="container max-w-4xl mx-auto px-4">
                     <div className="flex flex-col min-w-0 break-words editor-bg w-full mb-6 rounded-lg -mt-64">
