@@ -18,11 +18,11 @@ const Header = ({ title, description, ogTitle, ogDescription, ogImage, twTitle, 
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta property="og:site_name" content="Clara" />
-        <meta property="og:title" content={ogTitle + " | Clara"} />
+        <meta property="og:title" content={ogTitle} />
         <meta property="og:description" content={ogDescription} />
         <meta property="og:image" content={ogImage} />
         <meta property="og:type" content="article" />
-        <meta property="twitter:title" content={twTitle + " | Clara"} />
+        <meta property="twitter:title" content={twTitle} />
         <meta property="twitter:description" content={twDescription} />
         <meta property="twitter:image" content={twImage} />
         <meta property="twitter:url" content={twUrl} />
