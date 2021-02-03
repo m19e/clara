@@ -53,7 +53,9 @@ export default function VerticalEditor() {
         auth.onAuthStateChanged((user) => {
             user ? initEditor(user) : router.push("/");
         });
+    }, []);
 
+    useEffect(() => {
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
             const height = entries[0].contentRect.height;
             setWrapperHeight(height);
@@ -63,7 +65,7 @@ export default function VerticalEditor() {
         return () => {
             resizeObs.disconnect();
         };
-    }, []);
+    }, [fs, lineWords]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
