@@ -146,7 +146,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
             user,
             novels: serializables,
         },
-        revalidate: 600,
+        revalidate: 1,
     };
 };
 

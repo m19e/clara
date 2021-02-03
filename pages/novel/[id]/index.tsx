@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
         props: {
             novel: serializable,
         },
-        revalidate: 600,
+        revalidate: 1,
     };
 };
 
