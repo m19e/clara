@@ -5,7 +5,7 @@ export const getTextCharCount = (text: string): number => {
 };
 
 export const getDisplayTime = (milli: number): string => {
-    const dt = new Date(milli);
+    const dt = new Date(milli + 32400000);
     const y = dt.getFullYear() + "/";
     const m = dt.getMonth() + 1 + "/";
     const d = dt.getDate() + " ";
