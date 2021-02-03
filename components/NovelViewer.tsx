@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Head from "next/head";
 import Link from "next/link";
 import { useState, useRef, useCallback, useEffect } from "react";
 import Scrollbar from "react-perfect-scrollbar";
