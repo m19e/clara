@@ -8,6 +8,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import Tooltip from "./Tooltip";
 import NovelViewerConfig from "./NovelViewerConfig";
 import HomeButton from "./HomeButton";
+import Header from "./Header";
 import { INovelDataSerializable, auth } from "../lib/firebase/initFirebase";
 
 type FontSizeState = "base" | "xl" | "2xl";
@@ -85,6 +86,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
     const router = useRouter();
 
     const imagePath = getOgpImagePath(novel.title, novel.author_id);
+    const desc = Array.from(novel.content.split("\n").join("")).slice(0, 100).join("");
 
     useEffect(() => {
         if (ps.current) {
@@ -109,14 +111,18 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
 
     return (
         <>
-            <Head>
-                <title>{`${novel.title} - ${novel.author_name} | Clara`}</title>
-                <meta name="description" content="ClaraNovel" />
-                <meta name="og:title" property="og:title" content={novel.title} />
-                <meta name="og:image" property="og:image" content={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath} />
-                <meta name="og:url" property="og:url" content={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath} />
-                <meta name="twitter:card" content="summary" />
-            </Head>
+            <Header
+                title={`${novel.title} - ${novel.author_name} | Clara`}
+                description={desc}
+                ogTitle={`${novel.title} - ${novel.author_name} | Clara`}
+                ogDescription={desc}
+                ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
+                twTitle={novel.title}
+                twDescription={desc}
+                twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
+                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}
+                twCard="summary_large_image"
+            />
             <div className="w-full h-screen flex justify-end editor-bg">
                 <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={onMouseWheel} className={display ? "" : " opacity-0"}>
                     <div className="h-full flex items-center">
