@@ -11,7 +11,7 @@ const DISPLAY_NOVEL_SPAN = 3;
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
-    const [empty] = useState(rootList.slice().length === 0);
+    const [empty] = useState(novels.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
 
