@@ -53,7 +53,7 @@ export default function UserPage({
                                     <div className="relative">
                                         <img
                                             alt="..."
-                                            src={user.photoURL}
+                                            src={user.photoURL.replace(/_normal/, "")}
                                             className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                                             style={{ maxWidth: "150px" }}
                                         />
