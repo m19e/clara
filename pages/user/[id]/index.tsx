@@ -11,7 +11,7 @@ const DISPLAY_NOVEL_SPAN = 3;
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
-    const [empty] = useState(rootList.length === 0);
+    const [empty] = useState(rootList.slice().length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
 
@@ -125,14 +125,15 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
     const user = await getUserDataByID(params.id);
     if (!user) return { notFound: true };
     const novels = await getAllUserNovelByUID(user.uid, "desc");
-    const serializables: INovelDataSerializable[] = novels.map((novel) => {
-        const update = {
-            created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
-            updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
-        };
-        const s = Object.assign(novel, update) as INovelDataSerializable;
-        return s;
-    });
+    const serializables: INovelDataSerializable[] =
+        novels.map((novel) => {
+            const update = {
+                created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
+                updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
+            };
+            const s = Object.assign(novel, update) as INovelDataSerializable;
+            return s;
+        }) || [];
 
     return {
         props: {
