@@ -4,18 +4,18 @@ import { useState } from "react";
 import firebase from "firebase/app";
 import Layout from "../../../components/Layout";
 import Header from "../../../components/Header";
+import UserPage from "../../../components/UserPage";
 import { getAllUserID, getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
 const DISPLAY_NOVEL_SPAN = 3;
 
-export default function UserPage({
-    user = { uid: "error", displayName: "error", userID: "error", photoURL: "error" },
-    novels = [],
-}: {
+type UserIndexProps = {
     user: UserProfile;
     novels: INovelDataSerializable[];
-}) {
+};
+
+export default function UserIndex({ user, novels }: UserIndexProps) {
     const [rootList] = useState(novels);
     const [empty] = useState(novels.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
