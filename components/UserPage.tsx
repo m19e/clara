@@ -43,7 +43,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                     <div className="relative">
                                         <img
-                                            alt="..."
+                                            alt={`${user.displayName}(@${user.userID})`}
                                             src={user.photoURL.replace(/_normal/, "")}
                                             className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                                             style={{ maxWidth: "150px" }}
