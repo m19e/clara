@@ -1,26 +1,16 @@
-import { GetStaticProps } from "next";
-import { useRouter } from "next/router";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import firebase from "firebase/app";
 import NovelViewer from "../../../components/NovelViewer";
-import Loader from "../../../components/Loader";
-import { INovelDataSerializable, getAllNovelIDs, getNovel } from "../../../lib/firebase/initFirebase";
+import { INovelDataSerializable, getNovel } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
 export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
-    const router = useRouter();
-    if (router.isFallback) {
-        return (
-            <div className="min-h-screen min-w-full flex-center">
-                <Loader />
-            </div>
-        );
-    }
-
     return <NovelViewer novel={novel} />;
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
-    const novel = await getNovel(params.id);
+export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+    const id = typeof params.id === "string" ? params.id : "";
+    const novel = await getNovel(id);
     if (!novel) return { notFound: true };
     const update = {
         created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
@@ -32,21 +22,5 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
         props: {
             novel: serializable,
         },
-        revalidate: 1,
-    };
-};
-
-export const getStaticPaths = async () => {
-    const ids = await getAllNovelIDs();
-
-    return {
-        paths: ids.map((id) => {
-            return {
-                params: {
-                    id,
-                },
-            };
-        }),
-        fallback: true,
     };
 };
