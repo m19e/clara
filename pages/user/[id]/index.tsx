@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import firebase from "firebase/app";
 import Loader from "../../../components/Loader";
 import UserPage from "../../../components/UserPage";
@@ -24,8 +24,9 @@ export default function UserIndex({ user, novels }: UserIndexProps) {
     return <UserPage user={user} novels={novels} />;
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
-    const user = await getUserDataByID(params.id);
+export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+    const id = typeof params.id === "string" ? params.id : "";
+    const user = await getUserDataByID(id);
     if (!user) return { notFound: true };
     const novels = await getAllUserNovelByUID(user.uid, "desc");
     const serializables: INovelDataSerializable[] = novels.map((novel) => {
@@ -42,21 +43,5 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
             user,
             novels: serializables,
         },
-        revalidate: 1,
-    };
-};
-
-export const getStaticPaths = async () => {
-    const ids = await getAllUserID();
-
-    return {
-        paths: ids.map((id) => {
-            return {
-                params: {
-                    id,
-                },
-            };
-        }),
-        fallback: true,
     };
 };
