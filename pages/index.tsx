@@ -4,10 +4,16 @@ import { useState } from "react";
 import firebase from "firebase/app";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
+import NewNovelList from "../components/NewNovelList";
 import { INovelDataSerializable, getAllNovel } from "../lib/firebase/initFirebase";
 import { getDisplayTime, getTextCharCount } from "../lib/novel/tools";
 
-export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
+interface INovelDataWithMillis extends INovelDataSerializable {
+    created_at_millis?: number;
+    updated_at_millis?: number;
+}
+
+export default function Top({ novels }: { novels: INovelDataWithMillis[] }) {
     const [rootList] = useState(novels);
     const [empty] = useState(rootList.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, 20));
@@ -46,6 +52,7 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
                                 </div>
                             ) : (
                                 <>
+                                    <NewNovelList borderNovelMillis={rootList[0].created_at_millis} />
                                     {displayList.map((novel, i) => (
                                         <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
                                             <Link href={`/novel/${novel.id}`}>
@@ -83,19 +90,23 @@ export default function Top({ novels }: { novels: INovelDataSerializable[] }) {
 
 export const getStaticProps: GetStaticProps = async () => {
     const novels = await getAllNovel("desc");
-    const serializables: INovelDataSerializable[] = novels.map((novel) => {
+    const serializablesWithMillis: INovelDataWithMillis[] = novels.map((novel) => {
+        const c = (novel.created_at as firebase.firestore.Timestamp).toMillis();
+        const u = (novel.updated_at as firebase.firestore.Timestamp).toMillis();
         const update = {
-            created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
-            updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
+            created_at: getDisplayTime(c),
+            updated_at: getDisplayTime(u),
+            created_at_millis: c,
+            updated_at_millis: u,
         };
-        const s = Object.assign(novel, update) as INovelDataSerializable;
-        return s;
+        const m = Object.assign(novel, update) as INovelDataWithMillis;
+        return m;
     });
 
     return {
         props: {
-            novels: serializables,
+            novels: serializablesWithMillis,
         },
-        revalidate: 1,
+        revalidate: 600,
     };
 };
