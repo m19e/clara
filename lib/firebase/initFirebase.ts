@@ -200,8 +200,9 @@ export async function getNewNovels(millis: number): Promise<INovelData[]> {
     return novelsData;
 }
 
-export async function getNovel(id: string): Promise<INovelData> {
+export async function getNovel(id: string): Promise<INovelData | null> {
     const snapshot = await db.collection("novel").doc(id).get();
+    if (!snapshot.exists) return null;
     const novel = snapshot.data() as INovelData;
     return novel;
 }
