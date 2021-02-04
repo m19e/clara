@@ -33,7 +33,7 @@ export async function loginWithTwitter() {
                 const allUserNovel = await db.collection("novel").where("author_uid", "==", uid).get();
                 await allUserNovel.forEach((snapshot) => snapshot.ref.set({ author_name: name, author_id: screen_name }, { merge: true }));
             }
-            await auth.currentUser.updateProfile({ displayName: name, photoURL: profile_image_url_https.replace(/_normal/, "") });
+            await auth.currentUser.updateProfile({ displayName: name, photoURL: profile_image_url_https });
             await updateUser(res);
         } else {
             await createUser(res);
