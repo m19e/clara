@@ -1,9 +1,7 @@
-import { useRouter } from "next/router";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import firebase from "firebase/app";
-import Loader from "../../../components/Loader";
 import UserPage from "../../../components/UserPage";
-import { getAllUserID, getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
+import { getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
 type UserIndexProps = {
@@ -12,15 +10,6 @@ type UserIndexProps = {
 };
 
 export default function UserIndex({ user, novels }: UserIndexProps) {
-    const router = useRouter();
-    if (router.isFallback) {
-        return (
-            <div className="min-h-screen min-w-full flex-center">
-                <Loader />
-            </div>
-        );
-    }
-
     return <UserPage user={user} novels={novels} />;
 }
 
