@@ -1,9 +1,8 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { getAllNovelIDs, getNovel, auth } from "../../../../lib/firebase/initFirebase";
+import { getNovel, auth } from "../../../../lib/firebase/initFirebase";
 import Loader from "../../../../components/Loader";
-
 import NovelEditor from "../../../../components/NovelEditor";
 
 type NovelEditProps = {
@@ -16,13 +15,6 @@ type NovelEditProps = {
 export default function NovelEdit({ author_uid, id, title, content }: NovelEditProps) {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
-    if (router.isFallback) {
-        return (
-            <div className="min-h-screen min-w-full flex-center bg-gray-100">
-                <Loader />
-            </div>
-        );
-    }
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -45,8 +37,9 @@ export default function NovelEdit({ author_uid, id, title, content }: NovelEditP
     }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string } }) => {
-    const novel = await getNovel(params.id);
+export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+    const novelID = typeof params.id === "string" ? params.id : "";
+    const novel = await getNovel(novelID);
     if (!novel) return { notFound: true };
     const { author_uid, id, title, content } = novel;
 
@@ -57,21 +50,5 @@ export const getStaticProps: GetStaticProps = async ({ params }: { params: { id:
             title,
             content,
         },
-        revalidate: 1,
-    };
-};
-
-export const getStaticPaths = async () => {
-    const ids = await getAllNovelIDs();
-
-    return {
-        paths: ids.map((id) => {
-            return {
-                params: {
-                    id,
-                },
-            };
-        }),
-        fallback: true,
     };
 };
