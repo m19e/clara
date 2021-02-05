@@ -87,7 +87,9 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                                 <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
                                                     <div className="flex justify-start">
                                                         <Link href={`/novel/${novel.id}`}>
-                                                            <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
+                                                            <a className="text-2xl gothic font-semibold whitespace-pre-wrap text-left opacity-75">
+                                                                {novel.title}
+                                                            </a>
                                                         </Link>
                                                     </div>
                                                     <div className="flex justify-end mt-4 items-baseline">
