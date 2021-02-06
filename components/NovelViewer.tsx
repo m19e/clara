@@ -27,13 +27,16 @@ const useFontSize = (fs: FontSizeState): [FontSizeState, () => void, () => void,
     return [fontSize, setFontBase, setFontXl, setFont2xl];
 };
 
-const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
-    const [font, setFont] = useState(f);
+type FontType = "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
+
+const useFont = (isMobile: boolean): [FontType, () => void, () => void] => {
+    const f: FontType = isMobile ? "mobile-serif" : "mincho";
+    const [font, setFont] = useState<FontType>(f);
     const setMincho = useCallback(() => {
-        setFont("mincho");
+        isMobile ? setFont("mobile-serif") : setFont("mincho");
     }, []);
     const setGothic = useCallback(() => {
-        setFont("gothic");
+        isMobile ? setFont("mobile-sans") : setFont("gothic");
     }, []);
 
     return [font, setMincho, setGothic];
@@ -64,12 +67,13 @@ const getReplacedText = (text: string): string => {
 };
 
 export default function NovelView({ novel }: { novel: INovelDataSerializable }) {
+    const isMobile = true;
     const contentArray = getReplacedText(novel.content)
         .split("\n")
         .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
     const ps = useRef<HTMLElement>();
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
-    const [font, setMincho, setGothic] = useFont("mincho");
+    const [font, setMincho, setGothic] = useFont(isMobile);
     const [show, setShow] = useState(false);
     const [display, setDisplay] = useState(false);
     const [isAuthor, setIsAuthor] = useState(false);
@@ -81,6 +85,7 @@ export default function NovelView({ novel }: { novel: INovelDataSerializable }) 
         font,
         setMincho,
         setGothic,
+        isMobile,
     };
     const router = useRouter();
 
