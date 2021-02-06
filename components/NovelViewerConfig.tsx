@@ -8,14 +8,15 @@ type ViewerConfigProps = {
     toggleFontSmall: () => void;
     toggleFontMedium: () => void;
     toggleFontLarge: () => void;
-    font: "mincho" | "gothic";
+    font: "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
     setMincho: () => void;
     setGothic: () => void;
+    isMobile: boolean;
 };
 
 export default function NovelViewConfig({ viewerConfig }: { viewerConfig: ViewerConfigProps }) {
     const [showModal, setShowModal] = useState(false);
-    const { fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic } = viewerConfig;
+    const { fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic, isMobile } = viewerConfig;
 
     return (
         <>
@@ -76,20 +77,20 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                                         <div
                                             className={
                                                 "h-28 w-10 flex-grow flex-center cursor-pointer" +
-                                                (font === "mincho" ? " text-white bg-gray-400 rounded-t" : "")
+                                                (font === "mincho" || font === "mobile-serif" ? " text-white bg-gray-400 rounded-t" : "")
                                             }
                                             onClick={() => setMincho()}
                                         >
-                                            <span className="mincho">明朝</span>
+                                            <span className={isMobile ? "mobile-serif" : "mincho"}>明朝</span>
                                         </div>
                                         <div
                                             className={
                                                 "h-28 w-10 flex-grow flex-center border-t cursor-pointer" +
-                                                (font === "gothic" ? " text-white bg-gray-400 rounded-b" : "")
+                                                (font === "gothic" || font === "mobile-sans" ? " text-white bg-gray-400 rounded-b" : "")
                                             }
                                             onClick={() => setGothic()}
                                         >
-                                            <span className="gothic">ゴシック</span>
+                                            <span className={isMobile ? "mobile-sans" : "gothic"}>ゴシック</span>
                                         </div>
                                     </div>
                                 </div>
