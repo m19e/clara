@@ -66,8 +66,7 @@ const getReplacedText = (text: string): string => {
     return result;
 };
 
-export default function NovelView({ novel }: { novel: INovelDataSerializable }) {
-    const isMobile = true;
+export default function NovelView({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: boolean }) {
     const contentArray = getReplacedText(novel.content)
         .split("\n")
         .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
