@@ -34,7 +34,10 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Viewer
                     >
                         <div className="relative w-auto my-6 mx-auto max-w-sm">
                             <div
-                                className="writing-v-rl gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 bg-white outline-none focus:outline-none"
+                                className={
+                                    (isMobile ? "mobile-sans" : "gothic") +
+                                    " writing-v-rl border-0 rounded shadow-lg relative flex flex-col w-full p-6 bg-white outline-none focus:outline-none"
+                                }
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <div className="flex justify-start">
