@@ -167,7 +167,7 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
                         <a
                             href={
                                 "https://twitter.com/intent/tweet?text=" +
-                                encodeURIComponent(`${novel.title} #claranovel`) +
+                                encodeURIComponent(`${novel.title} - ${novel.author_name} #claranovel`) +
                                 "&url=" +
                                 process.env.NEXT_PUBLIC_SITE_ROOT_URL +
                                 router.asPath
