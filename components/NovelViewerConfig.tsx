@@ -11,7 +11,7 @@ type ViewerConfigProps = {
     font: "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
     setMincho: () => void;
     setGothic: () => void;
-    isMobile: boolean;
+    isMobile?: boolean;
 };
 
 export default function NovelViewConfig({ viewerConfig }: { viewerConfig: ViewerConfigProps }) {
