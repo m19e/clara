@@ -1,14 +1,16 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { useUserAgent, UserAgent } from "next-useragent";
 import firebase from "firebase/app";
 import NovelViewer from "../../../components/NovelViewer";
 import { INovelDataSerializable, getNovel } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
-export default function NovelIndex({ novel }: { novel: INovelDataSerializable }) {
-    return <NovelViewer novel={novel} />;
+export default function NovelIndex({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) {
+    return <NovelViewer novel={novel} isMobile={ua.isMobile} />;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
+    const ua = useUserAgent(req.headers["user-agent"]);
     const id = typeof params.id === "string" ? params.id : "";
     const novel = await getNovel(id);
     if (!novel) return { notFound: true };
@@ -21,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     return {
         props: {
             novel: serializable,
+            ua,
         },
     };
 };
