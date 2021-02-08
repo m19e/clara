@@ -8,7 +8,7 @@ const DynamicEditor = dynamic(() => import("../../components/DraftEditor"), { ss
 export default function EditorIndex({ ua }: { ua: UserAgent }) {
     const router = useRouter();
     if (ua.isMobile) {
-        router.back();
+        router.push("/");
     }
 
     return <DynamicEditor />;
