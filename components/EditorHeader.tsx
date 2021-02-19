@@ -36,11 +36,11 @@ export default function Header() {
     };
 
     const handleTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const tempTitleTrimmed = e.currentTarget.value.trim();
-        const arrayTitle = Array.from(tempTitleTrimmed);
+        const t = e.currentTarget.value;
+        const arrayTitle = Array.from(t);
         const charCount = arrayTitle.length;
         if (charCount <= 50) {
-            setTempTitle(tempTitleTrimmed);
+            setTempTitle(t);
         } else {
             setTempTitle(arrayTitle.slice(0, 50).join(""));
         }
