@@ -8,7 +8,6 @@ const DISPLAY_NOVEL_SPAN = 3;
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
-    const [empty] = useState(novels.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
 
@@ -81,7 +80,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                             </div>
                             <div className="mt-6 border-t border-gray-300 text-center">
                                 <div className="flex flex-col items-center justify-end">
-                                    {empty ? (
+                                    {novels.length === 0 ? (
                                         <div className="w-3/4 max-w-xl my-12">
                                             <span className="text-xl gothic font-semibold opacity-40">まだ小説は投稿されていません</span>
                                         </div>
