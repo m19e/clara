@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import Header from "./Header";
 import { UserProfile, INovelDataSerializable } from "../lib/firebase/initFirebase";
@@ -11,6 +11,10 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
     const [empty] = useState(novels.length === 0);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
+
+    useEffect(() => {
+        setDisplayList(novels.slice(0, DISPLAY_NOVEL_SPAN));
+    }, [user]);
 
     const displayMore = () => {
         const displayListLen = displayList.length;
