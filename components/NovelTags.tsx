@@ -1,8 +1,8 @@
-type NovelTagsProps = {
+type TagsProps = {
     tags: string[];
 };
 
-const NovelTags = ({ tags }: NovelTagsProps) => (
+const NovelTags = ({ tags }: TagsProps) => (
     <>
         <span className="w-4 h-4 pl-0.5 mb-1 mr-0.5 flex-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
