@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import AutosizeInput from "react-input-autosize";
 import TagsInput from "react-tagsinput";
 
-const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps<never>) => {
+const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps) => {
     let { onChange, value, ...other } = props;
     return (
         <AutosizeInput
@@ -28,7 +28,7 @@ const defaultRenderTag = (props: TagsInput.RenderTagProps) => {
 };
 
 const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: string[]) => void }) => {
-    const [tags, setTags] = useState(tempTags as never[]);
+    const [tags, setTags] = useState(tempTags);
     const [tag, setTag] = useState("");
     const [suggests, setSuggests] = useState([
         "アイドルマスターシャイニーカラーズ",
@@ -48,8 +48,8 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
-    const handleChange = (tags: never[]) => {
-        const valid = tags.map((t: string) => t.replace(reg, "") as never).filter((t: string) => t !== "");
+    const handleChange = (tags: any[]) => {
+        const valid = tags.map((t: string) => t.replace(reg, "")).filter((t: string) => t !== "");
         setTags(valid);
     };
 
@@ -66,7 +66,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
     };
 
     const handleClickSuggest = (suggest: string) => {
-        inputRef.current?.addTag(suggest as never);
+        inputRef.current?.addTag(suggest);
     };
 
     return (
