@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
+import Tags from "./NovelTags";
 import { updateNovel, deleteNovel } from "../lib/firebase/initFirebase";
 
 type SelectionRangeOverride = {
@@ -299,6 +300,26 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                 <span className="text-4xl font-bold whitespace-pre-wrap opacity-75">{rootTitle}</span>
                                 <span className="mt-2 w-8 h-8 rounded-full shadow-md flex-center cursor-pointer">
                                     <TitleEditModal title={rootTitle} setTitle={setRootTitle} />
+                                </span>
+                            </div>
+                            <div className="flex items-center flex-wrap mr-2">
+                                <Tags
+                                    tags={[
+                                        "テスト用のタグテスト用のタグ",
+                                        "テストタグ",
+                                        "テスト",
+                                        "テストタグ",
+                                        "タグ",
+                                        "テストタグ",
+                                        "テスト",
+                                        "テストタグ",
+                                        "タグ",
+                                    ]}
+                                />
+                                <span className="text-gray-400 hover:text-gray-600 w-4 h-4 mb-1 mr-0.5 flex-center cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
                                 </span>
                             </div>
                         </div>
