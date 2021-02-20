@@ -81,10 +81,10 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
     return (
         <div className="flex flex-col justify-center items-center">
             <div className="w-full flex justify-between text-sm">
-                <span className="mx-2" style={{ fontFamily: "sans-serif" }}>
+                <span className="mx-1" style={{ fontFamily: "sans-serif" }}>
                     タグ
                 </span>
-                <span className="mx-2">{tags.length}/10</span>
+                <span className="mx-1">{tags.length}/10</span>
             </div>
             <TagsInput
                 ref={inputRef}
