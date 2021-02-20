@@ -303,20 +303,22 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                     <TitleEditModal title={rootTitle} setTitle={setRootTitle} />
                                 </span>
                             </div>
-                            <Tags
-                                tags={[
-                                    "テスト用のタグテスト用のタグ",
-                                    "テストタグ",
-                                    "テスト",
-                                    "テストタグ",
-                                    "タグ",
-                                    "テストタグ",
-                                    "テスト",
-                                    "テストタグ",
-                                    "タグ",
-                                ]}
-                            />
-                            <TagsEditModal />
+                            <div className="flex items-center flex-wrap mr-2">
+                                <Tags
+                                    tags={[
+                                        "テスト用のタグテスト用のタグ",
+                                        "テストタグ",
+                                        "テスト",
+                                        "テストタグ",
+                                        "タグ",
+                                        "テストタグ",
+                                        "テスト",
+                                        "テストタグ",
+                                        "タグ",
+                                    ]}
+                                />
+                                <TagsEditModal />
+                            </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
                             <Editor editorState={editorState} onChange={handleEditorChange} keyBindingFn={handleKeyBinding} />
