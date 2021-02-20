@@ -72,6 +72,18 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         setGothic,
     };
 
+    const [tags, setTags] = useState([
+        "テスト用のタグテスト用のタグ",
+        "テストタグ",
+        "テスト",
+        "テストタグ",
+        "タグ",
+        "テストタグ",
+        "テスト",
+        "テストタグ",
+        "タグ",
+    ]);
+
     const router = useRouter();
 
     useEffect(() => {
@@ -304,20 +316,8 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                 </span>
                             </div>
                             <div className="flex items-center flex-wrap mr-2">
-                                <Tags
-                                    tags={[
-                                        "テスト用のタグテスト用のタグ",
-                                        "テストタグ",
-                                        "テスト",
-                                        "テストタグ",
-                                        "タグ",
-                                        "テストタグ",
-                                        "テスト",
-                                        "テストタグ",
-                                        "タグ",
-                                    ]}
-                                />
-                                <TagsEditModal />
+                                <Tags tags={tags} />
+                                <TagsEditModal tags={tags} setTags={setTags} />
                             </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
