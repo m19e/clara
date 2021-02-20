@@ -92,6 +92,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 onChange={handleChange}
                 inputValue={tag}
                 onChangeInput={handleChangeInput}
+                className="w-full pt-1 pl-1 overflow-hidden rounded bg-gray-100"
                 tagProps={{
                     className: "react-tagsinput-tag",
                 }}
