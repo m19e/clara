@@ -17,6 +17,16 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps<
     );
 };
 
+const defaultRenderTag = (props: TagsInput.RenderTagProps) => {
+    let { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
+    return (
+        <span key={key} {...other}>
+            {getTagDisplayValue(tag)}
+            {!disabled && <a className={classNameRemove} onClick={(e) => onRemove(key)} />}
+        </span>
+    );
+};
+
 const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: string[]) => void }) => {
     const [tags, setTags] = useState(tempTags as never[]);
     const [tag, setTag] = useState("");
@@ -76,6 +86,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 tagProps={{
                     className: "react-tagsinput-tag",
                 }}
+                renderTag={defaultRenderTag}
                 renderInput={autoSizingRenderInput}
                 onlyUnique={true}
                 maxTags={10}
