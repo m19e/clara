@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TagsEditor from "./TagsEditor";
 
 type TagsEditModalProps = {
     tags: string[];
@@ -26,6 +27,7 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-md">
                             <div className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none">
+                                <TagsEditor tempTags={tempTags} setTempTags={setTempTags} />
                                 <div className="flex-center">
                                     <div className="flex justify-between w-72 mt-12">
                                         <span
