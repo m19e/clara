@@ -38,7 +38,7 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
                                             className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                             onClick={() => setShowModal(false)}
                                         >
-                                            更新
+                                            編集
                                         </span>
                                     </div>
                                 </div>
