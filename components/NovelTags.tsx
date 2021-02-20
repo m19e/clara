@@ -4,7 +4,7 @@ type TagsProps = {
 
 const NovelTags = ({ tags }: TagsProps) => (
     <>
-        <span className="w-4 h-4 pl-0.5 mb-1 mr-0.5 flex-center">
+        <span className="w-4 h-4 pl-0.5 mb-1 mr-1.5 flex-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                     strokeLinecap="round"
@@ -15,7 +15,7 @@ const NovelTags = ({ tags }: TagsProps) => (
             </svg>
         </span>
         {tags.map((tag) => (
-            <span className="text-gray-600 text-sm border-gray-300 pb-2 mb-2 mr-0.5 border-b">{tag}</span>
+            <span className="text-gray-600 text-sm leading-none border-gray-300 pb-2 mb-2 mr-1.5 border-b">{tag}</span>
         ))}
     </>
 );
