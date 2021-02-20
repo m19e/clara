@@ -1,4 +1,4 @@
-import { useState, createRef } from "react";
+import { useState, useRef } from "react";
 import AutosizeInput from "react-input-autosize";
 import TagsInput from "react-tagsinput";
 
@@ -45,7 +45,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
         "市川雛菜",
     ]);
     const [r18, setR18] = useState(false);
-    const inputRef = createRef<TagsInput<never>>();
+    const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
     const handleChange = (tags: never[]) => {
