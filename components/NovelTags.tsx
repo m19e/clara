@@ -3,7 +3,7 @@ type NovelTagsProps = {
 };
 
 const NovelTags = ({ tags }: NovelTagsProps) => (
-    <>
+    <div className="flex items-center flex-wrap mr-2">
         <span className="w-4 h-4 pl-0.5 mb-1 mr-0.5 flex-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -17,7 +17,7 @@ const NovelTags = ({ tags }: NovelTagsProps) => (
         {tags.map((tag) => (
             <span className="text-gray-600 text-sm border-gray-300 pb-2 mb-2 mr-0.5 border-b">{tag}</span>
         ))}
-    </>
+    </div>
 );
 
 export default NovelTags;
