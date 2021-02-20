@@ -17,7 +17,7 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps)
     );
 };
 
-const defaultRenderTag = (props: TagsInput.RenderTagProps) => {
+const customRenderTag = (props: TagsInput.RenderTagProps) => {
     let { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
     return (
         <span key={key} {...other}>
@@ -96,7 +96,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 tagProps={{
                     className: "react-tagsinput-tag",
                 }}
-                renderTag={defaultRenderTag}
+                renderTag={customRenderTag}
                 renderInput={autoSizingRenderInput}
                 renderLayout={defaultRenderLayout}
                 onlyUnique={true}
