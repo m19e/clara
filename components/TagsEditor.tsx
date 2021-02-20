@@ -10,7 +10,7 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps)
             {...other}
             placeholder="タグを追加"
             style={{ fontFamily: "sans-serif" }}
-            inputClassName="bg-transparent border-0 text-sm font-normal outline-none focus:outline"
+            inputClassName="bg-transparent border-0 text-sm font-normal ml-1.5 mt-1.5 mb-2 outline-none focus:outline"
             onChange={onChange}
             value={value}
         />
@@ -20,12 +20,7 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps)
 const customRenderTag = (props: TagsInput.RenderTagProps) => {
     const { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
     return (
-        <span
-            key={key}
-            {...other}
-            className="inline-block text-sm font-normal rounded editor-bg mr-1.5 mb-1.5 px-1.5 py-1"
-            style={{ fontFamily: "sans-serif" }}
-        >
+        <span key={key} {...other} className="inline-block text-sm font-normal rounded editor-bg mr-1 mb-1 px-1.5 py-1" style={{ fontFamily: "sans-serif" }}>
             {getTagDisplayValue(tag)}
             {!disabled && (
                 <a className="ml-1 text-gray-400 font-bold cursor-pointer" onClick={() => onRemove(key)}>
