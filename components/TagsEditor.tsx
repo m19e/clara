@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, ReactElement } from "react";
 import AutosizeInput from "react-input-autosize";
 import TagsInput from "react-tagsinput";
 
@@ -23,6 +23,15 @@ const defaultRenderTag = (props: TagsInput.RenderTagProps) => {
         <span key={key} {...other}>
             {getTagDisplayValue(tag)}
             {!disabled && <a className={classNameRemove} onClick={(e) => onRemove(key)} />}
+        </span>
+    );
+};
+
+const defaultRenderLayout = (tagComponents: ReactElement[], inputComponent: ReactElement) => {
+    return (
+        <span>
+            {tagComponents}
+            {inputComponent}
         </span>
     );
 };
@@ -88,6 +97,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 }}
                 renderTag={defaultRenderTag}
                 renderInput={autoSizingRenderInput}
+                renderLayout={defaultRenderLayout}
                 onlyUnique={true}
                 maxTags={10}
             />
