@@ -18,11 +18,20 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps)
 };
 
 const customRenderTag = (props: TagsInput.RenderTagProps) => {
-    let { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
+    const { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
     return (
-        <span key={key} {...other}>
+        <span
+            key={key}
+            {...other}
+            className="inline-block text-sm font-normal rounded editor-bg mr-1.5 mb-1.5 px-1.5 py-1"
+            style={{ fontFamily: "sans-serif" }}
+        >
             {getTagDisplayValue(tag)}
-            {!disabled && <a className={classNameRemove} onClick={(e) => onRemove(key)} />}
+            {!disabled && (
+                <a className="ml-1 text-gray-400 font-bold cursor-pointer" onClick={() => onRemove(key)}>
+                    ×
+                </a>
+            )}
         </span>
     );
 };
