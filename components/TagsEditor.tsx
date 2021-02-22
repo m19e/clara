@@ -114,14 +114,18 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 </div>
             </div>
             <div className="w-full flex mt-4">
-                <label className="inline-flex items-center">
-                    <input type="radio" className="text-indigo-600" value="zen" checked={!r18} onChange={() => setR18(false)} />
-                    <span className="ml-1">全年齢</span>
-                </label>
-                <label className="inline-flex items-center ml-4">
-                    <input type="radio" className="text-indigo-600" value="r18" checked={r18} onChange={() => setR18(true)} />
-                    <span className="ml-1">R-18</span>
-                </label>
+                <div className="inline-flex items-center cursor-pointer">
+                    <span className="relative" onClick={() => setR18(!r18)}>
+                        <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (r18 ? " bg-red-500" : "")}></span>
+                        <span
+                            className={
+                                "absolute block w-4 h-4 mt-1 ml-1 bg-white rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline transition-transform duration-300 ease-in-out" +
+                                (r18 ? " transform translate-x-full" : "")
+                            }
+                        ></span>
+                    </span>
+                    <span className="ml-2 text-sm">R-18</span>
+                </div>
             </div>
         </div>
     );
