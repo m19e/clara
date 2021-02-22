@@ -113,19 +113,17 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                     ))}
                 </div>
             </div>
-            <div className="w-full flex mt-4">
-                <div className="inline-flex items-center cursor-pointer">
-                    <span className="relative" onClick={() => setR18(!r18)}>
-                        <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (r18 ? " bg-red-500" : "")}></span>
-                        <span
-                            className={
-                                "absolute block w-4 h-4 mt-1 ml-1 bg-white rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline transition-transform duration-300 ease-in-out" +
-                                (r18 ? " transform translate-x-full" : "")
-                            }
-                        ></span>
-                    </span>
-                    <span className="ml-2 text-sm">R-18</span>
-                </div>
+            <div className="w-full mt-2 p-2 inline-flex items-center justify-between bg-gray-100 rounded">
+                <span className="text-sm">R-18</span>
+                <span className="relative cursor-pointer" onClick={() => setR18(!r18)}>
+                    <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (r18 ? " bg-red-500" : "")}></span>
+                    <span
+                        className={
+                            "absolute block w-4 h-4 mt-1 ml-1 bg-white rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline transition-transform duration-300 ease-in-out" +
+                            (r18 ? " transform translate-x-full" : "")
+                        }
+                    ></span>
+                </span>
             </div>
         </div>
     );
