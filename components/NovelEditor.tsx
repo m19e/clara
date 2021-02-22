@@ -4,7 +4,7 @@ import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import Header from "../components/Header";
+import Header from "./Header";
 import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
