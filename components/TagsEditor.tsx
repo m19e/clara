@@ -80,6 +80,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
 
     const handleClickSuggest = (suggest: string) => {
         inputRef.current?.addTag(suggest);
+        inputRef.current?.focus();
     };
 
     return (
