@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useR18 } from "../store/novel";
 import TagsEditor from "./TagsEditor";
 
 type TagsEditModalProps = {
@@ -9,6 +10,8 @@ type TagsEditModalProps = {
 const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
     const [showModal, setShowModal] = useState(false);
     const [tempTags, setTempTags] = useState(tags);
+    const [r18, setR18] = useR18();
+    const [tempR18, setTempR18] = useState(r18);
 
     const initModal = () => {
         setTempTags(tags);
@@ -27,7 +30,7 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-lg">
                             <div className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none">
-                                <TagsEditor tempTags={tempTags} setTempTags={setTempTags} />
+                                <TagsEditor tempTags={tempTags} setTempTags={setTempTags} tempR18={tempR18} setTempR18={setTempR18} />
                                 <div className="flex-center">
                                     <div className="flex justify-between w-full mt-12">
                                         <span

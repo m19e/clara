@@ -41,7 +41,14 @@ const defaultRenderLayout = (tagComponents: ReactElement[], inputComponent: Reac
     );
 };
 
-const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: string[]) => void }) => {
+type TagsEditorProps = {
+    tempTags: string[];
+    setTempTags: (tags: string[]) => void;
+    tempR18: boolean;
+    setTempR18: (flag: boolean) => void;
+};
+
+const TagsEditor = ({ tempTags, tempR18, setTempR18 }: TagsEditorProps) => {
     const [tags, setTags] = useState(tempTags);
     const [tag, setTag] = useState("");
     const [suggests, setSuggests] = useState([
@@ -58,8 +65,6 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
         "福丸小糸",
         "市川雛菜",
     ]);
-    const [r18, setR18] = useR18();
-    const [tempR18, setTempR18] = useState(r18);
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
@@ -117,7 +122,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
             </div>
             <div className="w-full mt-2 p-2 inline-flex items-center justify-between bg-gray-100 rounded">
                 <span className="text-sm">R-18</span>
-                <span className="relative cursor-pointer" onClick={() => setTempR18((prev) => !prev)}>
+                <span className="relative cursor-pointer" onClick={() => setTempR18(!tempR18)}>
                     <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (tempR18 ? " bg-red-500" : "")}></span>
                     <span
                         className={
