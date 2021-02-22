@@ -18,7 +18,7 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps)
 };
 
 const customRenderTag = (props: TagsInput.RenderTagProps) => {
-    const { tag, key, disabled, onRemove, classNameRemove, getTagDisplayValue, ...other } = props;
+    const { tag, key, disabled, onRemove, className, classNameRemove, getTagDisplayValue, ...other } = props;
     return (
         <span key={key} {...other} className="inline-block text-sm font-normal rounded editor-bg mr-1 mb-1 px-1.5 py-1" style={{ fontFamily: "sans-serif" }}>
             {getTagDisplayValue(tag)}
@@ -97,9 +97,6 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 inputValue={tag}
                 onChangeInput={handleChangeInput}
                 className="w-full pt-1 pl-1 overflow-hidden rounded bg-gray-100"
-                tagProps={{
-                    className: "react-tagsinput-tag",
-                }}
                 renderTag={customRenderTag}
                 renderInput={autoSizingRenderInput}
                 renderLayout={defaultRenderLayout}
