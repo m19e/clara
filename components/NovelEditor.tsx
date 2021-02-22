@@ -316,7 +316,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                 </span>
                             </div>
                             <div className="flex items-center flex-wrap mr-2">
-                                <span className="w-4 h-4 pl-0.5 mb-1 mr-1.5 flex-center">
+                                {/* <span className="w-4 h-4 pl-0.5 mb-1 mr-1.5 flex-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path
                                             strokeLinecap="round"
@@ -325,9 +325,9 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                             d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                                         />
                                     </svg>
-                                </span>
-                                <span className="text-sm font-semibold text-red-500 pb-1.5 mr-1.5" style={{ fontFamily: "sans-serif" }}>
-                                    R-18
+                                </span> */}
+                                <span className="text-sm font-semibold text-red-500 pb-1.5 mr-1.5 -ml-0.5" style={{ fontFamily: "sans-serif" }}>
+                                    R<span className="tracking-tighter">18</span>
                                 </span>
                                 <Tags tags={tags} />
                                 <TagsEditModal tags={tags} setTags={setTags} />
