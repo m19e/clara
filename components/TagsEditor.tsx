@@ -104,12 +104,11 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
                 onlyUnique={true}
                 maxTags={10}
             />
-            <div className="w-full mt-2 px-2 py-3 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
-                <span className="text-sm">よく使われているタグ</span>
-                <div className="mt-2 flex flex-wrap">
+            <div className="w-full mt-2 p-2 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
+                <div className="flex flex-wrap">
                     {suggests.map((s) => (
                         <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s)}>
-                            #{s}
+                            {s}
                         </span>
                     ))}
                 </div>
