@@ -15,6 +15,7 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
 
     const initModal = () => {
         setTempTags(tags);
+        setTempR18(r18);
         setShowModal(true);
     };
 
