@@ -18,6 +18,12 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
         setShowModal(true);
     };
 
+    const updateTags = () => {
+        setTags(tempTags);
+        setR18(tempR18);
+        setShowModal(false);
+    };
+
     return (
         <div style={{ writingMode: "initial" }}>
             <span className="text-gray-400 hover:text-gray-600 w-4 h-4 mb-1 mr-1.5 flex-center cursor-pointer" onClick={() => initModal()}>
