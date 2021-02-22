@@ -59,6 +59,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
         "市川雛菜",
     ]);
     const [r18, setR18] = useR18();
+    const [tempR18, setTempR18] = useState(r18);
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
@@ -116,12 +117,12 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
             </div>
             <div className="w-full mt-2 p-2 inline-flex items-center justify-between bg-gray-100 rounded">
                 <span className="text-sm">R-18</span>
-                <span className="relative cursor-pointer" onClick={() => setR18(!r18)}>
-                    <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (r18 ? " bg-red-500" : "")}></span>
+                <span className="relative cursor-pointer" onClick={() => setTempR18((prev) => !prev)}>
+                    <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (tempR18 ? " bg-red-500" : "")}></span>
                     <span
                         className={
                             "absolute block w-4 h-4 mt-1 ml-1 bg-white rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline transition-transform duration-300 ease-in-out" +
-                            (r18 ? " transform translate-x-full" : "")
+                            (tempR18 ? " transform translate-x-full" : "")
                         }
                     ></span>
                 </span>
