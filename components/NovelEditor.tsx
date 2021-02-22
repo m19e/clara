@@ -331,7 +331,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                 </span> */}
                                 {r18 && (
                                     <span className="text-sm font-semibold text-red-500 pb-1.5 mr-1.5 -ml-0.5" style={{ fontFamily: "sans-serif" }}>
-                                        R<span className="tracking-tighter">18</span>
+                                        <span className="tracking-tighter">R18</span>
                                     </span>
                                 )}
                                 <Tags tags={tags} />
