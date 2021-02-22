@@ -48,8 +48,7 @@ type TagsEditorProps = {
     setTempR18: (flag: boolean) => void;
 };
 
-const TagsEditor = ({ tempTags, tempR18, setTempR18 }: TagsEditorProps) => {
-    const [tags, setTags] = useState(tempTags);
+const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorProps) => {
     const [tag, setTag] = useState("");
     const [suggests, setSuggests] = useState([
         "アイドルマスターシャイニーカラーズ",
@@ -70,7 +69,7 @@ const TagsEditor = ({ tempTags, tempR18, setTempR18 }: TagsEditorProps) => {
 
     const handleChange = (tags: any[]) => {
         const valid = tags.map((t: string) => t.replace(reg, "")).filter((t: string) => t !== "");
-        setTags(valid);
+        setTempTags(valid);
     };
 
     const handleChangeInput = (t: string) => {
@@ -96,11 +95,11 @@ const TagsEditor = ({ tempTags, tempR18, setTempR18 }: TagsEditorProps) => {
                 <span className="mx-2.5" style={{ fontFamily: "sans-serif" }}>
                     タグ
                 </span>
-                <span className="mx-2.5">{tags.length}/10</span>
+                <span className="mx-2.5">{tempTags.length}/10</span>
             </div>
             <TagsInput
                 ref={inputRef}
-                value={tags}
+                value={tempTags}
                 onChange={handleChange}
                 inputValue={tag}
                 onChangeInput={handleChangeInput}
