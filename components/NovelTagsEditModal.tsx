@@ -29,7 +29,7 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
                             <div className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none">
                                 <TagsEditor tempTags={tempTags} setTempTags={setTempTags} />
                                 <div className="flex-center">
-                                    <div className="flex justify-between w-72 mt-12">
+                                    <div className="flex justify-between w-full mt-12">
                                         <span
                                             className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                             onClick={() => setShowModal(false)}
