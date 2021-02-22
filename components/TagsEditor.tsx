@@ -1,6 +1,7 @@
 import { useState, useRef, ReactElement } from "react";
 import AutosizeInput from "react-input-autosize";
 import TagsInput from "react-tagsinput";
+import { useR18 } from "../store/novel";
 
 const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps) => {
     let { onChange, value, ...other } = props;
@@ -57,7 +58,7 @@ const TagsEditor = ({ tempTags }: { tempTags: string[]; setTempTags: (tags: stri
         "福丸小糸",
         "市川雛菜",
     ]);
-    const [r18, setR18] = useState(false);
+    const [r18, setR18] = useR18();
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 

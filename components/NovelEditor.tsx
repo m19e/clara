@@ -12,6 +12,8 @@ import Tags from "./NovelTags";
 import TagsEditModal from "./NovelTagsEditModal";
 import { updateNovel, deleteNovel } from "../lib/firebase/initFirebase";
 
+import { useR18 } from "../store/novel";
+
 type SelectionRangeOverride = {
     anchorOffset: number;
     focusOffset?: number;
@@ -72,7 +74,7 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         setGothic,
     };
 
-    const [r18, setR18] = useState(false);
+    const [r18, setR18] = useR18();
     const [tags, setTags] = useState([
         "テスト用のタグテスト用のタグ",
         "テストタグ",
