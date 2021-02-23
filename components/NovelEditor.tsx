@@ -53,7 +53,15 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
     return [font, setMincho, setGothic];
 };
 
-export default function NovelEditor({ id, title, content }: { id: string; title: string; content: string }) {
+type NovelEditorProps = {
+    id: string;
+    title: string;
+    content: string;
+    rootTags: string[];
+    rootR18: boolean;
+};
+
+export default function NovelEditor({ id, title, content, rootTags, rootR18 }: NovelEditorProps) {
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
@@ -75,19 +83,13 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
     };
 
     const [r18, setR18] = useR18();
-    const [tags, setTags] = useState([
-        "テスト用のタグテスト用のタグ",
-        "テストタグ",
-        "テスト",
-        "テストタグ",
-        "タグ",
-        "テストタグ",
-        "テスト",
-        "テストタグ",
-        "タグ",
-    ]);
+    const [tags, setTags] = useState(rootTags);
 
     const router = useRouter();
+
+    useEffect(() => {
+        setR18(rootR18);
+    }, []);
 
     useEffect(() => {
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
