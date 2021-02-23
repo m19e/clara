@@ -11,10 +11,12 @@ type NovelEditProps = {
     id: string;
     title: string;
     content: string;
+    tags: string[];
+    r18: boolean;
     ua: UserAgent;
 };
 
-export default function NovelEdit({ author_uid, id, title, content, ua }: NovelEditProps) {
+export default function NovelEdit({ author_uid, id, title, content, tags, r18, ua }: NovelEditProps) {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
 
@@ -29,7 +31,7 @@ export default function NovelEdit({ author_uid, id, title, content, ua }: NovelE
     }, []);
 
     if (validAuth) {
-        return <NovelEditor id={id} title={title} content={content} />;
+        return <NovelEditor id={id} title={title} content={content} rootTags={tags} rootR18={r18} />;
     } else {
         return (
             <div className="min-h-screen min-w-full flex-center bg-gray-100">
@@ -45,6 +47,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
     const novel = await getNovel(novelID);
     if (!novel) return { notFound: true };
     const { author_uid, id, title, content } = novel;
+    const tags = "tags" in novel ? novel.tags : [];
+    const r18 = "r18" in novel ? novel.r18 : false;
 
     return {
         props: {
@@ -52,6 +56,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
             id,
             title,
             content,
+            tags,
+            r18,
             ua,
         },
     };
