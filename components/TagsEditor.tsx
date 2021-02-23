@@ -120,7 +120,7 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorPr
                 </div>
             </div>
             <div className="w-full mt-2 p-2 inline-flex items-center justify-between bg-gray-100 rounded">
-                <span className="text-sm">R-18</span>
+                <span className="text-sm">R18</span>
                 <span className="relative cursor-pointer" onClick={() => setTempR18(!tempR18)}>
                     <span className={"block w-10 h-6 bg-gray-200 rounded-full shadow-inner transition-colors" + (tempR18 ? " bg-red-500" : "")}></span>
                     <span
