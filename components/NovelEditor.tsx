@@ -117,7 +117,7 @@ export default function NovelEditor({ id, title, content, rootTags, rootR18 }: N
 
     const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
-        await updateNovel(id, rootTitle, text);
+        await updateNovel(id, rootTitle, text, tags, r18);
         router.push(`/novel/${id}`);
     };
 
