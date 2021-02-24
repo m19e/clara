@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import Header from "./Header";
 import { UserProfile, INovelDataSerializable } from "../lib/firebase/initFirebase";
+import ListTags from "./ListTags";
 
 const DISPLAY_NOVEL_SPAN = 3;
 
@@ -88,14 +89,16 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                         <>
                                             {displayList.map((novel, i) => (
                                                 <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
-                                                    <div className="flex justify-start mb-2">
+                                                    <div className="flex justify-start mb-4">
                                                         <Link href={`/novel/${novel.id}`}>
                                                             <a className="text-2xl gothic font-semibold whitespace-pre-wrap text-left opacity-75">
                                                                 {novel.title}
                                                             </a>
                                                         </Link>
                                                     </div>
-                                                    <div className="flex flex-wrap mb-2"></div>
+                                                    <div className="flex flex-wrap items-center ml-0.5 mb-3">
+                                                        <ListTags novel={novel} />
+                                                    </div>
                                                     <div className="flex justify-end items-baseline">
                                                         <p className="text-sm opacity-50">{novel.created_at}</p>
                                                     </div>
