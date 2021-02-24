@@ -209,9 +209,9 @@ export async function getNovel(id: string): Promise<INovelData | null> {
     return novel;
 }
 
-export async function updateNovel(id: string, title: string, content: string) {
+export async function updateNovel(id: string, title: string, content: string, tags: string[], r18: boolean) {
     const novelRef = db.collection("novel").doc(id);
-    await novelRef.update({ title, content, updated_at: firebase.firestore.FieldValue.serverTimestamp() });
+    await novelRef.set({ title, content, tags, r18, updated_at: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
 }
 
 export async function deleteNovel(id: string) {
