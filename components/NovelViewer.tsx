@@ -93,6 +93,7 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
     const desc = Array.from(novel.content.split("\n").join("")).slice(0, 100).join("");
 
     const tags = "tags" in novel ? novel.tags : [];
+    const r18 = "r18" in novel ? novel.r18 : false;
 
     useEffect(() => {
         if (ps.current) {
@@ -145,6 +146,11 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
                                         </Link>
                                     </div>
                                     <div className="flex items-center flex-wrap">
+                                        {r18 && (
+                                            <span className="text-sm font-semibold text-red-500 pb-1.5 ml-1" style={{ fontFamily: "sans-serif" }}>
+                                                <span className="tracking-tighter">R18</span>
+                                            </span>
+                                        )}
                                         <NovelTags tags={tags} />
                                     </div>
                                 </div>
