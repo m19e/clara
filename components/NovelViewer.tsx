@@ -134,7 +134,7 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
                                 <div className="flex flex-col">
                                     <span className="text-sm pt-1 text-gray-400">{novel.created_at}</span>
                                     <span className="text-4xl font-bold whitespace-pre-wrap mx-0.5 text-gray-800">{novel.title}</span>
-                                    <div className="pt-1">
+                                    <div className="pt-0.5">
                                         <Link href={`/user/${novel.author_id}`}>
                                             <a className="pr-1.5 border-r border-gray-400 border-opacity-0 hover:border-opacity-100">
                                                 <span className="text-xl font-semibold text-gray-600">{novel.author_name}</span>
