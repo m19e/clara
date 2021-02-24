@@ -46,24 +46,12 @@ type TagsEditorProps = {
     setTempTags: (tags: string[]) => void;
     tempR18: boolean;
     setTempR18: (flag: boolean) => void;
+    suggestions?: string[]
 };
 
-const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorProps) => {
+const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18, suggestions = [] }: TagsEditorProps) => {
     const [tag, setTag] = useState("");
-    const [suggests, setSuggests] = useState([
-        "アイドルマスターシャイニーカラーズ",
-        "放クラ",
-        "小宮果穂",
-        "園田智代子",
-        "西城樹里",
-        "杜野凛世",
-        "有栖川夏葉",
-        "ノクチル",
-        "浅倉透",
-        "樋口円香",
-        "福丸小糸",
-        "市川雛菜",
-    ]);
+    const [suggests, setSuggests] = useState(suggestions);
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
