@@ -26,10 +26,12 @@ export const unifyUsedTags = (rootTags: UsedTag[], oldTags: string[], newTags: s
     const unified = rootTags
         .map((tagInfo) => {
             if (removed.includes(tagInfo.name)) {
-                return Object.assign(tagInfo, { count: tagInfo.count - 1 });
+                const update = { name: tagInfo.name, count: tagInfo.count - 1 };
+                return update;
             }
             if (added.includes(tagInfo.name)) {
-                return Object.assign(tagInfo, { count: tagInfo.count + 1 });
+                const update = { name: tagInfo.name, count: tagInfo.count + 1 };
+                return update;
             }
             return tagInfo;
         })
