@@ -1,10 +1,15 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { getNovel, auth } from "../../../../lib/firebase/initFirebase";
+import { getNovel, auth, getUserDataByUID } from "../../../../lib/firebase/initFirebase";
 import Loader from "../../../../components/Loader";
 import NovelEditor from "../../../../components/NovelEditor";
 import { useUserAgent, UserAgent } from "next-useragent";
+
+type UsedTag = {
+    name: string;
+    count: number;
+};
 
 type NovelEditProps = {
     author_uid: string;
@@ -12,11 +17,12 @@ type NovelEditProps = {
     title: string;
     content: string;
     tags: string[];
+    used_tags: UsedTag[];
     r18: boolean;
     ua: UserAgent;
 };
 
-export default function NovelEdit({ author_uid, id, title, content, tags, r18, ua }: NovelEditProps) {
+export default function NovelEdit({ author_uid, id, title, content, tags, used_tags, r18, ua }: NovelEditProps) {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
 
@@ -47,8 +53,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
     const novel = await getNovel(novelID);
     if (!novel) return { notFound: true };
     const { author_uid, id, title, content } = novel;
+
     const tags = "tags" in novel ? novel.tags : [];
     const r18 = "r18" in novel ? novel.r18 : false;
+    const userData = await getUserDataByUID(author_uid);
+    const used_tags = "used_tags" in userData ? userData.used_tags : [];
 
     return {
         props: {
@@ -57,6 +66,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
             title,
             content,
             tags,
+            used_tags,
             r18,
             ua,
         },
