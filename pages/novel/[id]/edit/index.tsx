@@ -1,16 +1,13 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { getNovel, auth, getUserDataByUID } from "../../../../lib/firebase/initFirebase";
+import { getNovel, auth, getUserDataByUID, INovelData } from "../../../../lib/firebase/initFirebase";
 import Loader from "../../../../components/Loader";
 import NovelEditor from "../../../../components/NovelEditor";
 import { useUserAgent, UserAgent } from "next-useragent";
 
 type NovelEditProps = {
-    author_uid: string;
-    id: string;
-    title: string;
-    content: string;
+    novel: INovelData;
     tags: string[];
     used_tags: {
         name: string;
@@ -20,9 +17,10 @@ type NovelEditProps = {
     ua: UserAgent;
 };
 
-export default function NovelEdit({ author_uid, id, title, content, tags, used_tags, r18, ua }: NovelEditProps) {
+export default function NovelEdit({ novel, tags, used_tags, r18, ua }: NovelEditProps) {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
+    const { author_uid, id, title, content } = novel;
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -48,21 +46,18 @@ export default function NovelEdit({ author_uid, id, title, content, tags, used_t
 export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
     const novelID = typeof params.id === "string" ? params.id : "";
-    const novel = await getNovel(novelID);
-    if (!novel) return { notFound: true };
-    const { author_uid, id, title, content } = novel;
+    const n = await getNovel(novelID);
+    if (!n) return { notFound: true };
+    const { created_at, updated_at, ...novel } = n;
 
     const tags = "tags" in novel ? novel.tags : [];
     const r18 = "r18" in novel ? novel.r18 : false;
-    const userData = await getUserDataByUID(author_uid);
+    const userData = await getUserDataByUID(novel.author_uid);
     const used_tags = "used_tags" in userData ? userData.used_tags : [];
 
     return {
         props: {
-            author_uid,
-            id,
-            title,
-            content,
+            novel,
             tags,
             used_tags,
             r18,
