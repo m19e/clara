@@ -145,7 +145,7 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
                                             </a>
                                         </Link>
                                     </div>
-                                    <div className="flex items-center flex-wrap">
+                                    <div className={"flex items-center flex-wrap" + (tags.length === 0 ? "" : " mr-4")}>
                                         {r18 && (
                                             <span className="text-sm font-semibold text-red-500 pb-1.5 ml-1" style={{ fontFamily: "sans-serif" }}>
                                                 <span className="tracking-tighter">R18</span>
