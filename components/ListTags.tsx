@@ -15,8 +15,10 @@ const ListTags = ({ novel }: TagsProps) => {
                     <span className="tracking-tighter">R18</span>
                 </span>
             )}
-            {tags.map((tag) => (
-                <span className="text-gray-600 text-sm leading-none border-gray-300 pr-2 mr-2 mb-1.5 border-r">{tag}</span>
+            {tags.map((tag, i) => (
+                <span key={`novel-tags-0${i}`} className="text-gray-600 text-sm leading-none border-gray-300 pr-2 mr-2 mb-1.5 border-r">
+                    {tag}
+                </span>
             ))}
         </>
     );
