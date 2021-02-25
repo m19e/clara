@@ -46,12 +46,11 @@ type TagsEditorProps = {
     setTempTags: (tags: string[]) => void;
     tempR18: boolean;
     setTempR18: (flag: boolean) => void;
-    suggestions?: string[]
+    suggestions?: string[];
 };
 
 const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18, suggestions = [] }: TagsEditorProps) => {
     const [tag, setTag] = useState("");
-    const [suggests, setSuggests] = useState(suggestions);
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
@@ -98,15 +97,17 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18, suggestions = 
                 onlyUnique={true}
                 maxTags={10}
             />
-            <div className="w-full mt-2 p-2 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
-                <div className="flex flex-wrap">
-                    {suggests.map((s) => (
-                        <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s)}>
-                            {s}
-                        </span>
-                    ))}
+            {suggestions.length !== 0 && (
+                <div className="w-full mt-2 p-2 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
+                    <div className="flex flex-wrap">
+                        {suggestions.map((s) => (
+                            <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s)}>
+                                {s}
+                            </span>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
             <div className="w-full mt-2 p-2 inline-flex items-center justify-between bg-gray-100 rounded">
                 <span className="text-sm">R18</span>
                 <span className="relative cursor-pointer" onClick={() => setTempR18(!tempR18)}>
