@@ -10,7 +10,7 @@ import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
 import Tags from "./NovelTags";
 import TagsEditModal from "./NovelTagsEditModal";
-import { updateNovel, deleteNovel } from "../lib/firebase/initFirebase";
+import { updateNovel, deleteNovel, INovelData } from "../lib/firebase/initFirebase";
 
 import { useR18, useSuggests } from "../store/novel";
 
@@ -54,9 +54,7 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
 };
 
 type NovelEditorProps = {
-    id: string;
-    title: string;
-    content: string;
+    novel: INovelData;
     rootTags: string[];
     rootR18: boolean;
     usedTags: {
@@ -65,7 +63,8 @@ type NovelEditorProps = {
     }[];
 };
 
-export default function NovelEditor({ id, title, content, rootTags, rootR18, usedTags }: NovelEditorProps) {
+export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: NovelEditorProps) {
+    const { id, title, content } = novel;
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
