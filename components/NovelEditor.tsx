@@ -59,9 +59,13 @@ type NovelEditorProps = {
     content: string;
     rootTags: string[];
     rootR18: boolean;
+    usedTags: {
+        name: string;
+        count: number;
+    }[];
 };
 
-export default function NovelEditor({ id, title, content, rootTags, rootR18 }: NovelEditorProps) {
+export default function NovelEditor({ id, title, content, rootTags, rootR18, usedTags }: NovelEditorProps) {
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();

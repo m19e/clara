@@ -6,18 +6,16 @@ import Loader from "../../../../components/Loader";
 import NovelEditor from "../../../../components/NovelEditor";
 import { useUserAgent, UserAgent } from "next-useragent";
 
-type UsedTag = {
-    name: string;
-    count: number;
-};
-
 type NovelEditProps = {
     author_uid: string;
     id: string;
     title: string;
     content: string;
     tags: string[];
-    used_tags: UsedTag[];
+    used_tags: {
+        name: string;
+        count: number;
+    }[];
     r18: boolean;
     ua: UserAgent;
 };
@@ -37,7 +35,7 @@ export default function NovelEdit({ author_uid, id, title, content, tags, used_t
     }, []);
 
     if (validAuth) {
-        return <NovelEditor id={id} title={title} content={content} rootTags={tags} rootR18={r18} />;
+        return <NovelEditor id={id} title={title} content={content} rootTags={tags} rootR18={r18} usedTags={used_tags} />;
     } else {
         return (
             <div className="min-h-screen min-w-full flex-center bg-gray-100">
