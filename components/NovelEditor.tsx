@@ -125,7 +125,6 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
         const text = editorState.getCurrentContent().getPlainText();
         await updateNovel(id, rootTitle, text, tags, r18);
         const newUsedTags = unifyUsedTags(suggests, rootTags, tags);
-        console.log(suggests, rootTags, tags);
         await setUsedTags(author_uid, newUsedTags);
         router.push(`/novel/${id}`);
     };
