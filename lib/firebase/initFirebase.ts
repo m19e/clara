@@ -153,6 +153,11 @@ export async function updateDraftTitle(uid, did, newTitle: string) {
     await draftRef.set({ title: newTitle }, { merge: true });
 }
 
+export const setUsedTags = async (uid: string, used_tags: { name: string; count: number }[]) => {
+    const userRef = db.collection("user").doc(uid);
+    await userRef.set({ used_tags }, { merge: true });
+};
+
 export interface INovelProp {
     id: string;
     title: string;
