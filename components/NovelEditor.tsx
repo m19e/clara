@@ -12,7 +12,7 @@ import Tags from "./NovelTags";
 import TagsEditModal from "./NovelTagsEditModal";
 import { updateNovel, deleteNovel } from "../lib/firebase/initFirebase";
 
-import { useR18 } from "../store/novel";
+import { useR18, useSuggests } from "../store/novel";
 
 type SelectionRangeOverride = {
     anchorOffset: number;
@@ -88,11 +88,13 @@ export default function NovelEditor({ id, title, content, rootTags, rootR18, use
 
     const [r18, setR18] = useR18();
     const [tags, setTags] = useState(rootTags);
+    const [, setSuggests] = useSuggests();
 
     const router = useRouter();
 
     useEffect(() => {
         setR18(rootR18);
+        setSuggests(usedTags);
     }, []);
 
     useEffect(() => {
