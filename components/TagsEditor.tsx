@@ -103,8 +103,8 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorPr
                 <div className="w-full mt-2 p-2 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
                     <div className="flex flex-wrap">
                         {suggests.map((s) => (
-                            <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s)}>
-                                {s}
+                            <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s.name)}>
+                                {s.name}
                             </span>
                         ))}
                     </div>
