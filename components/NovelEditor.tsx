@@ -10,9 +10,10 @@ import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
 import Tags from "./NovelTags";
 import TagsEditModal from "./NovelTagsEditModal";
-import { updateNovel, deleteNovel, INovelData } from "../lib/firebase/initFirebase";
+import { updateNovel, deleteNovel, INovelData, setUsedTags } from "../lib/firebase/initFirebase";
 
 import { useR18, useSuggests } from "../store/novel";
+import { unifyUsedTags } from "../lib/novel/tools";
 
 type SelectionRangeOverride = {
     anchorOffset: number;
@@ -64,7 +65,7 @@ type NovelEditorProps = {
 };
 
 export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: NovelEditorProps) {
-    const { id, title, content } = novel;
+    const { id, title, content, author_uid } = novel;
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
@@ -87,7 +88,7 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
 
     const [r18, setR18] = useR18();
     const [tags, setTags] = useState(rootTags);
-    const [, setSuggests] = useSuggests();
+    const [suggests, setSuggests] = useSuggests();
 
     const router = useRouter();
 
@@ -123,6 +124,9 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
     const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
         await updateNovel(id, rootTitle, text, tags, r18);
+        const newUsedTags = unifyUsedTags(suggests, rootTags, tags);
+        console.log(suggests, rootTags, tags);
+        await setUsedTags(author_uid, newUsedTags);
         router.push(`/novel/${id}`);
     };
 
