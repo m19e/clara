@@ -1,7 +1,7 @@
 import { useState, useRef, ReactElement } from "react";
 import AutosizeInput from "react-input-autosize";
 import TagsInput from "react-tagsinput";
-import { useR18 } from "../store/novel";
+import { useR18, useSuggests } from "../store/novel";
 
 const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps) => {
     let { onChange, value, ...other } = props;
@@ -49,10 +49,12 @@ type TagsEditorProps = {
     suggestions?: string[];
 };
 
-const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18, suggestions = [] }: TagsEditorProps) => {
+const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorProps) => {
     const [tag, setTag] = useState("");
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
+
+    const [suggests] = useSuggests();
 
     const handleChange = (tags: any[]) => {
         const valid = tags.map((t: string) => t.replace(reg, "")).filter((t: string) => t !== "");
@@ -97,10 +99,10 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18, suggestions = 
                 onlyUnique={true}
                 maxTags={10}
             />
-            {suggestions.length !== 0 && (
+            {suggests.length !== 0 && (
                 <div className="w-full mt-2 p-2 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
                     <div className="flex flex-wrap">
-                        {suggestions.map((s) => (
+                        {suggests.map((s) => (
                             <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s)}>
                                 {s}
                             </span>
