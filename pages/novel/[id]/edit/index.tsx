@@ -20,20 +20,19 @@ type NovelEditProps = {
 export default function NovelEdit({ novel, tags, used_tags, r18, ua }: NovelEditProps) {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
-    const { author_uid, id, title, content } = novel;
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            if (user && user.uid === author_uid && !ua.isMobile) {
+            if (user && user.uid === novel.author_uid && !ua.isMobile) {
                 setValidAuth(true);
             } else {
-                router.push(`/novel/${id}`);
+                router.push(`/novel/${novel.id}`);
             }
         });
     }, []);
 
     if (validAuth) {
-        return <NovelEditor id={id} title={title} content={content} rootTags={tags} rootR18={r18} usedTags={used_tags} />;
+        return <NovelEditor novel={novel} rootTags={tags} rootR18={r18} usedTags={used_tags} />;
     } else {
         return (
             <div className="min-h-screen min-w-full flex-center bg-gray-100">
