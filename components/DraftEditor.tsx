@@ -281,7 +281,7 @@ export default function VerticalEditor() {
     return (
         <>
             <Head>
-                <style>{`* { margin: 0px; overflow: hidden; }`}</style>
+                <style>{`* { margin: 0px; }`}</style>
             </Head>
             {loading ? (
                 <div className="min-h-screen flex-center editor-bg">
