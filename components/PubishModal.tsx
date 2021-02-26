@@ -4,6 +4,7 @@ import { useIsShowPublishModal } from "../store/editor";
 import { useDraftID, useTitle, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
 import { publishNovel, createDraftData } from "../lib/firebase/initFirebase";
+import TagsEditor from "./TagsEditor";
 
 interface INovelProp {
     id: string;
@@ -66,14 +67,15 @@ export default function PublishModal() {
                         className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                         onClick={() => toggleShowModal()}
                     >
-                        <div className="relative w-auto my-6 mx-auto max-w-lg">
+                        <div className="relative w-auto my-6 mx-auto max-w-lg" style={{ width: "512px" }}>
                             <div
                                 className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <span className="gothic text-xl text-gray-800 text-center">{title}</span>
-                                <span className="w-full text-center text-gray-600">を投稿しますか？</span>
-                                <div className="flex justify-between w-72 mt-10">
+                                {/* <span className="gothic text-xl text-gray-800 text-center">{title}</span> */}
+                                {/* <span className="w-full text-center text-gray-600">を投稿しますか？</span> */}
+                                <TagsEditor tempTags={tags} setTempTags={setTags} tempR18={r18} setTempR18={setR18} />
+                                <div className="flex justify-between w-full mt-12">
                                     <span
                                         className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
                                         onClick={() => toggleShowModal()}
