@@ -3,7 +3,10 @@ import { useState } from "react";
 import { useIsShowPublishModal } from "../store/editor";
 import { useDraftID, useTitle, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
-import { publishNovel, createDraftData } from "../lib/firebase/initFirebase";
+import { publishNovel, createDraftData, setUsedTags } from "../lib/firebase/initFirebase";
+import { unifyUsedTags } from "../lib/novel/tools";
+import { useSuggests } from "../store/novel";
+
 import TagsEditor from "./TagsEditor";
 
 interface INovelProp {
@@ -29,6 +32,8 @@ export default function PublishModal() {
     const [tags, setTags] = useState<string[]>([]);
     const [r18, setR18] = useState(false);
 
+    const [suggests] = useSuggests();
+
     const publish = async () => {
         if (inTask) return;
         setInTask(true);
@@ -43,6 +48,8 @@ export default function PublishModal() {
             author_name: profile.displayName,
         };
         await publishNovel(novel);
+        const newUsedTags = unifyUsedTags(suggests, [], tags);
+        await setUsedTags(novel.author_uid, newUsedTags);
         await createDraftData(profile.uid);
         router.push(`/novel/${id}`);
     };
