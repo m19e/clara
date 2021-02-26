@@ -38,21 +38,20 @@ const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
                         <div className="relative w-auto my-6 mx-auto max-w-lg" style={{ width: "512px" }}>
                             <div className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none">
                                 <TagsEditor tempTags={tempTags} setTempTags={setTempTags} tempR18={tempR18} setTempR18={setTempR18} />
-                                <div className="flex-center">
-                                    <div className="flex justify-between w-full mt-12">
-                                        <span
-                                            className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
-                                            onClick={() => setShowModal(false)}
-                                        >
-                                            取消
-                                        </span>
-                                        <span
-                                            className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
-                                            onClick={() => updateTags()}
-                                        >
-                                            編集
-                                        </span>
-                                    </div>
+
+                                <div className="flex justify-between w-full mt-12">
+                                    <span
+                                        className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        取消
+                                    </span>
+                                    <span
+                                        className="px-4 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
+                                        onClick={() => updateTags()}
+                                    >
+                                        編集
+                                    </span>
                                 </div>
                             </div>
                         </div>
