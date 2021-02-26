@@ -46,7 +46,6 @@ type TagsEditorProps = {
     setTempTags: (tags: string[]) => void;
     tempR18: boolean;
     setTempR18: (flag: boolean) => void;
-    suggestions?: string[];
 };
 
 const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorProps) => {
