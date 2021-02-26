@@ -66,7 +66,7 @@ export default function PublishModal() {
                         className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                         onClick={() => toggleShowModal()}
                     >
-                        <div className="relative w-auto my-6 mx-auto max-w-sm">
+                        <div className="relative w-auto my-6 mx-auto max-w-lg">
                             <div
                                 className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
