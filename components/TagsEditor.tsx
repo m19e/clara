@@ -1,7 +1,7 @@
 import { useState, useRef, ReactElement } from "react";
 import AutosizeInput from "react-input-autosize";
 import TagsInput from "react-tagsinput";
-import { useR18, useSuggests } from "../store/novel";
+import { useSuggests } from "../store/novel";
 
 const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps) => {
     let { onChange, value, ...other } = props;
