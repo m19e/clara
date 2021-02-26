@@ -51,6 +51,7 @@ export default function PublishModal() {
         const newUsedTags = unifyUsedTags(suggests, [], tags);
         await setUsedTags(novel.author_uid, newUsedTags);
         await createDraftData(profile.uid);
+        toggleShowModal();
         router.push(`/novel/${id}`);
     };
 
