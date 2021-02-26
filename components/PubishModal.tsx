@@ -9,6 +9,8 @@ interface INovelProp {
     id: string;
     title: string;
     content: string;
+    tags: string[];
+    r18: boolean;
     author_id: string;
     author_uid: string;
     author_name: string;
@@ -23,6 +25,9 @@ export default function PublishModal() {
     const router = useRouter();
     const [inTask, setInTask] = useState(false);
 
+    const [tags, setTags] = useState<string[]>([]);
+    const [r18, setR18] = useState(false);
+
     const publish = async () => {
         if (inTask) return;
         setInTask(true);
@@ -30,6 +35,8 @@ export default function PublishModal() {
             id,
             title,
             content,
+            tags,
+            r18,
             author_id: profile.userID,
             author_uid: profile.uid,
             author_name: profile.displayName,
