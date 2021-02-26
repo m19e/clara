@@ -78,7 +78,7 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorPr
     };
 
     return (
-        <div className="flex flex-col justify-center items-center" style={{ width: "512px" }}>
+        <div className="flex flex-col justify-center items-center">
             <div className="w-full flex justify-between text-sm">
                 <span className="mx-2.5" style={{ fontFamily: "sans-serif" }}>
                     タグ
