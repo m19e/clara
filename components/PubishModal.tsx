@@ -26,7 +26,14 @@ export default function PublishModal() {
     const publish = async () => {
         if (inTask) return;
         setInTask(true);
-        const novel: INovelProp = { id, title, content, author_id: profile.userID, author_uid: profile.uid, author_name: profile.displayName };
+        const novel: INovelProp = {
+            id,
+            title,
+            content,
+            author_id: profile.userID,
+            author_uid: profile.uid,
+            author_name: profile.displayName,
+        };
         await publishNovel(novel);
         await createDraftData(profile.uid);
         router.push(`/novel/${id}`);
