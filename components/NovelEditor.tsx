@@ -4,11 +4,16 @@ import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import Header from "../components/Header";
+import Header from "./Header";
 import NovelViewerConfig from "./NovelViewerConfig";
 import TitleEditModal from "./NovelTitleEditModal";
 import ConfirmableModal from "./ConfirmableModal";
-import { updateNovel, deleteNovel } from "../lib/firebase/initFirebase";
+import Tags from "./NovelTags";
+import TagsEditModal from "./NovelTagsEditModal";
+import { updateNovel, deleteNovel, INovelData, setUsedTags } from "../lib/firebase/initFirebase";
+
+import { useR18, useSuggests } from "../store/novel";
+import { unifyUsedTags } from "../lib/novel/tools";
 
 type SelectionRangeOverride = {
     anchorOffset: number;
@@ -49,7 +54,18 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
     return [font, setMincho, setGothic];
 };
 
-export default function NovelEditor({ id, title, content }: { id: string; title: string; content: string }) {
+type NovelEditorProps = {
+    novel: INovelData;
+    rootTags: string[];
+    rootR18: boolean;
+    usedTags: {
+        name: string;
+        count: number;
+    }[];
+};
+
+export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: NovelEditorProps) {
+    const { id, title, content, author_uid } = novel;
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
@@ -70,7 +86,16 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
         setGothic,
     };
 
+    const [r18, setR18] = useR18();
+    const [tags, setTags] = useState(rootTags);
+    const [suggests, setSuggests] = useSuggests();
+
     const router = useRouter();
+
+    useEffect(() => {
+        setR18(rootR18);
+        setSuggests(usedTags);
+    }, []);
 
     useEffect(() => {
         const resizeObs = new ResizeObserver((entries: ReadonlyArray<ResizeObserverEntry>) => {
@@ -98,12 +123,16 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
 
     const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
-        await updateNovel(id, rootTitle, text);
+        await updateNovel(id, rootTitle, text, tags, r18);
+        const newUsedTags = unifyUsedTags(suggests, rootTags, tags);
+        await setUsedTags(author_uid, newUsedTags);
         router.push(`/novel/${id}`);
     };
 
     const confirmDelete = async () => {
         await deleteNovel(id);
+        const newUsedTags = unifyUsedTags(suggests, rootTags, []);
+        await setUsedTags(author_uid, newUsedTags);
         router.push("/");
     };
 
@@ -300,6 +329,27 @@ export default function NovelEditor({ id, title, content }: { id: string; title:
                                 <span className="mt-2 w-8 h-8 rounded-full shadow-md flex-center cursor-pointer">
                                     <TitleEditModal title={rootTitle} setTitle={setRootTitle} />
                                 </span>
+                            </div>
+                            <div className="flex items-center flex-wrap mr-1.5">
+                                {tags.length === 0 && (
+                                    <span className="w-4 h-4 mb-1 pl-1.5 flex-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                                            />
+                                        </svg>
+                                    </span>
+                                )}
+                                {r18 && (
+                                    <span className="text-sm font-semibold text-red-500 pb-1.5 ml-1" style={{ fontFamily: "sans-serif" }}>
+                                        <span className="tracking-tighter">R18</span>
+                                    </span>
+                                )}
+                                <Tags tags={tags} />
+                                <TagsEditModal tags={tags} setTags={setTags} />
                             </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>

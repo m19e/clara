@@ -5,6 +5,7 @@ import firebase from "firebase/app";
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import NewNovelList from "../components/NewNovelList";
+import ListTags from "../components/ListTags";
 import { INovelDataSerializable, getAllNovel } from "../lib/firebase/initFirebase";
 import { getDisplayTime, getTextCharCount } from "../lib/novel/tools";
 
@@ -55,12 +56,17 @@ export default function Top({ novels }: { novels: INovelDataWithMillis[] }) {
                                     <NewNovelList borderNovelMillis={rootList[0].created_at_millis} />
                                     {displayList.map((novel, i) => (
                                         <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                                            <Link href={`/novel/${novel.id}`}>
-                                                <a className="text-2xl font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
-                                            </Link>
-                                            <div className="flex justify-between mt-4 items-baseline">
+                                            <div className="mb-4">
+                                                <Link href={`/novel/${novel.id}`}>
+                                                    <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
+                                                </Link>
+                                            </div>
+                                            <div className="flex flex-wrap items-center ml-0.5 mb-2">
+                                                <ListTags novel={novel} />
+                                            </div>
+                                            <div className="flex justify-between items-baseline">
                                                 <Link href={`/user/${novel.author_id}`}>
-                                                    <a className="opacity-75">{novel.author_name}</a>
+                                                    <a className="gothic opacity-75">{novel.author_name}</a>
                                                 </Link>
                                                 <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
                                             </div>

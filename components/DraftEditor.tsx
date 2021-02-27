@@ -11,6 +11,7 @@ import { auth, getUserDataByUID, readDraftData, updateDraftData } from "../lib/f
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
 import { useProfile } from "../store/user";
 import { useDraftID, useTitle, useContent } from "../store/draft";
+import { useSuggests } from "../store/novel";
 import Frame from "./EditorFrame";
 import Loader from "./Loader";
 
@@ -47,6 +48,8 @@ export default function VerticalEditor() {
     const [, setContent] = useContent();
     const [lineWords] = useLineWords();
 
+    const [, setSuggets] = useSuggests();
+
     const focusEditor = () => editorRef.current.focus();
 
     useEffect(() => {
@@ -77,6 +80,7 @@ export default function VerticalEditor() {
     const initEditor = async (user: fb.User) => {
         const { uid, displayName, photoURL } = user;
         const userData = await getUserDataByUID(uid);
+        const used_tags = "used_tags" in userData ? userData.used_tags : [];
         const im = userData.isMincho;
         const { userID, recent, fontSize, lineWords } = userData;
         const profile = { uid, displayName, photoURL, userID };
@@ -84,6 +88,7 @@ export default function VerticalEditor() {
         setFormatAll({ isMincho: im, fontSize, lineWords });
         setUserProfile(profile);
         setDraftID(recent);
+        setSuggets(used_tags);
         await readDraft(uid, recent);
         setLoading(false);
         // focusEditor();
@@ -276,7 +281,7 @@ export default function VerticalEditor() {
     return (
         <>
             <Head>
-                <style>{`* { margin: 0px; overflow: hidden; }`}</style>
+                <style>{`* { margin: 0px; }`}</style>
             </Head>
             {loading ? (
                 <div className="min-h-screen flex-center editor-bg">
