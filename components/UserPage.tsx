@@ -96,7 +96,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                                             </a>
                                                         </Link>
                                                     </div>
-                                                    <div className="flex flex-wrap items-center ml-0.5 mb-3">
+                                                    <div className="whitespace-pre-wrap ml-0.5 mb-3">
                                                         <ListTags novel={novel} />
                                                     </div>
                                                     <div className="flex justify-end items-baseline">
