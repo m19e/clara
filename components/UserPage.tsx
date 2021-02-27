@@ -14,6 +14,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
 
     useEffect(() => {
         setDisplayList(novels.slice(0, DISPLAY_NOVEL_SPAN));
+        setHasMore(novels.length > DISPLAY_NOVEL_SPAN);
     }, [user]);
 
     const displayMore = () => {
