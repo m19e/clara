@@ -13,3 +13,33 @@ export const getDisplayTime = (milli: number): string => {
     const mi = ("00" + dt.getMinutes()).slice(-2);
     return y + m + d + ho + mi;
 };
+
+type UsedTag = {
+    name: string;
+    count: number;
+};
+
+export const unifyUsedTags = (rootTags: UsedTag[], oldTags: string[], newTags: string[]) => {
+    const removed = oldTags.filter((tag) => !newTags.includes(tag));
+    const added = newTags.filter((tag) => !oldTags.includes(tag));
+
+    const unified = rootTags
+        .map((tagInfo) => {
+            if (removed.includes(tagInfo.name)) {
+                const update = { name: tagInfo.name, count: tagInfo.count - 1 };
+                return update;
+            }
+            if (added.includes(tagInfo.name)) {
+                const update = { name: tagInfo.name, count: tagInfo.count + 1 };
+                return update;
+            }
+            return tagInfo;
+        })
+        .filter((tagInfo) => tagInfo.count > 0);
+
+    const rootTagsNames = rootTags.map((tagInfo) => tagInfo.name);
+    const filteredNewTags = newTags.filter((tag) => !rootTagsNames.includes(tag)).map((tag) => Object.assign({}, { name: tag, count: 1 }));
+    const newRootTags = unified.concat(filteredNewTags);
+
+    return newRootTags;
+};
