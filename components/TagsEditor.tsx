@@ -54,6 +54,7 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorPr
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
 
     const [suggests] = useSuggests();
+    const sortedSuggests = suggests.slice().sort((cur, next) => next.count - cur.count);
 
     const handleChange = (tags: any[]) => {
         const valid = tags.map((t: string) => t.replace(reg, "")).filter((t: string) => t !== "");
@@ -98,10 +99,10 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorPr
                 onlyUnique={true}
                 maxTags={10}
             />
-            {suggests.length !== 0 && (
+            {sortedSuggests.length !== 0 && (
                 <div className="w-full mt-2 p-2 flex flex-col bg-gray-100 rounded" style={{ fontFamily: "sans-serif" }}>
                     <div className="flex flex-wrap">
-                        {suggests.map((s) => (
+                        {sortedSuggests.map((s) => (
                             <span className="mr-2 text-sm text-gray-500 hover:text-blue-400 cursor-pointer" onClick={() => handleClickSuggest(s.name)}>
                                 {s.name}
                             </span>
