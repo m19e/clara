@@ -119,12 +119,12 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
     return (
         <>
             <Header
-                title={`${r18 ? "[R18]" : ""}${novel.title} - ${novel.author_name} | Clara`}
+                title={`${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
                 description={r18 ? "" : desc}
-                ogTitle={`${r18 ? "[R18]" : ""}${novel.title} - ${novel.author_name} | Clara`}
+                ogTitle={`${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
                 ogDescription={r18 ? "" : desc}
                 ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
-                twTitle={`${r18 ? "[R18]" : ""}${novel.title}`}
+                twTitle={`${r18 ? "[R18]" : ""} ${novel.title}`}
                 twDescription={r18 ? "" : desc}
                 twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
                 twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}
