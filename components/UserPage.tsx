@@ -79,7 +79,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-6 border-t border-gray-300 text-center">
+                            <div className="mt-6 border-t border-gray-300">
                                 <div className="flex flex-col items-center justify-end">
                                     {novels.length === 0 ? (
                                         <div className="w-3/4 max-w-xl my-12">
@@ -96,7 +96,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                                             </a>
                                                         </Link>
                                                     </div>
-                                                    <div className="flex flex-wrap items-center ml-0.5 mb-3">
+                                                    <div className="whitespace-pre-wrap ml-0.5 mb-3">
                                                         <ListTags novel={novel} />
                                                     </div>
                                                     <div className="flex justify-end items-baseline">
