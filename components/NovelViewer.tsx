@@ -119,13 +119,13 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
     return (
         <>
             <Header
-                title={`${novel.title} - ${novel.author_name} | Clara`}
-                description={desc}
-                ogTitle={`${novel.title} - ${novel.author_name} | Clara`}
-                ogDescription={desc}
+                title={`${r18 ? "[R18]" : ""}${novel.title} - ${novel.author_name} | Clara`}
+                description={r18 ? "" : desc}
+                ogTitle={`${r18 ? "[R18]" : ""}${novel.title} - ${novel.author_name} | Clara`}
+                ogDescription={r18 ? "" : desc}
                 ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
-                twTitle={novel.title}
-                twDescription={desc}
+                twTitle={`${r18 ? "[R18]" : ""}${novel.title}`}
+                twDescription={r18 ? "" : desc}
                 twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
                 twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}
                 twCard="summary_large_image"
@@ -181,7 +181,7 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
                         <a
                             href={
                                 "https://twitter.com/intent/tweet?text=" +
-                                encodeURIComponent(`${novel.title} - ${novel.author_name} #claranovel`) +
+                                encodeURIComponent(`${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} #claranovel`) +
                                 "&url=" +
                                 process.env.NEXT_PUBLIC_SITE_ROOT_URL +
                                 router.asPath
