@@ -90,14 +90,14 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                         <>
                                             {displayList.map((novel, i) => (
                                                 <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
-                                                    <div className="flex justify-start mb-4">
+                                                    <div className="flex justify-start mb-3">
                                                         <Link href={`/novel/${novel.id}`}>
                                                             <a className="text-2xl gothic font-semibold whitespace-pre-wrap text-left opacity-75">
                                                                 {novel.title}
                                                             </a>
                                                         </Link>
                                                     </div>
-                                                    <div className="whitespace-pre-wrap ml-0.5 mb-3">
+                                                    <div className="whitespace-pre-wrap ml-0.5 pb-3">
                                                         <ListTags novel={novel} />
                                                     </div>
                                                     <div className="flex justify-end items-baseline">

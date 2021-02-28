@@ -199,11 +199,11 @@ export async function getAllNovel(sort: "desc" | "asc"): Promise<INovelData[]> {
     return novels;
 }
 
-export async function getNewNovels(millis: number): Promise<INovelData[]> {
+export async function getNewNovels(millis: number): Promise<INovelProp[]> {
     const localFirstNovelCreatedAt = firebase.firestore.Timestamp.fromMillis(millis);
     const novels = await db.collection("novel").where("created_at", ">", localFirstNovelCreatedAt).orderBy("created_at", "desc").get();
     if (novels.size === 0) return [];
-    const novelsData = novels.docs.map((doc) => doc.data() as INovelData);
+    const novelsData = novels.docs.map((doc) => doc.data() as INovelProp);
     return novelsData;
 }
 
