@@ -34,12 +34,12 @@ export default function NewNovelList({ borderNovelMillis }: NewNovelListProps) {
                 <>
                     {newList.map((novel, i) => (
                         <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                            <div className="mb-2">
+                            <div className="mb-3">
                                 <Link href={`/novel/${novel.id}`}>
                                     <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
                                 </Link>
                             </div>
-                            <div className="whitespace-pre-wrap ml-0.5 mb-2">
+                            <div className="whitespace-pre-wrap ml-0.5 pb-3">
                                 <ListTags novel={novel} />
                             </div>
                             <div className="flex justify-between items-baseline">
