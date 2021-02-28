@@ -1,7 +1,7 @@
-import { INovelDataSerializable } from "../lib/firebase/initFirebase";
+import { INovelProp } from "../lib/firebase/initFirebase";
 
 type TagsProps = {
-    novel: INovelDataSerializable;
+    novel: INovelProp;
 };
 
 const ListTags = ({ novel }: TagsProps) => {
