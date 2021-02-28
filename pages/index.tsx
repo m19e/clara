@@ -56,7 +56,7 @@ export default function Top({ novels }: { novels: INovelDataWithMillis[] }) {
                                     <NewNovelList borderNovelMillis={rootList[0].created_at_millis} />
                                     {displayList.map((novel, i) => (
                                         <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                                            <div className="mb-4">
+                                            <div className="mb-2">
                                                 <Link href={`/novel/${novel.id}`}>
                                                     <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
                                                 </Link>
