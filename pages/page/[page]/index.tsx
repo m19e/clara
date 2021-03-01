@@ -7,7 +7,7 @@ import { INovelProp } from "../../../lib/firebase/initFirebase";
 const PER_PAGE = 10;
 
 const Top = ({ page, novels }: { page: number; novels: INovelProp[] }) => {
-    if (novels.length === 0) return <Error statusCode={404} />;
+    if (page === 0) return <Error statusCode={404} />;
     return <TopPage novels={novels} />;
 };
 
