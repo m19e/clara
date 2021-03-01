@@ -1,7 +1,6 @@
 import { db, getNovel, INovelProp } from "./initFirebase";
 
 type RootNovelInfo = {
-    ids: string[];
     infos: {
         id: string;
         tags: string[];
@@ -9,12 +8,6 @@ type RootNovelInfo = {
 };
 
 // Admin
-export const saveAllNovelID = async () => {
-    const allNovel = await db.collection("novel").orderBy("created_at", "desc").get();
-    const allNovelID = allNovel.docs.map((doc) => doc.id);
-    await db.collection("root").doc("novel").set({ ids: allNovelID }, { merge: true });
-};
-
 export const saveAllNovelInfo = async () => {
     const allNovel = await db.collection("novel").orderBy("created_at", "desc").get();
     const allNovelInfo = allNovel.docs.map((doc) => {
