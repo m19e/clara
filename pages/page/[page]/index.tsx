@@ -16,6 +16,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     if (typeof page !== "string" || page === "") {
         return {
             props: {
+                page: 0,
                 novels: [],
             },
         };
@@ -25,6 +26,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     if (pageNum < 0 || pageNum * PER_PAGE > novelIDs.length) {
         return {
             props: {
+                page: 0,
                 novels: [],
             },
         };
