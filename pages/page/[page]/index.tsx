@@ -14,16 +14,12 @@ const Top = ({ page = 0, novels = [] }: { page: number; novels: INovelProp[] }) 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const { page } = params;
     if (typeof page !== "string" || page === "") {
-        return {
-            props: {},
-        };
+        return { props: {} };
     }
     const pageNum = parseInt(page, 10) - 1;
     const novelIDs = await getRootNovelIDs();
     if (pageNum < 0 || pageNum * PER_PAGE > novelIDs.length) {
-        return {
-            props: {},
-        };
+        return { props: {} };
     }
     const novels = await getNovelsByIDs(novelIDs.slice(pageNum * PER_PAGE, (pageNum + 1) * PER_PAGE));
 
