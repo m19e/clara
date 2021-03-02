@@ -41,7 +41,6 @@ const Pagination = ({ pageCount }: Props) => {
             marginPagesDisplayed={1}
             onPageChange={handlePageChange}
             disableInitialCallback={true}
-            initialPage={0}
             previousLabel={chevron(true)}
             nextLabel={chevron(false)}
             containerClassName="flex items-center"
