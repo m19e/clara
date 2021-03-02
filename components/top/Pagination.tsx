@@ -40,7 +40,10 @@ const Pagination = () => {
             previousLabel={chevron(true)}
             nextLabel={chevron(false)}
             containerClassName="flex items-center"
-            pageClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded bg-transparent hover:bg-gray-200"
+            previousLinkClassName="outline-none focus:outline-none"
+            nextLinkClassName="outline-none focus:outline-none"
+            pageClassName="flex-center"
+            pageLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded bg-transparent hover:bg-gray-200 outline-none focus:outline-none"
         />
     );
 };
