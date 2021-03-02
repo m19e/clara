@@ -51,6 +51,7 @@ const Pagination = ({ pageCount }: Props) => {
             pageLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 rounded-full bg-transparent hover:bg-gray-200 outline-none focus:outline-none"
             activeClassName="flex-center"
             activeLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 rounded-full bg-gray-200 outline-none focus:outline-none cursor-default"
+            disabledClassName="opacity-0"
         />
     );
 };
