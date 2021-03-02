@@ -29,8 +29,8 @@ const Pagination = () => {
             marginPagesDisplayed={1}
             onPageChange={handlePageChange}
             initialPage={0}
-            containerClassName="flex"
-            pageClassName="mx-1"
+            containerClassName="flex items-center"
+            pageClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded bg-transparent hover:bg-gray-200"
         />
     );
 };
