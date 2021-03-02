@@ -44,7 +44,7 @@ const TopPage = ({ novels }: { novels: INovelProp[] }) => {
                                 </div>
                             ))}
                             <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
-                            <div className="w-full flex-center my-6 editor-bg">
+                            <div className="w-full flex-center my-8 editor-bg">
                                 <Pagination />
                             </div>
                         </div>
