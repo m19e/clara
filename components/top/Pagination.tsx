@@ -48,9 +48,9 @@ const Pagination = ({ pageCount }: Props) => {
             previousLinkClassName="outline-none focus:outline-none"
             nextLinkClassName="outline-none focus:outline-none"
             pageClassName="flex-center"
-            pageLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded-full bg-transparent hover:bg-gray-200 outline-none focus:outline-none"
+            pageLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded-full bg-transparent hover:bg-gray-200 hover:border-gray-200 outline-none focus:outline-none"
             activeClassName="flex-center"
-            activeLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded-full bg-gray-200 outline-none focus:outline-none cursor-default"
+            activeLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 border border-gray-300 rounded-full bg-gray-300 outline-none focus:outline-none cursor-default"
         />
     );
 };
