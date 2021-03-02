@@ -6,9 +6,9 @@ import { INovelProp } from "../../../lib/firebase/initFirebase";
 
 const PER_PAGE = 10;
 
-const Top = ({ page = 0, novels = [] }: { page: number; novels: INovelProp[] }) => {
+const Top = ({ page = 0, pageCount, novels = [] }: { page: number; pageCount: number; novels: INovelProp[] }) => {
     if (page === 0) return <Error statusCode={404} />;
-    return <TopPage novels={novels} />;
+    return <TopPage pageCount={pageCount} novels={novels} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
@@ -18,6 +18,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     }
     const pageNum = parseInt(page, 10) - 1;
     const novelIDs = await getRootNovelIDs();
+    const pageCount = Math.ceil(novelIDs.length / PER_PAGE);
     if (pageNum < 0 || pageNum * PER_PAGE > novelIDs.length) {
         return { props: {} };
     }
@@ -26,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     return {
         props: {
             page: pageNum + 1,
+            pageCount,
             novels,
         },
     };
