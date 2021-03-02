@@ -40,6 +40,7 @@ const Pagination = ({ pageCount }: Props) => {
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
             onPageChange={handlePageChange}
+            disableInitialCallback={true}
             initialPage={0}
             previousLabel={chevron(true)}
             nextLabel={chevron(false)}
