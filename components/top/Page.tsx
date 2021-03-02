@@ -2,6 +2,7 @@ import Link from "next/link";
 import Layout from "../Layout";
 import Header from "../Header";
 import ListTags from "../ListTags";
+import Pagination from "./Pagination";
 import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
 
@@ -43,7 +44,9 @@ const TopPage = ({ novels }: { novels: INovelProp[] }) => {
                                 </div>
                             ))}
                             <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
-                            <div className="w-full flex-center my-6 editor-bg"></div>
+                            <div className="w-full flex-center my-6 editor-bg">
+                                <Pagination />
+                            </div>
                         </div>
                     </div>
                 </div>
