@@ -6,7 +6,7 @@ import { INovelProp } from "../../../lib/firebase/initFirebase";
 
 const PER_PAGE = 10;
 
-const Top = ({ page = 0, pageCount, novels = [] }: { page: number; pageCount: number; novels: INovelProp[] }) => {
+const Top = ({ novels = [], page = 0, pageCount }: { novels: INovelProp[]; page: number; pageCount: number }) => {
     if (page === 0) return <Error statusCode={404} />;
     return <TopPage pageCount={pageCount} novels={novels} />;
 };
@@ -26,9 +26,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
 
     return {
         props: {
+            novels,
             page: pageNum + 1,
             pageCount,
-            novels,
         },
     };
 };
