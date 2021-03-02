@@ -10,7 +10,11 @@ const chevron = (left: boolean) => (
     </div>
 );
 
-const Pagination = () => {
+type Props = {
+    pageCount: number;
+};
+
+const Pagination = ({ pageCount }: Props) => {
     const router = useRouter();
 
     useEffect(() => {
@@ -32,7 +36,7 @@ const Pagination = () => {
 
     return (
         <Paginate
-            pageCount={7}
+            pageCount={pageCount}
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
             onPageChange={handlePageChange}
