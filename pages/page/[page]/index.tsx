@@ -8,13 +8,12 @@ const PER_PAGE = 10;
 
 type Props = {
     novels: INovelProp[];
-    page: number;
     pageCount: number;
     initialPage: number;
 };
 
-const Top = ({ novels = [], page = 0, pageCount, initialPage }: Props) => {
-    if (page === 0) return <Error statusCode={404} />;
+const Top = ({ novels = [], pageCount, initialPage }: Props) => {
+    if (novels.length === 0) return <Error statusCode={404} />;
     return <TopPage novels={novels} pageCount={pageCount} initialPage={initialPage} />;
 };
 
@@ -34,7 +33,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     return {
         props: {
             novels,
-            page: pageNum + 1,
             pageCount,
             initialPage: pageNum,
         },
