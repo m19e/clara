@@ -40,7 +40,8 @@ export const setRootNovelInfos = async (newInfos: { id: string; tags: string[] }
 
 export const getNovelsByIDs = async (ids: string[]): Promise<INovelProp[]> => {
     const datas = await Promise.all(ids.map(async (id) => await getNovel(id)));
-    const novels = datas.map((d) => {
+    const filtered = datas.filter((d) => d !== null);
+    const novels = filtered.map((d) => {
         const { created_at, updated_at, ...novelProp } = d;
         return novelProp;
     });
