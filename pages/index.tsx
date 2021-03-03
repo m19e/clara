@@ -1,9 +1,7 @@
 import { GetServerSideProps } from "next";
-import { getNovelsByIDs, getRootNovelIDs } from "../lib/firebase/novel";
+import { getNovelsByIDs, getRootNovelIDs, PER_PAGE } from "../lib/firebase/novel";
 import TopPage from "../components/top/Page";
 import { INovelProp } from "../lib/firebase/initFirebase";
-
-const PER_PAGE = 10;
 
 const Top = ({ novels, pageCount }: { novels: INovelProp[]; pageCount: number }) => <TopPage novels={novels} pageCount={pageCount} />;
 

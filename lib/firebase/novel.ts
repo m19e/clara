@@ -1,5 +1,7 @@
 import { db, getNovel, INovelProp } from "./initFirebase";
 
+export const PER_PAGE = 10;
+
 type RootNovelInfo = {
     infos: {
         id: string;
