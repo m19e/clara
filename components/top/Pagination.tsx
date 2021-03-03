@@ -23,9 +23,10 @@ const ellipsis = () => (
 
 type Props = {
     pageCount: number;
+    initialPage: number;
 };
 
-const Pagination = ({ pageCount }: Props) => {
+const Pagination = ({ pageCount, initialPage }: Props) => {
     const router = useRouter();
 
     useEffect(() => {
@@ -50,6 +51,7 @@ const Pagination = ({ pageCount }: Props) => {
             pageCount={pageCount}
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
+            initialPage={initialPage}
             onPageChange={handlePageChange}
             disableInitialCallback={true}
             previousLabel={chevron(true)}
