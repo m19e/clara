@@ -1,4 +1,3 @@
-import Error from "next/error";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getNovelsByIDs, getRootNovelIDs } from "../../../lib/firebase/novel";
 import TopPage from "../../../components/top/Page";
@@ -12,21 +11,18 @@ type Props = {
     initialPage: number;
 };
 
-const Top = ({ novels = [], pageCount, initialPage }: Props) => {
-    if (novels.length === 0) return <Error statusCode={404} />;
-    return <TopPage novels={novels} pageCount={pageCount} initialPage={initialPage} />;
-};
+const Top = ({ novels = [], pageCount, initialPage }: Props) => <TopPage novels={novels} pageCount={pageCount} initialPage={initialPage} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const { page } = params;
     if (typeof page !== "string" || page === "") {
-        return { props: {} };
+        return { notFound: true, props: {} };
     }
     const pageNum = parseInt(page, 10) - 1;
     const novelIDs = await getRootNovelIDs();
     const pageCount = Math.ceil(novelIDs.length / PER_PAGE);
     if (pageNum < 0 || pageNum * PER_PAGE > novelIDs.length) {
-        return { props: {} };
+        return { notFound: true, props: {} };
     }
     const novels = await getNovelsByIDs(novelIDs.slice(pageNum * PER_PAGE, (pageNum + 1) * PER_PAGE));
 
