@@ -6,7 +6,13 @@ import Pagination from "./Pagination";
 import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
 
-const TopPage = ({ novels, pageCount }: { novels: INovelProp[]; pageCount: number }) => {
+type Props = {
+    novels: INovelProp[];
+    pageCount: number;
+    initialPage: number;
+};
+
+const TopPage = ({ novels, pageCount, initialPage }: Props) => {
     return (
         <Layout>
             <Header
@@ -45,7 +51,7 @@ const TopPage = ({ novels, pageCount }: { novels: INovelProp[]; pageCount: numbe
                             ))}
                             <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
                             <div className="w-full flex-center my-8 editor-bg">
-                                <Pagination pageCount={pageCount} />
+                                <Pagination pageCount={pageCount} initialPage={initialPage} />
                             </div>
                         </div>
                     </div>
