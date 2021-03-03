@@ -28,6 +28,12 @@ export const getRootNovelIDs = async (): Promise<string[]> => {
     return ids;
 };
 
+export const getRootNovelInfos = async () => {
+    const rootNovelInfo = await db.collection("root").doc("novel").get();
+    const { infos } = rootNovelInfo.data() as RootNovelInfo;
+    return infos;
+};
+
 export const setRootNovelInfos = async (newInfos: { id: string; tags: string[] }[]) => {
     await db.collection("root").doc("novel").set({ infos: newInfos }, { merge: true });
 };
