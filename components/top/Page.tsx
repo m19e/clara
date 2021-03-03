@@ -9,7 +9,7 @@ import { getTextCharCount } from "../../lib/novel/tools";
 type Props = {
     novels: INovelProp[];
     pageCount: number;
-    initialPage: number;
+    initialPage?: number;
 };
 
 const TopPage = ({ novels, pageCount, initialPage = 0 }: Props) => {
