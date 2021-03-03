@@ -63,6 +63,7 @@ const Pagination = ({ pageCount, initialPage }: Props) => {
             activeClassName="flex-center"
             activeLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 rounded-full bg-gray-200 outline-none focus:outline-none cursor-default"
             disabledClassName="opacity-0"
+            breakLinkClassName="outline-none focus:outline-none"
         />
     );
 };
