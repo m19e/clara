@@ -6,9 +6,16 @@ import { INovelProp } from "../../../lib/firebase/initFirebase";
 
 const PER_PAGE = 10;
 
-const Top = ({ novels = [], page = 0, pageCount }: { novels: INovelProp[]; page: number; pageCount: number }) => {
+type Props = {
+    novels: INovelProp[];
+    page: number;
+    pageCount: number;
+    initialPage: number;
+};
+
+const Top = ({ novels = [], page = 0, pageCount, initialPage }: Props) => {
     if (page === 0) return <Error statusCode={404} />;
-    return <TopPage pageCount={pageCount} novels={novels} />;
+    return <TopPage novels={novels} pageCount={pageCount} initialPage={initialPage} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
@@ -29,6 +36,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
             novels,
             page: pageNum + 1,
             pageCount,
+            initialPage: pageNum,
         },
     };
 };
