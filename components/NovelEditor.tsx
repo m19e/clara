@@ -141,6 +141,13 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
         await deleteNovel(id);
         const newUsedTags = unifyUsedTags(suggests, rootTags, []);
         await setUsedTags(author_uid, newUsedTags);
+        // delete novel info
+        const infos = await getRootNovelInfos();
+        const targetIndex = infos.findIndex((info) => info.id === novel.id);
+        if (targetIndex !== -1) {
+            const deleted = [].concat(infos.slice(0, targetIndex), infos.slice(targetIndex + 1));
+            await setRootNovelInfos(deleted);
+        }
         router.push("/");
     };
 
