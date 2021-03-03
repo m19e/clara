@@ -14,6 +14,7 @@ import { updateNovel, deleteNovel, INovelData, setUsedTags } from "../lib/fireba
 
 import { useR18, useSuggests } from "../store/novel";
 import { unifyUsedTags } from "../lib/novel/tools";
+import { getRootNovelInfos, setRootNovelInfos } from "../lib/firebase/novel";
 
 type SelectionRangeOverride = {
     anchorOffset: number;
@@ -126,6 +127,13 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
         await updateNovel(id, rootTitle, text, tags, r18);
         const newUsedTags = unifyUsedTags(suggests, rootTags, tags);
         await setUsedTags(author_uid, newUsedTags);
+        // update novel info
+        const infos = await getRootNovelInfos();
+        const targetIndex = infos.findIndex((info) => info.id === novel.id);
+        if (targetIndex !== -1 && JSON.stringify(tags) !== JSON.stringify(infos[targetIndex].tags)) {
+            const udpated = [].concat(infos.slice(0, targetIndex), [Object.assign(infos[targetIndex], { tags })], infos.slice(targetIndex + 1));
+            await setRootNovelInfos(udpated);
+        }
         router.push(`/novel/${id}`);
     };
 
