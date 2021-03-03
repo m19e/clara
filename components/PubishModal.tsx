@@ -4,6 +4,7 @@ import { useIsShowPublishModal } from "../store/editor";
 import { useDraftID, useTitle, useContent } from "../store/draft";
 import { useProfile } from "../store/user";
 import { publishNovel, createDraftData, setUsedTags } from "../lib/firebase/initFirebase";
+import { getRootNovelInfos, setRootNovelInfos } from "../lib/firebase/novel";
 import { unifyUsedTags } from "../lib/novel/tools";
 import { useSuggests } from "../store/novel";
 
@@ -50,6 +51,12 @@ export default function PublishModal() {
         await publishNovel(novel);
         const newUsedTags = unifyUsedTags(suggests, [], tags);
         await setUsedTags(novel.author_uid, newUsedTags);
+        // create novel info
+        const infos = await getRootNovelInfos();
+        if (infos.findIndex((i) => i.id === id) === -1) {
+            const added = [].concat([{ id, tags }], infos);
+            await setRootNovelInfos(added);
+        }
         await createDraftData(profile.uid);
         toggleShowModal();
         router.push(`/novel/${id}`);
