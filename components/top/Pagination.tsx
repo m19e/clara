@@ -26,7 +26,7 @@ type Props = {
     initialPage: number;
 };
 
-const Pagination = ({ pageCount, initialPage = 0 }: Props) => {
+const Pagination = ({ pageCount, initialPage }: Props) => {
     const router = useRouter();
 
     useEffect(() => {

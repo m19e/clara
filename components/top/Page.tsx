@@ -12,7 +12,7 @@ type Props = {
     initialPage: number;
 };
 
-const TopPage = ({ novels, pageCount, initialPage }: Props) => {
+const TopPage = ({ novels, pageCount, initialPage = 0 }: Props) => {
     return (
         <Layout>
             <Header
