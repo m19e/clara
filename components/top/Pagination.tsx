@@ -56,8 +56,8 @@ const Pagination = ({ pageCount, initialPage }: Props) => {
             breakLabel={ellipsis()}
             nextLabel={chevron(false)}
             containerClassName="flex items-center"
-            previousLinkClassName="outline-none focus:outline-none"
-            nextLinkClassName="outline-none focus:outline-none"
+            previousLinkClassName="outline-none focus:outline-none cursor-pointer"
+            nextLinkClassName="outline-none focus:outline-none cursor-pointer"
             pageClassName="flex-center"
             pageLinkClassName="font-black text-gray-600 mx-0.5 px-2.5 py-0.5 rounded-full bg-transparent hover:bg-gray-200 outline-none focus:outline-none cursor-pointer"
             activeClassName="flex-center"
