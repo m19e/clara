@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Paginate from "react-paginate";
 
 const chevron = (left: boolean) => (
@@ -28,12 +28,20 @@ type Props = {
 
 const Pagination = ({ pageCount, initialPage }: Props) => {
     const router = useRouter();
+    const [forcePage, setForcePage] = useState<number>(0);
 
     useEffect(() => {
         const handleRouteChangeComplete = () => {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         };
         router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+        router.beforePopState(({ as }) => {
+            if (/^\/page\//.test(as)) {
+                setForcePage(parseInt(as.replace("/page/", ""), 10) - 1);
+            }
+            return true;
+        });
 
         return () => {
             router.events.off("routeChangeComplete", handleRouteChangeComplete);
@@ -48,6 +56,7 @@ const Pagination = ({ pageCount, initialPage }: Props) => {
     return (
         <Paginate
             pageCount={pageCount}
+            forcePage={forcePage}
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
             initialPage={initialPage}
