@@ -62,7 +62,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                         <img
                                             alt={`${user.displayName}(@${user.userID})`}
                                             src={userIcon}
-                                            className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                                            className="shadow-xl rounded-full align-middle border-none absolute -m-16"
                                             style={{ maxWidth: "150px" }}
                                         />
                                     </div>
