@@ -5,7 +5,7 @@ import Header from "./Header";
 import { UserProfile, INovelDataSerializable } from "../lib/firebase/initFirebase";
 import ListTags from "./ListTags";
 
-const DISPLAY_NOVEL_SPAN = 3;
+const DISPLAY_NOVEL_SPAN = 5;
 const DEFAULT_CLARA_IMAGE = process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png";
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
