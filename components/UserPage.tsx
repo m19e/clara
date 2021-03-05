@@ -5,16 +5,22 @@ import Header from "./Header";
 import { UserProfile, INovelDataSerializable } from "../lib/firebase/initFirebase";
 import ListTags from "./ListTags";
 
-const DISPLAY_NOVEL_SPAN = 3;
+const DISPLAY_NOVEL_SPAN = 5;
+const DEFAULT_CLARA_IMAGE = process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png";
 
 export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
     const [rootList] = useState(novels);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
+    const [userIcon, setUserIcon] = useState(DEFAULT_CLARA_IMAGE);
 
     useEffect(() => {
         setDisplayList(novels.slice(0, DISPLAY_NOVEL_SPAN));
         setHasMore(novels.length > DISPLAY_NOVEL_SPAN);
+        (async () => {
+            const status = await checkPhotoURLStatus(user.photoURL);
+            setUserIcon(() => (status === 404 ? DEFAULT_CLARA_IMAGE : user.photoURL.replace(/_normal/, "")));
+        })();
     }, [user]);
 
     const displayMore = () => {
@@ -26,6 +32,11 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
         setDisplayList(moreItems);
     };
 
+    const checkPhotoURLStatus = async (url: string) => {
+        const res = await fetch(url);
+        return res.status;
+    };
+
     return (
         <Layout>
             <Header
@@ -33,10 +44,10 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                 description={"Clara"}
                 ogTitle={`${user.displayName} | Clara`}
                 ogDescription={"Clara"}
-                ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                ogImage={DEFAULT_CLARA_IMAGE}
                 twTitle={`${user.displayName} | Clara`}
                 twDescription={"Clara"}
-                twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+                twImage={DEFAULT_CLARA_IMAGE}
                 twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + `/user/${user.userID}`}
                 twCard="summary"
             />
@@ -49,8 +60,8 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                     <div className="relative">
                                         <img
                                             alt={`${user.displayName}(@${user.userID})`}
-                                            src={user.photoURL.replace(/_normal/, "")}
-                                            className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                                            src={userIcon}
+                                            className="shadow-xl rounded-full align-middle border-none absolute -m-16"
                                             style={{ maxWidth: "150px" }}
                                         />
                                     </div>
