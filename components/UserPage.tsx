@@ -11,10 +11,17 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
     const [rootList] = useState(novels);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
+    const [userIcon, setUserIcon] = useState(process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png");
 
     useEffect(() => {
         setDisplayList(novels.slice(0, DISPLAY_NOVEL_SPAN));
         setHasMore(novels.length > DISPLAY_NOVEL_SPAN);
+        (async () => {
+            const status = await checkPhotoURLStatus(user.photoURL);
+            if (status !== 404) {
+                setUserIcon(user.photoURL.replace(/_normal/, ""));
+            }
+        })();
     }, [user]);
 
     const displayMore = () => {
@@ -24,6 +31,11 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
             setHasMore(false);
         }
         setDisplayList(moreItems);
+    };
+
+    const checkPhotoURLStatus = async (url: string) => {
+        const res = await fetch(url);
+        return res.status;
     };
 
     return (
@@ -49,7 +61,7 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
                                     <div className="relative">
                                         <img
                                             alt={`${user.displayName}(@${user.userID})`}
-                                            src={user.photoURL.replace(/_normal/, "")}
+                                            src={userIcon}
                                             className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                                             style={{ maxWidth: "150px" }}
                                         />
