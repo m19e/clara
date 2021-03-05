@@ -19,7 +19,16 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
         (async () => {
             const status = await checkPhotoURLStatus(user.photoURL);
             if (status !== 404) {
-                setUserIcon(user.photoURL.replace(/_normal/, ""));
+                setUserIcon((prev) => {
+                    const newIcon = user.photoURL.replace(/_normal/, "");
+                    if (prev === newIcon) {
+                        return prev;
+                    } else {
+                        return newIcon;
+                    }
+                });
+            } else {
+                setUserIcon(process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png");
             }
         })();
     }, [user]);
