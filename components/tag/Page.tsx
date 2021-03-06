@@ -13,7 +13,7 @@ const TagPage = ({ tag, novels }: Props) => (
     <Layout>
         <div className="flex-center pb-4">
             <div className="container max-w-4xl mx-auto px-4">
-                <div className="flex flex-center my-8">
+                <div className="flex flex-center my-4 sm:my-6">
                     <div className="flex rounded-lg overflow-hidden whitespace-nowrap h-12">
                         <div className="h-full flex-center editor-bg">
                             <span className="sm:text-2xl font-black sm:font-normal text-gray-500 sm:text-gray-700 px-3">{tag}</span>
