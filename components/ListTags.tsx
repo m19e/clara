@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { INovelProp } from "../lib/firebase/initFirebase";
 
 type TagsProps = {
@@ -16,9 +17,11 @@ const ListTags = ({ novel }: TagsProps) => {
                 </span>
             )}
             {tags.map((tag, i) => (
-                <span key={`novel-tags-0${i}`} className="text-gray-600 text-sm leading-none border-gray-300 pr-2 mr-2 mb-1.5 border-r">
-                    {tag}
-                </span>
+                <Link href={`/tag/${encodeURIComponent(tag)}`}>
+                    <a key={`novel-tags-0${i}`} className="text-gray-600 hover:text-blue-400 text-sm leading-none border-gray-300 pr-2 mr-2 mb-1.5 border-r">
+                        {tag}
+                    </a>
+                </Link>
             ))}
         </>
     );
