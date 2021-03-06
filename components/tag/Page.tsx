@@ -27,12 +27,12 @@ const TagPage = ({ tag, novels }: Props) => (
         <div className="flex-center pb-4">
             <div className="container max-w-4xl mx-auto px-4">
                 <div className="flex flex-center my-4 sm:my-6">
-                    <div className="flex rounded-lg overflow-hidden whitespace-nowrap h-12">
+                    <div className="flex rounded-lg overflow-hidden whitespace-nowrap h-8 sm:h-12">
                         <div className="h-full flex-center editor-bg">
-                            <span className="sm:text-2xl font-black sm:font-normal text-gray-500 sm:text-gray-700 px-3">{tag}</span>
+                            <span className="text-sm sm:text-2xl font-black sm:font-normal text-gray-500 sm:text-gray-700 px-1.5 sm:px-3">{tag}</span>
                         </div>
                         <div className="h-full flex-center bg-gray-400">
-                            <span className="sm:text-xl text-gray-100 whitespace-nowrap px-3">{novels.length}作品</span>
+                            <span className="text-sm sm:text-xl text-gray-100 whitespace-nowrap px-1.5 sm:px-3">{novels.length}作品</span>
                         </div>
                     </div>
                 </div>
