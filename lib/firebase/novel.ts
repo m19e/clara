@@ -47,3 +47,12 @@ export const getNovelsByIDs = async (ids: string[]): Promise<INovelProp[]> => {
     });
     return novels;
 };
+
+export const getNovelsByTagName = async (tag: string): Promise<INovelProp[]> => {
+    const infos = await getRootNovelInfos();
+    const filteredByTag = infos.filter((info) => info.tags.includes(tag));
+    if (filteredByTag.length === 0) return [];
+    const ids = filteredByTag.map((info) => info.id);
+    const novels = await getNovelsByIDs(ids);
+    return novels;
+};
