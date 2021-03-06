@@ -39,7 +39,7 @@ const TagPage = ({ tag, novels }: Props) => (
                 <div className="flex flex-col min-w-0 break-words editor-bg w-full mb-6 px-6 rounded-lg">
                     <div className="flex flex-col items-center justify-end">
                         {novels.length === 0 ? (
-                            <div className="w-3/4 max-w-xl my-12">
+                            <div className="flex-center my-12">
                                 <span className="text-xl gothic font-semibold opacity-40">まだ小説は投稿されていません</span>
                             </div>
                         ) : (
@@ -62,9 +62,9 @@ const TagPage = ({ tag, novels }: Props) => (
                                         </div>
                                     </div>
                                 ))}
+                                <div className="w-full flex-center my-6 editor-bg"></div>
                             </>
                         )}
-                        <div className="w-full flex-center my-6 editor-bg"></div>
                     </div>
                 </div>
             </div>
