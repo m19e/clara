@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { INovelProp } from "../../lib/firebase/initFirebase";
-import { getNovelsByIDs } from "../../lib/firebase/novel";
 import { getTextCharCount } from "../../lib/novel/tools";
 import Layout from "../Layout";
 import ListTags from "../ListTags";
