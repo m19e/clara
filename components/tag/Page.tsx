@@ -16,7 +16,7 @@ const TagPage = ({ tag, novels }: Props) => (
                 <div className="flex flex-center my-8">
                     <div className="flex rounded-lg overflow-hidden whitespace-nowrap h-12">
                         <div className="h-full flex-center editor-bg">
-                            <span className="sm:text-2xl font-black sm:font-normal text-gray-600 sm:text-gray-700 px-3">{tag}</span>
+                            <span className="sm:text-2xl font-black sm:font-normal text-gray-500 sm:text-gray-700 px-3">{tag}</span>
                         </div>
                         <div className="h-full flex-center bg-gray-400">
                             <span className="sm:text-xl text-gray-100 whitespace-nowrap px-3">{novels.length}件</span>
