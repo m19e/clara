@@ -49,6 +49,7 @@ export const getNovelsByIDs = async (ids: string[]): Promise<INovelProp[]> => {
 };
 
 export const getNovelsByTagName = async (tag: string): Promise<INovelProp[]> => {
+    if (tag === "") return [];
     const infos = await getRootNovelInfos();
     const filteredByTag = infos.filter((info) => info.tags.includes(tag));
     if (filteredByTag.length === 0) return [];
