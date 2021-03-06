@@ -41,8 +41,11 @@ const TagPage = ({ tag, novels }: Props) => (
                                         <div className="whitespace-pre-wrap ml-0.5 pb-3">
                                             <ListTags novel={novel} />
                                         </div>
-                                        <div className="flex justify-end items-baseline">
-                                            <span className="text-sm opacity-50">{getTextCharCount(novel.content)}字</span>
+                                        <div className="flex justify-between items-baseline">
+                                            <Link href={`/user/${novel.author_id}`}>
+                                                <a className="gothic opacity-75">{novel.author_name}</a>
+                                            </Link>
+                                            <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
                                         </div>
                                     </div>
                                 ))}
