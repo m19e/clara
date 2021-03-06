@@ -2,6 +2,7 @@ import Link from "next/link";
 import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
 import Layout from "../Layout";
+import Header from "../Header";
 import ListTags from "../ListTags";
 
 type Props = {
@@ -11,6 +12,18 @@ type Props = {
 
 const TagPage = ({ tag, novels }: Props) => (
     <Layout>
+        <Header
+            title={`「${tag}」の小説一覧 | Clara`}
+            description={"Clara"}
+            ogTitle={`「${tag}」の小説一覧 | Clara`}
+            ogDescription={"Clara"}
+            ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+            twTitle={`「${tag}」の小説一覧 | Clara`}
+            twDescription={"Clara"}
+            twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png"}
+            twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + `/tag/${encodeURIComponent(tag)}`}
+            twCard="summary"
+        />
         <div className="flex-center pb-4">
             <div className="container max-w-4xl mx-auto px-4">
                 <div className="flex flex-center my-4 sm:my-6">
