@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import JumpEditorButton from "./JumpEditorButton";
 import UserMenu from "./UserMenu";
 import { auth, getUserDataByUID } from "../lib/firebase/initFirebase";
 import { useProfile } from "../store/user";
 
-export default function Layout({ children }) {
+type Props = {
+    children: ReactNode | ReactNode[];
+};
+
+export default function Layout({ children }: Props) {
     const [profile, setProfile] = useProfile();
 
     useEffect(() => {
