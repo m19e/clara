@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { INovelProp } from "../../types";
 import TagList from "../molecules/TagList/Horizontal";
-import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
 
 type Props = {
