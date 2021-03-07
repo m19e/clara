@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Layout from "../Layout";
 import Header from "../../foundations/ClaraHeader";
-import TagList from "../molecules/TagList/Horizontal";
+import NovelListItem from "../molecules/NovelListItem";
 import Pagination from "../atoms/Pagination";
 import { INovelProp } from "../../lib/firebase/initFirebase";
-import { getTextCharCount } from "../../lib/novel/tools";
 
 type Props = {
     novels: INovelProp[];
@@ -31,23 +30,8 @@ const TopPage = ({ novels, pageCount, initialPage = 0 }: Props) => {
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
                         <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
-                            {novels.map((novel, i) => (
-                                <div key={"novel-0" + i} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300">
-                                    <div className="mb-3">
-                                        <Link href={`/novel/${novel.id}`}>
-                                            <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
-                                        </Link>
-                                    </div>
-                                    <div className="whitespace-pre-wrap ml-0.5 pb-3">
-                                        <TagList novel={novel} />
-                                    </div>
-                                    <div className="flex justify-between items-baseline">
-                                        <Link href={`/user/${novel.author_id}`}>
-                                            <a className="gothic opacity-75">{novel.author_name}</a>
-                                        </Link>
-                                        <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
-                                    </div>
-                                </div>
+                            {novels.map((novel) => (
+                                <NovelListItem novel={novel} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300" />
                             ))}
                             <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
                             <div className="w-full flex-center my-8 editor-bg">
