@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Layout from "../Layout";
 import Header from "../../foundations/ClaraHeader";
-import ListTags from "../ListTags";
+import TagList from "../molecules/TagList/Horizontal";
 import Pagination from "../atoms/Pagination";
 import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
@@ -39,7 +39,7 @@ const TopPage = ({ novels, pageCount, initialPage = 0 }: Props) => {
                                         </Link>
                                     </div>
                                     <div className="whitespace-pre-wrap ml-0.5 pb-3">
-                                        <ListTags novel={novel} />
+                                        <TagList novel={novel} />
                                     </div>
                                     <div className="flex justify-between items-baseline">
                                         <Link href={`/user/${novel.author_id}`}>
