@@ -1,6 +1,6 @@
 import { INovelProp } from "../../types";
-import Layout from "../Layout";
 import Header from "../../foundations/ClaraHeader";
+import Layout from "../organisms/Layout";
 import NovelListItem from "../molecules/NovelListItem";
 import Pagination from "../atoms/Pagination";
 
