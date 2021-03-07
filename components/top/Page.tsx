@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Layout from "../Layout";
 import Header from "../../foundations/ClaraHeader";
 import NovelListItem from "../molecules/NovelListItem";
