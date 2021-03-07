@@ -22,7 +22,7 @@ const NovelListItem = ({ novel, className }: Props) => (
             <Link href={`/user/${novel.author_id}`}>
                 <a className="gothic opacity-75">{novel.author_name}</a>
             </Link>
-            <p className="text-sm opacity-50">{getTextCharCount(novel.content)}字</p>
+            <span className="text-sm opacity-50">{getTextCharCount(novel.content)}字</span>
         </div>
     </div>
 );
