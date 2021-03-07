@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Layout from "../Layout";
-import Header from "../Header";
+import Header from "../../foundations/ClaraHeader";
 import ListTags from "../ListTags";
 import Pagination from "../atoms/Pagination";
 import { INovelProp } from "../../lib/firebase/initFirebase";
