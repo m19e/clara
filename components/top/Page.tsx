@@ -1,8 +1,8 @@
+import { INovelProp } from "../../types";
 import Layout from "../Layout";
 import Header from "../../foundations/ClaraHeader";
 import NovelListItem from "../molecules/NovelListItem";
 import Pagination from "../atoms/Pagination";
-import { INovelProp } from "../../lib/firebase/initFirebase";
 
 type Props = {
     novels: INovelProp[];
