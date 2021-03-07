@@ -6,7 +6,7 @@ import { useProfile } from "../../store/user";
 import { auth, getUserDataByUID } from "../../lib/firebase/initFirebase";
 
 type Props = {
-    children: ReactNode | ReactNode[];
+    children: ReactNode;
 };
 
 const Layout = ({ children }: Props) => {
