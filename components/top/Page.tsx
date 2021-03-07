@@ -2,7 +2,7 @@ import Link from "next/link";
 import Layout from "../Layout";
 import Header from "../Header";
 import ListTags from "../ListTags";
-import Pagination from "./Pagination";
+import Pagination from "../atoms/Pagination";
 import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
 
