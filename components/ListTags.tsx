@@ -2,11 +2,11 @@ import Link from "next/link";
 import R18Label from "./atoms/R18Label";
 import { INovelProp } from "../lib/firebase/initFirebase";
 
-type TagsProps = {
+type Props = {
     novel: INovelProp;
 };
 
-const ListTags = ({ novel }: TagsProps) => {
+const ListTags = ({ novel }: Props) => {
     const tags = "tags" in novel ? novel.tags : [];
     const r18 = "r18" in novel ? novel.r18 : false;
 
