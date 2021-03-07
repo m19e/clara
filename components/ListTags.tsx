@@ -1,5 +1,5 @@
-import Link from "next/link";
 import R18Label from "./atoms/R18Label";
+import TagListItem from "./atoms/TagListItem";
 import { INovelProp } from "../lib/firebase/initFirebase";
 
 type Props = {
@@ -13,12 +13,8 @@ const ListTags = ({ novel }: Props) => {
     return (
         <>
             {r18 && <R18Label className="mr-1.5 -mt-1" />}
-            {tags.map((tag, i) => (
-                <Link href={`/tag/${encodeURIComponent(tag)}`}>
-                    <a key={`novel-tags-0${i}`} className="text-gray-600 hover:text-blue-400 text-sm leading-none border-gray-300 pr-2 mr-2 mb-1.5 border-r">
-                        {tag}
-                    </a>
-                </Link>
+            {tags.map((tag) => (
+                <TagListItem tag={tag} className="pr-2 mr-2 mb-1.5 border-r" />
             ))}
         </>
     );
