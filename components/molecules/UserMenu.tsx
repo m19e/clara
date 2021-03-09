@@ -12,6 +12,18 @@ type Props = {
     user: User | null;
 };
 
+const LoginButton = ({ onClick }: { onClick: () => void }) => (
+    <span className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"} onClick={() => onClick()}>
+        ログイン
+    </span>
+);
+
+const LogoutButton = ({ onClick }: { onClick: () => void }) => (
+    <span className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"} onClick={() => onClick()}>
+        ログアウト
+    </span>
+);
+
 const UserMenu = ({ user }: Props) => {
     const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
     const btnDropdownRef = useRef<HTMLDivElement>();
