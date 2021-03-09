@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { INovelProp } from "../../lib/firebase/initFirebase";
-import { getTextCharCount } from "../../lib/novel/tools";
-import Layout from "../organisms/Layout";
-import Header from "../Header";
+import { INovelProp } from "types";
+import { getTextCharCount } from "lib/novel/tools";
+import Header from "foundations/ClaraHeader";
+import Layout from "components/organisms/Layout";
 import ListTags from "../ListTags";
 
 type Props = {
