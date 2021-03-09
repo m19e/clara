@@ -8,7 +8,11 @@ type User = {
     userID: string;
 };
 
-const UserMenu = ({ user }: { user: User | null }) => {
+type Props = {
+    user: User | null;
+};
+
+const UserMenu = ({ user }: Props) => {
     const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
     const btnDropdownRef = useRef<HTMLDivElement>();
     const popoverDropdownRef = useRef();
