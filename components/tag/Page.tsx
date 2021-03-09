@@ -3,7 +3,7 @@ import { INovelProp } from "types";
 import { getTextCharCount } from "lib/novel/tools";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
-import ListTags from "../ListTags";
+import TagList from "components/molecules/TagList/Horizontal";
 
 type Props = {
     tag: string;
@@ -52,7 +52,7 @@ const TagPage = ({ tag, novels }: Props) => (
                                             </Link>
                                         </div>
                                         <div className="whitespace-pre-wrap ml-0.5 pb-3">
-                                            <ListTags novel={novel} />
+                                            <TagList novel={novel} />
                                         </div>
                                         <div className="flex justify-between items-baseline">
                                             <Link href={`/user/${novel.author_id}`}>
