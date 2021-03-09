@@ -8,7 +8,7 @@ type User = {
     userID: string;
 };
 
-export default function UserMenu({ user }: { user: User | null }) {
+const UserMenu = ({ user }: { user: User | null }) => {
     const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
     const btnDropdownRef = useRef<HTMLDivElement>();
     const popoverDropdownRef = useRef();
@@ -96,4 +96,6 @@ export default function UserMenu({ user }: { user: User | null }) {
             </div>
         </div>
     );
-}
+};
+
+export default UserMenu;
