@@ -94,7 +94,7 @@ const UserMenu = ({ user }: Props) => {
                             "text-base w-48 z-50 list-none text-left rounded overflow-hidden shadow-md editor-bg mt-5 -ml-36"
                         }
                     >
-                        {user && (
+                        {/* {user && (
                             <>
                                 <Link href={`/user/${user.userID}`}>
                                     <a className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-100"}>マイページ</a>
@@ -107,7 +107,18 @@ const UserMenu = ({ user }: Props) => {
                             onClick={() => handleLogInOut()}
                         >
                             {user ? "ログアウト" : "ログイン"}
-                        </div>
+                        </div> */}
+                        {user ? (
+                            <>
+                                <Link href={`/user/${user.userID}`}>
+                                    <a className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-100"}>マイページ</a>
+                                </Link>
+                                <div className="h-0 border border-solid border-t-0 border-gray-300" />
+                                <LogoutButton onClick={logout} />
+                            </>
+                        ) : (
+                            <LoginButton onClick={loginWithTwitter} />
+                        )}
                     </div>
                 </div>
             </div>
