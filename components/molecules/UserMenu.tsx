@@ -78,7 +78,8 @@ const UserMenu = ({ user }: Props) => {
                     <div
                         ref={popoverDropdownRef}
                         className={
-                            (dropdownPopoverShow ? "block " : "hidden ") + "text-base w-48 z-50 list-none text-left rounded shadow-md editor-bg mt-5 -ml-36"
+                            (dropdownPopoverShow ? "block " : "hidden ") +
+                            "text-base w-48 z-50 list-none text-left rounded overflow-hidden shadow-md editor-bg mt-5 -ml-36"
                         }
                     >
                         {user && (
