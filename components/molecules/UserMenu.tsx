@@ -49,14 +49,6 @@ const UserMenu = ({ user }: Props) => {
         setDropdownPopoverShow(false);
     };
 
-    const handleLogInOut = async () => {
-        if (user) {
-            await logout();
-        } else {
-            await loginWithTwitter();
-        }
-    };
-
     return (
         <div className="flex flex-wrap">
             <div className="w-full">
@@ -100,20 +92,6 @@ const UserMenu = ({ user }: Props) => {
                             "text-base w-48 z-50 list-none text-left rounded overflow-hidden shadow-md editor-bg mt-5 -ml-36"
                         }
                     >
-                        {/* {user && (
-                            <>
-                                <Link href={`/user/${user.userID}`}>
-                                    <a className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-100"}>マイページ</a>
-                                </Link>
-                                <div className="h-0 border border-solid border-t-0 border-gray-300" />
-                            </>
-                        )}
-                        <div
-                            className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"}
-                            onClick={() => handleLogInOut()}
-                        >
-                            {user ? "ログアウト" : "ログイン"}
-                        </div> */}
                         {user ? (
                             <>
                                 <Link href={`/user/${user.userID}`}>
