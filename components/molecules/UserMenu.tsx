@@ -13,13 +13,19 @@ type Props = {
 };
 
 const LoginButton = ({ onClick }: { onClick: () => void }) => (
-    <span className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"} onClick={() => onClick()}>
+    <span
+        className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"}
+        onClick={async () => await onClick()}
+    >
         ログイン
     </span>
 );
 
 const LogoutButton = ({ onClick }: { onClick: () => void }) => (
-    <span className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"} onClick={() => onClick()}>
+    <span
+        className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"}
+        onClick={async () => await onClick()}
+    >
         ログアウト
     </span>
 );
