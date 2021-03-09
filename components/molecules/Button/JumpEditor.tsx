@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { useState } from "react";
 import { loginWithTwitter } from "../../../lib/firebase/initFirebase";
 
 type Props = {
