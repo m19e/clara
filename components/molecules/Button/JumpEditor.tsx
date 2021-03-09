@@ -1,7 +1,4 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState } from "react";
-import { loginWithTwitter } from "../../../lib/firebase/initFirebase";
 import LoginModal from "../Modal/Login";
 
 type Props = {
