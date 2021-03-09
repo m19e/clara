@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ReactNode, useEffect } from "react";
-import JumpEditorButton from "../molecules/Button/JumpEditor";
-import UserMenu from "../UserMenu";
 import { useProfile } from "../../store/user";
 import { auth, getUserDataByUID } from "../../lib/firebase/initFirebase";
+import JumpEditorButton from "../molecules/Button/JumpEditor";
+import UserMenu from "../UserMenu";
 
 type Props = {
     children: ReactNode;
