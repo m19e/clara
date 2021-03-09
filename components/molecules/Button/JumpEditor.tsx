@@ -7,7 +7,7 @@ type Props = {
     isLoggedin: boolean;
 };
 
-const JumpEditor = ({ isLoggedin }: Props) => {
+const JumpEditorButton = ({ isLoggedin }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
 
@@ -89,4 +89,4 @@ const JumpEditor = ({ isLoggedin }: Props) => {
     );
 };
 
-export default JumpEditor;
+export default JumpEditorButton;
