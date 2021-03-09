@@ -3,7 +3,7 @@ import { ReactNode, useEffect } from "react";
 import { useProfile } from "../../store/user";
 import { auth, getUserDataByUID } from "../../lib/firebase/initFirebase";
 import JumpEditorButton from "../molecules/Button/JumpEditor";
-import UserMenu from "../UserMenu";
+import UserMenu from "../molecules/UserMenu";
 
 type Props = {
     children: ReactNode;
