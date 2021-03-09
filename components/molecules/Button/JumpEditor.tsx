@@ -3,7 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { loginWithTwitter } from "../../../lib/firebase/initFirebase";
 
-export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }) {
+type Props = {
+    isLoggedin: boolean;
+};
+
+const JumpEditor = ({ isLoggedin }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
 
@@ -83,4 +87,6 @@ export default function JumpEditorButton({ isLoggedin }: { isLoggedin: boolean }
             )}
         </>
     );
-}
+};
+
+export default JumpEditor;
