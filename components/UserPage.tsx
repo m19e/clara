@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Layout from "./Layout";
+import Layout from "./organisms/Layout";
 import Header from "./Header";
 import { UserProfile, INovelDataSerializable } from "../lib/firebase/initFirebase";
 import ListTags from "./ListTags";

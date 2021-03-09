@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { INovelProp } from "../../lib/firebase/initFirebase";
 import { getTextCharCount } from "../../lib/novel/tools";
-import Layout from "../Layout";
+import Layout from "../organisms/Layout";
 import Header from "../Header";
 import ListTags from "../ListTags";
 
