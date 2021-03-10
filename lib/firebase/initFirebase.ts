@@ -27,7 +27,7 @@ export async function loginWithTwitter() {
         const res = await auth.signInWithPopup(provider);
         const userDoc = await db.collection("user").doc(res.user.uid).get();
         if (userDoc.exists) {
-            const { displayName, userID, uid } = userDoc.data() as { [key: string]: string };
+            const { displayName, userID, uid } = userDoc.data();
             const { name, screen_name, profile_image_url_https } = res.additionalUserInfo.profile as UserTwitterProfile;
             if (displayName !== name || userID !== screen_name) {
                 const allUserNovel = await db.collection("novel").where("author_uid", "==", uid).get();
