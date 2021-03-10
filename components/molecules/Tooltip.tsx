@@ -8,7 +8,7 @@ type Props = {
     fill?: string;
     stroke?: string;
     viewBox?: string;
-    child?: ReactNode;
+    children?: ReactNode;
 };
 
 export default function Tooltip({
@@ -18,7 +18,7 @@ export default function Tooltip({
     fill = "none",
     stroke = "currentColor",
     viewBox = "0 0 24 24",
-    child = null,
+    children = null,
 }: Props) {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
@@ -36,9 +36,9 @@ export default function Tooltip({
     return (
         <>
             <div className="w-10 h-10 mt-2 editor-bg rounded-full shadow-md flex-center">
-                {child ? (
+                {children ? (
                     <div onMouseEnter={openLeftTooltip} onMouseLeave={closeLeftTooltip} ref={btnRef}>
-                        {child}
+                        {children}
                     </div>
                 ) : (
                     <svg
