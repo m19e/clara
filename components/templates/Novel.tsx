@@ -9,6 +9,7 @@ import { useFont, useFontSize } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import TagList from "components/molecules/TagList/Vertical";
 import Tooltip from "components/molecules/Tooltip";
+import TopLink from "components/atoms/Button/TopLink";
 
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
@@ -184,7 +185,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                 </svg>
                             </Tooltip>
                         </a>
-                        <HomeButton />
+                        <TopLink />
                     </div>
                 </div>
             </div>
