@@ -10,7 +10,7 @@ type Props = {
     initialPage?: number;
 };
 
-const TopPage = ({ novels, pageCount, initialPage = 0 }: Props) => {
+const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
     return (
         <Layout>
             <Header
@@ -44,4 +44,4 @@ const TopPage = ({ novels, pageCount, initialPage = 0 }: Props) => {
     );
 };
 
-export default TopPage;
+export default Top;
