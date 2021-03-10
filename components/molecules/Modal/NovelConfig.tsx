@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Tooltip from "components/molecules/Tooltip";
 
-type FontSizeState = "base" | "xl" | "2xl";
-
 type ViewerConfigProps = {
-    fontSize: FontSizeState;
+    fontSize: "base" | "xl" | "2xl";
     toggleFontSmall: () => void;
     toggleFontMedium: () => void;
     toggleFontLarge: () => void;
