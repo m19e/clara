@@ -3,13 +3,12 @@ import Link from "next/link";
 import { useState, useRef, useCallback, useEffect } from "react";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
-
+import { INovelDataSerializable } from "types";
+import { auth } from "lib/firebase/initFirebase";
+import Header from "../Header";
 import Tooltip from "../Tooltip";
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
-import Header from "../Header";
-import { INovelDataSerializable } from "types";
-import { auth } from "../../lib/firebase/initFirebase";
 import NovelTags from "../NovelTags";
 
 type FontSizeState = "base" | "xl" | "2xl";
