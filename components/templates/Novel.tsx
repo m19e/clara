@@ -8,8 +8,8 @@ import { auth } from "lib/firebase/initFirebase";
 import { useFont, useFontSize } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import TagList from "components/molecules/TagList/Vertical";
+import Tooltip from "components/molecules/Tooltip";
 
-import Tooltip from "../Tooltip";
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
 
