@@ -3,9 +3,9 @@ import { useUserAgent, UserAgent } from "next-useragent";
 import { INovelDataSerializable } from "types";
 import { getNovel } from "lib/firebase/novel";
 import { createDisplayTimeFromTimestamp } from "lib/novel/tools";
-import NovelViewer from "components/NovelViewer";
+import NovelPage from "components/templates/Novel";
 
-const NovelIndex = ({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) => <NovelViewer novel={novel} isMobile={ua.isMobile} />;
+const NovelIndex = ({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) => <NovelPage novel={novel} isMobile={ua.isMobile} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
