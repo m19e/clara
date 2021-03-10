@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import { FirestoreFieldValue, FirestoreTimestamp } from "types";
 
 export const getTextCharCount = (text: string): number => {
     const regex = /(?:\r\n|\r|\n)/g;
@@ -6,8 +6,8 @@ export const getTextCharCount = (text: string): number => {
     return Array.from(cleanString).length;
 };
 
-export const createDisplayTimeFromTimestamp = (fv: firebase.firestore.FieldValue): string => {
-    const timestamp = fv as firebase.firestore.Timestamp;
+export const createDisplayTimeFromTimestamp = (fv: FirestoreFieldValue): string => {
+    const timestamp = fv as FirestoreTimestamp;
     const millis = timestamp.toMillis();
     const displayTime = getDisplayTime(millis);
     return displayTime;
