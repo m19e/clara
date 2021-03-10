@@ -1,4 +1,5 @@
-import { db, getNovel, INovelProp } from "./initFirebase";
+import { INovelProp } from "types";
+import { db, getNovel } from "./initFirebase";
 
 export const PER_PAGE = 10;
 
