@@ -1,6 +1,6 @@
+import { INovelProp } from "types";
 import R18Label from "components/atoms/R18Label";
 import TagListItem from "components/atoms/TagListItem";
-import { INovelProp } from "lib/firebase/initFirebase";
 
 type Props = {
     novel: INovelProp;
