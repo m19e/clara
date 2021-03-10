@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import firebase from "firebase/app";
 import UserPage from "../../../components/UserPage";
 import { getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
-import { getDisplayTime } from "../../../lib/novel/tools";
+import { createDisplayTimeFromTimestamp } from "../../../lib/novel/tools";
 
 type UserIndexProps = {
     user: UserProfile;
@@ -20,8 +20,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     const novels = await getAllUserNovelByUID(user.uid, "desc");
     const serializables: INovelDataSerializable[] = novels.map((novel) => {
         const update = {
-            created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
-            updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
+            created_at: createDisplayTimeFromTimestamp(novel.created_at),
+            updated_at: createDisplayTimeFromTimestamp(novel.updated_at),
         };
         const s = Object.assign(novel, update) as INovelDataSerializable;
         return s;
