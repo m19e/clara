@@ -13,8 +13,8 @@ const Horizontal = ({ novel }: Props) => {
     return (
         <>
             {r18 && <R18Label className="mr-1.5 -mt-1" />}
-            {tags.map((tag) => (
-                <TagListItem tag={tag} className="pr-2 mr-2 mb-1.5 border-r" />
+            {tags.map((tag, i) => (
+                <TagListItem key={i} tag={tag} className="pr-2 mr-2 mb-1.5 border-r" />
             ))}
         </>
     );
