@@ -12,7 +12,7 @@ type Props = {
     isMobile?: boolean;
 };
 
-export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Props }) {
+const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
     const [showModal, setShowModal] = useState(false);
     const { fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic, isMobile } = viewerConfig;
 
@@ -123,4 +123,6 @@ export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Props 
             )}
         </>
     );
-}
+};
+
+export default NovelConfig;
