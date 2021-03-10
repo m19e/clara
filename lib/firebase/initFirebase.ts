@@ -188,13 +188,6 @@ export async function getNewNovels(millis: number): Promise<INovelProp[]> {
     return novelsData;
 }
 
-export async function getNovel(id: string): Promise<INovelData | null> {
-    const snapshot = await db.collection("novel").doc(id).get();
-    if (!snapshot.exists) return null;
-    const novel = snapshot.data() as INovelData;
-    return novel;
-}
-
 export async function updateNovel(id: string, title: string, content: string, tags: string[], r18: boolean) {
     const novelRef = db.collection("novel").doc(id);
     await novelRef.set({ title, content, tags, r18, updated_at: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
