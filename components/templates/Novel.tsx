@@ -11,6 +11,7 @@ import Tooltip from "../Tooltip";
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
 import NovelTags from "../NovelTags";
+import TagList from "components/molecules/TagList/Vertical";
 
 const getOgpImagePath = (title: string, author: string) => {
     const query = `title=${encodeURIComponent(title)}&author=${author}`;
@@ -115,12 +116,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                         </Link>
                                     </div>
                                     <div className={"flex items-center flex-wrap" + (tags.length === 0 ? "" : " mr-4")}>
-                                        {r18 && (
-                                            <span className="text-sm font-semibold text-red-500 pb-1.5 ml-1" style={{ fontFamily: "sans-serif" }}>
-                                                <span className="tracking-tighter">R18</span>
-                                            </span>
-                                        )}
-                                        <NovelTags tags={tags} />
+                                        <TagList novel={novel} />
                                     </div>
                                 </div>
                             </div>
