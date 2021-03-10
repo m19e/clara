@@ -154,7 +154,6 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                 </a>
                             </Link>
                         )}
-
                         <NovelViewerConfig viewerConfig={viewerConfig} />
                         <a
                             href={
