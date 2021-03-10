@@ -5,43 +5,12 @@ import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { INovelDataSerializable } from "types";
 import { auth } from "lib/firebase/initFirebase";
+import { useFont, useFontSize } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import Tooltip from "../Tooltip";
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
 import NovelTags from "../NovelTags";
-
-type FontSizeState = "base" | "xl" | "2xl";
-
-const useFontSize = (fs: FontSizeState): [FontSizeState, () => void, () => void, () => void] => {
-    const [fontSize, setFontSize] = useState(fs);
-    const setFontBase = useCallback(() => {
-        setFontSize("base");
-    }, []);
-    const setFontXl = useCallback(() => {
-        setFontSize("xl");
-    }, []);
-    const setFont2xl = useCallback(() => {
-        setFontSize("2xl");
-    }, []);
-
-    return [fontSize, setFontBase, setFontXl, setFont2xl];
-};
-
-type FontType = "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
-
-const useFont = (isMobile: boolean): [FontType, () => void, () => void] => {
-    const f: FontType = isMobile ? "mobile-serif" : "mincho";
-    const [font, setFont] = useState<FontType>(f);
-    const setMincho = useCallback(() => {
-        isMobile ? setFont("mobile-serif") : setFont("mincho");
-    }, []);
-    const setGothic = useCallback(() => {
-        isMobile ? setFont("mobile-sans") : setFont("gothic");
-    }, []);
-
-    return [font, setMincho, setGothic];
-};
 
 const getOgpImagePath = (title: string, author: string) => {
     const query = `title=${encodeURIComponent(title)}&author=${author}`;
