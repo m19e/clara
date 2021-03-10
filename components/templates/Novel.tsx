@@ -12,7 +12,6 @@ import Tooltip from "components/molecules/Tooltip";
 import TopLink from "components/atoms/Button/TopLink";
 
 import NovelViewerConfig from "../NovelViewerConfig";
-import HomeButton from "../HomeButton";
 
 const getOgpImagePath = (title: string, author: string) => {
     const query = `title=${encodeURIComponent(title)}&author=${author}`;
