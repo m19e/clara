@@ -1,4 +1,7 @@
-import { FirestoreFieldValue } from "lib/firebase/initFirebase";
+import firebase from "firebase/app";
+
+export type FirestoreFieldValue = firebase.firestore.FieldValue;
+export type FirestoreTimestamp = firebase.firestore.Timestamp;
 
 export interface INovelProp {
     id: string;
