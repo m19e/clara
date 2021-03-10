@@ -1,9 +1,6 @@
-import Link from "next/link";
 import { INovelProp } from "types";
-import { getTextCharCount } from "lib/novel/tools";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
-import TagList from "components/molecules/TagList/Horizontal";
 import NovelListItem from "components/molecules/NovelListItem";
 
 type Props = {
