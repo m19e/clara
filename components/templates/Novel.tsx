@@ -11,7 +11,7 @@ import TagList from "components/molecules/TagList/Vertical";
 import Tooltip from "components/molecules/Tooltip";
 import TopLink from "components/atoms/Button/TopLink";
 
-import NovelViewerConfig from "../NovelViewerConfig";
+import Config from "components/molecules/Modal/NovelConfig";
 
 const getOgpImagePath = (title: string, author: string) => {
     const query = `title=${encodeURIComponent(title)}&author=${author}`;
@@ -154,7 +154,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                 </a>
                             </Link>
                         )}
-                        <NovelViewerConfig viewerConfig={viewerConfig} />
+                        <Config viewerConfig={viewerConfig} />
                         <a
                             href={
                                 "https://twitter.com/intent/tweet?text=" +
