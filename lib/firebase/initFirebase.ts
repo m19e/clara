@@ -15,6 +15,8 @@ if (!firebase.apps.length) {
 export const db = firebase.firestore();
 export const auth = firebase.auth();
 
+export type FirestoreFieldValue = firebase.firestore.FieldValue;
+
 type UserTwitterProfile = {
     name: string;
     screen_name: string;
