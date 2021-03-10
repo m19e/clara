@@ -5,9 +5,9 @@ type Props = {
     text: string;
     d?: string;
     classOverride?: string;
-    fill?: "none" | string;
-    stroke?: "currentColor" | string;
-    viewBox?: "0 0 24 24" | string;
+    fill?: string;
+    stroke?: string;
+    viewBox?: string;
     child?: ReactNode;
 };
 
