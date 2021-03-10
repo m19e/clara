@@ -10,7 +10,6 @@ import Header from "foundations/ClaraHeader";
 import Tooltip from "../Tooltip";
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
-import NovelTags from "../NovelTags";
 import TagList from "components/molecules/TagList/Vertical";
 
 const getOgpImagePath = (title: string, author: string) => {
