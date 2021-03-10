@@ -5,7 +5,7 @@ import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { INovelDataSerializable } from "types";
 import { auth } from "lib/firebase/initFirebase";
-import Header from "../Header";
+import Header from "foundations/ClaraHeader";
 import Tooltip from "../Tooltip";
 import NovelViewerConfig from "../NovelViewerConfig";
 import HomeButton from "../HomeButton";
@@ -67,7 +67,7 @@ const getReplacedText = (text: string): string => {
     return result;
 };
 
-export default function NovelView({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: boolean }) {
+const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: boolean }) => {
     const contentArray = getReplacedText(novel.content)
         .split("\n")
         .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
@@ -203,4 +203,6 @@ export default function NovelView({ novel, isMobile }: { novel: INovelDataSerial
             </div>
         </>
     );
-}
+};
+
+export default Novel;
