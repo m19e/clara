@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Tooltip from "components/molecules/Tooltip";
 
-type ViewerConfigProps = {
+type Props = {
     fontSize: "base" | "xl" | "2xl";
     toggleFontSmall: () => void;
     toggleFontMedium: () => void;
@@ -12,7 +12,7 @@ type ViewerConfigProps = {
     isMobile?: boolean;
 };
 
-export default function NovelViewConfig({ viewerConfig }: { viewerConfig: ViewerConfigProps }) {
+export default function NovelViewConfig({ viewerConfig }: { viewerConfig: Props }) {
     const [showModal, setShowModal] = useState(false);
     const { fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic, isMobile } = viewerConfig;
 
