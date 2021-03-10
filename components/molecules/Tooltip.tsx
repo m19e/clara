@@ -3,23 +3,10 @@ import Popper from "popper.js";
 
 type Props = {
     text: string;
-    d?: string;
-    className?: string;
-    fill?: string;
-    stroke?: string;
-    viewBox?: string;
-    children?: ReactNode;
+    children: ReactNode;
 };
 
-const Tooltip = ({
-    text,
-    d,
-    className = "w-8 h-8 transition-opacity opacity-50 hover:opacity-70 cursor-pointer",
-    fill = "none",
-    stroke = "currentColor",
-    viewBox = "0 0 24 24",
-    children = null,
-}: Props) => {
+const Tooltip = ({ text, children }: Props) => {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
