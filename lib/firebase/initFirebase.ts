@@ -2,6 +2,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+import { INovelProp, INovelData } from "types";
+
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -14,8 +16,6 @@ if (!firebase.apps.length) {
 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
-
-export type FirestoreFieldValue = firebase.firestore.FieldValue;
 
 type UserTwitterProfile = {
     name: string;
@@ -159,27 +159,6 @@ export const setUsedTags = async (uid: string, used_tags: { name: string; count:
     const userRef = db.collection("user").doc(uid);
     await userRef.set({ used_tags }, { merge: true });
 };
-
-export interface INovelProp {
-    id: string;
-    title: string;
-    content: string;
-    tags: string[];
-    r18: boolean;
-    author_id: string;
-    author_uid: string;
-    author_name: string;
-}
-
-export interface INovelData extends INovelProp {
-    created_at: firebase.firestore.FieldValue;
-    updated_at: firebase.firestore.FieldValue;
-}
-
-export interface INovelDataSerializable extends INovelProp {
-    created_at?: string;
-    updated_at?: string;
-}
 
 export async function publishNovel(novel: INovelProp) {
     const novelData: INovelData = Object.assign(novel, {
