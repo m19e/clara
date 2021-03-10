@@ -9,9 +9,8 @@ import { useFont, useFontSize } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import TagList from "components/molecules/TagList/Vertical";
 import Tooltip from "components/molecules/Tooltip";
-import TopLink from "components/atoms/Button/TopLink";
-
 import Config from "components/molecules/Modal/NovelConfig";
+import TopLink from "components/atoms/Button/TopLink";
 
 const getOgpImagePath = (title: string, author: string) => {
     const query = `title=${encodeURIComponent(title)}&author=${author}`;
