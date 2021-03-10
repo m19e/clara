@@ -1,6 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useUserAgent, UserAgent } from "next-useragent";
-import firebase from "firebase/app";
 import NovelViewer from "components/NovelViewer";
 import { INovelDataSerializable, getNovel } from "lib/firebase/initFirebase";
 import { createDisplayTimeFromTimestamp } from "lib/novel/tools";

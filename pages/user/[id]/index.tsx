@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import firebase from "firebase/app";
 import UserPage from "../../../components/UserPage";
 import { getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
 import { createDisplayTimeFromTimestamp } from "../../../lib/novel/tools";
