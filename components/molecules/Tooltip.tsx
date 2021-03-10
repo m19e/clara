@@ -11,7 +11,7 @@ type Props = {
     children?: ReactNode;
 };
 
-export default function Tooltip({
+const Tooltip = ({
     text,
     d,
     className = "w-8 h-8 transition-opacity opacity-50 hover:opacity-70 cursor-pointer",
@@ -19,7 +19,7 @@ export default function Tooltip({
     stroke = "currentColor",
     viewBox = "0 0 24 24",
     children = null,
-}: Props) {
+}: Props) => {
     const [tooltipShow, setTooltipShow] = useState(false);
     const btnRef = useRef(null);
     const tooltipRef = useRef(null);
@@ -65,4 +65,6 @@ export default function Tooltip({
             </div>
         </>
     );
-}
+};
+
+export default Tooltip;
