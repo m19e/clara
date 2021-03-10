@@ -5,9 +5,7 @@ import NovelViewer from "../../../components/NovelViewer";
 import { INovelDataSerializable, getNovel } from "../../../lib/firebase/initFirebase";
 import { getDisplayTime } from "../../../lib/novel/tools";
 
-export default function NovelIndex({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) {
-    return <NovelViewer novel={novel} isMobile={ua.isMobile} />;
-}
+const NovelIndex = ({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) => <NovelViewer novel={novel} isMobile={ua.isMobile} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
@@ -27,3 +25,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
         },
     };
 };
+
+export default NovelIndex;
