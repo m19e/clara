@@ -1,9 +1,9 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useUserAgent, UserAgent } from "next-useragent";
 import firebase from "firebase/app";
-import NovelViewer from "../../../components/NovelViewer";
-import { INovelDataSerializable, getNovel } from "../../../lib/firebase/initFirebase";
-import { getDisplayTime } from "../../../lib/novel/tools";
+import NovelViewer from "components/NovelViewer";
+import { INovelDataSerializable, getNovel } from "lib/firebase/initFirebase";
+import { getDisplayTime } from "lib/novel/tools";
 
 const NovelIndex = ({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) => <NovelViewer novel={novel} isMobile={ua.isMobile} />;
 
