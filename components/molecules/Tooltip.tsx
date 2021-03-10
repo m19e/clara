@@ -4,7 +4,7 @@ import Popper from "popper.js";
 type Props = {
     text: string;
     d?: string;
-    classOverride?: string;
+    className?: string;
     fill?: string;
     stroke?: string;
     viewBox?: string;
@@ -14,7 +14,7 @@ type Props = {
 export default function Tooltip({
     text,
     d,
-    classOverride = "w-8 h-8 transition-opacity opacity-50 hover:opacity-70 cursor-pointer",
+    className = "w-8 h-8 transition-opacity opacity-50 hover:opacity-70 cursor-pointer",
     fill = "none",
     stroke = "currentColor",
     viewBox = "0 0 24 24",
@@ -42,7 +42,7 @@ export default function Tooltip({
                     </div>
                 ) : (
                     <svg
-                        className={classOverride}
+                        className={className}
                         xmlns="http://www.w3.org/2000/svg"
                         fill={fill}
                         viewBox={viewBox}
