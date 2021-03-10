@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { INovelProp } from "../../types";
-import TagList from "../molecules/TagList/Horizontal";
-import { getTextCharCount } from "../../lib/novel/tools";
+import { INovelProp } from "types";
+import TagList from "components/molecules/TagList/Horizontal";
+import { getTextCharCount } from "lib/novel/tools";
 
 type Props = {
     novel: INovelProp;
