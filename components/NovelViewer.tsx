@@ -8,7 +8,8 @@ import Tooltip from "./Tooltip";
 import NovelViewerConfig from "./NovelViewerConfig";
 import HomeButton from "./HomeButton";
 import Header from "./Header";
-import { INovelDataSerializable, auth } from "../lib/firebase/initFirebase";
+import { INovelDataSerializable } from "types";
+import { auth } from "../lib/firebase/initFirebase";
 import NovelTags from "./NovelTags";
 
 type FontSizeState = "base" | "xl" | "2xl";
