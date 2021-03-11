@@ -3,9 +3,9 @@ import Tooltip from "components/molecules/Tooltip";
 
 type Props = {
     fontSize: "base" | "xl" | "2xl";
-    toggleFontSmall: () => void;
-    toggleFontMedium: () => void;
-    toggleFontLarge: () => void;
+    setFontBase: () => void;
+    setFontXl: () => void;
+    setFont2xl: () => void;
     font: "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
     setMincho: () => void;
     setGothic: () => void;
@@ -14,7 +14,7 @@ type Props = {
 
 const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
     const [showModal, setShowModal] = useState(false);
-    const { fontSize, toggleFontSmall, toggleFontMedium, toggleFontLarge, font, setMincho, setGothic, isMobile } = viewerConfig;
+    const { fontSize, setFontBase, setFontXl, setFont2xl, font, setMincho, setGothic, isMobile } = viewerConfig;
 
     return (
         <>
@@ -61,7 +61,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                                 "h-16 w-10 flex-grow flex-center cursor-pointer" +
                                                 (fontSize === "base" ? " text-white bg-gray-400 rounded-t" : "")
                                             }
-                                            onClick={() => toggleFontSmall()}
+                                            onClick={() => setFontBase()}
                                         >
                                             <span className="text-base">小</span>
                                         </div>
@@ -69,7 +69,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                             className={
                                                 "h-16 w-10 flex-grow flex-center border-t cursor-pointer" + (fontSize === "xl" ? " text-white bg-gray-400" : "")
                                             }
-                                            onClick={() => toggleFontMedium()}
+                                            onClick={() => setFontXl()}
                                         >
                                             <span className="text-xl">中</span>
                                         </div>
@@ -78,7 +78,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                                 "h-16 w-10 flex-grow flex-center border-t cursor-pointer" +
                                                 (fontSize === "2xl" ? " text-white bg-gray-400 rounded-b" : "")
                                             }
-                                            onClick={() => toggleFontLarge()}
+                                            onClick={() => setFont2xl()}
                                         >
                                             <span className="text-2xl">大</span>
                                         </div>
