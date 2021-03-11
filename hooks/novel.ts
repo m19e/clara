@@ -1,17 +1,17 @@
 import { useState, useCallback } from "react";
 
-type FontSize = "base" | "xl" | "2xl";
+type FontSize = "text-base" | "text-xl" | "text-2xl";
 
 export const useFontSize = (fs: FontSize): [FontSize, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
     const setFontBase = useCallback(() => {
-        setFontSize("base");
+        setFontSize("text-base");
     }, []);
     const setFontXl = useCallback(() => {
-        setFontSize("xl");
+        setFontSize("text-xl");
     }, []);
     const setFont2xl = useCallback(() => {
-        setFontSize("2xl");
+        setFontSize("text-2xl");
     }, []);
 
     return [fontSize, setFontBase, setFontXl, setFont2xl];
