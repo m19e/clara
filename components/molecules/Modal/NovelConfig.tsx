@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { FontSize, FontType } from "hooks/novel";
 import Tooltip from "components/molecules/Tooltip";
 
 type Props = {
-    fontSize: "base" | "xl" | "2xl";
+    fontSize: FontSize;
     setFontBase: () => void;
     setFontXl: () => void;
     setFont2xl: () => void;
-    font: "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
+    font: FontType;
     setMincho: () => void;
     setGothic: () => void;
     isMobile?: boolean;
