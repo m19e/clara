@@ -115,7 +115,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                             </a>
                                         </Link>
                                     </div>
-                                    <div className={"flex items-center flex-wrap" + (tags.length === 0 ? "" : " mr-4")}>
+                                    <div className={"flex items-center flex-wrap" + (tags.length === 0 && !r18 ? "" : " mr-4")}>
                                         <TagList novel={novel} />
                                     </div>
                                 </div>
