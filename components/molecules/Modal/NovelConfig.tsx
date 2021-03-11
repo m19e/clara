@@ -56,11 +56,10 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                 </div>
                                 <div className="mr-4">
                                     <span className="text-gray-800">文字の大きさ</span>
-                                    <div className={"h-56 w-10 border border-solid rounded flex-center justify-around" + " " + font}>
+                                    <div className={"h-56 w-10 border border-solid rounded overflow-hidden flex-center justify-around" + " " + font}>
                                         <div
                                             className={
-                                                "h-16 w-10 flex-grow flex-center cursor-pointer" +
-                                                (fontSize === "text-base" ? " text-white bg-gray-400 rounded-t" : "")
+                                                "h-16 w-10 flex-grow flex-center cursor-pointer" + (fontSize === "text-base" ? " text-white bg-gray-400" : "")
                                             }
                                             onClick={() => setFontBase()}
                                         >
@@ -78,7 +77,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                         <div
                                             className={
                                                 "h-16 w-10 flex-grow flex-center border-t cursor-pointer" +
-                                                (fontSize === "text-2xl" ? " text-white bg-gray-400 rounded-b" : "")
+                                                (fontSize === "text-2xl" ? " text-white bg-gray-400" : "")
                                             }
                                             onClick={() => setFont2xl()}
                                         >
@@ -88,11 +87,11 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                 </div>
                                 <div className="pr-2">
                                     <span className="text-gray-800">書体</span>
-                                    <div className="h-56 w-10 text-lg border border-solid rounded flex-center justify-around">
+                                    <div className="h-56 w-10 text-lg border border-solid rounded overflow-hidden flex-center justify-around">
                                         <div
                                             className={
                                                 "h-28 w-10 flex-grow flex-center cursor-pointer" +
-                                                (font === "mincho" || font === "mobile-serif" ? " text-white bg-gray-400 rounded-t" : "")
+                                                (font === "mincho" || font === "mobile-serif" ? " text-white bg-gray-400" : "")
                                             }
                                             onClick={() => setMincho()}
                                         >
@@ -101,7 +100,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                         <div
                                             className={
                                                 "h-28 w-10 flex-grow flex-center border-t cursor-pointer" +
-                                                (font === "gothic" || font === "mobile-sans" ? " text-white bg-gray-400 rounded-b" : "")
+                                                (font === "gothic" || font === "mobile-sans" ? " text-white bg-gray-400" : "")
                                             }
                                             onClick={() => setGothic()}
                                         >
