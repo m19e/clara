@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-type FontSize = "text-base" | "text-xl" | "text-2xl";
+export type FontSize = "text-base" | "text-xl" | "text-2xl";
 
 export const useFontSize = (fs: FontSize): [FontSize, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
@@ -17,7 +17,7 @@ export const useFontSize = (fs: FontSize): [FontSize, () => void, () => void, ()
     return [fontSize, setFontBase, setFontXl, setFont2xl];
 };
 
-type FontType = "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
+export type FontType = "mincho" | "gothic" | "mobile-serif" | "mobile-sans";
 
 export const useFont = (isMobile: boolean): [FontType, () => void, () => void] => {
     const f: FontType = isMobile ? "mobile-serif" : "mincho";
