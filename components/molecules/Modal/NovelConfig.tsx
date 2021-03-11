@@ -60,7 +60,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                         <div
                                             className={
                                                 "h-16 w-10 flex-grow flex-center cursor-pointer" +
-                                                (fontSize === "base" ? " text-white bg-gray-400 rounded-t" : "")
+                                                (fontSize === "text-base" ? " text-white bg-gray-400 rounded-t" : "")
                                             }
                                             onClick={() => setFontBase()}
                                         >
@@ -68,7 +68,8 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                         </div>
                                         <div
                                             className={
-                                                "h-16 w-10 flex-grow flex-center border-t cursor-pointer" + (fontSize === "xl" ? " text-white bg-gray-400" : "")
+                                                "h-16 w-10 flex-grow flex-center border-t cursor-pointer" +
+                                                (fontSize === "text-xl" ? " text-white bg-gray-400" : "")
                                             }
                                             onClick={() => setFontXl()}
                                         >
@@ -77,7 +78,7 @@ const NovelConfig = ({ viewerConfig }: { viewerConfig: Props }) => {
                                         <div
                                             className={
                                                 "h-16 w-10 flex-grow flex-center border-t cursor-pointer" +
-                                                (fontSize === "2xl" ? " text-white bg-gray-400 rounded-b" : "")
+                                                (fontSize === "text-2xl" ? " text-white bg-gray-400 rounded-b" : "")
                                             }
                                             onClick={() => setFont2xl()}
                                         >
