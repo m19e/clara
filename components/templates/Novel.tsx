@@ -122,7 +122,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                             </div>
                             <div className={"leading-relaxed text-justify pl-16 " + fontSize + " " + font}>
                                 {contentArray.map((line, i) => (
-                                    <div key={"novelview-line-" + (i + 1)} className={line.class}>
+                                    <div key={i} className={line.class}>
                                         <span>{line.text}</span>
                                     </div>
                                 ))}
