@@ -158,7 +158,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                         <ShareNovelButton
                             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                                 `${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} #claranovel`
-                            )}&url=${process.env.NEXT_PUBLIC_SITE_ROOT_URL}${router.asPath}`}
+                            )}&url=${process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}`}
                         />
                         <TopLink />
                     </div>
