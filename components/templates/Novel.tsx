@@ -41,7 +41,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
         .split("\n")
         .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
     const ps = useRef<HTMLElement>();
-    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("xl");
+    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("text-xl");
     const [font, setMincho, setGothic] = useFont(isMobile);
     const [show, setShow] = useState(false);
     const [display, setDisplay] = useState(false);
@@ -119,7 +119,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                     </div>
                                 </div>
                             </div>
-                            <div className={"leading-relaxed text-justify pl-16 text-" + fontSize + " " + font}>
+                            <div className={"leading-relaxed text-justify pl-16 " + fontSize + " " + font}>
                                 {contentArray.map((line, i) => (
                                     <div key={"novelview-line-" + (i + 1)} className={line.class}>
                                         <span>{line.text}</span>
