@@ -48,9 +48,9 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
     const [isAuthor, setIsAuthor] = useState(false);
     const viewerConfig = {
         fontSize,
-        toggleFontSmall: setFontBase,
-        toggleFontMedium: setFontXl,
-        toggleFontLarge: setFont2xl,
+        setFontBase,
+        setFontXl,
+        setFont2xl,
         font,
         setMincho,
         setGothic,
