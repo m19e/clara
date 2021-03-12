@@ -58,7 +58,7 @@ const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () =
     return [font, setMincho, setGothic];
 };
 
-type NovelEditorProps = {
+type Props = {
     novel: INovelData;
     rootTags: string[];
     rootR18: boolean;
@@ -68,7 +68,7 @@ type NovelEditorProps = {
     }[];
 };
 
-export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: NovelEditorProps) {
+export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Props) {
     const { id, title, content, author_uid } = novel;
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
