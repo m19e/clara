@@ -10,8 +10,8 @@ import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
 import Tags from "../NovelTags";
 import TagsEditModal from "../NovelTagsEditModal";
-import { updateNovel, deleteNovel, INovelData, setUsedTags } from "../../lib/firebase/initFirebase";
-
+import { INovelData } from "types";
+import { updateNovel, deleteNovel, setUsedTags } from "../../lib/firebase/initFirebase";
 import { useR18, useSuggests } from "store/novel";
 import { unifyUsedTags } from "lib/novel/tools";
 import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
