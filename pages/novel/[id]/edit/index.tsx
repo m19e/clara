@@ -1,12 +1,12 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { useUserAgent, UserAgent } from "next-useragent";
 import { INovelData } from "types";
 import { auth, getUserDataByUID } from "lib/firebase/initFirebase";
 import { getNovel } from "lib/firebase/novel";
 import Loader from "components/Loader";
 import NovelEditor from "components/NovelEditor";
-import { useUserAgent, UserAgent } from "next-useragent";
 
 type Props = {
     novel: INovelData;
