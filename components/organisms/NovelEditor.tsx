@@ -68,7 +68,7 @@ type Props = {
     }[];
 };
 
-export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Props) {
+const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
     const { id, title, content, author_uid } = novel;
     const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const editorRef: RefObject<HTMLDivElement> = createRef();
@@ -408,4 +408,6 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Prop
             </div>
         </div>
     );
-}
+};
+
+export default NovelEditor;
