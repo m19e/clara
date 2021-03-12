@@ -23,3 +23,11 @@ export interface INovelDataSerializable extends INovelProp {
     created_at?: string;
     updated_at?: string;
 }
+
+export type SelectionRangeOverride = {
+    anchorOffset: number;
+    focusOffset?: number;
+    anchorKey?: string;
+    focusKey?: string;
+    isBackward?: boolean;
+};
