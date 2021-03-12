@@ -11,6 +11,7 @@ import { useR18, useSuggests } from "store/novel";
 import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
+import EditableTagList from "components/molecules/TagList/Editable";
 
 import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
@@ -318,12 +319,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                                         </svg>
                                     </span>
                                 )}
-                                {r18 && (
-                                    <span className="text-sm font-semibold text-red-500 pb-1.5 ml-1" style={{ fontFamily: "sans-serif" }}>
-                                        <span className="tracking-tighter">R18</span>
-                                    </span>
-                                )}
-                                <Tags tags={tags} />
+                                <EditableTagList r18={r18} tags={tags} />
                                 <TagsEditModal tags={tags} setTags={setTags} />
                             </div>
                         </div>
