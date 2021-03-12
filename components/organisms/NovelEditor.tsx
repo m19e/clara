@@ -3,18 +3,18 @@ import { useState, useEffect, createRef, useRef, RefObject, useCallback } from "
 import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
-
+import { INovelData } from "types";
+import { updateNovel, deleteNovel, setUsedTags } from "lib/firebase/initFirebase";
+import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
+import { unifyUsedTags } from "lib/novel/tools";
+import { useR18, useSuggests } from "store/novel";
 import Header from "foundations/ClaraHeader";
+
 import NovelViewerConfig from "../NovelViewerConfig";
 import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
 import Tags from "../NovelTags";
 import TagsEditModal from "../NovelTagsEditModal";
-import { INovelData } from "types";
-import { updateNovel, deleteNovel, setUsedTags } from "../../lib/firebase/initFirebase";
-import { useR18, useSuggests } from "store/novel";
-import { unifyUsedTags } from "lib/novel/tools";
-import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 
 type SelectionRangeOverride = {
     anchorOffset: number;
