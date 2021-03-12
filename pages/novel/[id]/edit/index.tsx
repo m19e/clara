@@ -8,7 +8,7 @@ import Loader from "../../../../components/Loader";
 import NovelEditor from "../../../../components/NovelEditor";
 import { useUserAgent, UserAgent } from "next-useragent";
 
-type NovelEditProps = {
+type Props = {
     novel: INovelData;
     tags: string[];
     used_tags: {
@@ -19,7 +19,7 @@ type NovelEditProps = {
     ua: UserAgent;
 };
 
-export default function NovelEdit({ novel, tags, used_tags, r18, ua }: NovelEditProps) {
+export default function NovelEdit({ novel, tags, used_tags, r18, ua }: Props) {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
 
