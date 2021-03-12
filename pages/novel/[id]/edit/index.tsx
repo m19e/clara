@@ -6,7 +6,7 @@ import { INovelData } from "types";
 import { auth, getUserDataByUID } from "lib/firebase/initFirebase";
 import { getNovel } from "lib/firebase/novel";
 import Loader from "components/Loader";
-import NovelEditor from "components/organisms/NovelEditor";
+import NovelEditPage from "components/templates/NovelEdit";
 
 type Props = {
     novel: INovelData;
@@ -34,7 +34,7 @@ const NovelEditIndex = ({ novel, tags, used_tags, r18, ua }: Props) => {
     }, []);
 
     if (validAuth) {
-        return <NovelEditor novel={novel} rootTags={tags} rootR18={r18} usedTags={used_tags} />;
+        return <NovelEditPage novel={novel} tags={tags} r18={r18} usedTags={used_tags} isMobile={ua.isMobile} />;
     } else {
         return (
             <div className="min-h-screen min-w-full flex-center bg-gray-100">
