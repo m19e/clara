@@ -19,7 +19,7 @@ type Props = {
     ua: UserAgent;
 };
 
-export default function NovelEdit({ novel, tags, used_tags, r18, ua }: Props) {
+const NovelEditIndex = ({ novel, tags, used_tags, r18, ua }: Props) => {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
 
@@ -42,7 +42,7 @@ export default function NovelEdit({ novel, tags, used_tags, r18, ua }: Props) {
             </div>
         );
     }
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
@@ -66,3 +66,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
         },
     };
 };
+
+export default NovelEditIndex;
