@@ -3,12 +3,12 @@ import { useState, useEffect, createRef, useRef, RefObject, useCallback } from "
 import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
-import { INovelData } from "types";
+import { INovelData, SelectionRangeOverride } from "types";
 import { updateNovel, deleteNovel, setUsedTags } from "lib/firebase/initFirebase";
 import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
 import { useR18, useSuggests } from "store/novel";
-import { useFont } from "hooks/novel";
+import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
 
@@ -16,36 +16,6 @@ import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
 import Tags from "../NovelTags";
 import TagsEditModal from "../NovelTagsEditModal";
-
-type SelectionRangeOverride = {
-    anchorOffset: number;
-    focusOffset?: number;
-    anchorKey?: string;
-    focusKey?: string;
-    isBackward?: boolean;
-};
-
-const useFormat = (
-    fs: "text-base" | "text-xl" | "text-2xl",
-    rfs: 16 | 20 | 24
-): ["text-base" | "text-xl" | "text-2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
-    const [fontSize, setFontSize] = useState(fs);
-    const [realFontSize, setRealFontSize] = useState(rfs);
-    const setFontBase = useCallback(() => {
-        setFontSize("text-base");
-        setRealFontSize(16);
-    }, []);
-    const setFontXl = useCallback(() => {
-        setFontSize("text-xl");
-        setRealFontSize(20);
-    }, []);
-    const setFont2xl = useCallback(() => {
-        setFontSize("text-2xl");
-        setRealFontSize(24);
-    }, []);
-
-    return [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl];
-};
 
 type Props = {
     novel: INovelData;
