@@ -15,7 +15,6 @@ import EditableTagList from "components/molecules/TagList/Editable";
 
 import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
-import Tags from "../NovelTags";
 import TagsEditModal from "../NovelTagsEditModal";
 
 type Props = {
