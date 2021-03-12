@@ -8,6 +8,7 @@ import { updateNovel, deleteNovel, setUsedTags } from "lib/firebase/initFirebase
 import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
 import { useR18, useSuggests } from "store/novel";
+import { useFont } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
 
@@ -46,18 +47,6 @@ const useFormat = (
     return [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl];
 };
 
-const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
-    const [font, setFont] = useState(f);
-    const setMincho = useCallback(() => {
-        setFont("mincho");
-    }, []);
-    const setGothic = useCallback(() => {
-        setFont("gothic");
-    }, []);
-
-    return [font, setMincho, setGothic];
-};
-
 type Props = {
     novel: INovelData;
     rootTags: string[];
@@ -79,7 +68,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
     const [rootTitle, setRootTitle] = useState(title);
 
     const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("text-xl", 20);
-    const [font, setMincho, setGothic] = useFont("mincho");
+    const [font, setMincho, setGothic] = useFont(false);
     const viewerConfig = {
         fontSize,
         setFontBase,
