@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { INovelData } from "types";
 import { auth } from "lib/firebase/initFirebase";
 import NovelEditor from "components/organisms/NovelEditor";
-
-import Loader from "../Loader";
+import Loader from "components/atoms/Loader";
 
 type Props = {
     novel: INovelData;
@@ -34,11 +33,7 @@ const NovelEditPage = ({ novel, tags, usedTags, r18, isMobile }: Props) => {
     if (validAuth) {
         return <NovelEditor novel={novel} rootTags={tags} rootR18={r18} usedTags={usedTags} />;
     } else {
-        return (
-            <div className="min-h-screen min-w-full flex-center bg-gray-100">
-                <Loader />
-            </div>
-        );
+        return <Loader />;
     }
 };
 
