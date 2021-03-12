@@ -1,11 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { useUserAgent, UserAgent } from "next-useragent";
 import { INovelData } from "types";
-import { auth, getUserDataByUID } from "lib/firebase/initFirebase";
+import { getUserDataByUID } from "lib/firebase/initFirebase";
 import { getNovel } from "lib/firebase/novel";
-import Loader from "components/Loader";
 import NovelEditPage from "components/templates/NovelEdit";
 
 type Props = {
