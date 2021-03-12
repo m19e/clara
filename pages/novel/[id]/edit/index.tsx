@@ -6,7 +6,7 @@ import { INovelData } from "types";
 import { auth, getUserDataByUID } from "lib/firebase/initFirebase";
 import { getNovel } from "lib/firebase/novel";
 import Loader from "components/Loader";
-import NovelEditor from "components/NovelEditor";
+import NovelEditor from "components/organisms/NovelEditor";
 
 type Props = {
     novel: INovelData;
