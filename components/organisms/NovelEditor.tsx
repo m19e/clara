@@ -9,8 +9,8 @@ import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
 import { useR18, useSuggests } from "store/novel";
 import Header from "foundations/ClaraHeader";
+import NovelConfig from "components/molecules/Modal/NovelConfig";
 
-import NovelViewerConfig from "../NovelViewerConfig";
 import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
 import Tags from "../NovelTags";
@@ -24,19 +24,22 @@ type SelectionRangeOverride = {
     isBackward?: boolean;
 };
 
-const useFormat = (fs: "base" | "xl" | "2xl", rfs: 16 | 20 | 24): ["base" | "xl" | "2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
+const useFormat = (
+    fs: "text-base" | "text-xl" | "text-2xl",
+    rfs: 16 | 20 | 24
+): ["text-base" | "text-xl" | "text-2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
     const [fontSize, setFontSize] = useState(fs);
     const [realFontSize, setRealFontSize] = useState(rfs);
     const setFontBase = useCallback(() => {
-        setFontSize("base");
+        setFontSize("text-base");
         setRealFontSize(16);
     }, []);
     const setFontXl = useCallback(() => {
-        setFontSize("xl");
+        setFontSize("text-xl");
         setRealFontSize(20);
     }, []);
     const setFont2xl = useCallback(() => {
-        setFontSize("2xl");
+        setFontSize("text-2xl");
         setRealFontSize(24);
     }, []);
 
@@ -75,13 +78,13 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
     const [lineWords, setLineWords] = useState(0);
     const [rootTitle, setRootTitle] = useState(title);
 
-    const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("xl", 20);
+    const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("text-xl", 20);
     const [font, setMincho, setGothic] = useFont("mincho");
     const viewerConfig = {
         fontSize,
-        toggleFontSmall: setFontBase,
-        toggleFontMedium: setFontXl,
-        toggleFontLarge: setFont2xl,
+        setFontBase,
+        setFontXl,
+        setFont2xl,
         font,
         setMincho,
         setGothic,
@@ -365,7 +368,7 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
                                 <TagsEditModal tags={tags} setTags={setTags} />
                             </div>
                         </div>
-                        <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
+                        <div className={"leading-relaxed text-justify pl-16 " + font + " " + fontSize}>
                             <Editor editorState={editorState} onChange={handleEditorChange} keyBindingFn={handleKeyBinding} />
                         </div>
                     </div>
@@ -390,7 +393,7 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
                         back
                         novelID={id}
                     />
-                    <NovelViewerConfig viewerConfig={viewerConfig} />
+                    <NovelConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
                         <ConfirmableModal
                             popperText="削除"
