@@ -19,30 +19,9 @@ type Props = {
     ua: UserAgent;
 };
 
-const NovelEditIndex = ({ novel, tags, used_tags, r18, ua }: Props) => {
-    const router = useRouter();
-    const [validAuth, setValidAuth] = useState(false);
-
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            if (user && user.uid === novel.author_uid && !ua.isMobile) {
-                setValidAuth(true);
-            } else {
-                router.push(`/novel/${novel.id}`);
-            }
-        });
-    }, []);
-
-    if (validAuth) {
-        return <NovelEditPage novel={novel} tags={tags} r18={r18} usedTags={used_tags} isMobile={ua.isMobile} />;
-    } else {
-        return (
-            <div className="min-h-screen min-w-full flex-center bg-gray-100">
-                <Loader />
-            </div>
-        );
-    }
-};
+const NovelEditIndex = ({ novel, tags, used_tags, r18, ua }: Props) => (
+    <NovelEditPage novel={novel} tags={tags} r18={r18} usedTags={used_tags} isMobile={ua.isMobile} />
+);
 
 export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
