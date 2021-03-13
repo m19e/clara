@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, ChangeEvent } from "react";
 
 type Props = {
     title: string;
-    setTitle: (string) => void;
+    setTitle: (arg0: string) => void;
 };
 
 const NovelTitleEdit = ({ title, setTitle }: Props) => {
