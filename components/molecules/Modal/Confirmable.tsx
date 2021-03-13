@@ -17,7 +17,7 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
     const [showModal, setShowModal] = useState(false);
     const [inTask, setInTask] = useState(false);
 
-    const execConfirm = async () => {
+    const fireConfirm = async () => {
         if (inTask) return;
         setInTask(true);
         await onConfirm();
@@ -57,7 +57,7 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                         ) : (
                                             <span
                                                 className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer"
-                                                onClick={() => execConfirm()}
+                                                onClick={() => fireConfirm()}
                                             >
                                                 {confirmText}
                                             </span>
