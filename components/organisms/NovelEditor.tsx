@@ -10,11 +10,11 @@ import { unifyUsedTags } from "lib/novel/tools";
 import { useR18, useSuggests } from "store/novel";
 import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
+import TitleEditModal from "components/molecules/Modal/NovelTitleEdit";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
 import EditableTagList from "components/molecules/TagList/Editable";
 import Confirmable from "components/molecules/Modal/Confirmable";
 
-import TitleEditModal from "../NovelTitleEditModal";
 import TagsEditModal from "../NovelTagsEditModal";
 
 type Props = {
