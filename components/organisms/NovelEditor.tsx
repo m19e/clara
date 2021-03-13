@@ -12,6 +12,7 @@ import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
 import EditableTagList from "components/molecules/TagList/Editable";
+import Confirmable from "components/molecules/Modal/Confirmable";
 
 import TitleEditModal from "../NovelTitleEditModal";
 import ConfirmableModal from "../ConfirmableModal";
@@ -326,13 +327,13 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                         cancelText="閉じる"
                         confirmFunc={confirmUpdate}
                     />
-                    <ConfirmableModal
+                    <Confirmable
                         popperText="戻る"
                         d="M6 18L18 6M6 6l12 12"
                         message="小説ページに戻りますか？"
                         confirmText="戻る"
                         cancelText="閉じる"
-                        back
+                        link
                         novelID={id}
                     />
                     <NovelConfig viewerConfig={viewerConfig} />
