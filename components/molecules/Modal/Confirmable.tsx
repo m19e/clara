@@ -9,11 +9,11 @@ type Props = {
     confirmText: string;
     cancelText: string;
     onConfirm?: () => Promise<void>;
-    back?: boolean;
+    link?: boolean;
     novelID?: string;
 };
 
-export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, onConfirm, back = false, novelID }: Props) {
+export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, onConfirm, link = false, novelID }: Props) {
     const [showModal, setShowModal] = useState(false);
     const [inTask, setInTask] = useState(false);
 
@@ -58,7 +58,7 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
                                         >
                                             {cancelText}
                                         </span>
-                                        {back ? (
+                                        {link ? (
                                             <Link href={`/novel/${novelID}`}>
                                                 <a className="w-20 text-center text-gray-600 border-b border-solid border-gray-300 transition-colors hover:border-gray-400 cursor-pointer">
                                                     {confirmText}
