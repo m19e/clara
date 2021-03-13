@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, ChangeEvent } from "react";
 
 export default function TitleEditModal({ title, setTitle }: { title: string; setTitle: (string) => void }) {
     const [showModal, setShowModal] = useState(false);
@@ -22,7 +22,7 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
         setShowModal(false);
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const arrayTitle = Array.from(e.currentTarget.value);
         const charCount = arrayTitle.length;
         if (charCount <= 50) {
