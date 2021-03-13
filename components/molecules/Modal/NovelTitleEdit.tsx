@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 
-export default function TitleEditModal({ title, setTitle }: { title: string; setTitle: (string) => void }) {
+const NovelTitleEdit = ({ title, setTitle }: { title: string; setTitle: (string) => void }) => {
     const [showModal, setShowModal] = useState(false);
     const [tempTitle, setTempTitle] = useState(title);
     const [titleCharCount, setTitleCharCount] = useState(Array.from(title).length);
@@ -91,4 +91,6 @@ export default function TitleEditModal({ title, setTitle }: { title: string; set
             )}
         </div>
     );
-}
+};
+
+export default NovelTitleEdit;
