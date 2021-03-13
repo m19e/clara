@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import Tooltip from "../../Tooltip";
+import Tooltip from "components/molecules/Tooltip";
 
 type Props = {
     popperText: string;
@@ -26,7 +26,17 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
     return (
         <>
             <div onClick={() => setShowModal(true)}>
-                <Tooltip text={popperText} d={d} />
+                <Tooltip text={popperText}>
+                    <svg
+                        className="w-8 h-8 transition-opacity opacity-50 hover:opacity-70 cursor-pointer"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
+                    </svg>
+                </Tooltip>
             </div>
             {showModal && (
                 <>
