@@ -15,7 +15,6 @@ import EditableTagList from "components/molecules/TagList/Editable";
 import Confirmable from "components/molecules/Modal/Confirmable";
 
 import TitleEditModal from "../NovelTitleEditModal";
-import ConfirmableModal from "../ConfirmableModal";
 import TagsEditModal from "../NovelTagsEditModal";
 
 type Props = {
@@ -338,13 +337,13 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                     />
                     <NovelConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
-                        <ConfirmableModal
+                        <Confirmable
                             popperText="削除"
                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                             message="この小説を削除しますか？"
                             confirmText="削除する"
                             cancelText="閉じる"
-                            confirmFunc={confirmDelete}
+                            onConfirm={confirmDelete}
                         />
                     </div>
                 </div>
