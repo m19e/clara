@@ -10,7 +10,7 @@ import { unifyUsedTags } from "lib/novel/tools";
 import { useR18, useSuggests } from "store/novel";
 import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
-import TitleEditModal from "components/molecules/Modal/NovelTitleEdit";
+import TitleEdit from "components/molecules/Modal/NovelTitleEdit";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
 import EditableTagList from "components/molecules/TagList/Editable";
 import Confirmable from "components/molecules/Modal/Confirmable";
@@ -302,7 +302,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                             <div className="flex items-center flex-wrap">
                                 <span className="text-4xl font-bold whitespace-pre-wrap opacity-75">{rootTitle}</span>
                                 <span className="mt-2 w-8 h-8 rounded-full shadow-md flex-center cursor-pointer">
-                                    <TitleEditModal title={rootTitle} setTitle={setRootTitle} />
+                                    <TitleEdit title={rootTitle} setTitle={setRootTitle} />
                                 </span>
                             </div>
                             <div className="flex items-center flex-wrap mr-1.5">
