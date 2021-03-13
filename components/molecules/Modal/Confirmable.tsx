@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Tooltip from "../../Tooltip";
 
-type ConfirmableProps = {
+type Props = {
     popperText: string;
     d: string;
     message: string;
@@ -13,7 +13,7 @@ type ConfirmableProps = {
     novelID?: string;
 };
 
-export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc, back = false, novelID }: ConfirmableProps) {
+export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc, back = false, novelID }: Props) {
     const [showModal, setShowModal] = useState(false);
     const [inTask, setInTask] = useState(false);
 
