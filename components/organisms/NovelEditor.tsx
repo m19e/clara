@@ -319,13 +319,13 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
             </Scrollbar>
             <div className={"fixed bottom-0 w-12 mb-4 mr-2 novelView-header__show"}>
                 <div className="flex-col flex-center w-full">
-                    <ConfirmableModal
+                    <Confirmable
                         popperText="保存"
                         d="M5 13l4 4L19 7"
                         message="編集内容を保存しますか？"
                         confirmText="保存する"
                         cancelText="閉じる"
-                        confirmFunc={confirmUpdate}
+                        onConfirm={confirmUpdate}
                     />
                     <Confirmable
                         popperText="戻る"
