@@ -1,6 +1,11 @@
 import { useState, useRef, useEffect, ChangeEvent } from "react";
 
-const NovelTitleEdit = ({ title, setTitle }: { title: string; setTitle: (string) => void }) => {
+type Props = {
+    title: string;
+    setTitle: (string) => void;
+};
+
+const NovelTitleEdit = ({ title, setTitle }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const [tempTitle, setTempTitle] = useState(title);
     const [titleCharCount, setTitleCharCount] = useState(Array.from(title).length);
