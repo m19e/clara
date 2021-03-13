@@ -8,7 +8,7 @@ type Props = {
     message: string;
     confirmText: string;
     cancelText: string;
-    onConfirm?: () => void;
+    onConfirm?: () => Promise<void>;
     back?: boolean;
     novelID?: string;
 };
