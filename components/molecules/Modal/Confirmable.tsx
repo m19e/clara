@@ -13,7 +13,7 @@ type Props = {
     novelID?: string;
 };
 
-export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, onConfirm, link = false, novelID }: Props) {
+const Confirmable = ({ popperText, d, message, confirmText, cancelText, onConfirm, link = false, novelID }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const [inTask, setInTask] = useState(false);
 
@@ -82,4 +82,6 @@ export default function ConfirmableModal({ popperText, d, message, confirmText, 
             )}
         </>
     );
-}
+};
+
+export default Confirmable;
