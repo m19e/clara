@@ -8,19 +8,19 @@ type Props = {
     message: string;
     confirmText: string;
     cancelText: string;
-    confirmFunc?: () => void;
+    onConfirm?: () => void;
     back?: boolean;
     novelID?: string;
 };
 
-export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, confirmFunc, back = false, novelID }: Props) {
+export default function ConfirmableModal({ popperText, d, message, confirmText, cancelText, onConfirm, back = false, novelID }: Props) {
     const [showModal, setShowModal] = useState(false);
     const [inTask, setInTask] = useState(false);
 
     const execConfirm = async () => {
         if (inTask) return;
         setInTask(true);
-        await confirmFunc();
+        await onConfirm();
     };
 
     return (
