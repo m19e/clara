@@ -316,7 +316,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                     </div>
                 </div>
             </Scrollbar>
-            <div className={"fixed bottom-0 w-12 mb-4 mr-2 novelView-header__show"}>
+            <div className="fixed bottom-0 w-12 mb-4 mr-2 novelView-header__show">
                 <div className="flex-col flex-center w-full">
                     <Confirmable
                         popperText="保存"
