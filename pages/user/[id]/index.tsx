@@ -3,12 +3,12 @@ import UserPage from "../../../components/UserPage";
 import { getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
 import { createDisplayTimeFromTimestamp } from "../../../lib/novel/tools";
 
-type UserIndexProps = {
+type Props = {
     user: UserProfile;
     novels: INovelDataSerializable[];
 };
 
-export default function UserIndex({ user, novels }: UserIndexProps) {
+export default function UserIndex({ user, novels }: Props) {
     return <UserPage user={user} novels={novels} />;
 }
 
