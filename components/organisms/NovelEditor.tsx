@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect, createRef, useRef, RefObject } from "react";
+import { useState, useEffect, createRef, useRef, RefObject, WheelEvent, KeyboardEvent } from "react";
 import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -113,7 +113,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
         router.push("/");
     };
 
-    const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const onMouseWheel = (e: WheelEvent<HTMLElement>) => {
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
@@ -135,7 +135,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
         setEditorState(newEditor);
     };
 
-    const handleKeyBinding = (e: React.KeyboardEvent) => {
+    const handleKeyBinding = (e: KeyboardEvent) => {
         if (e.key === "Tab") {
             e.preventDefault();
             return null;
