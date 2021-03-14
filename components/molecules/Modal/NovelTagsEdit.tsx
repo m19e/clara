@@ -5,12 +5,13 @@ import TagsEditor from "components/TagsEditor";
 type Props = {
     tags: string[];
     setTags: (tags: string[]) => void;
+    r18: boolean;
+    setR18: (r18: boolean) => void;
 };
 
-const NovelTagsEdit = ({ tags, setTags }: Props) => {
+const NovelTagsEdit = ({ tags, setTags, r18, setR18 }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const [tempTags, setTempTags] = useState(tags);
-    const [r18, setR18] = useR18();
     const [tempR18, setTempR18] = useState(r18);
 
     const initModal = () => {
