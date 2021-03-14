@@ -21,17 +21,17 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
     const novelID = typeof params.id === "string" ? params.id : "";
     const n = await getNovel(novelID);
     if (!n) return { notFound: true };
-    const { created_at, updated_at, ...novel } = n;
-    const userData = await getUserDataByUID(novel.author_uid);
+    const { created_at, updated_at, ...novelData } = n;
+    const userData = await getUserDataByUID(novelData.author_uid);
     const used_tags = "used_tags" in userData ? userData.used_tags : [];
 
-    const tags = "tags" in novel ? novel.tags : [];
-    const r18 = "r18" in novel ? novel.r18 : false;
-    const assigned = Object.assign(novel, { tags, r18 });
+    const tags = "tags" in novelData ? novelData.tags : [];
+    const r18 = "r18" in novelData ? novelData.r18 : false;
+    const novel = Object.assign(novelData, { tags, r18 });
 
     return {
         props: {
-            novel: assigned,
+            novel,
             used_tags,
             ua,
         },
