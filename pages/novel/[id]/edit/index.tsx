@@ -7,12 +7,10 @@ import NovelEditPage from "components/templates/NovelEdit";
 
 type Props = {
     novel: INovelProp;
-    tags: string[];
     used_tags: {
         name: string;
         count: number;
     }[];
-    r18: boolean;
     ua: UserAgent;
 };
 
