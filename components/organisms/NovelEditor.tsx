@@ -28,16 +28,24 @@ type Props = {
 
 const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
     const { id, title, content, author_uid } = novel;
-    const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
+
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
+
+    const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
     const [showScrollbar, setShowScrollbar] = useState(false);
     const [editorHeight, setEditorHeight] = useState(480);
     const [lineWords, setLineWords] = useState(0);
     const [rootTitle, setRootTitle] = useState(title);
+    const [r18, setR18] = useState(rootR18);
+    const [tags, setTags] = useState(rootTags);
 
     const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("text-xl", 20);
     const [font, setMincho, setGothic] = useFont(false);
+    const [suggests, setSuggests] = useSuggests();
+
+    const router = useRouter();
+
     const viewerConfig = {
         fontSize,
         setFontBase,
@@ -47,12 +55,6 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
         setMincho,
         setGothic,
     };
-
-    const [r18, setR18] = useState(rootR18);
-    const [tags, setTags] = useState(rootTags);
-    const [suggests, setSuggests] = useSuggests();
-
-    const router = useRouter();
 
     useEffect(() => {
         setSuggests(usedTags);
