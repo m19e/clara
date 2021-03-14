@@ -37,8 +37,8 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
     const [editorHeight, setEditorHeight] = useState(480);
     const [lineWords, setLineWords] = useState(0);
     const [rootTitle, setRootTitle] = useState(title);
-    const [r18, setR18] = useState(rootR18);
-    const [tags, setTags] = useState(rootTags);
+    const [tags, setTags] = useState(novel.tags);
+    const [r18, setR18] = useState(novel.r18);
 
     const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("text-xl", 20);
     const [font, setMincho, setGothic] = useFont(false);
@@ -87,7 +87,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
     const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
         await updateNovel(id, rootTitle, text, tags, r18);
-        const newUsedTags = unifyUsedTags(suggests, rootTags, tags);
+        const newUsedTags = unifyUsedTags(suggests, novel.tags, tags);
         await setUsedTags(author_uid, newUsedTags);
         // update novel info
         const infos = await getRootNovelInfos();
@@ -101,7 +101,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
 
     const confirmDelete = async () => {
         await deleteNovel(id);
-        const newUsedTags = unifyUsedTags(suggests, rootTags, []);
+        const newUsedTags = unifyUsedTags(suggests, novel.tags, []);
         await setUsedTags(author_uid, newUsedTags);
         // delete novel info
         const infos = await getRootNovelInfos();
