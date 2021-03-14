@@ -64,8 +64,9 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: Props) => {
             inputRef.current?.accept();
             return;
         }
-        if (Array.from(t).length >= 30) {
-            setTag(Array.from(t).slice(0, 30).join(""));
+        const array = Array.from(t);
+        if (array.length >= 30) {
+            setTag(array.slice(0, 30).join(""));
             return;
         }
         setTag(t);
