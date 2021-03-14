@@ -62,9 +62,6 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
     const imagePath = getOgpImagePath(novel.title, novel.author_id);
     const desc = Array.from(novel.content.split("\n").join("")).slice(0, 100).join("");
 
-    const tags = "tags" in novel ? novel.tags : [];
-    const r18 = "r18" in novel ? novel.r18 : false;
-
     useEffect(() => {
         if (ps.current) {
             ps.current.scrollLeft += ps.current.scrollWidth;
@@ -89,13 +86,13 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
     return (
         <>
             <Header
-                title={`${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
-                description={r18 ? "" : desc}
-                ogTitle={`${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
-                ogDescription={r18 ? "" : desc}
+                title={`${novel.r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
+                description={novel.r18 ? "" : desc}
+                ogTitle={`${novel.r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
+                ogDescription={novel.r18 ? "" : desc}
                 ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
-                twTitle={`${r18 ? "[R18]" : ""} ${novel.title}`}
-                twDescription={r18 ? "" : desc}
+                twTitle={`${novel.r18 ? "[R18]" : ""} ${novel.title}`}
+                twDescription={novel.r18 ? "" : desc}
                 twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
                 twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}
                 twCard="summary_large_image"
@@ -115,7 +112,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                                             </a>
                                         </Link>
                                     </div>
-                                    <div className={"flex items-center flex-wrap" + (tags.length === 0 && !r18 ? "" : " mr-4")}>
+                                    <div className={"flex items-center flex-wrap" + (novel.tags.length === 0 && !novel.r18 ? "" : " mr-4")}>
                                         <TagList novel={novel} />
                                     </div>
                                 </div>
@@ -157,7 +154,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                         <Config viewerConfig={viewerConfig} />
                         <ShareNovelButton
                             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                                `${r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} #claranovel`
+                                `${novel.r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} #claranovel`
                             )}&url=${process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}`}
                         />
                         <TopLink />
