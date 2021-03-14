@@ -7,16 +7,14 @@ import Loader from "components/atoms/Loader";
 
 type Props = {
     novel: INovelProp;
-    tags: string[];
     usedTags: {
         name: string;
         count: number;
     }[];
-    r18: boolean;
     isMobile: boolean;
 };
 
-const NovelEditPage = ({ novel, tags, usedTags, r18, isMobile }: Props) => {
+const NovelEditPage = ({ novel, usedTags, isMobile }: Props) => {
     const router = useRouter();
     const [validAuth, setValidAuth] = useState(false);
 
@@ -31,7 +29,7 @@ const NovelEditPage = ({ novel, tags, usedTags, r18, isMobile }: Props) => {
     }, []);
 
     if (validAuth) {
-        return <NovelEditor novel={novel} rootTags={tags} rootR18={r18} usedTags={usedTags} />;
+        return <NovelEditor novel={novel} rootTags={novel.tags} rootR18={novel.r18} usedTags={usedTags} />;
     } else {
         return <Loader />;
     }
