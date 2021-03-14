@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-import { INovelProp, INovelData } from "types";
+import { INovelProp, INovelData, UserProfile } from "types";
 
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -82,13 +82,6 @@ export async function logout() {
         console.error("login failed", error);
     }
 }
-
-export type UserProfile = {
-    uid: string;
-    displayName: string;
-    photoURL: string;
-    userID: string;
-};
 
 export async function getUserDataByUID(uid: string) {
     const query = db.collection("user").doc(uid);
