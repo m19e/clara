@@ -25,16 +25,14 @@ type Props = {
 };
 
 const NovelEditor = ({ novel, usedTags }: Props) => {
-    const { id, title, content, author_uid } = novel;
-
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
 
-    const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
+    const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(novel.content)));
     const [showScrollbar, setShowScrollbar] = useState(false);
     const [editorHeight, setEditorHeight] = useState(480);
     const [lineWords, setLineWords] = useState(0);
-    const [rootTitle, setRootTitle] = useState(title);
+    const [rootTitle, setRootTitle] = useState(novel.title);
     const [tags, setTags] = useState(novel.tags);
     const [r18, setR18] = useState(novel.r18);
 
@@ -84,9 +82,9 @@ const NovelEditor = ({ novel, usedTags }: Props) => {
 
     const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
-        await updateNovel(id, rootTitle, text, tags, r18);
+        await updateNovel(novel.id, rootTitle, text, tags, r18);
         const newUsedTags = unifyUsedTags(suggests, novel.tags, tags);
-        await setUsedTags(author_uid, newUsedTags);
+        await setUsedTags(novel.author_uid, newUsedTags);
         // update novel info
         const infos = await getRootNovelInfos();
         const targetIndex = infos.findIndex((info) => info.id === novel.id);
@@ -94,13 +92,13 @@ const NovelEditor = ({ novel, usedTags }: Props) => {
             const udpated = [].concat(infos.slice(0, targetIndex), [Object.assign(infos[targetIndex], { tags })], infos.slice(targetIndex + 1));
             await setRootNovelInfos(udpated);
         }
-        router.push(`/novel/${id}`);
+        router.push(`/novel/${novel.id}`);
     };
 
     const confirmDelete = async () => {
-        await deleteNovel(id);
+        await deleteNovel(novel.id);
         const newUsedTags = unifyUsedTags(suggests, novel.tags, []);
-        await setUsedTags(author_uid, newUsedTags);
+        await setUsedTags(novel.author_uid, newUsedTags);
         // delete novel info
         const infos = await getRootNovelInfos();
         const targetIndex = infos.findIndex((info) => info.id === novel.id);
@@ -331,7 +329,7 @@ const NovelEditor = ({ novel, usedTags }: Props) => {
                         confirmText="戻る"
                         cancelText="閉じる"
                         link
-                        novelID={id}
+                        novelID={novel.id}
                     />
                     <NovelConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
