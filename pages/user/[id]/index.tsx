@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { INovelDataSerializable } from "types";
 import { getAllUserNovelByUID, getUserDataByID, UserProfile } from "lib/firebase/initFirebase";
 import { createDisplayTimeFromTimestamp } from "lib/novel/tools";
-import UserPage from "components/UserPage";
+import UserPage from "components/templates/User";
 
 type Props = {
     user: UserProfile;
