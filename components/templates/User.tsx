@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { INovelDataSerializable } from "types";
-import { UserProfile } from "lib/firebase/initFirebase";
+import { UserProfile, INovelDataSerializable } from "types";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
 import NovelListItem from "components/molecules/NovelListItem";
