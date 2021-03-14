@@ -66,7 +66,7 @@ const NovelTitleEdit = ({ title, setTitle }: Props) => {
                                     className="w-72 py-1 px-2 editor-bg gothic text-xl text-center rounded shadow-inner outline-none focus:outline-none"
                                     ref={editTitleRef}
                                     value={tempTitle}
-                                    onChange={(e) => handleChange(e)}
+                                    onChange={handleChange}
                                     onKeyDown={(e) => {
                                         if (e.key === "Tab") e.preventDefault();
                                     }}
