@@ -9,7 +9,7 @@ import ListTags from "../ListTags";
 const DISPLAY_NOVEL_SPAN = 5;
 const DEFAULT_CLARA_IMAGE = process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png";
 
-export default function UserPage({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) {
+const User = ({ user, novels }: { user: UserProfile; novels: INovelDataSerializable[] }) => {
     const [rootList] = useState(novels);
     const [displayList, setDisplayList] = useState(novels.slice(0, DISPLAY_NOVEL_SPAN));
     const [hasMore, setHasMore] = useState(novels.length > DISPLAY_NOVEL_SPAN);
@@ -138,4 +138,6 @@ export default function UserPage({ user, novels }: { user: UserProfile; novels: 
             </div>
         </Layout>
     );
-}
+};
+
+export default User;
