@@ -4,6 +4,7 @@ import { INovelDataSerializable } from "types";
 import { UserProfile } from "lib/firebase/initFirebase";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
+import NovelListItem from "components/molecules/NovelListItem";
 import TagList from "components/molecules/TagList/Horizontal";
 
 const DISPLAY_NOVEL_SPAN = 5;
@@ -106,21 +107,7 @@ const User = ({ user, novels }: Props) => {
                                     ) : (
                                         <>
                                             {displayList.map((novel, i) => (
-                                                <div key={"novel-0" + i} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300">
-                                                    <div className="flex justify-start mb-3">
-                                                        <Link href={`/novel/${novel.id}`}>
-                                                            <a className="text-2xl gothic font-semibold whitespace-pre-wrap text-left opacity-75">
-                                                                {novel.title}
-                                                            </a>
-                                                        </Link>
-                                                    </div>
-                                                    <div className="whitespace-pre-wrap ml-0.5 pb-3">
-                                                        <TagList novel={novel} />
-                                                    </div>
-                                                    <div className="flex justify-end items-baseline">
-                                                        <p className="text-sm opacity-50">{novel.created_at}</p>
-                                                    </div>
-                                                </div>
+                                                <NovelListItem key={i} novel={novel} className="w-3/4 max-w-xl mt-12 border-b border-solid border-gray-300" />
                                             ))}
                                             <div className="w-full flex-center my-8 editor-bg">
                                                 {hasMore && (
