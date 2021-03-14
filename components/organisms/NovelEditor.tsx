@@ -11,11 +11,10 @@ import { useR18, useSuggests } from "store/novel";
 import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import TitleEdit from "components/molecules/Modal/NovelTitleEdit";
+import TagsEdit from "components/molecules/Modal/NovelTagsEdit";
 import NovelConfig from "components/molecules/Modal/NovelConfig";
 import EditableTagList from "components/molecules/TagList/Editable";
 import Confirmable from "components/molecules/Modal/Confirmable";
-
-import TagsEditModal from "../NovelTagsEditModal";
 
 type Props = {
     novel: INovelData;
@@ -307,7 +306,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                             </div>
                             <div className="flex items-center flex-wrap mr-1.5">
                                 <EditableTagList r18={r18} tags={tags} />
-                                <TagsEditModal tags={tags} setTags={setTags} />
+                                <TagsEdit tags={tags} setTags={setTags} />
                             </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " " + fontSize}>
