@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { INovelProp } from "../../../types";
-import { getNovelsByIDs, getRootNovelIDs, PER_PAGE } from "../../../lib/firebase/novel";
-import TopPage from "../../../components/templates/Top";
+import { INovelProp } from "types";
+import { getNovelsByIDs, getRootNovelIDs, PER_PAGE } from "lib/firebase/novel";
+import TopPage from "components/templates/Top";
 
 type Props = {
     novels: INovelProp[];
