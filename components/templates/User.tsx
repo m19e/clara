@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { INovelDataSerializable } from "types";
 import { UserProfile } from "lib/firebase/initFirebase";
