@@ -31,3 +31,10 @@ export type SelectionRangeOverride = {
     focusKey?: string;
     isBackward?: boolean;
 };
+
+export type UserProfile = {
+    uid: string;
+    displayName: string;
+    photoURL: string;
+    userID: string;
+};
