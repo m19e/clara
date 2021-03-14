@@ -1,8 +1,8 @@
-import { INovelProp } from "../../types";
-import Header from "../../foundations/ClaraHeader";
-import Layout from "../organisms/Layout";
-import NovelListItem from "../molecules/NovelListItem";
-import Pagination from "../atoms/Pagination";
+import { INovelProp } from "types";
+import Header from "foundations/ClaraHeader";
+import Layout from "components/organisms/Layout";
+import NovelListItem from "components/molecules/NovelListItem";
+import Pagination from "components/atoms/Pagination";
 
 type Props = {
     novels: INovelProp[];
