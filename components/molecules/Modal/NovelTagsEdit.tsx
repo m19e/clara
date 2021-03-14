@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TagsEditor from "components/TagsEditor";
+import TagsEditor from "components/molecules/TagsEditor";
 
 type Props = {
     tags: string[];
