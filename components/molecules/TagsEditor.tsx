@@ -32,14 +32,12 @@ const customRenderTag = (props: TagsInput.RenderTagProps) => {
     );
 };
 
-const defaultRenderLayout = (tagComponents: ReactElement[], inputComponent: ReactElement) => {
-    return (
-        <span>
-            {tagComponents}
-            {inputComponent}
-        </span>
-    );
-};
+const defaultRenderLayout = (tagComponents: ReactElement[], inputComponent: ReactElement) => (
+    <span>
+        {tagComponents}
+        {inputComponent}
+    </span>
+);
 
 type TagsEditorProps = {
     tempTags: string[];
