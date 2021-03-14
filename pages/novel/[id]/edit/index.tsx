@@ -1,12 +1,12 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useUserAgent, UserAgent } from "next-useragent";
-import { INovelData } from "types";
+import { INovelProp } from "types";
 import { getUserDataByUID } from "lib/firebase/initFirebase";
 import { getNovel } from "lib/firebase/novel";
 import NovelEditPage from "components/templates/NovelEdit";
 
 type Props = {
-    novel: INovelData;
+    novel: INovelProp;
     tags: string[];
     used_tags: {
         name: string;

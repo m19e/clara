@@ -3,7 +3,7 @@ import { useState, useEffect, createRef, useRef, RefObject, WheelEvent, Keyboard
 import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
-import { INovelData, SelectionRangeOverride } from "types";
+import { INovelProp, SelectionRangeOverride } from "types";
 import { updateNovel, deleteNovel, setUsedTags } from "lib/firebase/initFirebase";
 import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
@@ -17,7 +17,7 @@ import EditableTagList from "components/molecules/TagList/Editable";
 import Confirmable from "components/molecules/Modal/Confirmable";
 
 type Props = {
-    novel: INovelData;
+    novel: INovelProp;
     rootTags: string[];
     rootR18: boolean;
     usedTags: {

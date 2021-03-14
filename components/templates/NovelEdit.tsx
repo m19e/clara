@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { INovelData } from "types";
+import { INovelProp } from "types";
 import { auth } from "lib/firebase/initFirebase";
 import NovelEditor from "components/organisms/NovelEditor";
 import Loader from "components/atoms/Loader";
 
 type Props = {
-    novel: INovelData;
+    novel: INovelProp;
     tags: string[];
     usedTags: {
         name: string;
