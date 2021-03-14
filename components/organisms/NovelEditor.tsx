@@ -48,14 +48,13 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
         setGothic,
     };
 
-    const [r18, setR18] = useR18();
+    const [r18, setR18] = useState(rootR18);
     const [tags, setTags] = useState(rootTags);
     const [suggests, setSuggests] = useSuggests();
 
     const router = useRouter();
 
     useEffect(() => {
-        setR18(rootR18);
         setSuggests(usedTags);
     }, []);
 
@@ -306,7 +305,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
                             </div>
                             <div className="flex items-center flex-wrap mr-1.5">
                                 <EditableTagList r18={r18} tags={tags} />
-                                <TagsEdit tags={tags} setTags={setTags} />
+                                <TagsEdit tags={tags} setTags={setTags} r18={r18} setR18={setR18} />
                             </div>
                         </div>
                         <div className={"leading-relaxed text-justify pl-16 " + font + " " + fontSize}>
