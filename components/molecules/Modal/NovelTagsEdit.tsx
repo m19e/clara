@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useR18 } from "store/novel";
 import TagsEditor from "components/TagsEditor";
 
 type Props = {

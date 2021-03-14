@@ -7,7 +7,7 @@ import { INovelData, SelectionRangeOverride } from "types";
 import { updateNovel, deleteNovel, setUsedTags } from "lib/firebase/initFirebase";
 import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
-import { useR18, useSuggests } from "store/novel";
+import { useSuggests } from "store/novel";
 import { useFont, useFormat } from "hooks/novel";
 import Header from "foundations/ClaraHeader";
 import TitleEdit from "components/molecules/Modal/NovelTitleEdit";
