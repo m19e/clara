@@ -23,7 +23,10 @@ const NovelTitleEdit = ({ title, setTitle }: Props) => {
     };
 
     const updateTitle = () => {
-        tempTitle.trim() === "" ? null : setTitle(tempTitle.trim());
+        const trimmed = tempTitle.trim();
+        if (trimmed !== "") {
+            setTitle(trimmed);
+        }
         setShowModal(false);
     };
 
