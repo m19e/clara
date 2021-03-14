@@ -16,9 +16,7 @@ type Props = {
     ua: UserAgent;
 };
 
-const NovelEditIndex = ({ novel, used_tags, ua }: Props) => (
-    <NovelEditPage novel={novel} tags={novel.tags} r18={novel.r18} usedTags={used_tags} isMobile={ua.isMobile} />
-);
+const NovelEditIndex = ({ novel, used_tags, ua }: Props) => <NovelEditPage novel={novel} usedTags={used_tags} isMobile={ua.isMobile} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
