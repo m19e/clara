@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, WheelEvent } from "react";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { INovelDataSerializable } from "types";
@@ -81,7 +81,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
         });
     }, []);
 
-    const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: WheelEvent<HTMLElement>) => {
         if (ps.current) {
             setShow(e.deltaY < 0);
             ps.current.scrollLeft -= e.deltaY;
