@@ -38,6 +38,8 @@ const getReplacedText = (text: string): string => {
 };
 
 const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: boolean }) => {
+    const { id, title, content, tags, r18, author_id, author_uid, author_name, created_at } = novel;
+
     const ps = useRef<HTMLElement>();
     const [show, setShow] = useState(false);
     const [display, setDisplay] = useState(false);
@@ -58,12 +60,12 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
         isMobile,
     };
 
-    const contentArray = getReplacedText(novel.content)
+    const contentArray = getReplacedText(content)
         .split("\n")
         .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
 
-    const imagePath = getOgpImagePath(novel.title, novel.author_id);
-    const desc = Array.from(novel.content.split("\n").join("")).slice(0, 100).join("");
+    const imagePath = getOgpImagePath(title, author_id);
+    const desc = Array.from(content.split("\n").join("")).slice(0, 100).join("");
 
     useEffect(() => {
         if (ps.current) {
@@ -72,7 +74,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
         }
 
         auth.onAuthStateChanged((user) => {
-            if (user && user.uid === novel.author_uid) {
+            if (user && user.uid === author_uid) {
                 setIsAuthor(true);
             }
             setShow(true);
@@ -89,13 +91,13 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
     return (
         <>
             <Header
-                title={`${novel.r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
-                description={novel.r18 ? "" : desc}
-                ogTitle={`${novel.r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} | Clara`}
-                ogDescription={novel.r18 ? "" : desc}
+                title={`${r18 ? "[R18]" : ""} ${title} - ${author_name} | Clara`}
+                description={r18 ? "" : desc}
+                ogTitle={`${r18 ? "[R18]" : ""} ${title} - ${author_name} | Clara`}
+                ogDescription={r18 ? "" : desc}
                 ogImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
-                twTitle={`${novel.r18 ? "[R18]" : ""} ${novel.title}`}
-                twDescription={novel.r18 ? "" : desc}
+                twTitle={`${r18 ? "[R18]" : ""} ${title}`}
+                twDescription={r18 ? "" : desc}
                 twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
                 twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}
                 twCard="summary_large_image"
@@ -106,16 +108,16 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                         <div className="writing-v-rl" style={{ height: "75vh", minHeight: `${1.5 * 20}rem` }}>
                             <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
                                 <div className="flex flex-col">
-                                    <span className="text-sm pt-0.5 text-gray-400">{novel.created_at}</span>
-                                    <span className="text-4xl font-bold whitespace-pre-wrap mx-0.5 text-gray-800">{novel.title}</span>
+                                    <span className="text-sm pt-0.5 text-gray-400">{created_at}</span>
+                                    <span className="text-4xl font-bold whitespace-pre-wrap mx-0.5 text-gray-800">{title}</span>
                                     <div className="pt-0.5">
-                                        <Link href={`/user/${novel.author_id}`}>
+                                        <Link href={`/user/${author_id}`}>
                                             <a className="pr-1.5 border-r border-gray-400 border-opacity-0 hover:border-opacity-100">
-                                                <span className="text-xl font-semibold text-gray-600">{novel.author_name}</span>
+                                                <span className="text-xl font-semibold text-gray-600">{author_name}</span>
                                             </a>
                                         </Link>
                                     </div>
-                                    <div className={"flex items-center flex-wrap" + (novel.tags.length === 0 && !novel.r18 ? "" : " mr-4")}>
+                                    <div className={"flex items-center flex-wrap" + (tags.length === 0 && !r18 ? "" : " mr-4")}>
                                         <TagList novel={novel} />
                                     </div>
                                 </div>
@@ -133,7 +135,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                 <div className={"fixed bottom-0 w-12 mb-4 mr-2 novelView-header" + (show ? " novelView-header__show" : "")}>
                     <div className="flex-col flex-center w-full">
                         {isAuthor && (
-                            <Link href={`/novel/${novel.id}/edit`}>
+                            <Link href={`/novel/${id}/edit`}>
                                 <a>
                                     <Tooltip text="小説を編集">
                                         <svg
@@ -157,7 +159,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                         <Config viewerConfig={viewerConfig} />
                         <ShareNovelButton
                             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                                `${novel.r18 ? "[R18]" : ""} ${novel.title} - ${novel.author_name} #claranovel`
+                                `${r18 ? "[R18]" : ""} ${title} - ${author_name} #claranovel`
                             )}&url=${process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}`}
                         />
                         <TopLink />
