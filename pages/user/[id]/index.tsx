@@ -17,9 +17,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     if (!user) return { notFound: true };
     const datas = await getAllUserNovelByUID(user.uid, "desc");
     const novels: INovelDataSerializable[] = datas.map((data) => {
+        const tags = "tags" in data ? data.tags : [];
+        const r18 = "r18" in data ? data.r18 : false;
+        const created_at = createDisplayTimeFromTimestamp(data.created_at);
+        const updated_at = createDisplayTimeFromTimestamp(data.updated_at);
         const update = {
-            created_at: createDisplayTimeFromTimestamp(data.created_at),
-            updated_at: createDisplayTimeFromTimestamp(data.updated_at),
+            tags,
+            r18,
+            created_at,
+            updated_at,
         };
         const assigned = Object.assign(data, update) as INovelDataSerializable;
         return assigned;
