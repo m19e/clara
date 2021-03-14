@@ -113,7 +113,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
         router.push("/");
     };
 
-    const onMouseWheel = (e: WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: WheelEvent<HTMLElement>) => {
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
@@ -293,7 +293,7 @@ const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
             />
             <Scrollbar
                 containerRef={(ref) => (ps.current = ref)}
-                onWheel={onMouseWheel}
+                onWheel={handleWheel}
                 className={showScrollbar ? "transition-opacity opacity-100" : " opacity-0"}
             >
                 <div className="h-full flex items-center">
