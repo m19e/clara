@@ -2,9 +2,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { INovelDataSerializable } from "types";
 import { UserProfile } from "lib/firebase/initFirebase";
-import Layout from "components/organisms/Layout";
 import Header from "foundations/ClaraHeader";
-import ListTags from "../ListTags";
+import Layout from "components/organisms/Layout";
+import TagList from "components/molecules/TagList/Horizontal";
 
 const DISPLAY_NOVEL_SPAN = 5;
 const DEFAULT_CLARA_IMAGE = process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png";
@@ -115,7 +115,7 @@ const User = ({ user, novels }: Props) => {
                                                         </Link>
                                                     </div>
                                                     <div className="whitespace-pre-wrap ml-0.5 pb-3">
-                                                        <ListTags novel={novel} />
+                                                        <TagList novel={novel} />
                                                     </div>
                                                     <div className="flex justify-end items-baseline">
                                                         <p className="text-sm opacity-50">{novel.created_at}</p>
