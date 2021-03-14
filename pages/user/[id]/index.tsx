@@ -15,20 +15,20 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     const id = typeof params.id === "string" ? params.id : "";
     const user = await getUserDataByID(id);
     if (!user) return { notFound: true };
-    const novels = await getAllUserNovelByUID(user.uid, "desc");
-    const serializables: INovelDataSerializable[] = novels.map((novel) => {
+    const datas = await getAllUserNovelByUID(user.uid, "desc");
+    const novels: INovelDataSerializable[] = datas.map((data) => {
         const update = {
-            created_at: createDisplayTimeFromTimestamp(novel.created_at),
-            updated_at: createDisplayTimeFromTimestamp(novel.updated_at),
+            created_at: createDisplayTimeFromTimestamp(data.created_at),
+            updated_at: createDisplayTimeFromTimestamp(data.updated_at),
         };
-        const s = Object.assign(novel, update) as INovelDataSerializable;
-        return s;
+        const assigned = Object.assign(data, update) as INovelDataSerializable;
+        return assigned;
     });
 
     return {
         props: {
             user,
-            novels: serializables,
+            novels,
         },
     };
 };
