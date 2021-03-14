@@ -38,15 +38,15 @@ const getReplacedText = (text: string): string => {
 };
 
 const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: boolean }) => {
-    const contentArray = getReplacedText(novel.content)
-        .split("\n")
-        .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
     const ps = useRef<HTMLElement>();
-    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("text-xl");
-    const [font, setMincho, setGothic] = useFont(isMobile);
     const [show, setShow] = useState(false);
     const [display, setDisplay] = useState(false);
     const [isAuthor, setIsAuthor] = useState(false);
+
+    const [font, setMincho, setGothic] = useFont(isMobile);
+    const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("text-xl");
+    const router = useRouter();
+
     const viewerConfig = {
         fontSize,
         setFontBase,
@@ -57,7 +57,10 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
         setGothic,
         isMobile,
     };
-    const router = useRouter();
+
+    const contentArray = getReplacedText(novel.content)
+        .split("\n")
+        .map((line) => (line === "" ? { text: "　", class: "h-0 overflow-hidden" } : { text: line, class: "" }));
 
     const imagePath = getOgpImagePath(novel.title, novel.author_id);
     const desc = Array.from(novel.content.split("\n").join("")).slice(0, 100).join("");
