@@ -5,7 +5,6 @@ import { UserProfile } from "lib/firebase/initFirebase";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
 import NovelListItem from "components/molecules/NovelListItem";
-import TagList from "components/molecules/TagList/Horizontal";
 
 const DISPLAY_NOVEL_SPAN = 5;
 const DEFAULT_CLARA_IMAGE = process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/icon-128x128.png";
