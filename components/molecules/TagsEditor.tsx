@@ -39,14 +39,14 @@ const defaultRenderLayout = (tagComponents: ReactElement[], inputComponent: Reac
     </span>
 );
 
-type TagsEditorProps = {
+type Props = {
     tempTags: string[];
     setTempTags: (tags: string[]) => void;
     tempR18: boolean;
     setTempR18: (flag: boolean) => void;
 };
 
-const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: TagsEditorProps) => {
+const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: Props) => {
     const [tag, setTag] = useState("");
     const inputRef = useRef<TagsInput<any>>();
     const reg = /[^_0-9a-zA-Z\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g;
