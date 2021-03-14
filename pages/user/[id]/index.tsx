@@ -8,9 +8,7 @@ type Props = {
     novels: INovelDataSerializable[];
 };
 
-export default function UserIndex({ user, novels }: Props) {
-    return <UserPage user={user} novels={novels} />;
-}
+const UserIndex = ({ user, novels }: Props) => <UserPage user={user} novels={novels} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const id = typeof params.id === "string" ? params.id : "";
@@ -33,3 +31,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
         },
     };
 };
+
+export default UserIndex;
