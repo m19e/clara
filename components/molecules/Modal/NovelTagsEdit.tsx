@@ -7,7 +7,7 @@ type Props = {
     setTags: (tags: string[]) => void;
 };
 
-const NovelTagsEditModal = ({ tags, setTags }: Props) => {
+const NovelTagsEdit = ({ tags, setTags }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const [tempTags, setTempTags] = useState(tags);
     const [r18, setR18] = useR18();
@@ -63,4 +63,4 @@ const NovelTagsEditModal = ({ tags, setTags }: Props) => {
     );
 };
 
-export default NovelTagsEditModal;
+export default NovelTagsEdit;
