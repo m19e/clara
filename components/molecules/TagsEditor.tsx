@@ -4,7 +4,7 @@ import TagsInput from "react-tagsinput";
 import { useSuggests } from "store/novel";
 
 const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps) => {
-    let { onChange, value, ...other } = props;
+    const { onChange, value, ...other } = props;
     return (
         <AutosizeInput
             type="text"
