@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useR18 } from "store/novel";
 import TagsEditor from "components/TagsEditor";
 
-type TagsEditModalProps = {
+type Props = {
     tags: string[];
     setTags: (tags: string[]) => void;
 };
 
-const NovelTagsEditModal = ({ tags, setTags }: TagsEditModalProps) => {
+const NovelTagsEditModal = ({ tags, setTags }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const [tempTags, setTempTags] = useState(tags);
     const [r18, setR18] = useR18();
