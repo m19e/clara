@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../components/organisms/Layout";
+import Layout from "components/organisms/Layout";
 
 const NotFound = () => (
     <Layout>
