@@ -27,8 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
             created_at,
             updated_at,
         };
-        const assigned = Object.assign(data, update) as INovelDataSerializable;
-        return assigned;
+        return Object.assign(data, update);
     });
 
     return {
