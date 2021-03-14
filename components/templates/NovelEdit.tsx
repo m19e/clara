@@ -29,7 +29,7 @@ const NovelEditPage = ({ novel, usedTags, isMobile }: Props) => {
     }, []);
 
     if (validAuth) {
-        return <NovelEditor novel={novel} rootTags={novel.tags} rootR18={novel.r18} usedTags={usedTags} />;
+        return <NovelEditor novel={novel} usedTags={usedTags} />;
     } else {
         return <Loader />;
     }
