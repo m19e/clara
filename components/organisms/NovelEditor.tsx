@@ -18,15 +18,13 @@ import Confirmable from "components/molecules/Modal/Confirmable";
 
 type Props = {
     novel: INovelProp;
-    rootTags: string[];
-    rootR18: boolean;
     usedTags: {
         name: string;
         count: number;
     }[];
 };
 
-const NovelEditor = ({ novel, rootTags, rootR18, usedTags }: Props) => {
+const NovelEditor = ({ novel, usedTags }: Props) => {
     const { id, title, content, author_uid } = novel;
 
     const editorRef: RefObject<HTMLDivElement> = createRef();
