@@ -16,8 +16,8 @@ type Props = {
     ua: UserAgent;
 };
 
-const NovelEditIndex = ({ novel, tags, used_tags, r18, ua }: Props) => (
-    <NovelEditPage novel={novel} tags={tags} r18={r18} usedTags={used_tags} isMobile={ua.isMobile} />
+const NovelEditIndex = ({ novel, used_tags, ua }: Props) => (
+    <NovelEditPage novel={novel} tags={novel.tags} r18={novel.r18} usedTags={used_tags} isMobile={ua.isMobile} />
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
@@ -26,18 +26,17 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: Ge
     const n = await getNovel(novelID);
     if (!n) return { notFound: true };
     const { created_at, updated_at, ...novel } = n;
-
-    const tags = "tags" in novel ? novel.tags : [];
-    const r18 = "r18" in novel ? novel.r18 : false;
     const userData = await getUserDataByUID(novel.author_uid);
     const used_tags = "used_tags" in userData ? userData.used_tags : [];
 
+    const tags = "tags" in novel ? novel.tags : [];
+    const r18 = "r18" in novel ? novel.r18 : false;
+    const assigned = Object.assign(novel, { tags, r18 });
+
     return {
         props: {
-            novel,
-            tags,
+            novel: assigned,
             used_tags,
-            r18,
             ua,
         },
     };
