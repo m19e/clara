@@ -79,7 +79,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
         });
     }, []);
 
-    const handleMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
         if (ps.current) {
             setShow(e.deltaY < 0);
             ps.current.scrollLeft -= e.deltaY;
@@ -101,7 +101,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                 twCard="summary_large_image"
             />
             <div className="w-full h-screen flex justify-end editor-bg">
-                <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={handleMouseWheel} className={display ? "" : " opacity-0"}>
+                <Scrollbar containerRef={(ref) => (ps.current = ref)} onWheel={handleWheel} className={display ? "" : " opacity-0"}>
                     <div className="h-full flex items-center">
                         <div className="writing-v-rl" style={{ height: "75vh", minHeight: `${1.5 * 20}rem` }}>
                             <div className="h-full p-16 mx-16 gothic border-solid border-t border-b border-gray-300">
