@@ -72,8 +72,8 @@ const TagsEditor = ({ tempTags, setTempTags, tempR18, setTempR18 }: Props) => {
         setTag(t);
     };
 
-    const handleClickSuggest = (suggest: string) => {
-        inputRef.current?.addTag(suggest);
+    const handleClickSuggest = (s: string) => {
+        inputRef.current?.addTag(s);
         inputRef.current?.focus();
     };
 
