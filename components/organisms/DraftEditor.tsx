@@ -20,7 +20,7 @@ const createEditorStateWithText = (text: string): EditorState => EditorState.cre
 
 const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
 
-export default function VerticalEditor() {
+const DraftEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editorRef = useRef(null);
     const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
@@ -312,4 +312,6 @@ export default function VerticalEditor() {
             )}
         </>
     );
-}
+};
+
+export default DraftEditor;
