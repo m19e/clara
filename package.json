@@ -23,7 +23,6 @@
     "popper.js": "1.15.0",
     "postcss": "^8.1.14",
     "react": "^16.7.0",
-    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.7.0",
     "react-firebase-hooks": "^2.2.0",
     "react-input-autosize": "^3.0.0",
