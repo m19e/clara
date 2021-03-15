@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import fb from "firebase";
-import React, { useState, useRef, useEffect, createRef } from "react";
+import { useState, useRef, useEffect, createRef, RefObject, WheelEvent, KeyboardEvent } from "react";
 import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -22,7 +22,7 @@ const createTextWithEditorState = (es: EditorState): string => es.getCurrentCont
 const DraftEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editorRef = useRef(null);
-    const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
+    const wrapperRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
     const [loading, setLoading] = useState(true);
     const [isSaved, setIsSaved] = useState(true);
@@ -99,7 +99,7 @@ const DraftEditor = () => {
         setIsSaved(true);
     };
 
-    const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: WheelEvent<HTMLElement>) => {
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
@@ -121,7 +121,7 @@ const DraftEditor = () => {
         setEditorState(newEditor);
     };
 
-    const handleKeyBinding = (e: React.KeyboardEvent) => {
+    const handleKeyBinding = (e: KeyboardEvent) => {
         if (e.key === "Tab") {
             e.preventDefault();
             return null;
