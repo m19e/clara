@@ -7,6 +7,7 @@ import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
+import { SelectionRangeOverride } from "types";
 import { auth, getUserDataByUID, readDraftData, updateDraftData } from "../../lib/firebase/initFirebase";
 import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../../store/editor";
 import { useProfile } from "../../store/user";
@@ -14,14 +15,6 @@ import { useDraftID, useTitle, useContent } from "../../store/draft";
 import { useSuggests } from "../../store/novel";
 import Frame from "../EditorFrame";
 import Loader from "../Loader";
-
-type SelectionRangeOverride = {
-    anchorOffset: number;
-    focusOffset?: number;
-    anchorKey?: string;
-    focusKey?: string;
-    isBackward?: boolean;
-};
 
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
 
