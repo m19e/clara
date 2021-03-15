@@ -1,7 +1,7 @@
-import dynamic from "next/dynamic";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { useUserAgent, UserAgent } from "next-useragent";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import { useUserAgent, UserAgent } from "next-useragent";
 
 const DynamicEditor = dynamic(() => import("../../components/DraftEditor"), { ssr: false });
 
