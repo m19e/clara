@@ -3,7 +3,7 @@ import { useIsMincho, useIsShowPublishModal } from "store/editor";
 import Header from "../EditorHeader";
 import Footer from "../EditorFooter";
 
-export default function Frame() {
+const Frame = () => {
     const [isMincho] = useIsMincho();
     const [isShowModal] = useIsShowPublishModal();
     const [isTitleEdit] = useIsTitleEdit();
@@ -18,4 +18,6 @@ export default function Frame() {
             <Header />
         </div>
     );
-}
+};
+
+export default Frame;
