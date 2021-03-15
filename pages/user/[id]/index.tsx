@@ -1,36 +1,41 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import firebase from "firebase/app";
-import UserPage from "../../../components/UserPage";
-import { getAllUserNovelByUID, getUserDataByID, UserProfile, INovelDataSerializable } from "../../../lib/firebase/initFirebase";
-import { getDisplayTime } from "../../../lib/novel/tools";
+import { UserProfile, INovelDataSerializable } from "types";
+import { getAllUserNovelByUID, getUserDataByID } from "lib/firebase/initFirebase";
+import { createDisplayTimeFromTimestamp } from "lib/novel/tools";
+import UserPage from "components/templates/User";
 
-type UserIndexProps = {
+type Props = {
     user: UserProfile;
     novels: INovelDataSerializable[];
 };
 
-export default function UserIndex({ user, novels }: UserIndexProps) {
-    return <UserPage user={user} novels={novels} />;
-}
+const UserIndex = ({ user, novels }: Props) => <UserPage user={user} novels={novels} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const id = typeof params.id === "string" ? params.id : "";
     const user = await getUserDataByID(id);
     if (!user) return { notFound: true };
-    const novels = await getAllUserNovelByUID(user.uid, "desc");
-    const serializables: INovelDataSerializable[] = novels.map((novel) => {
+    const datas = await getAllUserNovelByUID(user.uid, "desc");
+    const novels: INovelDataSerializable[] = datas.map((data) => {
+        const tags = "tags" in data ? data.tags : [];
+        const r18 = "r18" in data ? data.r18 : false;
+        const created_at = createDisplayTimeFromTimestamp(data.created_at);
+        const updated_at = createDisplayTimeFromTimestamp(data.updated_at);
         const update = {
-            created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
-            updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
+            tags,
+            r18,
+            created_at,
+            updated_at,
         };
-        const s = Object.assign(novel, update) as INovelDataSerializable;
-        return s;
+        return Object.assign(data, update);
     });
 
     return {
         props: {
             user,
-            novels: serializables,
+            novels,
         },
     };
 };
+
+export default UserIndex;

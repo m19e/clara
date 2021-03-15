@@ -1,4 +1,5 @@
-import { db, getNovel, INovelProp } from "./initFirebase";
+import { INovelData, INovelProp } from "types";
+import { db } from "./initFirebase";
 
 export const PER_PAGE = 10;
 
@@ -21,6 +22,13 @@ export const saveAllNovelInfo = async () => {
 };
 
 // User
+export const getNovel = async (id: string): Promise<INovelData | null> => {
+    const snapshot = await db.collection("novel").doc(id).get();
+    if (!snapshot.exists) return null;
+    const novel = snapshot.data() as INovelData;
+    return novel;
+};
+
 export const getRootNovelIDs = async (): Promise<string[]> => {
     const rootNovelInfo = await db.collection("root").doc("novel").get();
     const { infos } = rootNovelInfo.data() as RootNovelInfo;

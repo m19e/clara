@@ -1,100 +1,58 @@
 import { useRouter } from "next/router";
-import { useState, useEffect, createRef, useRef, RefObject, useCallback } from "react";
+import { useState, useEffect, createRef, useRef, RefObject, WheelEvent, KeyboardEvent } from "react";
 import { Editor, EditorState, ContentState, SelectionState, getDefaultKeyBinding } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import { INovelProp, SelectionRangeOverride } from "types";
+import { updateNovel, deleteNovel, setUsedTags } from "lib/firebase/initFirebase";
+import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
+import { unifyUsedTags } from "lib/novel/tools";
+import { useSuggests } from "store/novel";
+import { useFont, useFormat } from "hooks/novel";
+import Header from "foundations/ClaraHeader";
+import TitleEdit from "components/molecules/Modal/NovelTitleEdit";
+import TagsEdit from "components/molecules/Modal/NovelTagsEdit";
+import NovelConfig from "components/molecules/Modal/NovelConfig";
+import EditableTagList from "components/molecules/TagList/Editable";
+import Confirmable from "components/molecules/Modal/Confirmable";
 
-import Header from "./Header";
-import NovelViewerConfig from "./NovelViewerConfig";
-import TitleEditModal from "./NovelTitleEditModal";
-import ConfirmableModal from "./ConfirmableModal";
-import Tags from "./NovelTags";
-import TagsEditModal from "./NovelTagsEditModal";
-import { updateNovel, deleteNovel, INovelData, setUsedTags } from "../lib/firebase/initFirebase";
-
-import { useR18, useSuggests } from "../store/novel";
-import { unifyUsedTags } from "../lib/novel/tools";
-import { getRootNovelInfos, setRootNovelInfos } from "../lib/firebase/novel";
-
-type SelectionRangeOverride = {
-    anchorOffset: number;
-    focusOffset?: number;
-    anchorKey?: string;
-    focusKey?: string;
-    isBackward?: boolean;
-};
-
-const useFormat = (fs: "base" | "xl" | "2xl", rfs: 16 | 20 | 24): ["base" | "xl" | "2xl", 16 | 20 | 24, () => void, () => void, () => void] => {
-    const [fontSize, setFontSize] = useState(fs);
-    const [realFontSize, setRealFontSize] = useState(rfs);
-    const setFontBase = useCallback(() => {
-        setFontSize("base");
-        setRealFontSize(16);
-    }, []);
-    const setFontXl = useCallback(() => {
-        setFontSize("xl");
-        setRealFontSize(20);
-    }, []);
-    const setFont2xl = useCallback(() => {
-        setFontSize("2xl");
-        setRealFontSize(24);
-    }, []);
-
-    return [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl];
-};
-
-const useFont = (f: "mincho" | "gothic"): ["mincho" | "gothic", () => void, () => void] => {
-    const [font, setFont] = useState(f);
-    const setMincho = useCallback(() => {
-        setFont("mincho");
-    }, []);
-    const setGothic = useCallback(() => {
-        setFont("gothic");
-    }, []);
-
-    return [font, setMincho, setGothic];
-};
-
-type NovelEditorProps = {
-    novel: INovelData;
-    rootTags: string[];
-    rootR18: boolean;
+type Props = {
+    novel: INovelProp;
     usedTags: {
         name: string;
         count: number;
     }[];
 };
 
-export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: NovelEditorProps) {
-    const { id, title, content, author_uid } = novel;
-    const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(content)));
+const NovelEditor = ({ novel, usedTags }: Props) => {
     const editorRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
+
+    const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(novel.content)));
     const [showScrollbar, setShowScrollbar] = useState(false);
     const [editorHeight, setEditorHeight] = useState(480);
     const [lineWords, setLineWords] = useState(0);
-    const [rootTitle, setRootTitle] = useState(title);
+    const [rootTitle, setRootTitle] = useState(novel.title);
+    const [tags, setTags] = useState(novel.tags);
+    const [r18, setR18] = useState(novel.r18);
 
-    const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("xl", 20);
-    const [font, setMincho, setGothic] = useFont("mincho");
+    const [fontSize, realFontSize, setFontBase, setFontXl, setFont2xl] = useFormat("text-xl", 20);
+    const [font, setMincho, setGothic] = useFont(false);
+    const [suggests, setSuggests] = useSuggests();
+
+    const router = useRouter();
+
     const viewerConfig = {
         fontSize,
-        toggleFontSmall: setFontBase,
-        toggleFontMedium: setFontXl,
-        toggleFontLarge: setFont2xl,
+        setFontBase,
+        setFontXl,
+        setFont2xl,
         font,
         setMincho,
         setGothic,
     };
 
-    const [r18, setR18] = useR18();
-    const [tags, setTags] = useState(rootTags);
-    const [suggests, setSuggests] = useSuggests();
-
-    const router = useRouter();
-
     useEffect(() => {
-        setR18(rootR18);
         setSuggests(usedTags);
     }, []);
 
@@ -124,9 +82,9 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
 
     const confirmUpdate = async () => {
         const text = editorState.getCurrentContent().getPlainText();
-        await updateNovel(id, rootTitle, text, tags, r18);
-        const newUsedTags = unifyUsedTags(suggests, rootTags, tags);
-        await setUsedTags(author_uid, newUsedTags);
+        await updateNovel(novel.id, rootTitle, text, tags, r18);
+        const newUsedTags = unifyUsedTags(suggests, novel.tags, tags);
+        await setUsedTags(novel.author_uid, newUsedTags);
         // update novel info
         const infos = await getRootNovelInfos();
         const targetIndex = infos.findIndex((info) => info.id === novel.id);
@@ -134,13 +92,13 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
             const udpated = [].concat(infos.slice(0, targetIndex), [Object.assign(infos[targetIndex], { tags })], infos.slice(targetIndex + 1));
             await setRootNovelInfos(udpated);
         }
-        router.push(`/novel/${id}`);
+        router.push(`/novel/${novel.id}`);
     };
 
     const confirmDelete = async () => {
-        await deleteNovel(id);
-        const newUsedTags = unifyUsedTags(suggests, rootTags, []);
-        await setUsedTags(author_uid, newUsedTags);
+        await deleteNovel(novel.id);
+        const newUsedTags = unifyUsedTags(suggests, novel.tags, []);
+        await setUsedTags(novel.author_uid, newUsedTags);
         // delete novel info
         const infos = await getRootNovelInfos();
         const targetIndex = infos.findIndex((info) => info.id === novel.id);
@@ -151,7 +109,7 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
         router.push("/");
     };
 
-    const onMouseWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: WheelEvent<HTMLElement>) => {
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
@@ -173,7 +131,7 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
         setEditorState(newEditor);
     };
 
-    const handleKeyBinding = (e: React.KeyboardEvent) => {
+    const handleKeyBinding = (e: KeyboardEvent) => {
         if (e.key === "Tab") {
             e.preventDefault();
             return null;
@@ -312,8 +270,6 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
     };
 
     const handleEditorChange = (es: EditorState) => {
-        // 編集中blockだけチェックする
-        // 一旦NovelViewerだけ対応する
         setEditorState(es);
     };
 
@@ -333,7 +289,7 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
             />
             <Scrollbar
                 containerRef={(ref) => (ps.current = ref)}
-                onWheel={onMouseWheel}
+                onWheel={handleWheel}
                 className={showScrollbar ? "transition-opacity opacity-100" : " opacity-0"}
             >
                 <div className="h-full flex items-center">
@@ -342,69 +298,54 @@ export default function NovelEditor({ novel, rootTags, rootR18, usedTags }: Nove
                             <div className="flex items-center flex-wrap">
                                 <span className="text-4xl font-bold whitespace-pre-wrap opacity-75">{rootTitle}</span>
                                 <span className="mt-2 w-8 h-8 rounded-full shadow-md flex-center cursor-pointer">
-                                    <TitleEditModal title={rootTitle} setTitle={setRootTitle} />
+                                    <TitleEdit title={rootTitle} setTitle={setRootTitle} />
                                 </span>
                             </div>
                             <div className="flex items-center flex-wrap mr-1.5">
-                                {tags.length === 0 && (
-                                    <span className="w-4 h-4 mb-1 pl-1.5 flex-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                                            />
-                                        </svg>
-                                    </span>
-                                )}
-                                {r18 && (
-                                    <span className="text-sm font-semibold text-red-500 pb-1.5 ml-1" style={{ fontFamily: "sans-serif" }}>
-                                        <span className="tracking-tighter">R18</span>
-                                    </span>
-                                )}
-                                <Tags tags={tags} />
-                                <TagsEditModal tags={tags} setTags={setTags} />
+                                <EditableTagList r18={r18} tags={tags} />
+                                <TagsEdit tags={tags} setTags={setTags} r18={r18} setR18={setR18} />
                             </div>
                         </div>
-                        <div className={"leading-relaxed text-justify pl-16 " + font + " text-" + fontSize}>
+                        <div className={"leading-relaxed text-justify pl-16 " + font + " " + fontSize}>
                             <Editor editorState={editorState} onChange={handleEditorChange} keyBindingFn={handleKeyBinding} />
                         </div>
                     </div>
                 </div>
             </Scrollbar>
-            <div className={"fixed bottom-0 w-12 mb-4 mr-2 novelView-header__show"}>
+            <div className="fixed bottom-0 w-12 mb-4 mr-2 novelView-header__show">
                 <div className="flex-col flex-center w-full">
-                    <ConfirmableModal
+                    <Confirmable
                         popperText="保存"
                         d="M5 13l4 4L19 7"
                         message="編集内容を保存しますか？"
                         confirmText="保存する"
                         cancelText="閉じる"
-                        confirmFunc={confirmUpdate}
+                        onConfirm={confirmUpdate}
                     />
-                    <ConfirmableModal
+                    <Confirmable
                         popperText="戻る"
                         d="M6 18L18 6M6 6l12 12"
                         message="小説ページに戻りますか？"
                         confirmText="戻る"
                         cancelText="閉じる"
-                        back
-                        novelID={id}
+                        link
+                        novelID={novel.id}
                     />
-                    <NovelViewerConfig viewerConfig={viewerConfig} />
+                    <NovelConfig viewerConfig={viewerConfig} />
                     <div className="mt-8">
-                        <ConfirmableModal
+                        <Confirmable
                             popperText="削除"
                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                             message="この小説を削除しますか？"
                             confirmText="削除する"
                             cancelText="閉じる"
-                            confirmFunc={confirmDelete}
+                            onConfirm={confirmDelete}
                         />
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default NovelEditor;

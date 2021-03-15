@@ -1,11 +1,15 @@
 import Link from "next/link";
-import { useEffect } from "react";
-import JumpEditorButton from "./JumpEditorButton";
-import UserMenu from "./UserMenu";
-import { auth, getUserDataByUID } from "../lib/firebase/initFirebase";
-import { useProfile } from "../store/user";
+import { ReactNode, useEffect } from "react";
+import { useProfile } from "store/user";
+import { auth, getUserDataByUID } from "lib/firebase/initFirebase";
+import JumpEditorButton from "components/molecules/Button/JumpEditor";
+import UserMenu from "components/molecules/UserMenu";
 
-export default function Layout({ children }) {
+type Props = {
+    children: ReactNode;
+};
+
+const Layout = ({ children }: Props) => {
     const [profile, setProfile] = useProfile();
 
     useEffect(() => {
@@ -46,4 +50,6 @@ export default function Layout({ children }) {
             {children}
         </div>
     );
-}
+};
+
+export default Layout;

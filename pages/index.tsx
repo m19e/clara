@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
-import { getNovelsByIDs, getRootNovelIDs, PER_PAGE } from "../lib/firebase/novel";
-import TopPage from "../components/top/Page";
-import { INovelProp } from "../lib/firebase/initFirebase";
+import { INovelProp } from "types";
+import { getNovelsByIDs, getRootNovelIDs, PER_PAGE } from "lib/firebase/novel";
+import TopPage from "components/templates/Top";
 
-const Top = ({ novels, pageCount }: { novels: INovelProp[]; pageCount: number }) => <TopPage novels={novels} pageCount={pageCount} />;
+const TopIndex = ({ novels, pageCount }: { novels: INovelProp[]; pageCount: number }) => <TopPage novels={novels} pageCount={pageCount} />;
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const novelIDs = await getRootNovelIDs();
@@ -18,4 +18,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
 };
 
-export default Top;
+export default TopIndex;

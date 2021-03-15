@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { INovelProp } from "../../../lib/firebase/initFirebase";
-import { getNovelsByTagName } from "../../../lib/firebase/novel";
-import TagPage from "../../../components/tag/Page";
+import { INovelProp } from "types";
+import { getNovelsByTagName } from "lib/firebase/novel";
+import TagPage from "components/templates/Tag";
 
 type Props = {
     tag: string;

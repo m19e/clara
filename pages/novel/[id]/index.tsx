@@ -1,29 +1,41 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useUserAgent, UserAgent } from "next-useragent";
-import firebase from "firebase/app";
-import NovelViewer from "../../../components/NovelViewer";
-import { INovelDataSerializable, getNovel } from "../../../lib/firebase/initFirebase";
-import { getDisplayTime } from "../../../lib/novel/tools";
+import { INovelDataSerializable } from "types";
+import { getNovel } from "lib/firebase/novel";
+import { createDisplayTimeFromTimestamp } from "lib/novel/tools";
+import NovelPage from "components/templates/Novel";
 
-export default function NovelIndex({ novel, ua }: { novel: INovelDataSerializable; ua: UserAgent }) {
-    return <NovelViewer novel={novel} isMobile={ua.isMobile} />;
-}
+type Props = {
+    novel: INovelDataSerializable;
+    ua: UserAgent;
+};
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
+const NovelIndex = ({ novel, ua }: Props) => <NovelPage novel={novel} isMobile={ua.isMobile} />;
+
+export const getServerSideProps: GetServerSideProps = async ({ req, params }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
     const id = typeof params.id === "string" ? params.id : "";
-    const novel = await getNovel(id);
-    if (!novel) return { notFound: true };
+    const n = await getNovel(id);
+    if (!n) return { notFound: true };
+
+    const tags = "tags" in n ? n.tags : [];
+    const r18 = "r18" in n ? n.r18 : false;
+    const created_at = createDisplayTimeFromTimestamp(n.created_at);
+    const updated_at = createDisplayTimeFromTimestamp(n.updated_at);
     const update = {
-        created_at: getDisplayTime((novel.created_at as firebase.firestore.Timestamp).toMillis()),
-        updated_at: getDisplayTime((novel.updated_at as firebase.firestore.Timestamp).toMillis()),
+        tags,
+        r18,
+        created_at,
+        updated_at,
     };
-    const serializable: INovelDataSerializable = Object.assign(novel, update);
+    const novel: INovelDataSerializable = Object.assign(n, update);
 
     return {
         props: {
-            novel: serializable,
+            novel,
             ua,
         },
     };
 };
+
+export default NovelIndex;

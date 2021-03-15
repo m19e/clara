@@ -2,6 +2,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+import { INovelProp, INovelData, UserProfile } from "types";
+
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -27,7 +29,7 @@ export async function loginWithTwitter() {
         const res = await auth.signInWithPopup(provider);
         const userDoc = await db.collection("user").doc(res.user.uid).get();
         if (userDoc.exists) {
-            const { displayName, userID, uid } = userDoc.data() as { [key: string]: string };
+            const { displayName, userID, uid } = userDoc.data();
             const { name, screen_name, profile_image_url_https } = res.additionalUserInfo.profile as UserTwitterProfile;
             if (displayName !== name || userID !== screen_name) {
                 const allUserNovel = await db.collection("novel").where("author_uid", "==", uid).get();
@@ -80,13 +82,6 @@ export async function logout() {
         console.error("login failed", error);
     }
 }
-
-export type UserProfile = {
-    uid: string;
-    displayName: string;
-    photoURL: string;
-    userID: string;
-};
 
 export async function getUserDataByUID(uid: string) {
     const query = db.collection("user").doc(uid);
@@ -158,27 +153,6 @@ export const setUsedTags = async (uid: string, used_tags: { name: string; count:
     await userRef.set({ used_tags }, { merge: true });
 };
 
-export interface INovelProp {
-    id: string;
-    title: string;
-    content: string;
-    tags: string[];
-    r18: boolean;
-    author_id: string;
-    author_uid: string;
-    author_name: string;
-}
-
-export interface INovelData extends INovelProp {
-    created_at: firebase.firestore.FieldValue;
-    updated_at: firebase.firestore.FieldValue;
-}
-
-export interface INovelDataSerializable extends INovelProp {
-    created_at?: string;
-    updated_at?: string;
-}
-
 export async function publishNovel(novel: INovelProp) {
     const novelData: INovelData = Object.assign(novel, {
         created_at: firebase.firestore.FieldValue.serverTimestamp(),
@@ -205,13 +179,6 @@ export async function getNewNovels(millis: number): Promise<INovelProp[]> {
     if (novels.size === 0) return [];
     const novelsData = novels.docs.map((doc) => doc.data() as INovelProp);
     return novelsData;
-}
-
-export async function getNovel(id: string): Promise<INovelData | null> {
-    const snapshot = await db.collection("novel").doc(id).get();
-    if (!snapshot.exists) return null;
-    const novel = snapshot.data() as INovelData;
-    return novel;
 }
 
 export async function updateNovel(id: string, title: string, content: string, tags: string[], r18: boolean) {

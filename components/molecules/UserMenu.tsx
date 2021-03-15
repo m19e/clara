@@ -1,14 +1,36 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Popper from "popper.js";
-import { loginWithTwitter, logout } from "../lib/firebase/initFirebase";
+import { loginWithTwitter, logout } from "../../lib/firebase/initFirebase";
 
 type User = {
     photoURL: string;
     userID: string;
 };
 
-export default function UserMenu({ user }: { user: User | null }) {
+type Props = {
+    user: User | null;
+};
+
+const LoginButton = ({ onClick }: { onClick: () => void }) => (
+    <span
+        className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"}
+        onClick={async () => await onClick()}
+    >
+        ログイン
+    </span>
+);
+
+const LogoutButton = ({ onClick }: { onClick: () => void }) => (
+    <span
+        className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"}
+        onClick={async () => await onClick()}
+    >
+        ログアウト
+    </span>
+);
+
+const UserMenu = ({ user }: Props) => {
     const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
     const btnDropdownRef = useRef<HTMLDivElement>();
     const popoverDropdownRef = useRef();
@@ -25,14 +47,6 @@ export default function UserMenu({ user }: { user: User | null }) {
     };
     const closeDropdownPopover = () => {
         setDropdownPopoverShow(false);
-    };
-
-    const handleLogInOut = async () => {
-        if (user) {
-            await logout();
-        } else {
-            await loginWithTwitter();
-        }
     };
 
     return (
@@ -74,26 +88,26 @@ export default function UserMenu({ user }: { user: User | null }) {
                     <div
                         ref={popoverDropdownRef}
                         className={
-                            (dropdownPopoverShow ? "block " : "hidden ") + "text-base w-48 z-50 list-none text-left rounded shadow-md editor-bg mt-5 -ml-36"
+                            (dropdownPopoverShow ? "block " : "hidden ") +
+                            "text-base w-48 z-50 list-none text-left rounded overflow-hidden shadow-md editor-bg mt-5 -ml-36"
                         }
                     >
-                        {user && (
+                        {user ? (
                             <>
                                 <Link href={`/user/${user.userID}`}>
-                                    <a className={"text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-100"}>マイページ</a>
+                                    <a className="text-sm p-4 font-normal block w-full whitespace-no-wrap transition-colors hover:bg-gray-100">マイページ</a>
                                 </Link>
                                 <div className="h-0 border border-solid border-t-0 border-gray-300" />
+                                <LogoutButton onClick={logout} />
                             </>
+                        ) : (
+                            <LoginButton onClick={loginWithTwitter} />
                         )}
-                        <div
-                            className={"text-sm p-4 font-normal block w-full whitespace-no-wrap cursor-pointer transition-colors hover:bg-gray-100"}
-                            onClick={() => handleLogInOut()}
-                        >
-                            {user ? "ログアウト" : "ログイン"}
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default UserMenu;
