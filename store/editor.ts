@@ -25,6 +25,11 @@ export const realFontSizeState = selector({
     get: ({ get }) => (get(pureFontSizeState) + 5) * 2,
 });
 
+export const getRealFontSize = (): number => {
+    const rfs = useRecoilValue(realFontSizeState);
+    return rfs;
+};
+
 export const useFontSize = (): [number, () => void, () => void] => {
     const [fSize, setFontSize] = useRecoilState(pureFontSizeState);
     const incFontSize = useCallback(() => {
