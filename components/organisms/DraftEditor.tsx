@@ -9,7 +9,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { SelectionRangeOverride } from "types";
 import { auth, getUserDataByUID, readDraftData, updateDraftData } from "../../lib/firebase/initFirebase";
-import { realFontSizeState, wrapperHeightState, editorHeightState, useIsMincho, useFormat, useLineWords } from "../../store/editor";
+import { wrapperHeightState, editorHeightState, useIsMincho, getRealFontSize, useFormat, useLineWords } from "../../store/editor";
 import { useProfile } from "../../store/user";
 import { useDraftID, useTitle, useContent } from "../../store/draft";
 import { useSuggests } from "../../store/novel";
@@ -31,7 +31,7 @@ const DraftEditor = () => {
     const router = useRouter();
 
     const setWrapperHeight = useSetRecoilState(wrapperHeightState);
-    const fs = useRecoilValue(realFontSizeState);
+    const fs = getRealFontSize();
     const eh = useRecoilValue(editorHeightState);
     const [isMincho] = useIsMincho();
     const [userProfile, setUserProfile] = useProfile();
