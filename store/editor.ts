@@ -89,6 +89,11 @@ export const editorHeightState = selector({
     get: ({ get }) => get(realFontSizeState) * get(lineWordsState),
 });
 
+export const getEditorHeight = (): number => {
+    const eh = useRecoilValue(editorHeightState);
+    return eh;
+};
+
 const isDisabledIncFSState = selector({
     key: "editor/isDisabledIncFS",
     get: ({ get }) => {
