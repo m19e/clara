@@ -32,6 +32,7 @@
     "@types/draft-js": "^0.10.44",
     "@types/firebase": "^3.2.1",
     "@types/node": "^14.14.10",
+    "@types/react": "^17.0.3",
     "@types/react-input-autosize": "^2.2.0",
     "@types/react-paginate": "^6.2.1",
     "@types/react-tagsinput": "^3.19.7",
