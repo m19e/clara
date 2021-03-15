@@ -84,6 +84,11 @@ export const wrapperHeightState = atom({
     default: 480,
 });
 
+export const useWrapperHeight = (): [number, (wh: number) => void] => {
+    const [wh, setWh] = useRecoilState(wrapperHeightState);
+    return [wh, setWh];
+};
+
 export const editorHeightState = selector({
     key: "editor/editorHeight",
     get: ({ get }) => get(realFontSizeState) * get(lineWordsState),
