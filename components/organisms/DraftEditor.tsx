@@ -85,14 +85,14 @@ const DraftEditor = () => {
         // focusEditor();
     };
 
-    const readDraft = async (uid, did: string) => {
+    const readDraft = async (uid: string, did: string) => {
         const { title, content } = await readDraftData(uid, did);
         const es = createEditorStateWithText(content);
         setTitle(title);
         handleEditorStateChange(es);
     };
 
-    const updateDraft = async (uid, did: string, es: EditorState) => {
+    const updateDraft = async (uid: string, did: string, es: EditorState) => {
         const content = createTextWithEditorState(es);
         await updateDraftData(did, uid, content);
         setIsSaved(true);
