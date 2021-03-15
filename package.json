@@ -33,7 +33,6 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-tagsinput": "^3.19.0",
     "recoil": "^0.1.2",
-    "swr": "^0.3.9",
     "tailwindcss": "^2.0.1"
   },
   "devDependencies": {
