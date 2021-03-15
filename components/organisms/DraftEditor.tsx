@@ -13,7 +13,7 @@ import { useSuggests } from "store/novel";
 import { useProfile } from "store/user";
 
 import Loader from "components/atoms/Loader";
-import Frame from "../EditorFrame";
+import Frame from "components/organisms/EditorFrame";
 
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
 
