@@ -12,7 +12,6 @@
   "dependencies": {
     "@types/draft-js": "^0.10.44",
     "@types/react": "^17.0.0",
-    "@types/react-custom-scrollbars": "^4.0.7",
     "autoprefixer": "^10.0.4",
     "canvas": "^2.6.1",
     "dotenv": "^8.2.0",
