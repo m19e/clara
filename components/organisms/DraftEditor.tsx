@@ -6,7 +6,7 @@ import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { SelectionRangeOverride } from "types";
+import { FirebaseUser, SelectionRangeOverride } from "types";
 import { auth, getUserDataByUID, readDraftData, updateDraftData } from "lib/firebase/initFirebase";
 import { getEditorHeight, getRealFontSize, useWrapperHeight, useIsMincho, useLineWords, useFormat } from "store/editor";
 import { useDraftID, useTitle, useContent } from "store/draft";
@@ -69,7 +69,7 @@ const DraftEditor = () => {
         return () => clearTimeout(timer);
     }, [editorState]);
 
-    const initEditor = async (user: fb.User) => {
+    const initEditor = async (user: FirebaseUser) => {
         const { uid, displayName, photoURL } = user;
         const userData = await getUserDataByUID(uid);
         const used_tags = "used_tags" in userData ? userData.used_tags : [];
