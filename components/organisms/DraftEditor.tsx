@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import fb from "firebase";
 import React, { useState, useRef, useEffect, createRef } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
