@@ -10,7 +10,6 @@
     "now-build": "cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && yarn build"
   },
   "dependencies": {
-    "@types/react": "^17.0.0",
     "autoprefixer": "^10.0.4",
     "canvas": "^2.6.1",
     "dotenv": "^8.2.0",
