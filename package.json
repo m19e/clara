@@ -24,7 +24,6 @@
     "postcss": "^8.1.14",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-firebase-hooks": "^2.2.0",
     "react-input-autosize": "^3.0.0",
     "react-loading-skeleton": "^2.1.1",
     "react-paginate": "^7.1.0",
