@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
-const DraftEditor = dynamic(() => import("components/DraftEditor"), { ssr: false });
+const DraftEditor = dynamic(() => import("components/organisms/DraftEditor"), { ssr: false });
 
 type Props = {
     isMobile: boolean;
