@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import fb from "firebase";
 import { useState, useRef, useEffect, createRef, RefObject, WheelEvent, KeyboardEvent } from "react";
 import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
