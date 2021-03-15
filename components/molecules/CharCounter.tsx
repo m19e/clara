@@ -1,11 +1,11 @@
 import { EditorState } from "draft-js";
 import { getTextCharCount } from "lib/novel/tools";
 
-type CharCounterProps = {
+type Props = {
     editorState: EditorState;
 };
 
-const CharCounter = ({ editorState }: CharCounterProps) => {
+const CharCounter = ({ editorState }: Props) => {
     const count = getEditorStateCharCount(editorState);
     return <span className="mincho opacity-50">{count}字</span>;
 };
