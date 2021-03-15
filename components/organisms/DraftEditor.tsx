@@ -9,9 +9,9 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import { SelectionRangeOverride } from "types";
 import { auth, getUserDataByUID, readDraftData, updateDraftData } from "lib/firebase/initFirebase";
 import { getEditorHeight, getRealFontSize, useWrapperHeight, useIsMincho, useLineWords, useFormat } from "store/editor";
-import { useProfile } from "store/user";
 import { useDraftID, useTitle, useContent } from "store/draft";
 import { useSuggests } from "store/novel";
+import { useProfile } from "store/user";
 import Frame from "../EditorFrame";
 import Loader from "../Loader";
 
