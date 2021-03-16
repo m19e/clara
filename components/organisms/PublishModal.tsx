@@ -10,18 +10,18 @@ import { unifyUsedTags } from "lib/novel/tools";
 import TagsEditor from "components/molecules/TagsEditor";
 
 export default function PublishModal() {
-    const [showModal, toggleShowModal] = useIsShowPublishModal();
     const [id] = useDraftID();
     const [title] = useTitle();
     const [content] = useContent();
     const [profile] = useProfile();
-    const router = useRouter();
+    const [suggests] = useSuggests();
+    const [showModal, toggleShowModal] = useIsShowPublishModal();
+
+    const [tags, setTags] = useState([]);
+    const [r18, setR18] = useState(false);
     const [inTask, setInTask] = useState(false);
 
-    const [tags, setTags] = useState<string[]>([]);
-    const [r18, setR18] = useState(false);
-
-    const [suggests] = useSuggests();
+    const router = useRouter();
 
     const publish = async () => {
         if (inTask) return;
