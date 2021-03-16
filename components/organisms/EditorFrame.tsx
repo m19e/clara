@@ -19,7 +19,7 @@ const Frame = ({ loading }: Props) => {
                 (isMincho ? " mincho" : " gothic")
             }
         >
-            <Header />
+            <Header loading={loading} />
             <Footer />
         </div>
     );
