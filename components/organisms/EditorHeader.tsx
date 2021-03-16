@@ -6,7 +6,7 @@ import { updateDraftTitle } from "lib/firebase/initFirebase";
 import NextHeader from "foundations/ClaraHeader";
 import PublishModal from "../PubishModal";
 
-export default function Header() {
+const Header = () => {
     const [title, setTitle] = useTitle();
     const [draftID] = useDraftID();
     const [profile] = useProfile();
@@ -127,4 +127,6 @@ export default function Header() {
             </div>
         </div>
     );
-}
+};
+
+export default Header;
