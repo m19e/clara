@@ -4,7 +4,7 @@ import { useTitle, useDraftID, useIsTitleEdit } from "store/draft";
 import { useProfile } from "store/user";
 import { updateDraftTitle } from "lib/firebase/initFirebase";
 import ClaraHeader from "foundations/ClaraHeader";
-import PublishModal from "../PubishModal";
+import PublishModal from "components/organisms/PublishModal";
 
 const Header = () => {
     const [title, setTitle] = useTitle();
