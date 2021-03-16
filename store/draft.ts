@@ -5,7 +5,7 @@ export const titleState = atom({
     default: "無題",
 });
 
-export const useTitle = (): [string, (string) => void] => {
+export const useTitle = (): [string, (s: string) => void] => {
     const [title, setTitle] = useRecoilState(titleState);
     return [title, setTitle];
 };
@@ -15,7 +15,7 @@ export const draftIDState = atom<string | null>({
     default: null,
 });
 
-export const useDraftID = (): [string, (string) => void] => {
+export const useDraftID = (): [string, (s: string) => void] => {
     const [draftID, setDraftID] = useRecoilState(draftIDState);
     return [draftID, setDraftID];
 };
@@ -25,7 +25,7 @@ export const draftContentState = atom({
     default: "",
 });
 
-export const useContent = (): [string, (string) => void] => {
+export const useContent = (): [string, (s: string) => void] => {
     const [content, setContent] = useRecoilState(draftContentState);
     return [content, setContent];
 };
@@ -35,7 +35,7 @@ export const isTitleEditState = atom({
     default: false,
 });
 
-export const useIsTitleEdit = (): [boolean, (boolean) => void] => {
+export const useIsTitleEdit = (): [boolean, (b: boolean) => void] => {
     const [isTitleEdit, setIsTitleEdit] = useRecoilState(isTitleEditState);
     return [isTitleEdit, setIsTitleEdit];
 };
