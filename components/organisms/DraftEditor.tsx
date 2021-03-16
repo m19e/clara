@@ -304,9 +304,9 @@ const DraftEditor = () => {
                             </div>
                         </div>
                     </div>
-                    <Frame />
                 </>
             )}
+            <Frame loading={loading} />
         </>
     );
 };
