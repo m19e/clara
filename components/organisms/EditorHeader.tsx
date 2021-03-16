@@ -11,13 +11,13 @@ const Header = () => {
     const [draftID] = useDraftID();
     const [profile] = useProfile();
     const [temptitle, setTempTitle] = useState("");
-    const [isTitleEdit, setIsTitleEdit] = useIsTitleEdit();
+    const [isTitleEdit, toggleIsTitleEdit] = useIsTitleEdit();
     const editTitleRef = useRef(null);
 
     const toggleTitleEdit = async () => {
         if (!isTitleEdit) {
             setTempTitle(title);
-            setIsTitleEdit((prev) => !prev);
+            toggleIsTitleEdit();
         } else {
             const tempTitleTrimmed = temptitle.trim();
             if (tempTitleTrimmed !== title && tempTitleTrimmed !== "") {
@@ -25,7 +25,7 @@ const Header = () => {
                 await updateDraftTitle(profile.uid, draftID, tempTitleTrimmed);
             }
             setTimeout(() => {
-                setIsTitleEdit((prev) => !prev);
+                toggleIsTitleEdit();
             }, 50);
         }
     };
