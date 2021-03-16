@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import { updateFormat } from "lib/firebase/initFirebase";
 import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "store/editor";
 import { useProfile } from "store/user";
-import { updateFormat } from "lib/firebase/initFirebase";
 
 const Footer = () => {
     const [isMincho, toggleFont] = useIsMincho();
