@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useTitle, useDraftID, useIsTitleEdit } from "store/draft";
 import { useProfile } from "store/user";
 import { updateDraftTitle } from "lib/firebase/initFirebase";
-import NextHeader from "foundations/ClaraHeader";
+import ClaraHeader from "foundations/ClaraHeader";
 import PublishModal from "../PubishModal";
 
 const Header = () => {
@@ -54,7 +54,7 @@ const Header = () => {
 
     return (
         <div className="shadow-sm editor-bg fixed top-0 w-full flex-center">
-            <NextHeader
+            <ClaraHeader
                 title={title + " | Clara"}
                 description={"Clara(クララ)は縦書き小説が執筆・閲覧できるサービスです。"}
                 ogTitle={"Clara"}
