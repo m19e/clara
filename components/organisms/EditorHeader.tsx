@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, FormEvent, ChangeEvent } from "react";
 import { useTitle, useDraftID, useIsTitleEdit } from "store/draft";
 import { useProfile } from "store/user";
 import { updateDraftTitle } from "lib/firebase/initFirebase";
@@ -30,12 +30,12 @@ const Header = () => {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         toggleTitleEdit();
     };
 
-    const handleTempTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTempTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const t = e.currentTarget.value;
         const arrayTitle = Array.from(t);
         const charCount = arrayTitle.length;
