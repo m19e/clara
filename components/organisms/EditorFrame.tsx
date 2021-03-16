@@ -20,7 +20,7 @@ const Frame = ({ loading }: Props) => {
             }
         >
             <Header loading={loading} />
-            <Footer />
+            <Footer loading={loading} />
         </div>
     );
 };
