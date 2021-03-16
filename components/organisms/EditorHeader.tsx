@@ -7,14 +7,20 @@ import ClaraHeader from "foundations/ClaraHeader";
 import PublishModal from "components/organisms/PublishModal";
 
 const Header = () => {
-    const [title, setTitle] = useTitle();
     const [draftID] = useDraftID();
     const [profile] = useProfile();
+    const [title, setTitle] = useTitle();
     const [temptitle, setTempTitle] = useState("");
     const [isTitleEdit, toggleIsTitleEdit] = useIsTitleEdit();
     const editTitleRef = useRef(null);
 
-    const toggleTitleEdit = async () => {
+    useEffect(() => {
+        if (isTitleEdit) {
+            editTitleRef.current.focus();
+        }
+    }, [isTitleEdit]);
+
+    const handleToggle = async () => {
         if (!isTitleEdit) {
             setTempTitle(title);
             toggleIsTitleEdit();
@@ -32,7 +38,7 @@ const Header = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        toggleTitleEdit();
+        handleToggle();
     };
 
     const handleTempTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,12 +51,6 @@ const Header = () => {
             setTempTitle(arrayTitle.slice(0, 50).join(""));
         }
     };
-
-    useEffect(() => {
-        if (isTitleEdit) {
-            editTitleRef.current.focus();
-        }
-    }, [isTitleEdit]);
 
     return (
         <div className="shadow-sm editor-bg fixed top-0 w-full flex-center">
@@ -87,7 +87,7 @@ const Header = () => {
                                 ref={editTitleRef}
                                 value={temptitle}
                                 onChange={handleTempTitleChange}
-                                onBlur={toggleTitleEdit}
+                                onBlur={handleToggle}
                                 onKeyDown={(e) => {
                                     if (e.key === "Tab") e.preventDefault();
                                 }}
@@ -98,7 +98,7 @@ const Header = () => {
                         <>
                             <div className="w-6"></div>
                             <p className="text-gray-900 whitespace-pre mx-1">{title}</p>
-                            <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-60" onClick={toggleTitleEdit}>
+                            <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-60" onClick={handleToggle}>
                                 <svg
                                     className="w-4 h-4 opacity-50 hover:opacity-100"
                                     xmlns="http://www.w3.org/2000/svg"
