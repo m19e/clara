@@ -3,6 +3,7 @@ import { updateFormat } from "lib/firebase/initFirebase";
 import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "store/editor";
 import { useProfile } from "store/user";
 
+// TODO: Chevron mogule
 const Footer = () => {
     const [isMincho, toggleFont] = useIsMincho();
     const [fontSize, incFontSize, decFontSize] = useFontSize();
