@@ -3,7 +3,7 @@ import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "store/edi
 import { useProfile } from "store/user";
 import { updateFormat } from "lib/firebase/initFirebase";
 
-export default function Footer() {
+const Footer = () => {
     const [isMincho, toggleFont] = useIsMincho();
     const [fontSize, incFontSize, decFontSize] = useFontSize();
     const [lineWords, incLineWords, decLineWords] = useLineWords();
@@ -109,4 +109,6 @@ export default function Footer() {
             </div>
         </div>
     );
-}
+};
+
+export default Footer;
