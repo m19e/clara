@@ -9,7 +9,7 @@ import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
 import TagsEditor from "components/molecules/TagsEditor";
 
-export default function PublishModal() {
+const PublishModal = () => {
     const [id] = useDraftID();
     const [title] = useTitle();
     const [content] = useContent();
@@ -97,4 +97,6 @@ export default function PublishModal() {
             )}
         </>
     );
-}
+};
+
+export default PublishModal;
