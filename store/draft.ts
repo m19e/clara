@@ -1,4 +1,5 @@
 import { atom, useRecoilState } from "recoil";
+import { useCallback } from "react";
 
 export const titleState = atom({
     key: "draft/title",
@@ -35,7 +36,10 @@ export const isTitleEditState = atom({
     default: false,
 });
 
-export const useIsTitleEdit = (): [boolean, (b: boolean) => void] => {
+export const useIsTitleEdit = (): [boolean, () => void] => {
     const [isTitleEdit, setIsTitleEdit] = useRecoilState(isTitleEditState);
-    return [isTitleEdit, setIsTitleEdit];
+    const toggleIsTitleEdit = useCallback(() => {
+        setIsTitleEdit((prev) => !prev);
+    }, []);
+    return [isTitleEdit, toggleIsTitleEdit];
 };
