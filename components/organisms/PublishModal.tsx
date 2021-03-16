@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { publishNovel, createDraftData, setUsedTags } from "lib/firebase/initFirebase";
+import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
+import { unifyUsedTags } from "lib/novel/tools";
 import { useDraftID, useTitle, useContent } from "store/draft";
 import { useIsShowPublishModal } from "store/editor";
 import { useSuggests } from "store/novel";
 import { useProfile } from "store/user";
-import { publishNovel, createDraftData, setUsedTags } from "lib/firebase/initFirebase";
-import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
-import { unifyUsedTags } from "lib/novel/tools";
 import TagsEditor from "components/molecules/TagsEditor";
 
 const PublishModal = () => {
