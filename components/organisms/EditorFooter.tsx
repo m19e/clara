@@ -7,7 +7,7 @@ type Props = {
     loading: boolean;
 };
 
-// TODO: Chevron mogule
+// TODO: Chevron module
 const Footer = ({ loading }: Props) => {
     const [isMincho, toggleFont] = useIsMincho();
     const [fontSize, incFontSize, decFontSize] = useFontSize();
