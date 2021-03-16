@@ -84,7 +84,7 @@ const Header = ({ loading }: Props) => {
                 </div>
                 <div className="py-5 flex-grow-0 flex-center group">
                     {loading ? (
-                        <div className="animate-pulse h-3 w-36 my-1.5 bg-gray-300 rounded"></div>
+                        <div className="animate-pulse h-3 w-36 my-1.5 bg-gray-300 rounded-sm"></div>
                     ) : (
                         <>
                             {isTitleEdit ? (

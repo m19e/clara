@@ -31,7 +31,7 @@ const Footer = ({ loading }: Props) => {
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
                         {loading ? (
-                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5 bg-gray-300 rounded"></div>
+                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5 bg-gray-300 rounded-sm"></div>
                         ) : (
                             <span className="w-full text-center opacity-75">{isMincho ? "明朝" : "ゴシック"}</span>
                         )}
@@ -62,7 +62,7 @@ const Footer = ({ loading }: Props) => {
                             </span>
                         </button>
                         {loading ? (
-                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5  bg-gray-300 rounded"></div>
+                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5  bg-gray-300 rounded-sm"></div>
                         ) : (
                             <p className="opacity-75">大きさ {fontSize}</p>
                         )}
@@ -102,7 +102,7 @@ const Footer = ({ loading }: Props) => {
                             </span>
                         </button>
                         {loading ? (
-                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5 bg-gray-300 rounded"></div>
+                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5 bg-gray-300 rounded-sm"></div>
                         ) : (
                             <p className="opacity-75">字数 {lineWords}</p>
                         )}
