@@ -1,6 +1,6 @@
 import { useIsTitleEdit } from "store/draft";
 import { useIsMincho, useIsShowPublishModal } from "store/editor";
-import Header from "../EditorHeader";
+import Header from "components/organisms/EditorHeader";
 import Footer from "../EditorFooter";
 
 const Frame = () => {
