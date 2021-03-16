@@ -12,8 +12,8 @@ import { useDraftID, useTitle, useContent } from "store/draft";
 import { useSuggests } from "store/novel";
 import { useProfile } from "store/user";
 
-import Loader from "components/atoms/Loader";
 import Frame from "components/organisms/EditorFrame";
+import Loader from "components/atoms/Loader";
 
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
 
