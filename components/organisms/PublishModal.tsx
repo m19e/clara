@@ -9,17 +9,6 @@ import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
 import { unifyUsedTags } from "lib/novel/tools";
 import TagsEditor from "components/molecules/TagsEditor";
 
-interface INovelProp {
-    id: string;
-    title: string;
-    content: string;
-    tags: string[];
-    r18: boolean;
-    author_id: string;
-    author_uid: string;
-    author_name: string;
-}
-
 export default function PublishModal() {
     const [showModal, toggleShowModal] = useIsShowPublishModal();
     const [id] = useDraftID();
@@ -37,7 +26,7 @@ export default function PublishModal() {
     const publish = async () => {
         if (inTask) return;
         setInTask(true);
-        const novel: INovelProp = {
+        const novel = {
             id,
             title,
             content,
@@ -50,7 +39,6 @@ export default function PublishModal() {
         await publishNovel(novel);
         const newUsedTags = unifyUsedTags(suggests, [], tags);
         await setUsedTags(novel.author_uid, newUsedTags);
-        // create novel info
         const infos = await getRootNovelInfos();
         if (infos.findIndex((i) => i.id === id) === -1) {
             const added = [].concat([{ id, tags }], infos);
