@@ -3,8 +3,12 @@ import { updateFormat } from "lib/firebase/initFirebase";
 import { useIsMincho, useFontSize, useLineWords, useIsDisabled } from "store/editor";
 import { useProfile } from "store/user";
 
+type Props = {
+    loading: boolean;
+};
+
 // TODO: Chevron mogule
-const Footer = () => {
+const Footer = ({ loading }: Props) => {
     const [isMincho, toggleFont] = useIsMincho();
     const [fontSize, incFontSize, decFontSize] = useFontSize();
     const [lineWords, incLineWords, decLineWords] = useLineWords();
@@ -22,11 +26,15 @@ const Footer = () => {
 
     return (
         <div className="fixed bottom-0 w-full shadow-2xl editor-bg">
-            <div className="flex-center" style={{ minHeight: "80px" }}>
+            <div className="flex-center" style={{ minHeight: "96px" }}>
                 <div className="my-2 flex-center">
                     <div className="group flex flex-col">
                         <span className="h-6"></span>
-                        <span className="w-full text-center opacity-75">{isMincho ? "明朝" : "ゴシック"}</span>
+                        {loading ? (
+                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5 bg-gray-300 rounded"></div>
+                        ) : (
+                            <span className="w-full text-center opacity-75">{isMincho ? "明朝" : "ゴシック"}</span>
+                        )}
                         <button
                             onClick={() => toggleFont()}
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
@@ -35,7 +43,7 @@ const Footer = () => {
                         </button>
                     </div>
                 </div>
-                <span className={"opacity-25 " + (isMincho ? "mr-3" : "mx-3")}>・</span>
+                <span className={"opacity-25 " + (isMincho && !loading ? "mr-3" : "mx-3")}>・</span>
                 <div className="my-2 flex-center">
                     <div className="flex flex-col group">
                         <button
@@ -53,7 +61,11 @@ const Footer = () => {
                                 </svg>
                             </span>
                         </button>
-                        <p className="opacity-75">大きさ {fontSize}</p>
+                        {loading ? (
+                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5  bg-gray-300 rounded"></div>
+                        ) : (
+                            <p className="opacity-75">大きさ {fontSize}</p>
+                        )}
                         <button
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => decFontSize()}
@@ -89,7 +101,11 @@ const Footer = () => {
                                 </svg>
                             </span>
                         </button>
-                        <p className="opacity-75">字数 {lineWords}</p>
+                        {loading ? (
+                            <div className="animate-pulse h-3 w-14 mt-1.5 mb-2 mx-0.5 bg-gray-300 rounded"></div>
+                        ) : (
+                            <p className="opacity-75">字数 {lineWords}</p>
+                        )}
                         <button
                             className="outline-none focus:outline-none transition-opacity duration-1000 ease-out opacity-0 group-hover:opacity-75"
                             onClick={() => decLineWords()}
