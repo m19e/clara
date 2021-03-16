@@ -1,14 +1,14 @@
 import Link from "next/link";
 import React, { useEffect, useState, useRef, FormEvent, ChangeEvent } from "react";
-import { useTitle, useDraftID, useIsTitleEdit } from "store/draft";
-import { useProfile } from "store/user";
 import { updateDraftTitle } from "lib/firebase/initFirebase";
+import { useProfile } from "store/user";
+import { useTitle, useDraftID, useIsTitleEdit } from "store/draft";
 import ClaraHeader from "foundations/ClaraHeader";
 import PublishModal from "components/organisms/PublishModal";
 
 const Header = () => {
-    const [draftID] = useDraftID();
     const [profile] = useProfile();
+    const [draftID] = useDraftID();
     const [title, setTitle] = useTitle();
     const [temptitle, setTempTitle] = useState("");
     const [isTitleEdit, toggleIsTitleEdit] = useIsTitleEdit();
