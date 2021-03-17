@@ -19,7 +19,6 @@ const createEditorStateWithText = (text: string): EditorState => EditorState.cre
 
 const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
 
-// TODO: Dynamic import draftjs editor in this module
 const DraftEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editorRef = useRef(null);
