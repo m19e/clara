@@ -2,7 +2,7 @@ import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } fro
 import { useCallback } from "react";
 
 export const isMinchoState = atom({
-    key: "isMinchoState",
+    key: "editor/isMincho",
     default: true,
 });
 
@@ -16,14 +16,19 @@ export const useIsMincho = (): [boolean, () => void] => {
 };
 
 export const pureFontSizeState = atom({
-    key: "pureFontSizeState",
+    key: "editor/pureFontSize",
     default: 7,
 });
 
 export const realFontSizeState = selector({
-    key: "realFontSizeState",
+    key: "editor/realFontSize",
     get: ({ get }) => (get(pureFontSizeState) + 5) * 2,
 });
+
+export const getRealFontSize = (): number => {
+    const rfs = useRecoilValue(realFontSizeState);
+    return rfs;
+};
 
 export const useFontSize = (): [number, () => void, () => void] => {
     const [fSize, setFontSize] = useRecoilState(pureFontSizeState);
@@ -38,7 +43,7 @@ export const useFontSize = (): [number, () => void, () => void] => {
 };
 
 export const lineWordsState = atom({
-    key: "lineWordsState",
+    key: "editor/lineWords",
     default: 30,
 });
 
@@ -75,17 +80,27 @@ export const useFormat = (): (({ isMincho, fontSize, lineWords }: FormatProps) =
 };
 
 export const wrapperHeightState = atom({
-    key: "wrapperHeightState",
+    key: "editor/wrapperHeight",
     default: 480,
 });
 
+export const useWrapperHeight = (): [number, (wh: number) => void] => {
+    const [wh, setWh] = useRecoilState(wrapperHeightState);
+    return [wh, setWh];
+};
+
 export const editorHeightState = selector({
-    key: "editorHeightState",
+    key: "editor/editorHeight",
     get: ({ get }) => get(realFontSizeState) * get(lineWordsState),
 });
 
+export const getEditorHeight = (): number => {
+    const eh = useRecoilValue(editorHeightState);
+    return eh;
+};
+
 const isDisabledIncFSState = selector({
-    key: "isDisabledIncFSState",
+    key: "editor/isDisabledIncFS",
     get: ({ get }) => {
         const rfs = get(realFontSizeState);
         return (rfs + 2) * get(lineWordsState) > get(wrapperHeightState) || rfs >= 48;
@@ -93,12 +108,12 @@ const isDisabledIncFSState = selector({
 });
 
 const isDisabledDecFSState = selector({
-    key: "isDisabledDecFSState",
+    key: "editor/isDisabledDecFS",
     get: ({ get }) => get(realFontSizeState) <= 12,
 });
 
 const isDisabledIncLWState = selector({
-    key: "isDisabledIncLWState",
+    key: "editor/isDisabledIncLW",
     get: ({ get }) => {
         const lw = get(lineWordsState);
         return get(realFontSizeState) * (lw + 1) > get(wrapperHeightState) || lw >= 40;
@@ -106,7 +121,7 @@ const isDisabledIncLWState = selector({
 });
 
 const isDisabledDecLWState = selector({
-    key: "isDisabledDecLWState",
+    key: "editor/isDisabledDecLW",
     get: ({ get }) => get(lineWordsState) <= 20,
 });
 

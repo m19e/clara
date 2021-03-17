@@ -1,44 +1,32 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useIsShowPublishModal } from "../store/editor";
-import { useDraftID, useTitle, useContent } from "../store/draft";
-import { useProfile } from "../store/user";
-import { publishNovel, createDraftData, setUsedTags } from "../lib/firebase/initFirebase";
-import { getRootNovelInfos, setRootNovelInfos } from "../lib/firebase/novel";
-import { unifyUsedTags } from "../lib/novel/tools";
-import { useSuggests } from "../store/novel";
+import { publishNovel, createDraftData, setUsedTags } from "lib/firebase/initFirebase";
+import { getRootNovelInfos, setRootNovelInfos } from "lib/firebase/novel";
+import { unifyUsedTags } from "lib/novel/tools";
+import { useDraftID, useTitle, useContent } from "store/draft";
+import { useIsShowPublishModal } from "store/editor";
+import { useSuggests } from "store/novel";
+import { useProfile } from "store/user";
+import TagsEditor from "components/molecules/TagsEditor";
 
-import TagsEditor from "./TagsEditor";
-
-interface INovelProp {
-    id: string;
-    title: string;
-    content: string;
-    tags: string[];
-    r18: boolean;
-    author_id: string;
-    author_uid: string;
-    author_name: string;
-}
-
-export default function PublishModal() {
-    const [showModal, toggleShowModal] = useIsShowPublishModal();
+const PublishModal = () => {
     const [id] = useDraftID();
     const [title] = useTitle();
     const [content] = useContent();
     const [profile] = useProfile();
-    const router = useRouter();
+    const [suggests] = useSuggests();
+    const [showModal, toggleShowModal] = useIsShowPublishModal();
+
+    const [tags, setTags] = useState([]);
+    const [r18, setR18] = useState(false);
     const [inTask, setInTask] = useState(false);
 
-    const [tags, setTags] = useState<string[]>([]);
-    const [r18, setR18] = useState(false);
-
-    const [suggests] = useSuggests();
+    const router = useRouter();
 
     const publish = async () => {
         if (inTask) return;
         setInTask(true);
-        const novel: INovelProp = {
+        const novel = {
             id,
             title,
             content,
@@ -51,7 +39,6 @@ export default function PublishModal() {
         await publishNovel(novel);
         const newUsedTags = unifyUsedTags(suggests, [], tags);
         await setUsedTags(novel.author_uid, newUsedTags);
-        // create novel info
         const infos = await getRootNovelInfos();
         if (infos.findIndex((i) => i.id === id) === -1) {
             const added = [].concat([{ id, tags }], infos);
@@ -87,8 +74,6 @@ export default function PublishModal() {
                                 className="gothic border-0 rounded shadow-lg relative flex flex-col w-full p-6 pb-4 editor-bg outline-none focus:outline-none"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                {/* <span className="gothic text-xl text-gray-800 text-center">{title}</span> */}
-                                {/* <span className="w-full text-center text-gray-600">を投稿しますか？</span> */}
                                 <TagsEditor tempTags={tags} setTempTags={setTags} tempR18={r18} setTempR18={setR18} />
                                 <div className="flex justify-between w-full mt-12">
                                     <span
@@ -112,4 +97,6 @@ export default function PublishModal() {
             )}
         </>
     );
-}
+};
+
+export default PublishModal;

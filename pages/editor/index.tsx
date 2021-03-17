@@ -1,18 +1,8 @@
-import dynamic from "next/dynamic";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useUserAgent, UserAgent } from "next-useragent";
-import { useRouter } from "next/router";
+import EditorPage from "components/templates/Editor";
 
-const DynamicEditor = dynamic(() => import("../../components/DraftEditor"), { ssr: false });
-
-export default function EditorIndex({ ua }: { ua: UserAgent }) {
-    const router = useRouter();
-    if (ua.isMobile) {
-        router.push("/");
-    }
-
-    return <DynamicEditor />;
-}
+const EditorIndex = ({ ua }: { ua: UserAgent }) => <EditorPage isMobile={ua.isMobile} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerSidePropsContext) => {
     const ua = useUserAgent(req.headers["user-agent"]);
@@ -23,3 +13,5 @@ export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerS
         },
     };
 };
+
+export default EditorIndex;

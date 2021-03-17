@@ -1,46 +1,38 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import fb from "firebase";
-import React, { useState, useRef, useEffect, createRef } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useState, useRef, useEffect, createRef, RefObject, WheelEvent, KeyboardEvent } from "react";
 import { Editor, EditorState, ContentState, getDefaultKeyBinding, SelectionState } from "draft-js";
 import Scrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-import { auth, getUserDataByUID, readDraftData, updateDraftData } from "../lib/firebase/initFirebase";
-import { isMinchoState, realFontSizeState, wrapperHeightState, editorHeightState, useFormat, useLineWords } from "../store/editor";
-import { useProfile } from "../store/user";
-import { useDraftID, useTitle, useContent } from "../store/draft";
-import { useSuggests } from "../store/novel";
-import Frame from "./EditorFrame";
-import Loader from "./Loader";
+import { FirebaseUser, SelectionRangeOverride } from "types";
+import { auth, getUserDataByUID, readDraftData, updateDraftData } from "lib/firebase/initFirebase";
+import { getEditorHeight, getRealFontSize, useWrapperHeight, useIsMincho, useLineWords, useFormat } from "store/editor";
+import { useDraftID, useTitle, useContent } from "store/draft";
+import { useSuggests } from "store/novel";
+import { useProfile } from "store/user";
 
-type SelectionRangeOverride = {
-    anchorOffset: number;
-    focusOffset?: number;
-    anchorKey?: string;
-    focusKey?: string;
-    isBackward?: boolean;
-};
+import Frame from "components/organisms/EditorFrame";
+import Loader from "components/atoms/Loader";
 
 const createEditorStateWithText = (text: string): EditorState => EditorState.createWithContent(ContentState.createFromText(text));
 
 const createTextWithEditorState = (es: EditorState): string => es.getCurrentContent().getPlainText();
 
-export default function VerticalEditor() {
+const DraftEditor = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const editorRef = useRef(null);
-    const wrapperRef: React.RefObject<HTMLDivElement> = createRef();
+    const wrapperRef: RefObject<HTMLDivElement> = createRef();
     const ps = useRef<HTMLElement>();
     const [loading, setLoading] = useState(true);
     const [isSaved, setIsSaved] = useState(true);
 
     const router = useRouter();
 
-    const setWrapperHeight = useSetRecoilState(wrapperHeightState);
-    const fs = useRecoilValue(realFontSizeState);
-    const eh = useRecoilValue(editorHeightState);
-    const isMincho = useRecoilValue(isMinchoState);
+    const [, setWrapperHeight] = useWrapperHeight();
+    const fs = getRealFontSize();
+    const eh = getEditorHeight();
+    const [isMincho] = useIsMincho();
     const [userProfile, setUserProfile] = useProfile();
     const setFormatAll = useFormat();
     const [draftID, setDraftID] = useDraftID();
@@ -77,7 +69,7 @@ export default function VerticalEditor() {
         return () => clearTimeout(timer);
     }, [editorState]);
 
-    const initEditor = async (user: fb.User) => {
+    const initEditor = async (user: FirebaseUser) => {
         const { uid, displayName, photoURL } = user;
         const userData = await getUserDataByUID(uid);
         const used_tags = "used_tags" in userData ? userData.used_tags : [];
@@ -94,20 +86,20 @@ export default function VerticalEditor() {
         // focusEditor();
     };
 
-    const readDraft = async (uid, did: string) => {
+    const readDraft = async (uid: string, did: string) => {
         const { title, content } = await readDraftData(uid, did);
         const es = createEditorStateWithText(content);
         setTitle(title);
         handleEditorStateChange(es);
     };
 
-    const updateDraft = async (uid, did: string, es: EditorState) => {
+    const updateDraft = async (uid: string, did: string, es: EditorState) => {
         const content = createTextWithEditorState(es);
         await updateDraftData(did, uid, content);
         setIsSaved(true);
     };
 
-    const handleWheel = (e: React.WheelEvent<HTMLElement>) => {
+    const handleWheel = (e: WheelEvent<HTMLElement>) => {
         if (ps.current) {
             ps.current.scrollLeft -= e.deltaY;
         }
@@ -129,7 +121,7 @@ export default function VerticalEditor() {
         setEditorState(newEditor);
     };
 
-    const handleKeyBinding = (e: React.KeyboardEvent) => {
+    const handleKeyBinding = (e: KeyboardEvent) => {
         if (e.key === "Tab") {
             e.preventDefault();
             return null;
@@ -284,9 +276,7 @@ export default function VerticalEditor() {
                 <style>{`* { margin: 0px; }`}</style>
             </Head>
             {loading ? (
-                <div className="min-h-screen flex-center editor-bg">
-                    <Loader />
-                </div>
+                <Loader />
             ) : (
                 <>
                     <div className="min-h-screen flex flex-col editor-bg">
@@ -314,32 +304,11 @@ export default function VerticalEditor() {
                             </div>
                         </div>
                     </div>
-                    <Frame />
                 </>
             )}
+            <Frame loading={loading} />
         </>
     );
-}
-
-type CharCounterProps = {
-    editorState: EditorState;
 };
 
-const CharCounter = ({ editorState }: CharCounterProps) => {
-    const getCharCount = (es: EditorState): number => {
-        const plainText = es.getCurrentContent().getPlainText("");
-        const regex = /(?:\r\n|\r|\n)/g;
-        const cleanString = plainText.replace(regex, "").trim();
-        return Array.from(cleanString).length;
-    };
-
-    const count = getCharCount(editorState);
-
-    return (
-        <div className="w-full flex-center">
-            <div className="m-1">
-                <span className="mincho opacity-50">{count}字</span>
-            </div>
-        </div>
-    );
-};
+export default DraftEditor;
