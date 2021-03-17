@@ -73,13 +73,13 @@ const Header = ({ loading }: Props) => {
             <div className="container flex justify-between items-center">
                 <div className="w-20">
                     <div className="flex justify-start items-center">
-                        <span className="px-4">
+                        <div className="px-4">
                             <Link href="/">
                                 <a>
                                     <img className="w-6 h-6" src="/icon-64x64.png" alt="Clara" />
                                 </a>
                             </Link>
-                        </span>
+                        </div>
                     </div>
                 </div>
                 <div className="py-5 flex-grow-0 flex-center group">
@@ -105,7 +105,7 @@ const Header = ({ loading }: Props) => {
                             ) : (
                                 <>
                                     <div className="w-6"></div>
-                                    <p className="text-gray-900 whitespace-pre mx-1">{title}</p>
+                                    <span className="text-gray-900 whitespace-pre mx-1">{title}</span>
                                     <div className="w-6 opacity-0 transition-opacity duration-1000 ease-out group-hover:opacity-60" onClick={handleToggle}>
                                         <svg
                                             className="w-4 h-4 opacity-50 hover:opacity-100"
@@ -129,9 +129,9 @@ const Header = ({ loading }: Props) => {
                 </div>
                 <div className="w-20">
                     <div className="flex justify-end items-center">
-                        <span className="px-4">
+                        <div className="px-4">
                             <PublishModal />
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
