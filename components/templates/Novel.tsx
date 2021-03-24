@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState, useRef, useEffect, WheelEvent } from "react";
 import Scrollbar from "react-perfect-scrollbar";
@@ -47,7 +46,6 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
 
     const [font, setMincho, setGothic] = useFont(isMobile);
     const [fontSize, setFontBase, setFontXl, setFont2xl] = useFontSize("text-xl");
-    const router = useRouter();
 
     const viewerConfig = {
         fontSize,
