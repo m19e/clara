@@ -9,11 +9,12 @@ type Props = {
 };
 
 const NovelList = ({ novels, pageCount, initialPage }: Props) => (
-    <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
-        {novels.map((novel, i) => (
-            <NovelListItem key={i} novel={novel} className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300" />
-        ))}
-        <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
+    <div className="w-11/12 flex-center flex-col editor-bg rounded">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 p-16 pb-0">
+            {novels.map((novel, i) => (
+                <NovelListItem key={i} novel={novel} className="w-full flex flex-col justify-end border-b border-solid border-gray-300" />
+            ))}
+        </div>
         <div className="w-full flex-center my-8 editor-bg">
             <Pagination pageCount={pageCount} initialPage={initialPage} />
         </div>
