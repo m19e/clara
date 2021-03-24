@@ -3,6 +3,7 @@ import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
 import NovelListItem from "components/molecules/NovelListItem";
 import Pagination from "components/atoms/Pagination";
+import NovelList from "components/molecules/NovelList";
 
 type Props = {
     novels: INovelProp[];
@@ -28,7 +29,7 @@ const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
             <div className="flex-center">
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
-                        <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
+                        {/* <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
                             {novels.map((novel, i) => (
                                 <NovelListItem
                                     key={i}
@@ -40,7 +41,8 @@ const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
                             <div className="w-full flex-center my-8 editor-bg">
                                 <Pagination pageCount={pageCount} initialPage={initialPage} />
                             </div>
-                        </div>
+                        </div> */}
+                        <NovelList novels={novels} pageCount={pageCount} initialPage={initialPage} />
                     </div>
                 </div>
             </div>
