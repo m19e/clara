@@ -12,7 +12,7 @@ const NovelListItem = ({ novel, className }: Props) => (
     <div key={novel.id} className={className}>
         <div className="mb-3">
             <Link href={`/novel/${novel.id}`}>
-                <a className="text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
+                <a className="text-xl sm:text-2xl gothic font-semibold whitespace-pre-wrap opacity-75">{novel.title}</a>
             </Link>
         </div>
         <div className="whitespace-pre-wrap ml-0.5 pb-3">
