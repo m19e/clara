@@ -99,7 +99,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                 twTitle={`${r18 ? "[R18]" : ""} ${title}`}
                 twDescription={r18 ? "" : desc}
                 twImage={process.env.NEXT_PUBLIC_SITE_ROOT_URL + imagePath}
-                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}
+                twUrl={process.env.NEXT_PUBLIC_SITE_ROOT_URL}
                 twCard="summary_large_image"
             />
             <div className="w-full h-screen flex justify-end editor-bg">
@@ -160,7 +160,7 @@ const Novel = ({ novel, isMobile }: { novel: INovelDataSerializable; isMobile: b
                         <ShareNovelButton
                             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                                 `${r18 ? "[R18]" : ""} ${title} - ${author_name} #claranovel`
-                            )}&url=${process.env.NEXT_PUBLIC_SITE_ROOT_URL + router.asPath}`}
+                            )}&url=${process.env.NEXT_PUBLIC_SITE_ROOT_URL + "/novel/" + id}`}
                         />
                         <TopLink />
                     </div>
