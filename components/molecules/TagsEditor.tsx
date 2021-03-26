@@ -21,11 +21,13 @@ const autoSizingRenderInput = ({ addTag, ...props }: TagsInput.RenderInputProps)
 const customRenderTag = (props: TagsInput.RenderTagProps) => {
     const { tag, key, disabled, onRemove, className, classNameRemove, getTagDisplayValue, ...other } = props;
     return (
-        <span key={key} {...other} className="inline-block text-sm font-normal rounded editor-bg mr-1 mb-1 px-1.5 py-1" style={{ fontFamily: "sans-serif" }}>
+        <span key={key} {...other} className="inline-flex text-sm font-normal rounded editor-bg mr-1 mb-1 pl-1.5 py-1" style={{ fontFamily: "sans-serif" }}>
             {getTagDisplayValue(tag)}
             {!disabled && (
-                <a className="ml-1 text-gray-400 font-bold cursor-pointer" onClick={() => onRemove(key)}>
-                    ×
+                <a className="ml-0.5 mr-1 pb-0.5 flex-center text-gray-400 transition-colors hover:text-gray-600" onClick={() => onRemove(key)}>
+                    <svg className="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </a>
             )}
         </span>
