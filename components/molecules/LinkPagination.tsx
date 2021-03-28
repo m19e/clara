@@ -48,7 +48,9 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                     <a>{prev}</a>
                 </Link>
             )}
-            <span className="border-b border-gray-400">{currentPage}</span>
+            <div className="w-6 h-6 flex-center bg-gray-200 rounded-full">
+                <span className="pb-0.5">{currentPage}</span>
+            </div>
             {next < pageCount && (
                 <Link href={`/page/${next}`}>
                     <a>{next}</a>
