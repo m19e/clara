@@ -1,5 +1,13 @@
 import Link from "next/link";
 
+const Chevron = ({ prev }: { prev: boolean }) => (
+    <div className="w-6 h-6 mx-0.5 flex-center rounded transition-colors text-gray-400 hover:text-gray-600 bg-transparent">
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d={prev ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
+        </svg>
+    </div>
+);
+
 type Props = {
     currentPage: number;
     pageCount: number;
