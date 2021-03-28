@@ -45,9 +45,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                     </Link>
                     <Link href="/page/1">
                         <a>
-                            <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
-                                <span className="pb-0.5">1</span>
-                            </div>
+                            <PageNum num={1} />
                         </a>
                     </Link>
                 </>
@@ -56,9 +54,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
             {prev > 1 && (
                 <Link href={`/page/${prev}`}>
                     <a>
-                        <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
-                            <span className="pb-0.5">{prev}</span>
-                        </div>
+                        <PageNum num={prev} />
                     </a>
                 </Link>
             )}
@@ -68,9 +64,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
             {next < pageCount && (
                 <Link href={`/page/${next}`}>
                     <a>
-                        <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
-                            <span className="pb-0.5">{next}</span>
-                        </div>
+                        <PageNum num={next} />
                     </a>
                 </Link>
             )}
@@ -79,9 +73,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                 <>
                     <Link href={`/page/${pageCount}`}>
                         <a>
-                            <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
-                                <span className="pb-0.5">{pageCount}</span>
-                            </div>
+                            <PageNum num={pageCount} />
                         </a>
                     </Link>
                     <Link href={`/page/${next}`}>
