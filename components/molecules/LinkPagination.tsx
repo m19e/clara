@@ -38,14 +38,22 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                         </a>
                     </Link>
                     <Link href="/page/1">
-                        <a>1</a>
+                        <a>
+                            <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
+                                <span className="pb-0.5">1</span>
+                            </div>
+                        </a>
                     </Link>
                 </>
             )}
             {prev > 2 && <Ellipsis />}
             {prev > 1 && (
                 <Link href={`/page/${prev}`}>
-                    <a>{prev}</a>
+                    <a>
+                        <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
+                            <span className="pb-0.5">{prev}</span>
+                        </div>
+                    </a>
                 </Link>
             )}
             <div className="w-6 h-6 flex-center bg-gray-200 rounded-full">
@@ -53,14 +61,22 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
             </div>
             {next < pageCount && (
                 <Link href={`/page/${next}`}>
-                    <a>{next}</a>
+                    <a>
+                        <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
+                            <span className="pb-0.5">{next}</span>
+                        </div>
+                    </a>
                 </Link>
             )}
             {pageCount - next > 1 && <Ellipsis />}
             {currentPage != pageCount && (
                 <>
                     <Link href={`/page/${pageCount}`}>
-                        <a>{pageCount}</a>
+                        <a>
+                            <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
+                                <span className="pb-0.5">{pageCount}</span>
+                            </div>
+                        </a>
                     </Link>
                     <Link href={`/page/${next}`}>
                         <a>
