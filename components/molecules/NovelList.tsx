@@ -1,6 +1,6 @@
 import { INovelProp } from "types";
 import NovelListItem from "components/molecules/NovelListItem";
-import Linked from "components/molecules/LinkPagination";
+import LinkedPagination from "components/molecules/LinkPagination";
 
 type Props = {
     novels: INovelProp[];
@@ -16,7 +16,7 @@ const NovelList = ({ novels, pageCount, initialPage }: Props) => (
             ))}
         </div>
         <div className="w-full flex-center my-8 editor-bg">
-            <Linked currentPage={initialPage + 1} pageCount={pageCount} />
+            <LinkedPagination currentPage={initialPage + 1} pageCount={pageCount} />
         </div>
     </div>
 );
