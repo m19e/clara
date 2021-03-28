@@ -29,19 +29,6 @@ const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
             <div className="flex-center">
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
-                        {/* <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
-                            {novels.map((novel, i) => (
-                                <NovelListItem
-                                    key={i}
-                                    novel={novel}
-                                    className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300"
-                                />
-                            ))}
-                            <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
-                            <div className="w-full flex-center my-8 editor-bg">
-                                <Pagination pageCount={pageCount} initialPage={initialPage} />
-                            </div>
-                        </div> */}
                         <NovelList novels={novels} pageCount={pageCount} initialPage={initialPage} />
                     </div>
                 </div>
