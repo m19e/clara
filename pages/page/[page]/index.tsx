@@ -9,7 +9,7 @@ type Props = {
     currentPage: number;
 };
 
-const Top = ({ novels = [], pageCount, currentPage }: Props) => <TopPage novels={novels} pageCount={pageCount} currentPage={currentPage} />;
+const PageIndex = ({ novels = [], pageCount, currentPage }: Props) => <TopPage novels={novels} pageCount={pageCount} currentPage={currentPage} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const { page } = params;
@@ -34,4 +34,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     };
 };
 
-export default Top;
+export default PageIndex;
