@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
         props: {
             novels,
             pageCount,
-            initialPage: pageNum,
+            currentPage: pageNum,
         },
     };
 };
