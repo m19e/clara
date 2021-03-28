@@ -31,7 +31,7 @@ const Top = ({ novels, pageCount, currentPage }: Props) => {
                         <div className="w-11/12 pt-12 xl:px-12 flex-center flex-col editor-bg rounded">
                             <NovelList novels={novels} />
                             <div className="w-full flex-center my-8 editor-bg">
-                                <LinkedPagination currentPage={currentPage + 1} pageCount={pageCount} />
+                                <LinkedPagination currentPage={currentPage} pageCount={pageCount} />
                             </div>
                         </div>
                     </div>
