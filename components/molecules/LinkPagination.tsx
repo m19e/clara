@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Chevron = ({ prev }: { prev: boolean }) => (
-    <div className="mx-0.5 pb-0.5 transition-colors text-gray-400 hover:text-gray-600 bg-transparent">
+    <div className="mx-0.5 transition-colors text-gray-400 hover:text-gray-600 bg-transparent">
         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d={prev ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
         </svg>
@@ -21,7 +21,7 @@ const Ellipsis = () => (
 
 const PageNum = ({ num }: { num: number }) => (
     <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
-        <span className="font-black text-gray-600 pb-0.5">{num}</span>
+        <span className="font-black text-gray-600">{num}</span>
     </div>
 );
 
@@ -59,7 +59,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                 </Link>
             )}
             <div className="w-6 h-6 flex-center bg-gray-200 rounded-full">
-                <span className="font-black text-gray-600 pb-0.5">{currentPage}</span>
+                <span className="font-black text-gray-600">{currentPage}</span>
             </div>
             {next < pageCount && (
                 <Link href={`/page/${next}`}>
