@@ -17,12 +17,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
         return { notFound: true, props: {} };
     }
     const currentPage = parseInt(page, 10);
+    const pageIndex = currentPage - 1;
     const novelIDs = await getRootNovelIDs();
     const pageCount = Math.ceil(novelIDs.length / PER_PAGE);
-    if (currentPage < 1 || (currentPage - 1) * PER_PAGE > novelIDs.length) {
+    if (pageIndex < 0 || pageIndex * PER_PAGE > novelIDs.length) {
         return { notFound: true, props: {} };
     }
-    const novels = await getNovelsByIDs(novelIDs.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE));
+    const novels = await getNovelsByIDs(novelIDs.slice(pageIndex * PER_PAGE, currentPage * PER_PAGE));
 
     return {
         props: {
