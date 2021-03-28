@@ -21,7 +21,7 @@ const Ellipsis = () => (
 
 const PageNum = ({ num }: { num: number }) => (
     <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
-        <span className="pb-0.5">{num}</span>
+        <span className="font-black text-gray-600 pb-0.5">{num}</span>
     </div>
 );
 
@@ -59,7 +59,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                 </Link>
             )}
             <div className="w-6 h-6 flex-center bg-gray-200 rounded-full">
-                <span className="pb-0.5">{currentPage}</span>
+                <span className="font-black text-gray-600 pb-0.5">{currentPage}</span>
             </div>
             {next < pageCount && (
                 <Link href={`/page/${next}`}>
