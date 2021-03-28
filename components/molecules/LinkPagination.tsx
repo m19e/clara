@@ -22,7 +22,9 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
             {currentPage != 1 && (
                 <>
                     <Link href={`/page/${prev}`}>
-                        <a>{"<"}</a>
+                        <a>
+                            <Chevron prev />
+                        </a>
                     </Link>
                     <Link href="/page/1">
                         <a>1</a>
@@ -48,7 +50,9 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                         <a>{pageCount}</a>
                     </Link>
                     <Link href={`/page/${next}`}>
-                        <a>{">"}</a>
+                        <a>
+                            <Chevron prev={false} />
+                        </a>
                     </Link>
                 </>
             )}
