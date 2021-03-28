@@ -16,19 +16,19 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
     if (typeof page !== "string" || page === "") {
         return { notFound: true, props: {} };
     }
-    const pageNum = parseInt(page, 10) - 1;
+    const currentPage = parseInt(page, 10);
     const novelIDs = await getRootNovelIDs();
     const pageCount = Math.ceil(novelIDs.length / PER_PAGE);
-    if (pageNum < 0 || pageNum * PER_PAGE > novelIDs.length) {
+    if (currentPage < 1 || (currentPage - 1) * PER_PAGE > novelIDs.length) {
         return { notFound: true, props: {} };
     }
-    const novels = await getNovelsByIDs(novelIDs.slice(pageNum * PER_PAGE, (pageNum + 1) * PER_PAGE));
+    const novels = await getNovelsByIDs(novelIDs.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE));
 
     return {
         props: {
             novels,
             pageCount,
-            currentPage: pageNum,
+            currentPage,
         },
     };
 };
