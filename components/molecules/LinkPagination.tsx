@@ -19,6 +19,12 @@ const Ellipsis = () => (
     </svg>
 );
 
+const PageNum = ({ num }: { num: number }) => (
+    <div className="w-6 h-6 flex-center bg-transparent transition-colors hover:bg-gray-200 rounded-full">
+        <span className="pb-0.5">{num}</span>
+    </div>
+);
+
 type Props = {
     currentPage: number;
     pageCount: number;
