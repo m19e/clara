@@ -6,10 +6,10 @@ import TopPage from "components/templates/Top";
 type Props = {
     novels: INovelProp[];
     pageCount: number;
-    initialPage: number;
+    currentPage: number;
 };
 
-const Top = ({ novels = [], pageCount, initialPage }: Props) => <TopPage novels={novels} pageCount={pageCount} initialPage={initialPage} />;
+const Top = ({ novels = [], pageCount, currentPage }: Props) => <TopPage novels={novels} pageCount={pageCount} currentPage={currentPage} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const { page } = params;
