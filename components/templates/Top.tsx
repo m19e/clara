@@ -2,6 +2,7 @@ import { INovelProp } from "types";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
 import NovelList from "components/molecules/NovelList";
+import LinkedPagination from "components/molecules/LinkPagination";
 
 type Props = {
     novels: INovelProp[];
@@ -27,7 +28,12 @@ const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
             <div className="flex-center">
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
-                        <NovelList novels={novels} pageCount={pageCount} initialPage={initialPage} />
+                        <div className="w-11/12 pt-12 xl:px-12 flex-center flex-col editor-bg rounded">
+                            <NovelList novels={novels} pageCount={pageCount} initialPage={initialPage} />
+                            <div className="w-full flex-center my-8 editor-bg">
+                                <LinkedPagination currentPage={initialPage + 1} pageCount={pageCount} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
