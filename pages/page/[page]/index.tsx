@@ -6,31 +6,32 @@ import TopPage from "components/templates/Top";
 type Props = {
     novels: INovelProp[];
     pageCount: number;
-    initialPage: number;
+    currentPage: number;
 };
 
-const Top = ({ novels = [], pageCount, initialPage }: Props) => <TopPage novels={novels} pageCount={pageCount} initialPage={initialPage} />;
+const PageIndex = ({ novels = [], pageCount, currentPage }: Props) => <TopPage novels={novels} pageCount={pageCount} currentPage={currentPage} />;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
     const { page } = params;
     if (typeof page !== "string" || page === "") {
         return { notFound: true, props: {} };
     }
-    const pageNum = parseInt(page, 10) - 1;
+    const currentPage = parseInt(page, 10);
+    const pageIndex = currentPage - 1;
     const novelIDs = await getRootNovelIDs();
     const pageCount = Math.ceil(novelIDs.length / PER_PAGE);
-    if (pageNum < 0 || pageNum * PER_PAGE > novelIDs.length) {
+    if (pageIndex < 0 || pageIndex * PER_PAGE > novelIDs.length) {
         return { notFound: true, props: {} };
     }
-    const novels = await getNovelsByIDs(novelIDs.slice(pageNum * PER_PAGE, (pageNum + 1) * PER_PAGE));
+    const novels = await getNovelsByIDs(novelIDs.slice(pageIndex * PER_PAGE, currentPage * PER_PAGE));
 
     return {
         props: {
             novels,
             pageCount,
-            initialPage: pageNum,
+            currentPage,
         },
     };
 };
 
-export default Top;
+export default PageIndex;

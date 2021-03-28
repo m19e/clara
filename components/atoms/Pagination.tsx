@@ -30,23 +30,23 @@ const Pagination = ({ pageCount, initialPage }: Props) => {
     const router = useRouter();
     const [forcePage, setForcePage] = useState<number>(0);
 
-    useEffect(() => {
-        const handleRouteChangeComplete = () => {
-            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        };
-        router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    // useEffect(() => {
+    //     const handleRouteChangeComplete = () => {
+    //         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    //     };
+    //     router.events.on("routeChangeComplete", handleRouteChangeComplete);
 
-        router.beforePopState(({ as }) => {
-            if (/^\/page\//.test(as)) {
-                setForcePage(parseInt(as.replace("/page/", ""), 10) - 1);
-            }
-            return true;
-        });
+    //     router.beforePopState(({ as }) => {
+    //         if (/^\/page\//.test(as)) {
+    //             setForcePage(parseInt(as.replace("/page/", ""), 10) - 1);
+    //         }
+    //         return true;
+    //     });
 
-        return () => {
-            router.events.off("routeChangeComplete", handleRouteChangeComplete);
-        };
-    }, []);
+    //     return () => {
+    //         router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    //     };
+    // }, []);
 
     const handlePageChange = (selectedItem: { selected: number }) => {
         const { selected } = selectedItem;

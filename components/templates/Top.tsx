@@ -1,17 +1,16 @@
 import { INovelProp } from "types";
 import Header from "foundations/ClaraHeader";
 import Layout from "components/organisms/Layout";
-import NovelListItem from "components/molecules/NovelListItem";
-import Pagination from "components/atoms/Pagination";
 import NovelList from "components/molecules/NovelList";
+import LinkedPagination from "components/molecules/LinkPagination";
 
 type Props = {
     novels: INovelProp[];
     pageCount: number;
-    initialPage?: number;
+    currentPage: number;
 };
 
-const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
+const Top = ({ novels, pageCount, currentPage }: Props) => {
     return (
         <Layout>
             <Header
@@ -29,20 +28,12 @@ const Top = ({ novels, pageCount, initialPage = 0 }: Props) => {
             <div className="flex-center">
                 <div className="w-full flex flex-col flex-center mt-4 mb-8">
                     <div className="container flex-center">
-                        {/* <div className="w-11/12 flex justify-center flex-wrap items-end editor-bg rounded">
-                            {novels.map((novel, i) => (
-                                <NovelListItem
-                                    key={i}
-                                    novel={novel}
-                                    className="w-3/4 mt-12 xl:max-w-lg xl:mx-8 2xl:max-w-xl border-b border-solid border-gray-300"
-                                />
-                            ))}
-                            <div className="w-3/4 xl:max-w-lg xl:mx-8 2xl:max-w-xl"></div>
+                        <div className="w-11/12 pt-12 xl:px-12 flex-center flex-col editor-bg rounded">
+                            <NovelList novels={novels} />
                             <div className="w-full flex-center my-8 editor-bg">
-                                <Pagination pageCount={pageCount} initialPage={initialPage} />
+                                <LinkedPagination currentPage={currentPage} pageCount={pageCount} />
                             </div>
-                        </div> */}
-                        <NovelList novels={novels} pageCount={pageCount} initialPage={initialPage} />
+                        </div>
                     </div>
                 </div>
             </div>
