@@ -29,7 +29,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
     const next = currentPage + 1;
 
     return (
-        <div className="inline-flex gap-2 mt-2">
+        <div className="inline-flex items-center gap-2 mt-2">
             {currentPage != 1 && (
                 <>
                     <Link href={`/page/${prev}`}>
