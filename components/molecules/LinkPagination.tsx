@@ -42,7 +42,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                     </Link>
                 </>
             )}
-            {prev > 2 && <span>…</span>}
+            {prev > 2 && <Ellipsis />}
             {prev > 1 && (
                 <Link href={`/page/${prev}`}>
                     <a>{prev}</a>
@@ -54,7 +54,7 @@ const LinkPagination = ({ currentPage, pageCount }: Props) => {
                     <a>{next}</a>
                 </Link>
             )}
-            {pageCount - next > 1 && <span>…</span>}
+            {pageCount - next > 1 && <Ellipsis />}
             {currentPage != pageCount && (
                 <>
                     <Link href={`/page/${pageCount}`}>
