@@ -1,6 +1,5 @@
 import { INovelProp } from "types";
 import NovelListItem from "components/molecules/NovelListItem";
-import Pagination from "components/atoms/Pagination";
 import Linked from "components/molecules/LinkPagination";
 
 type Props = {
