@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { useUserAgent, UserAgent } from "next-useragent";
 import { INovelDataSerializable } from "types";
 import { getNovel } from "lib/firebase/novel";
@@ -12,7 +12,7 @@ type Props = {
 
 const NovelIndex = ({ novel, ua }: Props) => <NovelPage novel={novel} isMobile={ua.isMobile} />;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, params }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<Props>> => {
     const ua = useUserAgent(req.headers["user-agent"]);
     const id = typeof params.id === "string" ? params.id : "";
     const n = await getNovel(id);
