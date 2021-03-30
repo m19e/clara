@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { UserProfile, INovelDataSerializable } from "types";
 import { getAllUserNovelByUID, getUserDataByID } from "lib/firebase/initFirebase";
 import { createDisplayTimeFromTimestamp } from "lib/novel/tools";
@@ -11,7 +11,7 @@ type Props = {
 
 const UserIndex = ({ user, novels }: Props) => <UserPage user={user} novels={novels} />;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<Props>> => {
     const id = typeof params.id === "string" ? params.id : "";
     const user = await getUserDataByID(id);
     if (!user) return { notFound: true };
