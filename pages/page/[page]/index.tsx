@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { INovelProp } from "types";
 import { getNovelsByIDs, getRootNovelIDs, PER_PAGE } from "lib/firebase/novel";
 import TopPage from "components/templates/Top";
@@ -11,7 +11,7 @@ type Props = {
 
 const PageIndex = ({ novels = [], pageCount, currentPage }: Props) => <TopPage novels={novels} pageCount={pageCount} currentPage={currentPage} />;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<Props>> => {
     const { page } = params;
     if (typeof page !== "string" || page === "") {
         return { notFound: true, props: {} };
