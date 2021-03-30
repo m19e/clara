@@ -14,14 +14,14 @@ const PageIndex = ({ novels = [], pageCount, currentPage }: Props) => <TopPage n
 export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<Props>> => {
     const { page } = params;
     if (typeof page !== "string" || page === "") {
-        return { notFound: true, props: {} };
+        return { notFound: true };
     }
     const currentPage = parseInt(page, 10);
     const pageIndex = currentPage - 1;
     const novelIDs = await getRootNovelIDs();
     const pageCount = Math.ceil(novelIDs.length / PER_PAGE);
-    if (pageIndex < 0 || pageIndex * PER_PAGE > novelIDs.length) {
-        return { notFound: true, props: {} };
+    if (Number.isNaN(currentPage) || pageIndex < 0 || pageIndex * PER_PAGE > novelIDs.length) {
+        return { notFound: true };
     }
     const novels = await getNovelsByIDs(novelIDs.slice(pageIndex * PER_PAGE, currentPage * PER_PAGE));
 
