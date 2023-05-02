@@ -7,3 +7,7 @@
 ![editor](https://user-images.githubusercontent.com/49052459/235671249-8eebb23b-ba8c-4de6-8fb0-dca3062bbd9d.png)
 
 ✍🏻 縦書き小説執筆・投稿サービス
+
+## License
+
+[MIT](./LICENSE)
